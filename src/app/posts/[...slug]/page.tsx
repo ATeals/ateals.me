@@ -14,7 +14,7 @@ export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post.url.split("/") }));
 
 export const generateMetadata = ({ params }: { params: { slug: string[] } }) => {
-  const post = getPostByParams("/posts/" + params.slug.join("/"));
+  const post = getPostByParams("/posts" + params.slug.join("/"));
 
   if (!post) return { title: "Post not found" };
 
@@ -22,7 +22,7 @@ export const generateMetadata = ({ params }: { params: { slug: string[] } }) => 
 };
 
 const PostLayout = ({ params }: { params: { slug: string[] } }) => {
-  const post = getPostByParams("/posts/" + params.slug.join("/"));
+  const post = getPostByParams("/posts" + params.slug.join("/"));
 
   if (!post) notFound();
 
