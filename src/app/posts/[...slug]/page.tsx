@@ -11,7 +11,7 @@ import { getPostByParams } from "@/service/mdx/post";
 import { PostBody } from "@/widgets/posts/PostBody";
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post.url.split("/") }));
+  allPosts.map((post) => ({ slug: post._raw.flattenedPath.split("/") }));
 
 export const generateMetadata = ({ params }: { params: { slug: string[] } }) => {
   const post = getPostByParams("/posts" + params.slug.join("/"));
