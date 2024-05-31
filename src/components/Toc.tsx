@@ -19,7 +19,7 @@ export const Toc = ({ post }: { post: Post }) => {
   const tocHeadings = parseToc(post.body.raw);
 
   return (
-    <ul className="h-[400px] overflow-scroll my-10">
+    <ul className="h-[400px] overflow-scroll my-10 scrollbar-hide">
       {tocHeadings.map(({ text, level }, index) => (
         <li
           key={text + level + index}
