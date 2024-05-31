@@ -24,7 +24,7 @@ export const Post = defineDocumentType(() => ({
   contentType: "mdx",
   fields,
   computedFields: {
-    url: { type: "string", resolve: (post) => `/posts${post._raw.flattenedPath}` },
+    url: { type: "string", resolve: (post) => `/posts/${post._raw.flattenedPath}` },
   },
 }));
 
