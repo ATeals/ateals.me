@@ -1,0 +1,127 @@
+{
+  "confirmDeletion": true,
+  "showDescriptions": false,
+  "showSourcesForDuplicates": true,
+  "debug": false,
+  "mainTrigger": "/",
+  "extraTriggers": [],
+  "useExtraTriggers": false,
+  "triggerOnlyOnNewLine": false,
+  "queryPattern": {},
+  "bindings": [
+    {
+      "name": "테이블(Table)",
+      "id": "editor:insert-table",
+      "icon": "table-2",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "콜아웃(Callout)",
+      "id": "editor:insert-callout",
+      "icon": "indent",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "코드(code)",
+      "id": "editor:insert-codeblock",
+      "icon": "terminal",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "수식(Math)",
+      "id": "editor:insert-mathblock",
+      "icon": "percent",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "임베드(Embed)",
+      "id": "editor:insert-embed",
+      "icon": "sticky-note",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "파일(Attachment)",
+      "id": "editor:attach-file",
+      "icon": "paperclip",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "프로퍼티(Property)",
+      "id": "markdown:add-metadata-property",
+      "icon": "plus-circle",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "Admonition",
+      "id": "obsidian-admonition:insert-admonition",
+      "icon": "indent",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "Excalidraw",
+      "id": "obsidian-excalidraw-plugin:excalidraw-autocreate-and-embed-new-tab",
+      "icon": "image",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "할 일 목록(Task)",
+      "id": "obsidian-tasks-plugin:edit-task",
+      "icon": "check-circle",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "Template",
+      "id": "templater-obsidian:insert-templater",
+      "icon": "book-copy",
+      "mode": "any",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "name": "Citation",
+      "id": "zotlit:insert-markdown-citation",
+      "icon": "book-marked",
+      "mode": "desktop",
+      "triggerMode": "anywhere",
+      "chosen": false,
+      "selected": false
+    },
+    {
+      "id": "insert-template",
+      "icon": "lucide-copy",
+      "name": "템플릿: 템플릿 삽입",
+      "mode": "any"
+    }
+  ]
+}

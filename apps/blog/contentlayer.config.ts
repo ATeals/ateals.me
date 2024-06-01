@@ -13,13 +13,18 @@ const fields: FieldDefs = {
   tags: { type: "list", of: { type: "string" } },
 };
 
-interface NavigationPost {
-  url?: string;
-  title?: string;
-}
-
-export const Post = defineDocumentType(() => ({
+export const Blog = defineDocumentType(() => ({
   name: "Post",
+  filePathPattern: `blog/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    url: { type: "string", resolve: (post) => `/posts/${post._raw.flattenedPath}` },
+  },
+}));
+
+export const Docs = defineDocumentType(() => ({
+  name: "Docs",
   filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields,
@@ -29,8 +34,8 @@ export const Post = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: "../../documents/blog/",
-  documentTypes: [Post],
+  contentDirPath: "../../documents/",
+  documentTypes: [Blog, Docs],
   mdx: {
     remarkPlugins: [remarkGfm as any, remarkCallout as any],
     rehypePlugins: [[rehypePrettyCode as any, { theme: "github-dark" }]],

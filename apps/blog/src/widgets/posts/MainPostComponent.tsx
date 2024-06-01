@@ -2,6 +2,7 @@
 
 import { Post } from "@/components/Post";
 import { Post as PostType } from "contentlayer/generated";
+import { DocumentType } from "contentlayer/source-files";
 import { HTMLProps } from "react";
 
 interface MainPostComponentProps extends HTMLProps<HTMLDivElement> {

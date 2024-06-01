@@ -1,11 +1,12 @@
 import { getPostNavigation } from "@/service/mdx";
-import { Post as PostType } from "contentlayer/generated";
 
 import { parseISO, format } from "date-fns";
 import { ReactNode, createContext, useContext } from "react";
 import Link from "next/link";
 import { Button, Separator, Slot } from "@repo/shadcn/components";
 import { cn } from "@repo/shadcn/utils";
+
+import { Post as PostType } from "contentlayer/generated";
 
 const PostContext = createContext<PostType | undefined>(undefined);
 
