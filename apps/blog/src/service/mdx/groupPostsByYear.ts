@@ -1,11 +1,10 @@
-import { Post } from "contentlayer/generated";
-
+import { Document } from "@/service/mdx/post";
 export interface PostsGroupedByYear {
   year: number;
-  posts: Post[];
+  posts: Document[];
 }
 
-export const groupPostsByYear = (posts: Post[]) => {
+export const groupPostsByYear = (posts: Document[]) => {
   const grouped = posts.reduce<{ [key: number]: PostsGroupedByYear }>((acc, post) => {
     const year = new Date(post.date).getFullYear();
 

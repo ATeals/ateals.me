@@ -2,8 +2,8 @@
 
 import { useSelectedHeading } from "@/hooks/useSelectedHeading";
 import { parseToc } from "@/service/mdx";
+import { Document } from "@/service/mdx/post";
 import { cn } from "@repo/shadcn/utils";
-import { Post } from "contentlayer/generated";
 
 import Link from "next/link";
 
@@ -13,7 +13,7 @@ const HEADING_LEVELS_MAP = {
   3: "mt-2 font-thin",
 };
 
-export const Toc = ({ post }: { post: Post }) => {
+export const Toc = ({ post }: { post: Document }) => {
   const { activeHeading } = useSelectedHeading();
 
   const tocHeadings = parseToc(post.body.raw);

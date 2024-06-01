@@ -14,7 +14,7 @@ const fields: FieldDefs = {
 };
 
 export const Blog = defineDocumentType(() => ({
-  name: "Post",
+  name: "post",
   filePathPattern: `blog/**/*.mdx`,
   contentType: "mdx",
   fields,
@@ -24,7 +24,7 @@ export const Blog = defineDocumentType(() => ({
 }));
 
 export const Docs = defineDocumentType(() => ({
-  name: "Docs",
+  name: "docs",
   filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields,

@@ -6,9 +6,9 @@ import Link from "next/link";
 import { Button, Separator, Slot } from "@repo/shadcn/components";
 import { cn } from "@repo/shadcn/utils";
 
-import { Post as PostType } from "contentlayer/generated";
+import { Document } from "@/service/mdx/post";
 
-const PostContext = createContext<PostType | undefined>(undefined);
+const PostContext = createContext<Document | undefined>(undefined);
 
 const usePostContext = () => {
   const post = useContext(PostContext);
@@ -20,7 +20,7 @@ const usePostContext = () => {
   return post;
 };
 
-const PostProvider = ({ post, children }: { post: PostType; children: ReactNode }) => {
+const PostProvider = ({ post, children }: { post: Document; children: ReactNode }) => {
   return (
     <PostContext.Provider value={post}>
       <Slot className="group/post">{children}</Slot>
@@ -92,7 +92,7 @@ const PostNavigation = ({
   children,
   ...props
 }: React.HTMLProps<HTMLDivElement> & {
-  children?: ({ next, prev }: { next?: PostType; prev?: PostType }) => React.ReactNode;
+  children?: ({ next, prev }: { next?: Document; prev?: Document }) => React.ReactNode;
 }) => {
   const post = usePostContext();
 

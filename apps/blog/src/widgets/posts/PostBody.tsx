@@ -1,12 +1,12 @@
 import { MDXWapper } from "@/components/MDXWapper";
-import { Post as PostType } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 
 import { HeadingComponentsBuilder } from "@/components/MDX/HeadingComponents";
+import { Document } from "@/service/mdx/post";
 
 import "@/styles/callout.css";
 
-export const PostBody = ({ post }: { post: PostType }) => {
+export const PostBody = ({ post }: { post: Document }) => {
   const MDXComponent = getMDXComponent(post.body.code);
 
   return (

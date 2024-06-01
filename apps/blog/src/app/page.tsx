@@ -1,11 +1,12 @@
-import { allPosts, groupPostsByYear } from "@/service/mdx";
+import { groupPostsByYear } from "@/service/mdx";
+import { DocumentBuilder } from "@/service/mdx/post";
 import { Header } from "@/widgets/Header";
 import { YearGroupPostList } from "@/widgets/posts/PostList";
 
 import { Separator } from "@repo/shadcn/components";
 
 export default function Home() {
-  const posts = allPosts;
+  const posts = new DocumentBuilder().getDocuments();
 
   const groupedPosts = groupPostsByYear(posts);
 

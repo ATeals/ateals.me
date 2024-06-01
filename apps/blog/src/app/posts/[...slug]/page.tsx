@@ -1,12 +1,10 @@
-import { allPosts } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { Giscus } from "@/components/Giscus";
 
-import Link from "next/link";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { Toc } from "@/components/Toc";
 import { MainPostComponent } from "@/widgets/posts/MainPostComponent";
-import { getPostByParams } from "@/service/mdx/post";
+import { DocumentBuilder, allPosts } from "@/service/mdx/post";
 
 import { PostBody } from "@/widgets/posts/PostBody";
 import { SideMenu } from "@/widgets/SideMenu";
@@ -16,7 +14,9 @@ export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath.split("/") }));
 
 export const generateMetadata = ({ params }: { params: { slug: string[] } }) => {
-  const post = getPostByParams("/posts/" + params.slug.join("/"));
+  const post = new DocumentBuilder().getPostByParams(
+    "/posts/" + params.slug.map(decodeURIComponent).join("/")
+  );
 
   if (!post) return { title: "Post not found" };
 
@@ -24,7 +24,9 @@ export const generateMetadata = ({ params }: { params: { slug: string[] } }) => 
 };
 
 const PostLayout = ({ params }: { params: { slug: string[] } }) => {
-  const post = getPostByParams("/posts/" + params.slug.join("/"));
+  const decodeURL = "/posts/" + params.slug.map(decodeURIComponent).join("/");
+
+  const post = new DocumentBuilder().getPostByParams(decodeURL);
 
   if (!post) notFound();
 

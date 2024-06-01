@@ -1,12 +1,11 @@
 "use client";
 
 import { Post } from "@/components/Post";
-import { Post as PostType } from "contentlayer/generated";
-import { DocumentType } from "contentlayer/source-files";
+import { Document } from "@/service/mdx/post";
 import { HTMLProps } from "react";
 
 interface MainPostComponentProps extends HTMLProps<HTMLDivElement> {
-  post: PostType;
+  post: Document;
 }
 
 export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) => {

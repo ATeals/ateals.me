@@ -1,39 +1,12 @@
-import { Post, allPosts as defaultAllPosts } from "contentlayer/generated";
+import { docs, post, allDocuments as defaultAllPosts } from "contentlayer/generated";
+
+export type Document = post | docs;
 
 export const allPosts = defaultAllPosts.sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 );
 
-export const getPostByParams = (params: string) => allPosts.find((post) => post.url === params);
-
-export const getPostsWithQuerys = ({
-  tags,
-  section,
-}: { tags?: string[]; section?: string } = {}) => {
-  let posts = allPosts;
-
-  if (tags) {
-    posts = getPostsFromTag(tags);
-  }
-
-  if (section) {
-    posts = getPostsFromSection(section);
-  }
-
-  return posts;
-};
-
-const getPostsFromSection = (section: string) => {
-  return allPosts.filter((post) => post._raw.sourceFileDir === section);
-};
-
-const getPostsFromTag = (tags: string[]) => {
-  if (tags.length === 0) return allPosts;
-
-  return allPosts.filter((post) => post.tags?.some((tag) => tags.includes(tag)));
-};
-
-export const getPostNavigation = (post: Post) => {
+export const getPostNavigation = (post: Document) => {
   const currentIndex = allPosts.findIndex((p) => p.title === post.title);
 
   const next = allPosts[currentIndex - 1];
@@ -44,3 +17,47 @@ export const getPostNavigation = (post: Post) => {
     prev,
   };
 };
+
+export class DocumentBuilder {
+  private documents = allPosts;
+
+  getDocuments() {
+    return this.documents;
+  }
+
+  getPostByParams(params: string) {
+    return this.documents.find((post) => post.url === params);
+  }
+
+  private getPostsFromType(type: "post" | "docs") {
+    this.documents = this.documents.filter((post) => post.type === type);
+
+    return this;
+  }
+
+  private getPostsFromSection(section: string) {
+    this.documents = this.documents.filter(
+      (post) => post._raw.sourceFileDir.split("/")[1] === section
+    );
+
+    return this;
+  }
+
+  private getPostsFromTag(tags: string[]) {
+    if (tags.length === 0) return allPosts;
+
+    this.documents = this.documents.filter((post) => post.tags?.some((tag) => tags.includes(tag)));
+
+    return this;
+  }
+
+  query({ tags, section, type }: { tags?: string[]; section?: string; type?: "post" | "docs" }) {
+    if (tags) this.getPostsFromTag(tags);
+    if (section) this.getPostsFromSection(section);
+    if (type) this.getPostsFromType(type);
+
+    return this;
+  }
+}
+
+export const documentBuilder = new DocumentBuilder();

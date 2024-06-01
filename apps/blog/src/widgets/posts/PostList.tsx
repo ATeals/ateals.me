@@ -1,6 +1,5 @@
 "use client";
 
-import { Post as PostType } from "contentlayer/generated";
 import { Fragment, HTMLProps } from "react";
 import { PostsGroupedByYear } from "@/service/mdx/groupPostsByYear";
 
@@ -8,9 +7,10 @@ import { Post } from "@/components/Post";
 
 import Link from "next/link";
 import { Separator } from "@repo/shadcn/components";
+import { Document } from "@/service/mdx/post";
 
 interface PostListProps extends HTMLProps<HTMLDivElement> {
-  posts: PostType[];
+  posts: Document[];
 }
 
 export const PostList = ({ posts, ...props }: PostListProps) => {
