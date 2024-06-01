@@ -1,1 +1,1 @@
-import "../../tailwind.config";
+export { default } from "../../tailwind.config";
