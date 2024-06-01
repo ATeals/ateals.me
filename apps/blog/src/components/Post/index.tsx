@@ -103,13 +103,21 @@ const PostNavigation = ({
   ) : (
     <>
       <Separator className="my-10" />
-      <div className={cn(className, "flex, justify-between, items-baseline")} {...props}>
-        <Button variant={"outline"} asChild>
-          {prev && <Link href={prev.url}> {`< ${prev.title} `}</Link>}
-        </Button>
-        <Button variant={"outline"} asChild>
-          {next && <Link href={next.url}> {` ${next.title} >`}</Link>}
-        </Button>
+      <div className={cn(className, "flex, justify-between, items-center")} {...props}>
+        {prev ? (
+          <Button variant={"outline"} asChild>
+            {prev && <Link href={prev.url}> {`< ${prev.title} `}</Link>}
+          </Button>
+        ) : (
+          <div />
+        )}
+        {next ? (
+          <Button variant={"outline"} asChild>
+            {<Link href={next.url}> {` ${next.title} >`}</Link>}
+          </Button>
+        ) : (
+          <div />
+        )}
       </div>
     </>
   );
