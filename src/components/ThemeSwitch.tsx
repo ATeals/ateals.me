@@ -10,6 +10,15 @@ import {
 } from "./shadcn/ui/dropdown-menu";
 import { Button } from "./shadcn/ui/button";
 
+import { HiOutlineComputerDesktop } from "react-icons/hi2";
+import { CiLight, CiDark } from "react-icons/ci";
+
+const THEME_ICON_MAP = {
+  light: <CiLight size={"20"} />,
+  dark: <CiDark size={"20"} />,
+  system: <HiOutlineComputerDesktop size={"20"} />,
+};
+
 export const ThemeSwitch = () => {
   const { theme, setTheme } = useTheme();
   const [isMount, setMount] = useState(false);
@@ -26,8 +35,8 @@ export const ThemeSwitch = () => {
     <div suppressHydrationWarning>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size={"sm"} variant={"outline"}>
-            {theme}
+          <Button size={"sm"} variant={"ghost"}>
+            {theme && THEME_ICON_MAP[theme as keyof typeof THEME_ICON_MAP]}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
