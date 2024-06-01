@@ -9,6 +9,8 @@ import { MainPostComponent } from "@/widgets/posts/MainPostComponent";
 import { getPostByParams } from "@/service/mdx/post";
 
 import { PostBody } from "@/widgets/posts/PostBody";
+import { SideMenu } from "@/widgets/SideMenu";
+import { BackspaceButton } from "@/components/BackspaceButton";
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath.split("/") }));
@@ -29,14 +31,12 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
   return (
     <section className="py-2 md:py-8 mx-auto max-w-xl">
       <article className="relative md:-mt-[500px]">
-        <aside className="text-sm text-end  lg:block justify-end hidden sticky -translate-x-[100%] w-[300px]  text-gray-700 dark:text-gray-400 font-[350] top-1/4 pr-20">
-          <Link href={"/"} className="block">
-            &larr; Home
-          </Link>
+        <SideMenu>
+          <BackspaceButton variant={"ghost"} />
           <Toc post={post} />
 
           <ThemeSwitch />
-        </aside>
+        </SideMenu>
 
         <MainPostComponent post={post}>
           <PostBody post={post} />
