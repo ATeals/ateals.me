@@ -23,7 +23,7 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
             <Post.Title className="text-2xl font-semibold" />
           </div>
 
-          <Post.Author className="flex justify-between gap-5 px-2 md:px-0">
+          <Post.Author className="flex justify-between gap-5 px-2 md:px-0 my-10">
             <span>
               post by{" "}
               <Link href={"/"} className="text-secondary-md ">
