@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
+                "file": "blog/2024 aws summit Seoul 후기.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
+                "file": "blog/2024 aws summit Seoul 후기.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
+                "file": "blog/2024 aws summit Seoul 후기.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md"
+                "file": "blog/2024 aws summit Seoul 후기.md"
               }
             }
           },
@@ -165,6 +165,8 @@
   },
   "active": "2afffef8838ae793",
   "lastOpenFiles": [
+    "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
+    "blog/2024 aws summit Seoul 후기.md",
     "docs/book/cleanarchitecture/1~2.md",
     "docs/book/cleanarchitecture/1~2.설계와 아키텍처란?.md",
     "docs/book/cleanarchitecture/1~2.설계와 아키텍처란? 두 가치에 대해.md",
@@ -189,9 +191,7 @@
     "docs/book/TheEssenceofObjectOrientation/1. 협력하는 객체들의 공동체.md",
     "docs/book/cleanarchitecture/7~ 11. 설계 원칙.md",
     "docs/book/cleanarchitecture/3~6. 패러다임.md",
-    "docs/book/cleanarchitecture/1~ 2.설계와 아키텍처란?, 두 가치에 대해.md",
     "blog/clean.mdx",
-    "_template/MDX 탬플릿.md",
     "docs/book/TheEssenceofObjectOrientation.mdx",
     "docs/book/cleanarchitecture.mdx",
     "docs/java.mdx",
