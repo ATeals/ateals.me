@@ -4,6 +4,7 @@ import { Header } from "@/widgets/Header";
 import { YearGroupPostList } from "@/widgets/posts/PostList";
 
 import { Separator } from "@repo/shadcn/components";
+import { Metadata } from "next";
 
 export default function Home() {
   const posts = new DocumentBuilder().getDocuments();

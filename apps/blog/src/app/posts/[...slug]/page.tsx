@@ -11,7 +11,7 @@ import { SideMenu } from "@/widgets/SideMenu";
 import { BackspaceButton } from "@/components/BackspaceButton";
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._raw.flattenedPath.split("/") }));
+  allPosts.map((post) => ({ slug: encodeURI(post._raw.flattenedPath).split("/") }));
 
 export const generateMetadata = ({ params }: { params: { slug: string[] } }) => {
   const post = new DocumentBuilder().getPostByParams(
@@ -20,7 +20,11 @@ export const generateMetadata = ({ params }: { params: { slug: string[] } }) => 
 
   if (!post) return { title: "Post not found" };
 
-  return { title: post.title, openGraph: { title: post.title } };
+  return {
+    title: `${post.title} | Ateals`,
+    description: post.description,
+    openGraph: { title: post.title, description: post.description, image: post.image },
+  };
 };
 
 const PostLayout = ({ params }: { params: { slug: string[] } }) => {
