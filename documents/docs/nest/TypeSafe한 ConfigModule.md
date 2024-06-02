@@ -1,8 +1,12 @@
 ---
 title: TypeSafe한 ConfigModule
 description: Config를 TypeSafe하게 가져오기
-cover:
-timestamp: 2024-05-23T19:55
+cover: 
+image: 
+date: 2024-06-02T17:20
+draft: 
+tags: 
+type: docs
 ---
 
 nest에서는 환경변수를 관리하기 위해 @nestjs/config에서 제공하는 configModule을 사용할 수 있다.

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.mdx",
+                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "index.mdx",
+                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index.mdx",
+                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.mdx"
+                "file": "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md"
               }
             }
           },
@@ -155,16 +155,41 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:퀵 스위처 열기": false,
       "graph:그래프 뷰 열기": false,
       "canvas:새 캔버스 만들기": false,
       "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false
+      "command-palette:명령어 팔레트 열기": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
   "active": "2afffef8838ae793",
   "lastOpenFiles": [
+    "docs/nest-documents/6. Pipes.md",
+    "docs/nest-documents/5. Exception filters.md",
+    "docs/nest-documents/4. Middleware.md",
+    "docs/nest-documents/3. Modules.md",
+    "docs/nest-documents/2. Providers.md",
+    "docs/nest-documents/1. Controllers.md",
+    "docs/nest/TypeSafe한 ConfigModule.md",
+    "docs/java/5. 스코프, 형변환.md",
+    "docs/java/4. 조건문, 반복문.md",
+    "docs/java/1. Hello world.md",
+    "docs/java/3. 연산자.md",
+    "docs/java/2. 변수.md",
+    "docs/hello/hello.md",
+    "docs/book/TheEssenceofObjectOrientation/4. 역할, 책임, 협력.md",
+    "docs/book/TheEssenceofObjectOrientation/3. 타입과 추상화.md",
+    "docs/book/TheEssenceofObjectOrientation/2. 이상한 나라의 객체.md",
+    "docs/book/TheEssenceofObjectOrientation/1. 협력하는 객체들의 공동체.md",
+    "docs/book/cleanarchitecture/7~ 11. 설계 원칙.md",
+    "docs/book/cleanarchitecture/3~6. 패러다임.md",
+    "docs/book/cleanarchitecture/1~ 2.설계와 아키텍처란?, 두 가치에 대해.md",
+    "blog/clean.mdx",
+    "_template/MDX 탬플릿.md",
+    "docs/book/TheEssenceofObjectOrientation.mdx",
+    "docs/book/cleanarchitecture.mdx",
+    "docs/java.mdx",
     "java.mdx",
     "spring.mdx",
     "_template/열 분할.md",
@@ -174,33 +199,8 @@
     "book/cleanarchitecture.mdx",
     "nest-documents/6. Pipes.md",
     "nest-documents/5. Exception filters.md",
-    "_template/MDX 탬플릿.md",
-    "_template/토글 목록.md",
-    "_template/콜아웃 - 주의.md",
-    "_template/콜아웃 - 정보.md",
-    "_template/콜아웃 - 위험.md",
-    "_template/콜아웃 - 노트.md",
-    "nest-documents/4. Middleware.md",
-    "nest-documents/3. Modules.md",
-    "().md",
-    "nest-documents/2. Providers.md",
-    "nest-documents/1. Controllers.md",
-    "nest/TypeSafe한 ConfigModule.md",
     "book.mdx",
     "nest-documents",
-    "nest/documents/Controllers.md.md",
-    "nest/nest-documents/Controllers.md.md",
-    "nest/nest-documents",
-    "nest/documents/Controllers.md",
-    "book/TheEssenceofObjectOrientation/4. 역할, 책임, 협력.md",
-    "book/TheEssenceofObjectOrientation/3. 타입과 추상화.md",
-    "book/TheEssenceofObjectOrientation/2. 이상한 나라의 객체.md",
-    "book/TheEssenceofObjectOrientation/1. 협력하는 객체들의 공동체.md",
-    "_template",
-    "book/cleanarchitecture/3~6. 패러다임.md",
-    "book/TheEssenceofObjectOrientation.mdx",
-    "book/TheEssenceofObjectOrientation",
-    "book/The Essence of Object Orientation.mdx",
     "java/이미지/3. 연산자/Pasted image 20240520003729.png",
     "java/이미지/3. 연산자/Pasted image 20240520001653.png",
     "java/이미지/1.Hello world/Pasted image 20240519213334.png",
