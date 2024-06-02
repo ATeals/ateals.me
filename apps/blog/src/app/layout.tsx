@@ -5,7 +5,6 @@ import { BlurSection } from "@/widgets/BlurSection";
 
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/widgets/providers/ThemeProvider";
-import Head from "next/head";
 
 export { generateMetadata } from "./metadata";
 
@@ -16,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <Head>
+      <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
 
@@ -24,7 +23,7 @@ export default function RootLayout({
           name="google-site-verification"
           content="U3213RTjnL2MBwyxUP3W66hcIIqcwV24irUIYoSkKzQ"
         />
-      </Head>
+      </head>
       <body className="dark:bg-dark-bg" style={GeistSans.style}>
         <ThemeProvider>
           <BlurSection />
