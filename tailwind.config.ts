@@ -40,7 +40,7 @@ const config: Config = {
       },
       animation: {
         turn: "turn 0.7s ease-out",
-        fadeIn: "fadeIn 0.7s ease-in-out",
+        fadeIn: "fadeIn 2s ease-in-out",
         darkening: "darkening 1s ease-in-out",
         fadeInDown: "fadeInDown 0.7s ease-in-out",
       },
@@ -53,13 +53,9 @@ const config: Config = {
             transform: "rotate(360deg)",
           },
         },
-        fadeIn: {
-          "0%": {
-            opacity: "0",
-          },
-          "100%": {
-            opacity: "1",
-          },
+        fadein: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         fadeInDown: {
           "0%": {

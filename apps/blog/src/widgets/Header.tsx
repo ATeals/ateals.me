@@ -1,15 +1,18 @@
 import { ThemeSwitch } from "@/components/ThemeSwitch";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 export const Header = ({
   title,
   children,
+  className,
 }: {
   title?: React.ReactNode;
   children?: React.ReactNode;
+  className?: string;
 }) => {
   return (
-    <div className="mb-8">
+    <div className={cn("mb-8", className)}>
       <div className="flex align-baseline justify-between">
         {title ? (
           title

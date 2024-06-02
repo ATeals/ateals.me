@@ -24,7 +24,7 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
 
   return (
     <section className="py-2 md:py-8 mx-auto max-w-xl">
-      <article className="relative lg:-mt-[500px]">
+      <article className="relative lg:-mt-[500px] animate-fadeInDown">
         <SideMenu>
           <BackspaceButton variant={"ghost"} />
           <Toc post={post} />

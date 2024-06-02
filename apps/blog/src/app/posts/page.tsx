@@ -26,7 +26,7 @@ export default function Page({
   const groupedPosts = groupPostsByYear(posts);
 
   return (
-    <div className="mx-auto max-w-xl py-8 pt-40 text-gray-700 dark:text-gray-300 px-2">
+    <div className="mx-auto max-w-xl py-8 pt-40 text-gray-700 dark:text-gray-300 px-2 animate-fadeInDown">
       <Header>
         <p>{getPostsDescription(query.type)}</p>
         <PostsToggle type={query.type} />
