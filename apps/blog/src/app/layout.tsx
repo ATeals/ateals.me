@@ -25,6 +25,10 @@ export default function RootLayout({
           content="U3213RTjnL2MBwyxUP3W66hcIIqcwV24irUIYoSkKzQ"
         />
       </head>
+
+      <link rel="alternate" type="application/rss+xml" href="/rss" title="RSS" />
+      <link rel="alternate" type="application/atom+xml" href="/atom" title="RSS Atom" />
+      <link rel="alternate" type="application/json" href="/json" title="JSON Feed" />
       <body
         className="dark:bg-dark-bg transition-colors ease-in-out duration-500"
         style={GeistSans.style}

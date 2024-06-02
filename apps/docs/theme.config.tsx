@@ -1,6 +1,6 @@
 import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
-import siteConfig from "@/config/siteConfig";
+import SITE_CONFIG from "@/config/SITE_CONFIG";
 import { useRouter } from "next/router";
 
 import Main from "@/components/main";
@@ -9,9 +9,9 @@ import { LogoComponent } from "@/components/Logo";
 const config: DocsThemeConfig = {
   logo: LogoComponent,
   project: {
-    link: siteConfig.URL.PROJECT_REPO,
+    link: SITE_CONFIG.URL.PROJECT_REPO,
   },
-  docsRepositoryBase: siteConfig.URL.PROJECT_REPO,
+  docsRepositoryBase: SITE_CONFIG.URL.PROJECT_REPO,
   footer: {
     text: "Powered by Nextra",
   },
@@ -37,12 +37,12 @@ const config: DocsThemeConfig = {
     const { title, description, image } = config.frontMatter;
 
     return {
-      title: title && asPath !== "/" ? `${title} | Docs` : siteConfig.meta.title,
-      description: description || siteConfig.meta.description,
+      title: title && asPath !== "/" ? `${title} | Docs` : SITE_CONFIG.meta.title,
+      description: description || SITE_CONFIG.meta.description,
       openGraph: {
-        title: title || siteConfig.meta.title,
-        description: description || siteConfig.meta.description,
-        images: [{ url: image || siteConfig.meta.img }],
+        title: title || SITE_CONFIG.meta.title,
+        description: description || SITE_CONFIG.meta.description,
+        images: [{ url: image || SITE_CONFIG.meta.img }],
       },
     };
   },

@@ -1,13 +1,20 @@
 import { CiMail, CiPen } from "react-icons/ci";
 import { FaGithub } from "react-icons/fa";
 
-export const siteConfig = {
+export const SITE_CONFIG = {
   domain:
     process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://blog.ateals.me",
   title: "Blog | Ateals",
   description: "Ateals의 블로그입니다.",
   icons: "/favicon.ico",
   image: "/images/main.webp",
+  MAIN_JPG: "images/main.jpg",
+  since: "2023",
+  owner: {
+    name: "ateals",
+    email: "ateals@icloud.com",
+    link: "https://blog.ateals.me",
+  },
 };
 
 export const POST_TYPES_ENTITY = {
@@ -44,7 +51,7 @@ export const SOCIAL_LINKS = [
   },
   {
     name: "Website",
-    url: siteConfig.domain,
+    url: SITE_CONFIG.domain,
     Icon: CiPen,
   },
   {
