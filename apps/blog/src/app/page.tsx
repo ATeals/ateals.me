@@ -13,7 +13,14 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-xl py-8 pt-40 text-gray-700 dark:text-gray-300">
-      <Header title="Ateals">
+      <Header
+        title={
+          <div className="flex gap-5 items-center mb-8">
+            <img src="/images/logo.webp" alt="logo" className="w-10 h-auto" />
+            <h1 className=" text-lg font-normal text-black dark:text-gray-100">Ateals</h1>
+          </div>
+        }
+      >
         <p>글 읽는 것을 좋아합니다. 글을 수집하는 것에서 멈추지 않고 작성하려 합니다.</p>
       </Header>
 

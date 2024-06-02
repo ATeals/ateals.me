@@ -5,19 +5,9 @@ import { BlurSection } from "@/widgets/BlurSection";
 
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/widgets/providers/ThemeProvider";
+import Head from "next/head";
 
-export const generateMetadata = (): Metadata => {
-  return {
-    title: "Ateals",
-    description: "Ateals의 블로그입니다.",
-    icons: "/favicon.ico",
-    openGraph: {
-      title: "Ateals",
-      description: "Ateals의 블로그입니다.",
-      images: [{ url: "/images/main.webp" }],
-    },
-  };
-};
+export { generateMetadata } from "./metadata";
 
 export default function RootLayout({
   children,
@@ -26,6 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body className="dark:bg-dark-bg" style={GeistSans.style}>
         <ThemeProvider>
           <BlurSection />

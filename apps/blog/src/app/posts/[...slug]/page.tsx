@@ -13,19 +13,7 @@ import { BackspaceButton } from "@/components/BackspaceButton";
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: encodeURI(post._raw.flattenedPath).split("/") }));
 
-export const generateMetadata = ({ params }: { params: { slug: string[] } }) => {
-  const post = new DocumentBuilder().getPostByParams(
-    "/posts/" + params.slug.map(decodeURIComponent).join("/")
-  );
-
-  if (!post) return { title: "Post not found" };
-
-  return {
-    title: `${post.title} | Ateals`,
-    description: post.description,
-    openGraph: { title: post.title, description: post.description, image: post.image },
-  };
-};
+export { generateMetadata } from "./metadata";
 
 const PostLayout = ({ params }: { params: { slug: string[] } }) => {
   const decodeURL = "/posts/" + params.slug.map(decodeURIComponent).join("/");
