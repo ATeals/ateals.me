@@ -9,7 +9,7 @@ export const Header = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div className="mb-4">
+    <div className="mb-8">
       <div className="flex align-baseline justify-between">
         {title ? (
           title

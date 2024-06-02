@@ -25,7 +25,10 @@ export default function RootLayout({
           content="U3213RTjnL2MBwyxUP3W66hcIIqcwV24irUIYoSkKzQ"
         />
       </head>
-      <body className="dark:bg-dark-bg" style={GeistSans.style}>
+      <body
+        className="dark:bg-dark-bg transition-colors ease-in-out duration-500"
+        style={GeistSans.style}
+      >
         <BlurSection />
         <main className="min-h-dvh">
           <ThemeProvider>{children}</ThemeProvider>
