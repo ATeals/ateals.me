@@ -1,11 +1,13 @@
 import type { Config } from "tailwindcss";
 import typography from "@tailwindcss/typography";
-
 import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   darkMode: "class",
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "../../packages/shadcn/src/components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       typography: {

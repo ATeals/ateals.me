@@ -1,0 +1,22 @@
+{
+  "index": "Main",
+  "--- 개발": {
+    "type": "separator",
+    "title": "개발 아티클"
+  },
+  "nest": "Nest.js",
+  "Blog": {
+    "title": "Blog ↗",
+    "type": "page",
+    "href": "https://ateals.vercel.app",
+    "newWindow": true
+  },
+  "--- 아카이브": {
+    "type": "separator",
+    "title": "아카이브"
+  },
+  "book": "독서",
+  "nest-documents": "Nest 문서",
+  "java": "",
+  "spring": ""
+}
