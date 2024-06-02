@@ -1,5 +1,6 @@
-import { CiMail, CiPen } from "react-icons/ci";
-import { FaGithub } from "react-icons/fa";
+import { IconType } from "react-icons";
+
+import { IoLogoGithub } from "react-icons/io5";
 
 export const SITE_CONFIG = {
   domain:
@@ -37,26 +38,34 @@ export const POST_TYPES = Object.entries(POST_TYPES_ENTITY).flatMap(([type, valu
   ...value,
 }));
 
-export interface SocialLink {
+export interface LinkIcon {
   name: string;
   url: string;
-  icon: React.ReactNode;
+  Icon: string | IconType;
 }
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS: LinkIcon[] = [
   {
     name: "Github",
     url: "https://github.com/ATeals",
-    Icon: FaGithub,
+    Icon: IoLogoGithub,
+  },
+];
+
+export const WEB_LINKS: LinkIcon[] = [
+  {
+    name: "Blog",
+    url: SITE_CONFIG.domain,
+    Icon: "🖋️",
   },
   {
-    name: "Website",
-    url: SITE_CONFIG.domain,
-    Icon: CiPen,
+    name: "Documents",
+    url: "https://docs.ateals.me",
+    Icon: "📚",
   },
   {
     name: "Email",
     url: "mailto:ateals@icloud.com",
-    Icon: CiMail,
+    Icon: "📮",
   },
 ];
