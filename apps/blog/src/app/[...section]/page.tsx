@@ -1,4 +1,4 @@
-import { getPostsWithQuerys, groupPostsByYear } from "@/service/mdx";
+import { DocumentBuilder, groupPostsByYear } from "@/service/mdx";
 import { YearGroupPostList } from "@/widgets/posts/PostList";
 
 export default function Page({
@@ -8,7 +8,7 @@ export default function Page({
 }) {
   const section = sectionParams.map(decodeURI).join("/");
 
-  const posts = getPostsWithQuerys({ section });
+  const posts = new DocumentBuilder().query({ section }).getDocuments();
 
   const groupedPosts = groupPostsByYear(posts);
 

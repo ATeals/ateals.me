@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui";
 import { groupPostsByYear } from "@/service/mdx";
-import { DocumentBuilder } from "@/service/mdx/post";
+import { DocumentBuilder } from "@/service/mdx";
 import { Header } from "@/widgets/Header";
 import { YearGroupPostList } from "@/widgets/posts/PostList";
 import { PostsToggle } from "@/widgets/posts/PostsToggle";

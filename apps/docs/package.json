@@ -5,7 +5,7 @@
   "description": "Nextra docs template",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm run prebuild && next build && pnpm run postbuild",
     "start": "next start",
     "prebuild": "tsx ./.scripts/index.ts",
     "postbuild": "next-sitemap && rm -rf .next/cache"
