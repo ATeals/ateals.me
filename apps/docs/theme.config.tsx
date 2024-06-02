@@ -34,7 +34,7 @@ const config: DocsThemeConfig = {
     const config = useConfig();
     const { asPath } = useRouter();
 
-    const { title, description, cover } = config.frontMatter;
+    const { title, description, image } = config.frontMatter;
 
     return {
       title: title && asPath !== "/" ? `${title} | Docs` : siteConfig.meta.title,
@@ -42,7 +42,7 @@ const config: DocsThemeConfig = {
       openGraph: {
         title: title || siteConfig.meta.title,
         description: description || siteConfig.meta.description,
-        images: [{ url: cover || siteConfig.meta.img }],
+        images: [{ url: image || siteConfig.meta.img }],
       },
     };
   },
