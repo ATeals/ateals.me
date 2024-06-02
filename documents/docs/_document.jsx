@@ -9,7 +9,7 @@ export default function render() {
 
         <meta
           name="google-site-verification"
-          content="SWzdnKcr1a_u4qCWr_61fw6PxQf4NZkXWHl1aDrwaeg"
+          content="U3213RTjnL2MBwyxUP3W66hcIIqcwV24irUIYoSkKzQ"
         />
       </Head>
       <body>
