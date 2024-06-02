@@ -8,6 +8,7 @@ import { Post } from "@/components/Post";
 import Link from "next/link";
 import { Separator } from "@repo/shadcn/components";
 import { Document } from "@/service/mdx/post";
+import { POST_TYPES_ENTITY } from "@/config";
 
 interface PostListProps extends HTMLProps<HTMLDivElement> {
   posts: Document[];
@@ -24,7 +25,10 @@ export const PostList = ({ posts, ...props }: PostListProps) => {
                 <Post.Title />
               </Post.HighLight>
               <Post.HighLight>
-                <Post.DATELABLE dateType="DOT" />
+                <div>
+                  {POST_TYPES_ENTITY[post.type].icon}
+                  <Post.DATELABLE dateType="DOT" className="ml-2" />
+                </div>
               </Post.HighLight>
             </div>
           </Link>

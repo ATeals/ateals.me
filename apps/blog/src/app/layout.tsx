@@ -5,6 +5,7 @@ import { BlurSection } from "@/widgets/BlurSection";
 
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/widgets/providers/ThemeProvider";
+import { Footer } from "@/widgets/Footer";
 
 export { generateMetadata } from "./metadata";
 
@@ -25,10 +26,12 @@ export default function RootLayout({
         />
       </head>
       <body className="dark:bg-dark-bg" style={GeistSans.style}>
-        <ThemeProvider>
-          <BlurSection />
-          {children}
-        </ThemeProvider>
+        <BlurSection />
+        <main className="min-h-dvh">
+          <ThemeProvider>{children}</ThemeProvider>
+        </main>
+
+        <Footer />
 
         <Analytics />
       </body>

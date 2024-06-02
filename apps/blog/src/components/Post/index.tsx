@@ -54,6 +54,10 @@ const PostTitle = ({
   );
 };
 
+const PostAuthor = ({ className, ...props }: React.HTMLProps<HTMLDivElement>) => {
+  return <div className={cn("font-light text-gray-500", className)}>{props.children}</div>;
+};
+
 const POST_DATE_LABEL_MAP = {
   YEAR: (date: string) => date.slice(0, 4),
   DOT: (date: string) => date.slice(5, 10).replace("-", ". "),
@@ -132,5 +136,6 @@ export const Post = Object.assign(
     HighLight: PostHighLight,
     Image: PostImage,
     Navigation: PostNavigation,
+    Author: PostAuthor,
   }
 );

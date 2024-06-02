@@ -1,7 +1,8 @@
 import { Separator } from "@/components/ui";
+import { POST_TYPES } from "@/config";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { HTMLProps } from "react";
+import { Fragment, HTMLProps } from "react";
 
 interface PostsToggleProps extends HTMLProps<HTMLDivElement> {
   type?: "docs" | "post";
@@ -10,21 +11,22 @@ interface PostsToggleProps extends HTMLProps<HTMLDivElement> {
 export const PostsToggle = ({ type }: PostsToggleProps) => {
   return (
     <div className="flex h-6 items-center my-4">
-      <Link href={"posts"} className={cn(type === undefined && "text-secondary-md")}>
+      <Link replace href={"posts"} className={cn(type === undefined && "text-secondary-md")}>
         all
       </Link>
 
-      <Separator orientation="vertical" className="m-2" />
-
-      <Link href={"posts?type=post"} className={cn(type === "post" && "text-secondary-md")}>
-        blog
-      </Link>
-
-      <Separator orientation="vertical" className="m-2" />
-
-      <Link href={"posts?type=docs"} className={cn(type === "docs" && "text-secondary-md")}>
-        docs
-      </Link>
+      {POST_TYPES.map(({ type: postType, title }) => (
+        <Fragment key={postType}>
+          <Separator className="mx-2" orientation="vertical" />
+          <Link
+            replace
+            href={`posts?type=${postType}`}
+            className={cn(type === postType && "text-secondary-md")}
+          >
+            {title}
+          </Link>
+        </Fragment>
+      ))}
     </div>
   );
 };

@@ -36,7 +36,8 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
           <PostBody post={post} />
         </MainPostComponent>
       </article>
-      <Giscus classname="my-10" />
+
+      <Giscus classname="my-10 px-2" />
     </section>
   );
 };
