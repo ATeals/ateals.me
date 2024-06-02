@@ -11,7 +11,7 @@ import { SideMenu } from "@/widgets/SideMenu";
 import { BackspaceButton } from "@/components/BackspaceButton";
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: encodeURI(post._raw.flattenedPath).split("/") }));
+  allPosts.map((post) => ({ slug: post._raw.flattenedPath.split("/") }));
 
 export { generateMetadata } from "./metadata";
 
