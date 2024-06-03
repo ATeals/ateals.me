@@ -7,7 +7,7 @@ export const MDXWapper = ({ children }: { children: React.ReactNode }) => (
       "px-2 md:px-0",
       "prose-p:text-gray-700",
       "prose-a:dark:text-primary-sm prose-a:text-primary-lg",
-      "prose-p:break-words, prose-p:text-gray-700 dark:prose-p:text-gray-400 prose-p:font-[350]",
+      "prose-p:break-words prose-p:text-gray-700 dark:prose-p:text-gray-400 prose-p:font-[350]",
       "dark:prose-invert",
       "prose prose-stone",
       "prose-quoteless",
