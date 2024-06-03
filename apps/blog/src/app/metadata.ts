@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from "@/config";
 import { Metadata } from "next";
 
 export const generateMetadata = (): Metadata => {
@@ -8,7 +9,7 @@ export const generateMetadata = (): Metadata => {
     openGraph: {
       title: "Ateals",
       description: "Ateals의 블로그입니다.",
-      images: [{ url: "/images/main.webp" }],
+      images: `${SITE_CONFIG.domain}/images/main.jpg`,
     },
   };
 };

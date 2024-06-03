@@ -10,10 +10,10 @@ import { PostBody } from "@/widgets/posts/PostBody";
 import { SideMenu } from "@/widgets/SideMenu";
 import { BackspaceButton } from "@/components/BackspaceButton";
 
+export { generateMetadata } from "./metadata";
+
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath.split("/") }));
-
-export { generateMetadata } from "./metadata";
 
 const PostLayout = ({ params }: { params: { slug: string[] } }) => {
   const decodeURL = "/posts/" + params.slug.map(decodeURIComponent).join("/");

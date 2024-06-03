@@ -1,6 +1,7 @@
 import { DocumentBuilder } from "@/service/mdx";
+import { Metadata } from "next";
 
-export const generateMetadata = ({ params }: { params: { slug: string[] } }) => {
+export const generateMetadata = ({ params }: { params: { slug: string[] } }): Metadata => {
   const post = new DocumentBuilder().getPostByParams(
     "/posts/" + params.slug.map(decodeURIComponent).join("/")
   );
@@ -10,6 +11,6 @@ export const generateMetadata = ({ params }: { params: { slug: string[] } }) => 
   return {
     title: `${post.title} | Ateals`,
     description: post.description,
-    openGraph: { title: post.title, description: post.description, image: post.image },
+    openGraph: { title: post.title, description: post.description, images: [{ url: post.image }] },
   };
 };
