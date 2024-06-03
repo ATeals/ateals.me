@@ -21,21 +21,31 @@ export const PostNavigation = ({
   ) : (
     <>
       <Separator className="my-10" />
-      <div className={cn(className, "flex, justify-between, items-center")} {...props}>
-        {prev ? (
-          <Button variant={"outline"} asChild>
-            {prev && <Link href={prev.url}> {`< ${prev.title} `}</Link>}
-          </Button>
-        ) : (
-          <div />
-        )}
-        {next ? (
-          <Button variant={"outline"} asChild>
-            {<Link href={next.url}> {` ${next.title} >`}</Link>}
-          </Button>
-        ) : (
-          <div />
-        )}
+      <div className={cn(className, "flex, justify-between items-center gap-2")} {...props}>
+        <div className="w-1/2">
+          {prev && (
+            <Button variant={"outline"} className="w-full whitespace-pre-wrap space-x-2" asChild>
+              {prev && (
+                <Link className="" href={prev.url}>
+                  <span>{"<"}</span>
+                  <span>{prev.title}</span>
+                </Link>
+              )}
+            </Button>
+          )}
+        </div>
+        <div className="w-1/2">
+          {next && (
+            <Button variant={"outline"} className="w-full whitespace-pre-wrap space-x-2" asChild>
+              {
+                <Link className="" href={next.url}>
+                  <span>{next.title}</span>
+                  <span>{">"}</span>
+                </Link>
+              }
+            </Button>
+          )}
+        </div>
       </div>
     </>
   );

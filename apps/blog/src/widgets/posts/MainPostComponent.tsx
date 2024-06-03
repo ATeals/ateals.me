@@ -36,7 +36,7 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
 
           {props.children}
 
-          <Post.Navigation className="flex justify-between mt-8 px-2" />
+          <Post.Navigation className="flex justify-between mt-8 px-2 max-w-dvw" />
         </div>
       </Post.Provider>
     </div>

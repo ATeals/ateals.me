@@ -20,16 +20,18 @@ export const PostList = ({ posts, ...props }: PostListProps) => {
       {posts.map((post, idx) => (
         <Post.Provider key={idx} post={post}>
           <Link href={post.url}>
-            <div className="flex justify-between my-2">
-              <Post.HighLight className="">
+            <div className="grid grid-cols-10 gap-2 my-2">
+              <Post.HighLight className="col-span-7 md:col-span-8">
                 <Post.Title />
               </Post.HighLight>
-              <Post.HighLight className="w-1/5">
-                <div>
-                  {POST_TYPES_ENTITY[post.type].icon}
-                  <Post.DATELABLE dateType="DOT" className="ml-2" />
-                </div>
-              </Post.HighLight>
+              <div className="col-span-3 md:col-span-2">
+                <Post.HighLight className="flex">
+                  <div>
+                    {POST_TYPES_ENTITY[post.type].icon}
+                    <Post.DATELABLE dateType="DOT" className="ml-2" />
+                  </div>
+                </Post.HighLight>
+              </div>
             </div>
           </Link>
         </Post.Provider>
