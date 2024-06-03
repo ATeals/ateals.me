@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/nest-documents/1. Controllers.md",
+                "file": "blog/매우 늦은 2023년 상반기 회고.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/nest-documents/1. Controllers.md",
+                "file": "blog/매우 늦은 2023년 상반기 회고.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/nest-documents/1. Controllers.md",
+                "file": "blog/매우 늦은 2023년 상반기 회고.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/nest-documents/1. Controllers.md"
+                "file": "blog/매우 늦은 2023년 상반기 회고.md"
               }
             }
           },
@@ -164,6 +164,24 @@
   },
   "active": "2afffef8838ae793",
   "lastOpenFiles": [
+    "blog/블로그 ISR 도입기.md",
+    "blog/아직도 localStorage를 위해 useEffect를 사용하십니까.md",
+    "blog/React에서 도메인 로직을 추출 한다면.md",
+    "blog/매우 늦은 2023년 상반기 회고.md",
+    "blog/2023을 마무리 하면서.md",
+    "blog/React 합성 컴포넌트 패턴으로 요구사항 유연하게 대처하기.md",
+    "blog/노마드 웹기초 4기를 마치면서.md",
+    "blog/블로그 포스트 조각 내, 성능 개선하기.md",
+    "blog/컴포넌트에 의존성 주입 활용하기.md",
+    "blog/다형성 컴포넌트를 활용한 디자인 시스템 만들기.md",
+    "blog/Github Action을 이용한 모노레포 라이브러리 문서 자동화.md",
+    "blog/Module Federation으로 런타임에 앱을 통합해보자.md",
+    "blog/힙스터 아웃.md",
+    "blog/클린코드를 읽고 나서.md",
+    "blog/TypeSafe한 ConfigModule.md",
+    "blog/clean.mdx",
+    "docs/hello/hello.md",
+    "docs/nest-documents/1. Controllers.md",
     "blog/2024 aws summit Seoul 후기.md",
     "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
     "docs/book/cleanarchitecture/1~2.md",
@@ -173,24 +191,6 @@
     "docs/book/cleanarchitecture/7~11. 설계 원칙.md",
     "docs/nest-documents/6. Pipes.md",
     "docs/nest-documents/5. Exception filters.md",
-    "docs/nest-documents/4. Middleware.md",
-    "docs/nest-documents/3. Modules.md",
-    "docs/nest-documents/2. Providers.md",
-    "docs/nest-documents/1. Controllers.md",
-    "docs/nest/TypeSafe한 ConfigModule.md",
-    "docs/java/5. 스코프, 형변환.md",
-    "docs/java/4. 조건문, 반복문.md",
-    "docs/java/1. Hello world.md",
-    "docs/java/3. 연산자.md",
-    "docs/java/2. 변수.md",
-    "docs/hello/hello.md",
-    "docs/book/TheEssenceofObjectOrientation/4. 역할, 책임, 협력.md",
-    "docs/book/TheEssenceofObjectOrientation/3. 타입과 추상화.md",
-    "docs/book/TheEssenceofObjectOrientation/2. 이상한 나라의 객체.md",
-    "docs/book/TheEssenceofObjectOrientation/1. 협력하는 객체들의 공동체.md",
-    "docs/book/cleanarchitecture/7~ 11. 설계 원칙.md",
-    "docs/book/cleanarchitecture/3~6. 패러다임.md",
-    "blog/clean.mdx",
     "docs/book/TheEssenceofObjectOrientation.mdx",
     "docs/book/cleanarchitecture.mdx",
     "docs/java.mdx",
