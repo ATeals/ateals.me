@@ -21,10 +21,10 @@ export const PostList = ({ posts, ...props }: PostListProps) => {
         <Post.Provider key={idx} post={post}>
           <Link href={post.url}>
             <div className="flex justify-between my-2">
-              <Post.HighLight>
+              <Post.HighLight className="">
                 <Post.Title />
               </Post.HighLight>
-              <Post.HighLight>
+              <Post.HighLight className="w-1/5">
                 <div>
                   {POST_TYPES_ENTITY[post.type].icon}
                   <Post.DATELABLE dateType="DOT" className="ml-2" />
