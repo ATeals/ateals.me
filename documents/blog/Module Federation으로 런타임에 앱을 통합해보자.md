@@ -1,9 +1,9 @@
 ---
 title: Module Federation으로 런타임에 앱을 통합해보자
 description: MFA의 구현 방법 중 하나인 Module Federation을 학습하면서 느낀 경험
-image: 
+image:
 date: 2024-01-17T14:16:00
-draft: 
+draft:
 tags:
   - 프론트
   - MFA
@@ -11,7 +11,7 @@ tags:
 type: post
 ---
 
-저는 개발 아티클 읽는 것을 즐깁니다. 여러 아티클을 통해서 인사이트를 얻는 것도 있고, 새로운 개념을 알게 되기도 하기 때문입니다. _(개발 덕후라 글을 읽으면서 재밌기도 합니다 ㅎㅎ)_
+저는 개발 아티클 읽는 것을 즐깁니다. 여러 아티클을 통해서 인사이트를 얻는 것도 있고, 새로운 개념을 알게 되기도 하기 때문입니다. *(개발 덕후라 글을 읽으면서 재밌기도 합니다 ㅎㅎ)*
 
 [대형 웹 애플리케이션 Micro Frontends 전환기 (1) | 요즘IT](https://yozm.wishket.com/magazine/detail/2408/)
 
@@ -19,26 +19,19 @@ type: post
 
 ![흐음 잠깐만 이거…?](https://i.imgur.com/lvD9PE3.png)
 
-
 위 글에서는 모듈 페더레이션을 통해 배포 단위가 나누어진 각각의 앱들을 런타임에 통합 로드하여 한가지 앱으로 렌더링하는 방식을 소개합니다. 각 Host, Remote(GNB, home)으로 나누어져 있는 것을 확인할 수 있습니다.
 
-저는 이 글을 읽던 중 저의 레포에 적용해 볼 수 있는 방법을 생각했습니다. _(그게 지옥의 시작인 줄은 이제 알았지만요,,,)_
+저는 이 글을 읽던 중 저의 레포에 적용해 볼 수 있는 방법을 생각했습니다. *(그게 지옥의 시작인 줄은 이제 알았지만요,,,)*
 
 ## 시작…..
 
 저는 리액트 스터디를 진행하면서 간단한 어플리케이션들을 배포해봤습니다.
 
-<div style="display: flex;">
-  <div style="flex: 1; padding: 10px;">
-	 <img src="https://i.imgur.com/B6BpRF2.png" />
-  </div>
-  <div style="flex: 1; padding: 10px;">
-	 <img src="https://i.imgur.com/vd3iMKH.png" />
-  </div>
-</div>
+  <img src="https://i.imgur.com/B6BpRF2.png" />
+
+  <img src="https://i.imgur.com/vd3iMKH.png" />
 
 ![](https://i.imgur.com/65Du2Wu.png)
-
 
 각각 앱들은 각각에 레포에 별도로 배포가 되어 있었고, 저는 포트폴리오 사이트처럼 제가 만든 앱들을 한 페이지에서 보여줄 수 있는 방법을 고민하고 있었습니다.
 
@@ -52,7 +45,7 @@ type: post
 
 그렇다면 지금부터 사용할 Module Federation이 뭔지 부터 알아야 합니다.
 
-> [*Micro at buildtime, Monolith at runtime](https://youtu.be/XpeD4FtlMg4?t=2) - Zack Jackson*
+> [\*Micro at buildtime, Monolith at runtime](https://youtu.be/XpeD4FtlMg4?t=2) - Zack Jackson\*
 
 하나의 앱을 독립적인 배포가 가능한 모듈 단위로 나누어 브라우저 런타임에 통합하는 방법입니다. Module Federation이 MFA는 아니고, MFA의 구현 방법 중에 하나입니다.
 
@@ -75,9 +68,9 @@ _Module Federation의 원리나 관련 된 용어는 너무 많고 간단히 다
 ### Remote
 
 ```tsx
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import federation from '@originjs/vite-plugin-federation'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
   plugins: [
@@ -86,18 +79,18 @@ export default defineConfig({
       name: "remote_app",
       filename: "remoteEntry.js",
       exposes: {
-        './Button': './src/components/Button'
+        "./Button": "./src/components/Button",
       },
-      shared: ['react','react-dom']
-    })
+      shared: ["react", "react-dom"],
+    }),
   ],
   build: {
     modulePreload: false,
-    target: 'esnext',
+    target: "esnext",
     minify: false,
-    cssCodeSplit: false
-  }
-})
+    cssCodeSplit: false,
+  },
+});
 ```
 
 Remote App에서 config 설정입니다. federation 플러그인에 설정을 해주시면 됩니다.
@@ -106,36 +99,36 @@ Remote App에서 config 설정입니다. federation 플러그인에 설정을 �
 - filename : 빌드 이후 번들 되는 매니페스트 파일입니다. 기본적으로 remoteEntry.js를 사용합니다.
 - exposes : Remote에서 내보낼 요소
 - shared : 의존성
-    - host : remote에서 필요한 의존성을 포함해야 합니다.
-    - remote : 자신이 필요로 하는 의존성을 포함해야 합니다.
+  - host : remote에서 필요한 의존성을 포함해야 합니다.
+  - remote : 자신이 필요로 하는 의존성을 포함해야 합니다.
 
 _이 의존성 때문에…. 엄청 고생했습니다.._
 
 ### Host
 
 ```tsx
-import { defineConfig } from 'vite'
-import federation from '@originjs/vite-plugin-federation'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import federation from "@originjs/vite-plugin-federation";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'app',
+      name: "app",
       remotes: {
-        remoteApp: '<http://localhost:5001/assets/remoteEntry.js>',
+        remoteApp: "<http://localhost:5001/assets/remoteEntry.js>",
       },
-      shared: ['react','react-dom']
-    })
+      shared: ["react", "react-dom"],
+    }),
   ],
   build: {
     modulePreload: false,
-    target: 'esnext',
+    target: "esnext",
     minify: false,
-    cssCodeSplit: false
-  }
-})
+    cssCodeSplit: false,
+  },
+});
 ```
 
 Host App에서도 똑같이 설정해주면 됩니다.
@@ -145,8 +138,7 @@ Host App에서도 똑같이 설정해주면 됩니다.
 ### host/App
 
 ```tsx
-
-import Button from 'remoteApp/Button';
+import Button from "remoteApp/Button";
 
 function App() {
   return (
@@ -154,10 +146,10 @@ function App() {
       <h1>Vite + React</h1>
       <Button />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
 ```
 
 설정이 끝나고 두 앱이 빌드 된다면 host 앱에서 remote앱을 import해 사용할 수 있습니다. 물론 [React.lazy](https://react-ko.dev/reference/react/lazy#lazy) 를 이용해 지연 로드된 컴포넌트를 선언할 수 있습니다.
@@ -169,26 +161,25 @@ export default App
 - Server-side template Composition
 - Build-time Integration
 - Run-time Integration
-    - iframes
-    - web-components
-    - javascript
+  - iframes
+  - web-components
+  - javascript
 
 저는 이미 GitHubs page에 정적으로 배포되어 있는 앱을 리모트로 가져오고 싶었습니다. 별도의 서버를 만들어 주어야 하는 Server-side template Composition는 일단 패스했습니다.
 
 다음으로 Build-time Integration를 하려면 제가 미리 만들어 배포한 앱을 npm에 올리거나, host 로컬 모듈로 추가해야 합니다. 이는 앱이 늘어날 때마다 host앱의 build-time이 늘어나는 문제가 있습니다.
 
-iframes을 사용하는 방법은 host app에 html 통째로 remote 앱을 통합하는 방법입니다. 이는 보안의 문제가 될 수도 있고 _(물론 지금 하는 건 간단한 프로젝트라 보안에 신경 쓸 필요는 없습니다.)_, 상태를 공유하게 된다면 window.postMessage(), EventListener와 같은 Web API를 사용해야 합니다. 이는 sideeffect를 통해 이용해야 하기 때문에 React에서 적절한 방법은 아니라고 생각했습니다.
+iframes을 사용하는 방법은 host app에 html 통째로 remote 앱을 통합하는 방법입니다. 이는 보안의 문제가 될 수도 있고 *(물론 지금 하는 건 간단한 프로젝트라 보안에 신경 쓸 필요는 없습니다.)*, 상태를 공유하게 된다면 window.postMessage(), EventListener와 같은 Web API를 사용해야 합니다. 이는 sideeffect를 통해 이용해야 하기 때문에 React에서 적절한 방법은 아니라고 생각했습니다.
 
 위에서 언급한 문제들은 Module Federation을 이용해 Run-time Integration한다면 해결할 수 있습니다.
 
 ![](https://i.imgur.com/H7XwNrW.png)
 
-
 분리하고 싶은 remote 컴포넌트를 별도의 배포 단위로 만들고, 해당 컴포넌트를 런타임에 독립된 번들로 통합시키는 겁니다. 이런 방식은 다음과 같은 장점을 가져갈 수 있습니다.
 
-- React에서 제공하는 API나 전역 상태 관리 라이브러리를 이용해 host App에서 micro app으로 상태를 전달시켜줄 수 있습니다. _(즉 유저의 상태나 브라우저의 상태를 host app에서 micro app으로 전달하기 위해 별도의 Web API나 server를 통하지 않고 react component에서 하던 방식으로 전달이 가능합니다.)_
+- React에서 제공하는 API나 전역 상태 관리 라이브러리를 이용해 host App에서 micro app으로 상태를 전달시켜줄 수 있습니다. *(즉 유저의 상태나 브라우저의 상태를 host app에서 micro app으로 전달하기 위해 별도의 Web API나 server를 통하지 않고 react component에서 하던 방식으로 전달이 가능합니다.)*
 - 빌드 타임 통합이 아닌 런타임 통합이기 때문에 host, remote의 빌드 시간이 단축됩니다.
-- 배포 단위를 유연하게 가져갈 수 있고, 한 개의 remote이 변경되더라도 전체를 변경하지 않고, remote 앱만 별도로 변경 후 빌드 할 수 있습니다. _(물론 대체도 가능합니다.)_
+- 배포 단위를 유연하게 가져갈 수 있고, 한 개의 remote이 변경되더라도 전체를 변경하지 않고, remote 앱만 별도로 변경 후 빌드 할 수 있습니다. *(물론 대체도 가능합니다.)*
 
 앞선 조사를 토대로 Module Federation을 이용해 포트폴리오 사이트를 만들고자 했습니다.
 
@@ -281,7 +272,6 @@ export default App;
 
 다음과 같이 통합하는데 성공 했습니다만… 시도해보면서 여러가지 문제점들을 마주하면서 개발을 멈추었습니다.
 
-
 ![조잡하지만… 내 손으로 만든 MFA…..](https://i.imgur.com/BScEnsv.gif)
 
 ## 트러블 슈팅
@@ -351,7 +341,6 @@ Routes를 통해 라우트 해주는 별도의 컴포넌트를 만들어서 remo
 
 ![](https://i.imgur.com/YNgTjtn.png)
 
-
 따라서 host에서 모듈의 타입을 별도로 정의해 주어야 합니다.
 
 ```tsx
@@ -369,7 +358,7 @@ declare module "ReactMovie/*";
 - MFA는 상태 관리를 더욱 신경써야 한다.
 - 각각 컨테이너의 의존관계에 신경 써야 한다.
 
-특히 멀티 레포를 Module Federation으로 통합하는 방법은 좋지 못한 개발 경험 _(모듈의 타입이라던지, 의존성, 상태관리등의 관리에서)_ 을 가져다 주었고, 이는 왜 대규모 프로젝트에서 모노레포를 사용하는지 알게 해주었습니다.
+특히 멀티 레포를 Module Federation으로 통합하는 방법은 좋지 못한 개발 경험 *(모듈의 타입이라던지, 의존성, 상태관리등의 관리에서)* 을 가져다 주었고, 이는 왜 대규모 프로젝트에서 모노레포를 사용하는지 알게 해주었습니다.
 
 모노레포의 장점인 통합 의존성 관리와 모듈의 재사용과 공유, Module Federation을 이용한 런타임 통합을 이용해 MFA를 구현한다면, 보다 좋은 개발 경험 아래에 좋은 결과물이 나올 것 같습니다.
 
