@@ -21,6 +21,7 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
           <div className="px-2 md:px-0 mb-8">
             <Post.DATELABLE className="text-gray-500 font-light" />
             <Post.Title className="text-2xl font-semibold" />
+            <Post.TagList />
           </div>
 
           <Post.Author className="flex justify-between gap-5 px-2 md:px-0 my-10">

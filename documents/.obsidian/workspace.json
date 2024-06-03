@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/2024 aws summit Seoul 후기.md",
+                "file": "docs/nest-documents/1. Controllers.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/2024 aws summit Seoul 후기.md",
+                "file": "docs/nest-documents/1. Controllers.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/2024 aws summit Seoul 후기.md",
+                "file": "docs/nest-documents/1. Controllers.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/2024 aws summit Seoul 후기.md"
+                "file": "docs/nest-documents/1. Controllers.md"
               }
             }
           },
@@ -164,8 +164,8 @@
   },
   "active": "2afffef8838ae793",
   "lastOpenFiles": [
-    "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
     "blog/2024 aws summit Seoul 후기.md",
+    "docs/spring/younghan-spring-basic/1. 스프링 컨테이너와  빈.md",
     "docs/book/cleanarchitecture/1~2.md",
     "docs/book/cleanarchitecture/1~2.설계와 아키텍처란?.md",
     "docs/book/cleanarchitecture/1~2.설계와 아키텍처란? 두 가치에 대해.md",
