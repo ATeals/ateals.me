@@ -1,14 +1,10 @@
 import { DocumentBuilder, groupPostsByYear } from "@/service/mdx";
 import { YearGroupPostList } from "@/widgets/posts/PostList";
 
-export default function Page({
-  params: { section: sectionParams },
-}: {
-  params: { section: string[] };
-}) {
-  const section = sectionParams.map(decodeURI).join("/");
+export default function Page({ params: { src: srcParams } }: { params: { src: string[] } }) {
+  const src = srcParams.map(decodeURI).join("/");
 
-  const posts = new DocumentBuilder().query({ section }).getDocuments();
+  const posts = new DocumentBuilder().query({ src }).getDocuments();
 
   const groupedPosts = groupPostsByYear(posts);
 
