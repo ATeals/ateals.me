@@ -7,7 +7,13 @@ interface TagLabelProps extends React.HTMLAttributes<HTMLLIElement> {}
 
 export const TagLabel = ({ children, className, ...props }: TagLabelProps) => {
   return (
-    <li className={cn("pr-1 hover:text-secondary-md hover:cursor-pointer", className)} {...props}>
+    <li
+      className={cn(
+        "pr-1 hover:text-secondary-md hover:cursor-pointer dark:text-gray-500",
+        className
+      )}
+      {...props}
+    >
       {children}
     </li>
   );

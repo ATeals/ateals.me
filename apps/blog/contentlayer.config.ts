@@ -38,6 +38,16 @@ export default makeSource({
   documentTypes: [Blog, Docs],
   mdx: {
     remarkPlugins: [remarkGfm as any, remarkCallout as any],
-    rehypePlugins: [[rehypePrettyCode as any, { theme: "github-dark" }]],
+    rehypePlugins: [
+      [
+        rehypePrettyCode as any,
+        {
+          theme: {
+            light: "github-light",
+            dark: "github-dark",
+          },
+        },
+      ],
+    ],
   },
 });

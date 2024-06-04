@@ -19,7 +19,7 @@ export const MDXWapper = ({ children }: { children: React.ReactNode }) => (
       "prose-inline-code:bg-gray-200 prose-inline-code:rounded-md",
       "prose-code:before:hidden prose-code:after:hidden prose-inline-code:p-1 prose-inline-code:text-gray-700 prose-inline-code:font-normal prose-inline-code:shadow-sm",
       "prose-img:shadow-lg",
-      "prose-pre:shadow-lg",
+      "prose-pre:shadow-lg prose-pre:p-2 prose-pre:bg-transparent",
       "prose-li:text-gray-700 dark:prose-li:text-gray-400 prose-li:font-[350]"
     )}
   >
