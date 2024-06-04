@@ -4,6 +4,9 @@ import remarkGfm from "remark-gfm";
 import remarkCallout from "remark-callout";
 import rehypePrettyCode from "rehype-pretty-code";
 
+import { rehypePrettyCodeOptions } from "./src/config/rehypePrettyCodeOptions";
+import { remarkCalloutOptions } from "./src/config/remarkCalloutOptions";
+
 const fields: FieldDefs = {
   title: { type: "string", required: true },
   description: { type: "string" },
@@ -37,17 +40,7 @@ export default makeSource({
   contentDirPath: "../../documents/",
   documentTypes: [Blog, Docs],
   mdx: {
-    remarkPlugins: [remarkGfm as any, remarkCallout as any],
-    rehypePlugins: [
-      [
-        rehypePrettyCode as any,
-        {
-          theme: {
-            light: "github-light",
-            dark: "github-dark",
-          },
-        },
-      ],
-    ],
+    remarkPlugins: [[remarkCallout as any, remarkCalloutOptions], [remarkGfm as any]],
+    rehypePlugins: [[rehypePrettyCode as any, rehypePrettyCodeOptions]],
   },
 });
