@@ -37,7 +37,10 @@ export class DocumentBuilder {
 
   private getPostsFromSourceFileDir(section: string) {
     this.documents = this.documents.filter((post) =>
-      post._raw.sourceFileDir.split("/").slice(1).join("/").includes(section)
+      post._raw.sourceFileDir
+        .split("/")
+        .slice(1)
+        .some((dir) => section.split("/").includes(dir))
     );
 
     return this;
