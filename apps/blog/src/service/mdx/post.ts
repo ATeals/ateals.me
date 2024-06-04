@@ -35,9 +35,9 @@ export class DocumentBuilder {
     return this;
   }
 
-  private getPostsFromSection(section: string) {
-    this.documents = this.documents.filter(
-      (post) => post._raw.sourceFileDir.split("/")[1] === section
+  private getPostsFromSourceFileDir(section: string) {
+    this.documents = this.documents.filter((post) =>
+      post._raw.sourceFileDir.split("/").slice(1).join("/").includes(section)
     );
 
     return this;
@@ -51,9 +51,9 @@ export class DocumentBuilder {
     return this;
   }
 
-  query({ tags, section, type }: { tags?: string[]; section?: string; type?: "post" | "docs" }) {
+  query({ tags, src, type }: { tags?: string[]; src?: string; type?: "post" | "docs" }) {
     if (tags) this.getPostsFromTag(tags);
-    if (section) this.getPostsFromSection(section);
+    if (src) this.getPostsFromSourceFileDir(src);
     if (type) this.getPostsFromType(type);
 
     return this;
