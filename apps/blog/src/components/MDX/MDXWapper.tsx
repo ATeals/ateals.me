@@ -1,5 +1,7 @@
 import { cn } from "@repo/shadcn/utils";
 
+import "@/styles/codeHighlight.css";
+
 export const MDXWapper = ({ children }: { children: React.ReactNode }) => (
   <div
     className={cn(
