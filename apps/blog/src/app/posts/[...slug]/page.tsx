@@ -23,7 +23,7 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
   if (!post) notFound();
 
   return (
-    <section className="mx-auto max-w-xl py-8">
+    <section className="mx-auto max-w-xl py-8 pt-20">
       <article className="relative lg:-mt-[500px]">
         <SideMenu>
           <BackspaceButton variant={"ghost"} />
