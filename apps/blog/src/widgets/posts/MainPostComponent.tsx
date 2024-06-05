@@ -28,7 +28,7 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
               </div>
             }
           >
-            <div className="w-full h-[320px] my-5">
+            <div className="w-auto h-full my-5">
               <Post.Image className="object-contain object-center" />
             </div>
 

@@ -24,18 +24,16 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
 
   return (
     <section className="mx-auto max-w-xl py-8 pt-20">
-      <article className="relative lg:-mt-[500px]">
-        <SideMenu>
-          <BackspaceButton variant={"ghost"} />
-          <Toc post={post} />
+      <SideMenu>
+        <BackspaceButton variant={"ghost"} />
+        <Toc post={post} />
 
-          <ThemeSwitch />
-        </SideMenu>
+        <ThemeSwitch />
+      </SideMenu>
 
-        <MainPostComponent post={post}>
-          <PostBody post={post} className="animate-fadeInDown" />
-        </MainPostComponent>
-      </article>
+      <MainPostComponent post={post}>
+        <PostBody post={post} className="animate-fadeInDown" />
+      </MainPostComponent>
 
       <Giscus classname="my-10 px-2" />
     </section>

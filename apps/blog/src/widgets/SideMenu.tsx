@@ -12,16 +12,10 @@ const POSITIONS_MAP = {
 
 export const SideMenu = ({ position = "left", ...props }: SideMenuProps) => {
   const tailwind = cn(
-    "text-sm lg:block hidden sticky w-[300px] top-20",
+    "text-sm lg:block hidden fixed w-[300px] h-full top-20",
     "text-gray-700 dark:text-gray-400 font-[350] ",
     POSITIONS_MAP[position]
   );
 
   return <aside className={tailwind}>{props.children}</aside>;
 };
-
-<aside
-  className="text-sm lg:block justify-end hidden sticky
- translate-x-[200%] w-[300px] 
-  text-gray-700 dark:text-gray-400 font-[350] top-1/4 pr-20"
-></aside>;
