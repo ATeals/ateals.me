@@ -8,11 +8,11 @@ import { Document } from "@/service/mdx/post";
 import "@/styles/callout.css";
 import { MDXWapper } from "@/components/MDX/MDXWapper";
 
-export const PostBody = ({ post }: { post: Document }) => {
+export const PostBody = ({ post, className }: { post: Document; className?: string }) => {
   const MDXComponent = getMDXComponent(post.body.code);
 
   return (
-    <MDXWapper>
+    <MDXWapper className={className}>
       <MDXComponent
         components={{
           h1: HeadingComponentsBuilder("h1"),

@@ -10,7 +10,7 @@ export default function Home() {
   const posts = new DocumentBuilder().getDocuments().slice(0, 5);
 
   return (
-    <div className="  mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
+    <div className=" mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
       <Header className="">
         <p>글 읽는 것을 좋아합니다. 글을 수집하는 것에서 멈추지 않고 작성하려 합니다.</p>
         <p>코드를 즐기며, 커피를 좋아합니다.</p>

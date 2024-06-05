@@ -23,8 +23,8 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
   if (!post) notFound();
 
   return (
-    <section className="py-2 md:py-8 mx-auto max-w-xl">
-      <article className="relative lg:-mt-[500px] animate-fadeInDown">
+    <section className="mx-auto max-w-xl py-8">
+      <article className="relative lg:-mt-[500px]">
         <SideMenu>
           <BackspaceButton variant={"ghost"} />
           <Toc post={post} />
@@ -33,7 +33,7 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
         </SideMenu>
 
         <MainPostComponent post={post}>
-          <PostBody post={post} />
+          <PostBody post={post} className="animate-fadeInDown" />
         </MainPostComponent>
       </article>
 
