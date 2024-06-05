@@ -1,6 +1,5 @@
-import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
-import SITE_CONFIG from "@/config/SITE_CONFIG";
+import SITE_CONFIG from "@/config/siteConfig";
 import { useRouter } from "next/router";
 
 import Main from "@/components/main";

@@ -1,14 +1,14 @@
 export default {
   URL: {
-    BLOG: "https://ateals.vercel.app",
-    DOCS: "https://ateals-docs.vercel.app",
+    BLOG: "https://blog.ateals.me/",
+    DOCS: "https://docs.ateals.me/",
     PROJECT_REPO: "https://github.com/ATeals/Ateals-Docs",
   },
-  LOGO: "https://ateals.vercel.app/images/logo.webp",
+  LOGO: "https://blog.ateals.me/images/logo.webp",
   meta: {
-    title: "ATeals - Docs",
+    title: "Docs | ATeals",
     description: "ATeals 외장 아카이브",
-    logo: "https://ateals.vercel.app/images/logo.webp",
-    img: "https://ateals.vercel.app/images/main.jpg",
+    logo: "https://blog.ateals.me/images/logo.webp",
+    img: "https://blog.ateals.me/images/main.jpg",
   },
 };

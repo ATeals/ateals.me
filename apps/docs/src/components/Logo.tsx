@@ -1,5 +1,5 @@
 import React from "react";
-import SITE_CONFIG from "../config/SITE_CONFIG";
+import SITE_CONFIG from "../config/siteConfig";
 
 export function LogoComponent() {
   return (
