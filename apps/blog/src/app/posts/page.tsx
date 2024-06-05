@@ -26,7 +26,7 @@ export default function Page({
   const groupedPosts = groupPostsByYear(posts);
 
   return (
-    <div className="mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2 animate-fadeInDown">
+    <div className="mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
       <Header>
         <p>{getPostsDescription(query.type)}</p>
         <PostsToggle type={query.type} />
@@ -34,7 +34,10 @@ export default function Page({
 
       <Separator />
 
-      <YearGroupPostList groups={groupedPosts} className="mt-10 font-extralight" />
+      <YearGroupPostList
+        groups={groupedPosts}
+        className="mt-10 font-extralight animate-fadeInDown"
+      />
     </div>
   );
 }
