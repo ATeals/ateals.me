@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/nest-documents/OVERVIEW/9. Custom decorators.md",
+                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/nest-documents/OVERVIEW/9. Custom decorators.md",
+                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/nest-documents/OVERVIEW/9. Custom decorators.md",
+                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/nest-documents/OVERVIEW/9. Custom decorators.md"
+                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md"
               }
             }
           },
@@ -164,11 +164,17 @@
   },
   "active": "c08beb533a5f388b",
   "lastOpenFiles": [
+    "blog/블로그 ISR 도입기.md",
+    "docs/nest-documents/FUNDAMENTALS/Dynamic modules.md",
+    "docs/nest-documents/FUNDAMENTALS/2. Asynchronous providers.md",
+    "docs/nest-documents/FUNDAMENTALS/1. Custom providers.md",
+    "docs/nest-documents/_meta.json",
     "docs/nest-documents/OVERVIEW/1. Controllers.md",
     "docs/nest-documents/OVERVIEW/9. Custom decorators.md",
+    "docs/nest-documents/FUNDAMENTALS",
+    "docs/nest-documents/OVERVIEW/8. Interceptors.md",
     "docs/nest-documents/OVERVIEW",
     "docs/nest-documents/OVERVIEW/7. Guards.md",
-    "docs/nest-documents/OVERVIEW/8. Interceptors.md",
     "docs/nest-documents/OVERVIEW/6. Pipes.md",
     "docs/nest-documents/OVERVIEW/3. Modules.md",
     "docs/nest-documents/OVERVIEW/5. Exception filters.md",
@@ -176,7 +182,6 @@
     "docs/nest-documents/OVERVIEW/2. Providers.md",
     "blog/Module Federation으로 런타임에 앱을 통합해보자.md",
     "blog/매우 늦은 2023년 상반기 회고.md",
-    "blog/블로그 ISR 도입기.md",
     "blog/아직도 localStorage를 위해 useEffect를 사용하십니까.md",
     "blog/React에서 도메인 로직을 추출 한다면.md",
     "blog/2023을 마무리 하면서.md",
@@ -188,17 +193,13 @@
     "blog/Github Action을 이용한 모노레포 라이브러리 문서 자동화.md",
     "blog/힙스터 아웃.md",
     "blog/클린코드를 읽고 나서.md",
-    "blog/TypeSafe한 ConfigModule.md",
     "blog/clean.mdx",
-    "docs/hello/hello.md",
     "docs/book/TheEssenceofObjectOrientation.mdx",
     "docs/book/cleanarchitecture.mdx",
     "docs/java.mdx",
     "java.mdx",
     "spring.mdx",
     "index.mdx",
-    "book/cleanarchitecture.mdx",
-    "book.mdx",
     "java/이미지/3. 연산자/Pasted image 20240520003729.png",
     "java/이미지/3. 연산자/Pasted image 20240520001653.png",
     "java/이미지/1.Hello world/Pasted image 20240519213334.png",
