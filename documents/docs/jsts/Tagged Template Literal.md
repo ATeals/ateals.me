@@ -24,7 +24,7 @@ const Title = styled.h1`
 
 ### Template literals (Template strings)
 
-기본 탬플릿 리터럴로 작성하는 문자열은 다음과 같습니다.
+기본 탬플릿 리터럴로 작성하는 문자열은 다음과 같다.
 
 ```js
 const a = 5;
@@ -73,6 +73,9 @@ console.log(output);
 ```
 
   
+### 활용 사례
 
+[styled-component](https://styled-components.com/)
 
+https://marpple.github.io/rune/
 
