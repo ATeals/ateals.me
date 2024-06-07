@@ -5,6 +5,7 @@
     "title": "개발 아티클"
   },
   "nest": "Nest.js",
+  "jsts": "",
   "Blog": {
     "title": "Blog ↗",
     "type": "page",
