@@ -4,18 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "3fab1f1056fe9db1",
+        "id": "ef89dc5e1918381a",
         "type": "tabs",
         "children": [
           {
-            "id": "c08beb533a5f388b",
+            "id": "80e855f6ee4b1966",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
-                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md",
-                "mode": "source",
-                "source": false
+                "file": "documents/docs/nest-documents/OVERVIEW/8. Interceptors.md",
+                "staged": false
               }
             }
           }
@@ -85,7 +84,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -132,9 +129,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "blog/블로그 포스트 조각 내, 성능 개선하기.md"
-              }
+              "state": {}
             }
           },
           {
@@ -162,24 +157,31 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c08beb533a5f388b",
+  "active": "80e855f6ee4b1966",
   "lastOpenFiles": [
-    "blog/블로그 ISR 도입기.md",
-    "docs/nest-documents/FUNDAMENTALS/Dynamic modules.md",
-    "docs/nest-documents/FUNDAMENTALS/2. Asynchronous providers.md",
-    "docs/nest-documents/FUNDAMENTALS/1. Custom providers.md",
-    "docs/nest-documents/_meta.json",
-    "docs/nest-documents/OVERVIEW/1. Controllers.md",
     "docs/nest-documents/OVERVIEW/9. Custom decorators.md",
-    "docs/nest-documents/FUNDAMENTALS",
     "docs/nest-documents/OVERVIEW/8. Interceptors.md",
-    "docs/nest-documents/OVERVIEW",
     "docs/nest-documents/OVERVIEW/7. Guards.md",
     "docs/nest-documents/OVERVIEW/6. Pipes.md",
-    "docs/nest-documents/OVERVIEW/3. Modules.md",
     "docs/nest-documents/OVERVIEW/5. Exception filters.md",
     "docs/nest-documents/OVERVIEW/4. Middleware.md",
+    "docs/nest-documents/OVERVIEW/3. Modules.md",
     "docs/nest-documents/OVERVIEW/2. Providers.md",
+    "docs/nest-documents/OVERVIEW/1. Controllers.md",
+    "docs/nest-documents/FUNDAMENTALS/5. Circular dependency.md",
+    "docs/nest-documents/FUNDAMENTALS/4. Injection scopes.md",
+    "docs/nest-documents/FUNDAMENTALS/3. Dynamic modules.md",
+    "docs/nest-documents/FUNDAMENTALS/2. Asynchronous providers.md",
+    "docs/nest-documents/FUNDAMENTALS/1. Custom providers.md",
+    "docs/jsts/Tagged Template Literal.md",
+    "_template/MDX 탬플릿.md",
+    "blog/블로그 포스트 조각 내, 성능 개선하기.md",
+    "docs/jsts.mdx",
+    "docs/jsts",
+    "blog/블로그 ISR 도입기.md",
+    "docs/nest-documents/_meta.json",
+    "docs/nest-documents/FUNDAMENTALS",
+    "docs/nest-documents/OVERVIEW",
     "blog/Module Federation으로 런타임에 앱을 통합해보자.md",
     "blog/매우 늦은 2023년 상반기 회고.md",
     "blog/아직도 localStorage를 위해 useEffect를 사용하십니까.md",
@@ -187,19 +189,12 @@
     "blog/2023을 마무리 하면서.md",
     "blog/React 합성 컴포넌트 패턴으로 요구사항 유연하게 대처하기.md",
     "blog/노마드 웹기초 4기를 마치면서.md",
-    "blog/블로그 포스트 조각 내, 성능 개선하기.md",
     "blog/컴포넌트에 의존성 주입 활용하기.md",
-    "blog/다형성 컴포넌트를 활용한 디자인 시스템 만들기.md",
-    "blog/Github Action을 이용한 모노레포 라이브러리 문서 자동화.md",
-    "blog/힙스터 아웃.md",
-    "blog/클린코드를 읽고 나서.md",
     "blog/clean.mdx",
     "docs/book/TheEssenceofObjectOrientation.mdx",
     "docs/book/cleanarchitecture.mdx",
     "docs/java.mdx",
     "java.mdx",
-    "spring.mdx",
-    "index.mdx",
     "java/이미지/3. 연산자/Pasted image 20240520003729.png",
     "java/이미지/3. 연산자/Pasted image 20240520001653.png",
     "java/이미지/1.Hello world/Pasted image 20240519213334.png",

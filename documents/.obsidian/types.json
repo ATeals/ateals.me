@@ -8,6 +8,7 @@
     "createdAT": "datetime",
     "timestamp": "datetime",
     "date": "datetime",
-    "type": "text"
+    "type": "text",
+    "draft": "checkbox"
   }
 }

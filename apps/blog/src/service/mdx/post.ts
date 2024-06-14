@@ -19,7 +19,7 @@ export const getPostNavigation = (post: Document) => {
 };
 
 export class DocumentBuilder {
-  private documents = allPosts;
+  private documents = allPosts.filter((post) => post.draft !== true);
 
   getDocuments() {
     return this.documents;
