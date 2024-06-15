@@ -17,8 +17,21 @@
                 "staged": false
               }
             }
+          },
+          {
+            "id": "ac114eb92f1a54c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -84,6 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -129,7 +144,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md"
+              }
             }
           },
           {
@@ -157,8 +174,10 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "80e855f6ee4b1966",
+  "active": "ac114eb92f1a54c4",
   "lastOpenFiles": [
+    "docs/nest-documents/FUNDAMENTALS/5. Circular dependency.md",
+    "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
     "docs/nest-documents/OVERVIEW/9. Custom decorators.md",
     "docs/nest-documents/OVERVIEW/8. Interceptors.md",
     "docs/nest-documents/OVERVIEW/7. Guards.md",
@@ -168,7 +187,6 @@
     "docs/nest-documents/OVERVIEW/3. Modules.md",
     "docs/nest-documents/OVERVIEW/2. Providers.md",
     "docs/nest-documents/OVERVIEW/1. Controllers.md",
-    "docs/nest-documents/FUNDAMENTALS/5. Circular dependency.md",
     "docs/nest-documents/FUNDAMENTALS/4. Injection scopes.md",
     "docs/nest-documents/FUNDAMENTALS/3. Dynamic modules.md",
     "docs/nest-documents/FUNDAMENTALS/2. Asynchronous providers.md",
@@ -189,7 +207,6 @@
     "blog/2023을 마무리 하면서.md",
     "blog/React 합성 컴포넌트 패턴으로 요구사항 유연하게 대처하기.md",
     "blog/노마드 웹기초 4기를 마치면서.md",
-    "blog/컴포넌트에 의존성 주입 활용하기.md",
     "blog/clean.mdx",
     "docs/book/TheEssenceofObjectOrientation.mdx",
     "docs/book/cleanarchitecture.mdx",
