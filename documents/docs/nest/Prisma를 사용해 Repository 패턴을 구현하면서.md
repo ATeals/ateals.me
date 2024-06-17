@@ -63,7 +63,7 @@ const publishedPosts: Post[] = await postRepository.find({
 
 TypeORM을 사용해 반환된 Post 배열의 각 객체는 런타임 환경에서 select에 전달된 `'id'`, `'title'` 속성만 전달하지만 TypeScript 컴파일러는 이에 대해 추론할 수 없습니다. 예를 들어 다음과 같이 쿼리 이후 Post 엔티티에 정의된 다른 프로퍼티에 접근할 수 있습니다.
 
-```
+```ts
 const post = publishedPosts[0]  
   
 // 타입스크립트 컴파일러는 post.content접근에 대한 오류를 반환하지 않습니다.
@@ -74,7 +74,7 @@ if (post.content.length > 0) {
 
 이 코드는 물론 런타임에 에러를 던집니다.
 
-```
+```zsh
 TypeError: Cannot read property 'length' of undefined
 ```
 
@@ -99,7 +99,7 @@ console.log(`This post has some content.`)
 
 이 경우 컴파일러는 컴파일 타임에 오류를 발생시킵니다.
 
-```
+```zsh
 [ERROR] 14:03:39 ⨯ Unable to compile TypeScript:
 src/index.ts:36:12 - error TS2339: Property 'content' does not exist on type '{ id: number; title: string; }'.
 
@@ -117,7 +117,7 @@ Nest에서는 기본 예제로  계층형 아키텍처를 통해 백엔드 서�
 - prisma module을 통해 모든 db 접근에 대해 prisma service에서 모두 관리한다.
 - 각 도메인 (`Users`, `Posts`와 같은)에 각각 repository providers를 통해 prisma service에 접근해 관리한다.
 
-제가 배운 Nest 강의에서는 기본적으로 TypeORM을 사용했기 때문에 repository를 통해 db에 접근 했고, 다른 ORM으로의 마이그레이션과 계층 분리로 인한 책임 분배를 이유로 후자의 방법을 통해 prisma를 사용하고자repository layer를 구현하고자 했습니다.
+제가 배운 Nest 강의에서는 기본적으로 TypeORM을 사용했기 때문에 repository를 통해 db에 접근 했고, 다른 ORM으로의 마이그레이션 가능성과 계층 분리로 인한 책임 분배를 이유로 후자의 방법을 통해 prisma를 사용하고자 repository layer를 구현하고자 했습니다.
 
 ### Prisma Service
 
@@ -167,7 +167,7 @@ export class UserRepository {
 ```
 
 
-이 방법은 매우 더럽습니다. 각 도메인의 repository는 같은 역할을 하기 때문에 코드가 중복될 가능성이 높습니다.
+이 방법은 매우 더럽습니다. 각 도메인의 repository는 같은 역할을 하기 때문에 코드가 중복될 가능성이 높습니다. 게으른 개발자는 이를 극도로 참지 못하며 repository를 구현할 때마다 TypeORM이 그리워질 가능성이 현저히 높아집니다.
 
 따라서 각 repository에서 상속할 수 있는 PrismaRepository Class를 만들었습니다.
 
@@ -291,7 +291,7 @@ export class UserRepository extends PrismaRepository<Prisma.UserDelegate> {
 ```
 
 
-물론 커스텀 메서드가 필요하다면 `user.repository.ts`의 예시와 같이 만들어 추가적인 메서드를 선언할 수 있습니다.
+물론 커스텀 메서드가 필요하다면 `user.repository.ts`의 예시와 같이 추가적인 메서드를 선언할 수 있습니다.
 
 `PrismaRepository class`를 통해 개발자는 보다 간편하게 repository providers를 선언할 있습니다. 이는 다음과 같은 장점이 있습니다.
 
