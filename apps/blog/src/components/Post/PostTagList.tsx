@@ -26,7 +26,7 @@ export const PostTagList = ({ className, ...props }: TagListProps) => {
     tags && (
       <ul
         className={cn(
-          "overflow-scroll flex gap-2 text-sm text-gray-700 font-extralight",
+          "overflow-scroll flex gap-2 text-sm text-gray-700 font-extralight scrollbar-hide",
           className
         )}
         {...props}
