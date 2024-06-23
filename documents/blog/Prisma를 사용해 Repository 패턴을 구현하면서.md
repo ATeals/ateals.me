@@ -8,7 +8,7 @@ tags:
   - Nestjs
   - ORM
   - prisma
-type: docs
+type: post
 ---
 
 최근에 Nest를 공부할겸 새로운 프로젝트를 시작했습니다. ORM을 선택하는 과정에서 기본 예시인 TypeORM말고 Prisma를 선택하게 되었는데 이 과정을 기록하고자 합니다.
