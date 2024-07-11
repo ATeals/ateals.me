@@ -30,10 +30,12 @@ export const PostCard = ({ post, className, ...props }: PostCardProps) => {
     <div ref={ref} className={tw} {...props}>
       <Post.Provider post={post}>
         <Post.Link className="block">
-          <Post.Image className="rounded-lg" />
+          <div className="rounded-lg overflow-hidden">
+            <Post.Image className="group-hover/post:scale-110 duration-300" />
+          </div>
           <div className="px-2 py-1">
             <div className="flex justify-between">
-              <Post.Title />
+              <Post.Title className="group-hover/post:text-primary-lg" />
               <Post.TypeLable />
             </div>
             <Post.DATELABLE dateType={"DOT"} className="text-gray-400 text-sm" />
