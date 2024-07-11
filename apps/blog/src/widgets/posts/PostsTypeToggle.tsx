@@ -21,7 +21,7 @@ export const PostsTypeToggle = ({}: PostsToggleProps) => {
         href={`posts?${generateQuery(["type", ""])}`}
         className={cn(currentType ?? "text-secondary-md")}
       >
-        all
+        ALL
       </Link>
 
       {POST_TYPES.map(({ type, title }) => (
