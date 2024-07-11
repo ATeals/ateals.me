@@ -19,7 +19,7 @@ export const PostList = ({ posts, ...props }: PostListProps) => {
     <div {...props}>
       {posts.map((post, idx) => (
         <Post.Provider key={idx} post={post}>
-          <Link href={post.url}>
+          <Post.Link>
             <div className="grid grid-cols-10 gap-2 my-2">
               <Post.HighLight className="col-span-7 md:col-span-8">
                 <Post.Title />
@@ -27,13 +27,13 @@ export const PostList = ({ posts, ...props }: PostListProps) => {
               <div className="col-span-3 md:col-span-2">
                 <Post.HighLight className="flex">
                   <div>
-                    {POST_TYPES_ENTITY[post.type].icon}
-                    <Post.DATELABLE dateType="DOT" className="ml-2" />
+                    <Post.TypeLable />
+                    <Post.DATELABLE dateType={"DOT_EXCUDE_YEAR"} className="ml-2" />
                   </div>
                 </Post.HighLight>
               </div>
             </div>
-          </Link>
+          </Post.Link>
         </Post.Provider>
       ))}
     </div>

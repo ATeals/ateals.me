@@ -1,7 +1,5 @@
-import { parseISO, format } from "date-fns";
-import { createContext, useContext } from "react";
+"use client";
 
-import { Document } from "@/service/mdx/post";
 import { PostNavigation } from "./PostNavigation";
 import { PostImage } from "./PostImage";
 import { PostDATELABLE } from "./PostDATELABLE";
@@ -10,6 +8,9 @@ import { PostTitle } from "./PostTitle";
 import { PostHighLight } from "./PostHighLight";
 import { PostProvider } from "./PostProvider";
 import { PostTagList } from "./PostTagList";
+import { PostTypeLable } from "./PostTypeLable";
+import { PostLink } from "./PostLink";
+import { PostReadingTime } from "./PostReadingTime";
 
 export const Post = Object.assign(
   {},
@@ -22,5 +23,8 @@ export const Post = Object.assign(
     Navigation: PostNavigation,
     Author: PostAuthor,
     TagList: PostTagList,
+    TypeLable: PostTypeLable,
+    Link: PostLink,
+    ReadingTime: PostReadingTime,
   }
 );

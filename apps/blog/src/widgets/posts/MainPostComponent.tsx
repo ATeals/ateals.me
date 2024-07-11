@@ -28,8 +28,12 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
               </div>
             }
           >
-            <div className="w-auto h-full my-5">
+            <div className="w-auto h-full mt-5 mb-2">
               <Post.Image className="object-contain object-center" />
+            </div>
+            <div className="flex justify-between mb-5">
+              <Post.TagList className="px-2 md:p-0" />
+              <Post.ReadingTime />
             </div>
 
             <Post.Author className="flex justify-between gap-5 px-2 md:px-0">
@@ -43,7 +47,6 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
             </Post.Author>
 
             <Post.DATELABLE className="font-light text-gray-500 text-md px-2 md:p-0" />
-            <Post.TagList className="px-2 md:p-0" />
           </Header>
 
           {props.children}
