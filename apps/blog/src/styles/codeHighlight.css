@@ -8,12 +8,16 @@
 [data-rehype-pretty-code-figure] [data-line] {
 }
 
+.prose code span {
+  @aplly text-sm border-l-2;
+}
+
 .prose code span[data-highlighted-line] {
-  @apply border-l-2 border-primary-lg bg-opacity-20 dark:bg-opacity-30  bg-primary-sm   dark:bg-primary-sm;
+  @apply border-primary-lg bg-opacity-20 dark:bg-opacity-30  bg-primary-sm   dark:bg-primary-sm;
 }
 
 .prose code span[data-highlighted-line-id="minus"] {
-  @apply border-l-2 border-secondary-md bg-opacity-20 dark:bg-opacity-30 bg-secondary-md dark:bg-secondary-md;
+  @apply border-secondary-md bg-opacity-20 dark:bg-opacity-30 bg-secondary-md dark:bg-secondary-md;
 }
 
 /* 코드블럭 테마 */

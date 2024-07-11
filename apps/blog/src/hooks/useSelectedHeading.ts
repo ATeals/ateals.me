@@ -22,6 +22,7 @@ export const useSelectedHeading = ({
     }, intersectionObserverOptions);
 
     const headingElements = document.querySelectorAll("h1, h2, h3");
+
     headingElements.forEach((element) => observer.observe(element));
 
     return () => {

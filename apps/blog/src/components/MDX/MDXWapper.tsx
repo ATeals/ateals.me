@@ -30,6 +30,7 @@ export const MDXWapper = ({
       "prose-img:shadow-lg",
       "prose-pre:shadow-lg prose-pre:p-2 prose-pre:bg-transparent",
       "prose-li:text-gray-700 dark:prose-li:text-gray-400 prose-li:font-[350]",
+      "prose-code:text-[0.8rem]",
       className
     )}
   >
