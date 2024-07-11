@@ -1,14 +1,12 @@
 "use client";
 
 import { Fragment, HTMLProps } from "react";
-import { PostsGroupedByYear } from "@/service/mdx/groupPostsByYear";
+import { groupPostsByYear, PostsGroupedByYear } from "@/service/mdx/groupPostsByYear";
 
 import { Post } from "@/components/Post";
 
-import Link from "next/link";
 import { Separator } from "@repo/shadcn/components";
 import { Document } from "@/service/mdx/post";
-import { POST_TYPES_ENTITY } from "@/config";
 
 interface PostListProps extends HTMLProps<HTMLDivElement> {
   posts: Document[];
@@ -41,15 +39,17 @@ export const PostList = ({ posts, ...props }: PostListProps) => {
 };
 
 interface YearGroupPostListProps extends HTMLProps<HTMLDivElement> {
-  groups: PostsGroupedByYear[];
+  posts: Document[];
 }
 
-export const YearGroupPostList = ({ groups, ...props }: YearGroupPostListProps) => {
+export const YearGroupPostList = ({ posts, ...props }: YearGroupPostListProps) => {
+  const groups = groupPostsByYear(posts);
+
   return (
     <div {...props}>
-      {groups.map((group) => (
+      {groups.map((group, index) => (
         <Fragment key={group.year}>
-          <div className={"flex gap-5 items-baseline group/year"}>
+          <div className={`flex gap-5 items-baseline group/year `}>
             <h1 className="group-hover/year:bg-primary-lg group-hover/year:shadow-lg rounded-lg px-1 group-hover/year:text-gray-100">
               {group.year}
             </h1>

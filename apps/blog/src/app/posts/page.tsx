@@ -1,10 +1,11 @@
 import { Separator } from "@/components/ui";
 import { POST_TYPES } from "@/config";
-import { groupPostsByYear } from "@/service/mdx";
 import { DocumentBuilder } from "@/service/mdx";
 import { Header } from "@/widgets/Header";
 import { YearGroupPostList } from "@/widgets/posts/PostList";
-import { PostsToggle } from "@/widgets/posts/PostsToggle";
+import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
+import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
+import { TogglePostList } from "@/widgets/posts/TogglePostList";
 
 type PostType = "post" | "docs";
 
@@ -17,27 +18,24 @@ const getPostsDescription = (type?: PostType) => {
 export default function Page({
   searchParams,
 }: {
-  searchParams: { type?: PostType; src?: string; tags?: string };
+  searchParams: { type?: PostType; src?: string; tags?: string; view?: string };
 }) {
   const query = { ...searchParams, tags: searchParams.tags?.split(",") || [] };
 
   const posts = new DocumentBuilder().query(query).getDocuments();
 
-  const groupedPosts = groupPostsByYear(posts);
-
   return (
     <div className="mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
       <Header>
         <p>{getPostsDescription(query.type)}</p>
-        <PostsToggle type={query.type} />
+        <div className="flex justify-between items-center w-full my-4">
+          <PostsTypeToggle />
+          <PostViewTypeToggle />
+        </div>
       </Header>
-
       <Separator />
 
-      <YearGroupPostList
-        groups={groupedPosts}
-        className="mt-10 font-extralight animate-fadeInDown"
-      />
+      <TogglePostList posts={posts} />
     </div>
   );
 }
