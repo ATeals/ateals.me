@@ -20,7 +20,7 @@ interface PostsToggleProps extends HTMLProps<HTMLDivElement> {
 export const PostViewTypeToggle = ({}: PostsToggleProps) => {
   const [getQueryParam, generateQueryParams] = useQueryParams();
 
-  const type = getQueryParam("view");
+  const type = getQueryParam("view") || "LIST";
 
   return (
     <div className="flex h-6 items-center">
