@@ -23,9 +23,9 @@ export default function RootLayout({
         <meta name="google-site-verification" content="U3213RTjnL2MBwyxUP3W66hcIIqcwV24irUIYoSkKzQ" />
       </head>
 
-      <link rel="alternate" type="application/rss+xml" href="/rss" title="RSS" />
-      <link rel="alternate" type="application/atom+xml" href="/atom" title="RSS Atom" />
-      <link rel="alternate" type="application/json" href="/json" title="JSON Feed" />
+      <link rel="alternate" type="application/rss+xml" href="/feed/rss" title="RSS" />
+      <link rel="alternate" type="application/atom+xml" href="/feed/atom" title="RSS Atom" />
+      <link rel="alternate" type="application/json" href="/feed/json" title="JSON Feed" />
       <body className="" style={GeistSans.style}>
         <BlurSection />
 
