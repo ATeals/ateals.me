@@ -22,7 +22,8 @@ export const Blog = defineDocumentType(() => ({
   contentType: "mdx",
   fields,
   computedFields: {
-    url: { type: "string", resolve: (post) => `/posts/${post._raw.flattenedPath}` },
+    pageID: { type: "string", resolve: (post) => encodeURIComponent(post.title) },
+    url: { type: "string", resolve: (post) => `/posts/${encodeURIComponent(post.title)}` },
   },
 }));
 
@@ -32,7 +33,8 @@ export const Docs = defineDocumentType(() => ({
   contentType: "mdx",
   fields,
   computedFields: {
-    url: { type: "string", resolve: (post) => `/posts/${post._raw.flattenedPath}` },
+    pageID: { type: "string", resolve: (post) => encodeURIComponent(post.title) },
+    url: { type: "string", resolve: (post) => `/posts/${encodeURIComponent(post.title)}` },
   },
 }));
 

@@ -1,10 +1,8 @@
 import { DocumentBuilder } from "@/service/mdx";
 import { Metadata } from "next";
 
-export const generateMetadata = ({ params }: { params: { slug: string[] } }): Metadata => {
-  const post = new DocumentBuilder().getPostByParams(
-    "/posts/" + params.slug.map(decodeURIComponent).join("/")
-  );
+export const generateMetadata = ({ params: { postID } }: { params: { postID: string } }): Metadata => {
+  const post = new DocumentBuilder().getDocuments().find((post) => post.pageID === postID);
 
   if (!post) return { title: "Post not found" };
 
