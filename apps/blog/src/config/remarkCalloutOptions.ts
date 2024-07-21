@@ -12,5 +12,8 @@ export const remarkCalloutOptions = {
     note: {
       svg: `<div>🖋️</div>`,
     },
+    quote: {
+      svg: `<div>💡</div>`,
+    },
   },
 };

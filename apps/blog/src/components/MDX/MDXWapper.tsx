@@ -2,20 +2,13 @@ import { cn } from "@repo/shadcn/utils";
 
 import "@/styles/codeHighlight.css";
 
-export const MDXWapper = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
+export const MDXWapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
   <div
     className={cn(
       "mdx",
       "px-2 md:px-0",
-      "prose-p:text-gray-700",
       "prose-a:dark:text-primary-sm prose-a:text-primary-lg",
-      "prose-p:break-words prose-p:text-gray-700 dark:prose-p:text-gray-400 prose-p:font-[350]",
+      "prose-p:break-words prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:font-[350]",
       "dark:prose-invert",
       "prose prose-stone",
       "prose-strong:dark:text-zinc-300",

@@ -19,16 +19,21 @@
 }
 
 .callout.note {
-  border-color: #0070f3;
-  background-color: #e7f5ff;
+  @apply border-l-[#0070f3] bg-[#e7f5ff] dark:bg-zinc-700;
 }
 
 .callout.warning {
-  border-color: #ffa500;
-  background-color: #fff3cd;
+  @apply border-l-[#ffa500] bg-[#fff3cd] dark:bg-zinc-700;
 }
 
 .callout.danger {
-  border-color: #dc3545;
-  background-color: #f8d7da;
+  @apply border-l-[#dc3545] bg-[#f8d7da] dark:bg-zinc-700;
+}
+
+.callout.info {
+  @apply border-l-black dark:border-l-white dark:bg-zinc-900;
+}
+
+.callout.quote {
+  @apply border-l-primary-xl dark:border-l-primary-xl dark:bg-zinc-900;
 }
