@@ -20,22 +20,22 @@ interface PostsToggleProps extends HTMLProps<HTMLDivElement> {
 export const PostViewTypeToggle = ({}: PostsToggleProps) => {
   const [getQueryParam, generateQueryParams] = useQueryParams();
 
-  const type = getQueryParam("view") || "LIST";
+  const currentType = getQueryParam("view") || "LIST";
 
   return (
     <div className="flex h-6 items-center">
       <TooltipProvider>
-        {VIEW_TYPES_LIST.map(({ type: current, name, icon }, index) => (
-          <Tooltip>
+        {VIEW_TYPES_LIST.map(({ type, name, icon }, index) => (
+          <Tooltip key={type}>
             {index !== 0 && <Separator className="mx-2" orientation="vertical" />}
 
             <TooltipTrigger>
-              <Fragment key={current}>
+              <Fragment>
                 {index !== 0 && <Separator className="mx-2" orientation="vertical" />}
                 <Link
                   replace
-                  href={`posts?${generateQueryParams(["view", current])}`}
-                  className={cn(current === type && "text-secondary-md")}
+                  href={`posts?${generateQueryParams(["view", type])}`}
+                  className={cn(type === currentType && "text-secondary-md")}
                 >
                   {icon}
                 </Link>

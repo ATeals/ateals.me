@@ -2,7 +2,6 @@ import { Separator } from "@/components/ui";
 import { POST_TYPES } from "@/config";
 import { DocumentBuilder } from "@/service/mdx";
 import { Header } from "@/widgets/Header";
-import { YearGroupPostList } from "@/widgets/posts/PostList";
 import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
 import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
 import { TogglePostList } from "@/widgets/posts/TogglePostList";

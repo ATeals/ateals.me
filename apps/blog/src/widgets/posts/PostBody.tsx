@@ -2,6 +2,7 @@ import { getMDXComponent } from "next-contentlayer/hooks";
 
 import { HeadingComponentsBuilder } from "@/components/MDX/HeadingComponents";
 import { IMGComponenets } from "@/components/MDX/IMGComponenets";
+import { Callout } from "@/components/MDX/CallOut";
 
 import { Document } from "@/service/mdx/post";
 
@@ -19,6 +20,7 @@ export const PostBody = ({ post, className }: { post: Document; className?: stri
           h2: HeadingComponentsBuilder("h2"),
           h3: HeadingComponentsBuilder("h3"),
           img: IMGComponenets,
+          blockquote: Callout,
         }}
       />
     </MDXWapper>
