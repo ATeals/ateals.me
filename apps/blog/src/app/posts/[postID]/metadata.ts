@@ -1,4 +1,3 @@
-import { SITE_CONFIG } from "@/config";
 import { DocumentBuilder } from "@/service/mdx";
 import { Metadata } from "next";
 
@@ -13,7 +12,7 @@ export const generateMetadata = ({ params: { postID } }: { params: { postID: str
     openGraph: {
       title: post.title,
       description: post.description,
-      images: [{ url: `${SITE_CONFIG.domain}${post.image}` }],
+      images: [{ url: `${post.image}` }],
     },
   };
 };
