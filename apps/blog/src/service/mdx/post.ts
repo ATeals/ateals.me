@@ -2,9 +2,7 @@ import { docs, post, allDocuments as defaultAllPosts } from "contentlayer/genera
 
 export type Document = post | docs;
 
-export const allPosts = defaultAllPosts.sort(
-  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-);
+export const allPosts = defaultAllPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export const getPostNavigation = (post: Document) => {
   const currentIndex = allPosts.findIndex((p) => p.title === post.title);
@@ -60,6 +58,20 @@ export class DocumentBuilder {
     if (type) this.getPostsFromType(type);
 
     return this;
+  }
+
+  getAllTags() {
+    return allPosts.reduce((tags: string[], post) => {
+      if (!post.tags) return tags;
+
+      for (const tag of post.tags) {
+        if (tags.some((t) => t === tag)) continue;
+
+        tags.push(tag);
+      }
+
+      return tags;
+    }, []);
   }
 }
 

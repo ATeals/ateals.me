@@ -1,3 +1,4 @@
+import { TagLabel } from "@/components/Tag";
 import { Separator } from "@/components/ui";
 import { POST_TYPES } from "@/config";
 import { DocumentBuilder } from "@/service/mdx";
@@ -5,6 +6,8 @@ import { Header } from "@/widgets/Header";
 import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
 import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
 import { TogglePostList } from "@/widgets/posts/TogglePostList";
+import { SideMenu } from "@/widgets/SideMenu";
+import { SideTagMenu } from "@/widgets/tags/SideTagMenu";
 
 type PostType = "post" | "docs";
 
@@ -23,6 +26,8 @@ export default function Page({
 
   const posts = new DocumentBuilder().query(query).getDocuments();
 
+  const tags = new DocumentBuilder().getAllTags();
+
   return (
     <div className="mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
       <Header>
@@ -33,6 +38,8 @@ export default function Page({
         </div>
       </Header>
       <Separator />
+
+      <SideTagMenu tags={tags} className="pt-40 whitespace-warp" />
 
       <TogglePostList posts={posts} />
     </div>

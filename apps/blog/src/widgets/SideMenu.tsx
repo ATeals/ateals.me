@@ -10,11 +10,12 @@ const POSITIONS_MAP = {
   right: "text-start translate-x-[200%] pl-10",
 };
 
-export const SideMenu = ({ position = "left", ...props }: SideMenuProps) => {
+export const SideMenu = ({ position = "left", className, ...props }: SideMenuProps) => {
   const tailwind = cn(
     "text-sm lg:block hidden fixed w-[300px] h-full top-20",
     "text-gray-700 dark:text-gray-400 font-[350] ",
-    POSITIONS_MAP[position]
+    POSITIONS_MAP[position],
+    className
   );
 
   return <aside className={tailwind}>{props.children}</aside>;
