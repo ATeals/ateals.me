@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui";
-import { POST_TYPES } from "@/config";
+import { POST_TYPES, POST_TYPES_ENTITY } from "@/config";
 import { DocumentBuilder } from "@/service/mdx";
 import { PostType } from "@/service/mdx/post";
 import { Header } from "@/widgets/Header";
@@ -10,7 +10,7 @@ import { TogglePostList } from "@/widgets/posts/TogglePostList";
 import { SideTagMenu } from "@/widgets/tags/SideTagMenu";
 
 const getPostsDescription = (type?: PostType) => {
-  if (!type) return "모든 포스트.";
+  if (!type) return POST_TYPES_ENTITY[""].description;
 
   return POST_TYPES.find((postType) => postType.type === type)?.description;
 };
