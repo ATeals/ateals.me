@@ -19,6 +19,12 @@ export const SITE_CONFIG = {
 };
 
 export const POST_TYPES_ENTITY = {
+  "": {
+    title: "모든글",
+    description: "블로그의 모든 글.",
+    url: "/posts",
+    icon: "📚",
+  },
   post: {
     title: "블로그",
     description: "개발하면서 경험하거나 고민한 것을 작성합니다.",

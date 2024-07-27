@@ -12,21 +12,13 @@ interface PostsToggleProps extends HTMLProps<HTMLDivElement> {}
 export const PostsTypeToggle = ({}: PostsToggleProps) => {
   const [getQuery, generateQuery] = useQueryParams();
 
-  const currentType = getQuery("type");
+  const currentType = getQuery("type") || "";
 
   return (
     <div className="flex h-6 items-center">
-      <Link
-        replace
-        href={`posts?${generateQuery(["type", ""])}`}
-        className={cn(currentType ?? "text-secondary-md")}
-      >
-        ALL
-      </Link>
-
-      {POST_TYPES.map(({ type, title }) => (
+      {POST_TYPES.map(({ type, title }, i) => (
         <Fragment key={type}>
-          <Separator className="mx-2" orientation="vertical" />
+          {i !== 0 && <Separator className="mx-2" orientation="vertical" />}
           <Link
             replace
             href={`posts?${generateQuery(["type", type])}`}
