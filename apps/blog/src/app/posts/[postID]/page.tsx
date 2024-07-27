@@ -12,7 +12,8 @@ import { BackspaceButton } from "@/components/BackspaceButton";
 
 export { generateMetadata } from "./metadata";
 
-export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.pageID }));
+export const generateStaticParams = async () =>
+  new DocumentBuilder().getDocuments().map((post) => ({ slug: post.pageID }));
 
 const PostLayout = ({ params: { postID } }: { params: { postID: string } }) => {
   const post = new DocumentBuilder().getDocuments().find((post) => post.pageID === postID);
