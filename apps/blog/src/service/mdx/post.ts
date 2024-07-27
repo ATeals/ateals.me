@@ -1,14 +1,16 @@
-import { docs, post, allDocuments as defaultAllPosts } from "contentlayer/generated";
+import { docs, post, allDocuments as defaultAllPosts, link, snapshot } from "contentlayer/generated";
 
-export type Document = post | docs;
+export type Document = post | docs | link | snapshot;
 
 export const allPosts = defaultAllPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export const getPostNavigation = (post: Document) => {
-  const currentIndex = allPosts.findIndex((p) => p.title === post.title);
+  const posts = new DocumentBuilder().getDocuments();
 
-  const next = allPosts[currentIndex - 1];
-  const prev = allPosts[currentIndex + 1];
+  const currentIndex = posts.findIndex((p) => p.title === post.title);
+
+  const next = posts[currentIndex - 1];
+  const prev = posts[currentIndex + 1];
 
   return {
     next,
@@ -20,7 +22,7 @@ export class DocumentBuilder {
   private documents = allPosts.filter((post) => post.draft !== true);
 
   getDocuments() {
-    return this.documents;
+    return this.documents.filter((post) => post.type !== "link");
   }
 
   getPostByParams(params: string) {

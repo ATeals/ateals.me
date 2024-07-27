@@ -38,9 +38,30 @@ export const Docs = defineDocumentType(() => ({
   },
 }));
 
+export const Link = defineDocumentType(() => ({
+  name: "link",
+  filePathPattern: `links/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    ...fields,
+    url: { type: "string", required: true },
+  },
+}));
+
+export const Snapshot = defineDocumentType(() => ({
+  name: "snapshot",
+  filePathPattern: `snapshots/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    pageID: { type: "string", resolve: (post) => encodeURIComponent(post.title) },
+    url: { type: "string", resolve: (post) => `/snapshots/${encodeURIComponent(post.title)}` },
+  },
+}));
+
 export default makeSource({
   contentDirPath: "../../documents/",
-  documentTypes: [Blog, Docs],
+  documentTypes: [Blog, Docs, Link, Snapshot],
   mdx: {
     remarkPlugins: [[remarkCallout as any, remarkCalloutOptions], [remarkGfm as any]],
     rehypePlugins: [[rehypePrettyCode as any, rehypePrettyCodeOptions]],

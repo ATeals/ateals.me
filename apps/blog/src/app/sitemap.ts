@@ -3,7 +3,7 @@ import { DocumentBuilder } from "@/service/mdx";
 import { MetadataRoute } from "next";
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const posts = new DocumentBuilder().getDocuments();
+  const posts = new DocumentBuilder().getDocuments().filter((post) => post.type !== "snapshot");
 
   return posts.map((post) => ({
     url: `${SITE_CONFIG.domain}${post.url}`,

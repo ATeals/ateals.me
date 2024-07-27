@@ -39,7 +39,7 @@ export default function Page({
       </Header>
       <Separator />
 
-      <SideTagMenu tags={tags} className="pt-40 whitespace-warp" />
+      <SideTagMenu tags={tags} className="py-[105px] whitespace-warp" />
 
       <TogglePostList posts={posts} />
     </div>

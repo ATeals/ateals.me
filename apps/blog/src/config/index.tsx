@@ -1,10 +1,10 @@
+import { title } from "process";
 import { IconType } from "react-icons";
 
 import { IoLogoGithub } from "react-icons/io5";
 
 export const SITE_CONFIG = {
-  domain:
-    process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://blog.ateals.me",
+  domain: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://blog.ateals.me",
   title: "Blog | Ateals",
   description: "Ateals의 블로그입니다.",
   icons: "/favicon.ico",
@@ -30,6 +30,18 @@ export const POST_TYPES_ENTITY = {
     description: "공부하거나 읽은 내용을 정리합니다.",
     url: "/posts?type=docs",
     icon: "🗃️",
+  },
+  snapshot: {
+    title: "스냅샷",
+    description: "짧은 인사이트를 공유합니다.",
+    url: "/posts?type=snapshot",
+    icon: "📸",
+  },
+  link: {
+    title: "링크",
+    description: "좋은 링크를 공유합니다.",
+    url: "/posts?type=link",
+    icon: "🔗",
   },
 };
 
