@@ -2,6 +2,8 @@ import { docs, post, allDocuments as defaultAllPosts, link, snapshot } from "con
 
 export type Document = post | docs | link | snapshot;
 
+export type PostType = "post" | "docs" | "snapshot" | "link";
+
 export const allPosts = defaultAllPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export const getPostNavigation = (post: Document) => {
@@ -21,7 +23,11 @@ export const getPostNavigation = (post: Document) => {
 export class DocumentBuilder {
   private documents = allPosts.filter((post) => post.draft !== true);
 
-  getDocuments() {
+  getDocuments({ filter }: { filter?: PostType[] } = {}) {
+    if (filter) {
+      this.documents = this.documents.filter((post) => filter.includes(post.type));
+    }
+
     return this.documents.filter((post) => post.type !== "link");
   }
 
@@ -29,7 +35,7 @@ export class DocumentBuilder {
     return this.documents.find((post) => post.url === params);
   }
 
-  private getPostsFromType(type: "post" | "docs") {
+  private getPostsFromType(type: PostType) {
     this.documents = this.documents.filter((post) => post.type === type);
 
     return this;
@@ -54,7 +60,7 @@ export class DocumentBuilder {
     return this;
   }
 
-  query({ tags, src, type }: { tags?: string[]; src?: string; type?: "post" | "docs" }) {
+  query({ tags, src, type }: { tags?: string[]; src?: string; type?: PostType }) {
     if (tags) this.getPostsFromTag(tags);
     if (src) this.getPostsFromSourceFileDir(src);
     if (type) this.getPostsFromType(type);

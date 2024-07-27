@@ -7,7 +7,7 @@ import { PostList } from "@/widgets/posts/PostList";
 import { Separator } from "@repo/shadcn/components";
 
 export default function Home() {
-  const posts = new DocumentBuilder().getDocuments().slice(0, 5);
+  const posts = new DocumentBuilder().getDocuments({ filter: ["post", "docs"] }).slice(0, 5);
 
   return (
     <div className=" mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">

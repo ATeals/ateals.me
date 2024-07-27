@@ -1,15 +1,13 @@
-import { TagLabel } from "@/components/Tag";
 import { Separator } from "@/components/ui";
 import { POST_TYPES } from "@/config";
 import { DocumentBuilder } from "@/service/mdx";
+import { PostType } from "@/service/mdx/post";
 import { Header } from "@/widgets/Header";
 import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
 import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
+import { PostThreadTypes } from "@/widgets/posts/PostThreadTypes";
 import { TogglePostList } from "@/widgets/posts/TogglePostList";
-import { SideMenu } from "@/widgets/SideMenu";
 import { SideTagMenu } from "@/widgets/tags/SideTagMenu";
-
-type PostType = "post" | "docs";
 
 const getPostsDescription = (type?: PostType) => {
   if (!type) return "모든 포스트.";
@@ -41,7 +39,11 @@ export default function Page({
 
       <SideTagMenu tags={tags} className="py-[105px] whitespace-warp" />
 
-      <TogglePostList posts={posts} />
+      {query.type === "snapshot" ? (
+        <PostThreadTypes posts={posts} />
+      ) : (
+        <TogglePostList posts={posts.filter((post) => post.type !== "snapshot")} />
+      )}
     </div>
   );
 }

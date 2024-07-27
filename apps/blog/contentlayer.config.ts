@@ -45,6 +45,7 @@ export const Link = defineDocumentType(() => ({
   fields: {
     ...fields,
     url: { type: "string", required: true },
+    pageID: { type: "string" },
   },
 }));
 
