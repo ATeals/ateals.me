@@ -8,6 +8,7 @@ import { Document } from "@/service/mdx/post";
 
 import "@/styles/callout.css";
 import { MDXWapper } from "@/components/MDX/MDXWapper";
+import { Backlinks } from "@/components/MDX/Backlinks";
 
 export const PostBody = ({ post, className }: { post: Document; className?: string }) => {
   const MDXComponent = getMDXComponent(post.body.code);
@@ -21,6 +22,7 @@ export const PostBody = ({ post, className }: { post: Document; className?: stri
           h3: HeadingComponentsBuilder("h3"),
           img: IMGComponenets,
           blockquote: Callout,
+          p: Backlinks,
         }}
       />
     </MDXWapper>
