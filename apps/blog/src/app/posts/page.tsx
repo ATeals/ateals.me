@@ -22,7 +22,7 @@ export default function Page({
 }) {
   const query = { ...searchParams, tags: searchParams.tags?.split(",") || [] };
 
-  const posts = new DocumentBuilder().query(query).getDocuments();
+  const posts = new DocumentBuilder().query(query).getDocuments({ filter: ["link", "post", "docs", "snapshot"] });
 
   const tags = new DocumentBuilder().getAllTags();
 

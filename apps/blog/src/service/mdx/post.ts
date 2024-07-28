@@ -25,7 +25,7 @@ export class DocumentBuilder {
 
   getDocuments({ filter }: { filter?: PostType[] } = {}) {
     if (filter) {
-      this.documents = this.documents.filter((post) => filter.includes(post.type));
+      return this.documents.filter((post) => filter.includes(post.type));
     }
 
     return this.documents.filter((post) => post.type !== "link");
