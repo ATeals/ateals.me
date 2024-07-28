@@ -32,7 +32,8 @@
       "key": "F12"
     }
   ],
-  "editor:delete-paragraph": [
+  "editor:delete-paragraph": [],
+  "app:delete-file": [
     {
       "modifiers": [
         "Mod"

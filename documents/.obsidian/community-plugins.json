@@ -11,5 +11,6 @@
   "slash-commander",
   "mdx-as-md-obsidian",
   "obsidian-git",
-  "obsidian-imgur-plugin"
+  "obsidian-imgur-plugin",
+  "link-with-alias"
 ]

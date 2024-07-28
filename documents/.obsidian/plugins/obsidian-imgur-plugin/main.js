@@ -27,15 +27,27 @@ __export(ImgurPlugin_exports, {
   default: () => ImgurPlugin
 });
 module.exports = __toCommonJS(ImgurPlugin_exports);
-var import_obsidian10 = require("obsidian");
+var import_obsidian12 = require("obsidian");
 
 // src/ui/ImgurPluginSettingsTab.ts
 var import_obsidian4 = require("obsidian");
 
 // src/imgur/constants.ts
-var IMGUR_PLUGIN_CLIENT_ID = "5d3647b14ed585f";
 var IMGUR_API_BASE = "https://api.imgur.com/3";
 var IMGUR_ACCESS_TOKEN_LOCALSTORAGE_KEY = "imgur-access_token";
+var IMGUR_POTENTIALLY_SUPPORTED_FILES_EXTENSIONS = [
+  "jpeg",
+  "png",
+  "gif",
+  "apng",
+  "tiff",
+  "mp4",
+  "mpeg",
+  "avi",
+  "webm",
+  "mov",
+  "mkv"
+];
 
 // src/UploadStrategy.ts
 var _UploadStrategy = class _UploadStrategy {
@@ -239,7 +251,6 @@ function disableActionButton(button) {
 }
 
 // src/ui/ImgurPluginSettingsTab.ts
-var REGISTER_CLIENT_URL = "https://api.imgur.com/oauth2/addclient";
 var ImgurPluginSettingsTab = class _ImgurPluginSettingsTab extends import_obsidian4.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
@@ -294,23 +305,15 @@ var ImgurPluginSettingsTab = class _ImgurPluginSettingsTab extends import_obsidi
   }
   async drawSettings(parentEl) {
     parentEl.empty();
-    switch (this.plugin.settings.uploadStrategy) {
-      case UploadStrategy.ANONYMOUS_IMGUR.id:
-        this.drawAnonymousClientIdSetting(parentEl);
-        break;
-      case UploadStrategy.AUTHENTICATED_IMGUR.id:
-        await this.createAuthenticationInfoBlock(parentEl);
-        if (this.authenticatedUserName)
-          this.drawAlbumSettings(parentEl);
-        break;
-      default:
-        throw new Error("There must be a bug, this code is not expected to be reached");
+    this.drawClientIdField(parentEl);
+    if (this.plugin.settings.uploadStrategy === UploadStrategy.AUTHENTICATED_IMGUR.id) {
+      await this.createAuthenticationInfoBlock(parentEl);
+      if (this.authenticatedUserName)
+        this.drawAlbumSettings(parentEl);
     }
   }
-  drawAnonymousClientIdSetting(containerEl) {
-    new import_obsidian4.Setting(containerEl).setName("Client ID").setTooltip(
-      `Client ID is required for anonymous images upload. If you do not provide your own Client ID, the one shipped with the plugin and shared with many other users will be used. If you face issues with images upload, it's better generate your own Client ID"`
-    ).setDesc(_ImgurPluginSettingsTab.clientIdSettingDescription()).addText(
+  drawClientIdField(containerEl) {
+    new import_obsidian4.Setting(containerEl).setName("Client ID").setTooltip(`Personal Client ID is required for plugin to work`, { delay: 1 }).setDesc(_ImgurPluginSettingsTab.clientIdSettingDescription()).addText(
       (text) => text.setPlaceholder("Enter your client_id").setValue(this.plugin.settings.clientId).onChange((value) => {
         this.plugin.settings.clientId = value;
       })
@@ -318,18 +321,24 @@ var ImgurPluginSettingsTab = class _ImgurPluginSettingsTab extends import_obsidi
   }
   static clientIdSettingDescription() {
     const fragment = document.createDocumentFragment();
-    const a = document.createElement("a");
-    a.textContent = REGISTER_CLIENT_URL;
-    a.setAttribute("href", REGISTER_CLIENT_URL);
-    fragment.append("Generate your own Client ID at ");
-    fragment.append(a);
+    const newClientIdInstructionsLink = document.createElement("a");
+    newClientIdInstructionsLink.textContent = "the instructions";
+    newClientIdInstructionsLink.setAttribute(
+      "href",
+      "https://github.com/gavvvr/obsidian-imgur-plugin?tab=readme-ov-file#generating-client-id"
+    );
+    const existingClientIdsLink = document.createElement("a");
+    existingClientIdsLink.text = "here";
+    existingClientIdsLink.setAttribute("href", "https://imgur.com/account/settings/apps");
+    fragment.append("Find your existing Client ID ", existingClientIdsLink);
+    fragment.append(" or follow ", newClientIdInstructionsLink, " to generate new Client ID.");
     return fragment;
   }
   async createAuthenticationInfoBlock(parentEl) {
     this.authElem = new ImgurAuthenticationStatus(parentEl);
     await this.drawAuthenticationInfo();
     this.authElem.authButtonClick = () => {
-      const modal = new ImgurAuthModal(IMGUR_PLUGIN_CLIENT_ID, this.app, async () => {
+      const modal = new ImgurAuthModal(this.plugin.settings.clientId, this.app, async () => {
         await this.drawAuthenticationInfo();
       });
       modal.open();
@@ -611,9 +620,6 @@ var ImgurAuthenticatedUploader = class {
 };
 
 // src/uploader/imgUploaderFactory.ts
-function defaultAnonymousUploader() {
-  return new ImgurAnonymousUploader(IMGUR_PLUGIN_CLIENT_ID);
-}
 function buildUploaderFrom(settings) {
   if (UploadStrategy.AUTHENTICATED_IMGUR.id === settings.uploadStrategy) {
     const accessToken = localStorage.getItem(IMGUR_ACCESS_TOKEN_LOCALSTORAGE_KEY);
@@ -625,8 +631,9 @@ function buildUploaderFrom(settings) {
   if (settings.uploadStrategy === UploadStrategy.ANONYMOUS_IMGUR.id) {
     if (settings.clientId) {
       return new ImgurAnonymousUploader(settings.clientId);
+    } else {
+      return void 0;
     }
-    return defaultAnonymousUploader();
   }
   throw Error("This line of code should never be reached");
 }
@@ -930,6 +937,54 @@ function pasteRemoteImageToCanvas(canvas, imageUrl) {
   });
 }
 
+// src/utils/editor.ts
+function localEmbeddedImageExpectedBoundaries(from) {
+  return [
+    { ...from.start, ch: from.start.ch - 3 },
+    { ...from.end, ch: from.end.ch + 2 }
+  ];
+}
+
+// src/ui/UpdateLinksConfirmationModal.ts
+var import_obsidian10 = require("obsidian");
+var UpdateLinksConfirmationModal = class extends import_obsidian10.Modal {
+  constructor(app, localFileName, stats) {
+    super(app);
+    this.setTitle("Replace links in vault");
+    this.contentEl.createEl("p", {
+      text: `Do you want to replace internal links that link to original local file (${localFileName}) with remote link?`
+    });
+    this.contentEl.createEl("p", {
+      text: `This will affect ${stats.linksCount} links in ${stats.filesCount} files.`
+    });
+    const buttonsDiv = this.modalEl.createDiv("modal-button-container");
+    this.updateOnceButton = new import_obsidian10.ButtonComponent(buttonsDiv).setButtonText("Yes");
+    this.doNotUpdateButton = new import_obsidian10.ButtonComponent(buttonsDiv).setButtonText("Do not update");
+  }
+  onDoUpdateClick(callback) {
+    this.updateOnceButton.onClick(callback);
+  }
+  onDoNotUpdateClick(callback) {
+    this.doNotUpdateButton.onClick(callback);
+  }
+  disableButtons() {
+    this.updateOnceButton.setDisabled(true);
+    this.doNotUpdateButton.setDisabled(true);
+  }
+};
+
+// src/ui/InfoModal.ts
+var import_obsidian11 = require("obsidian");
+var InfoModal = class extends import_obsidian11.Modal {
+  constructor(app, title, message) {
+    super(app);
+    this.setTitle(title);
+    this.contentEl.createEl("p", { text: message });
+    const buttonsDiv = this.modalEl.createDiv("modal-button-container");
+    new import_obsidian11.ButtonComponent(buttonsDiv).setButtonText("Ok");
+  }
+};
+
 // src/ImgurPlugin.ts
 var DEFAULT_SETTINGS = {
   uploadStrategy: UploadStrategy.ANONYMOUS_IMGUR.id,
@@ -937,7 +992,7 @@ var DEFAULT_SETTINGS = {
   showRemoteUploadConfirmation: true,
   albumToUpload: void 0
 };
-var ImgurPlugin = class _ImgurPlugin extends import_obsidian10.Plugin {
+var ImgurPlugin = class _ImgurPlugin extends import_obsidian12.Plugin {
   constructor() {
     super(...arguments);
     this.customPasteEventCallback = async (e, _, markdownView) => {
@@ -1030,9 +1085,116 @@ var ImgurPlugin = class _ImgurPlugin extends import_obsidian10.Plugin {
         DragEventCopy.create(e, filesFailedToUpload)
       );
     };
+    this.imgurPluginRightClickHandler = (menu, editor, view) => {
+      const clickable = editor.getClickableTokenAt(editor.getCursor());
+      if (!clickable)
+        return;
+      if (clickable.type !== "internal-link")
+        return;
+      const [localImageExpectedStart, localImageExpectedEnd] = localEmbeddedImageExpectedBoundaries(clickable);
+      const clickablePrefix = editor.getRange(localImageExpectedStart, clickable.start);
+      const clickableSuffix = editor.getRange(clickable.end, localImageExpectedEnd);
+      if (clickablePrefix !== "![[" || clickableSuffix !== "]]")
+        return;
+      const lt = (0, import_obsidian12.parseLinktext)(clickable.text);
+      const file = view.app.metadataCache.getFirstLinkpathDest(lt.path, view.file.path);
+      if (!IMGUR_POTENTIALLY_SUPPORTED_FILES_EXTENSIONS.includes(file.extension))
+        return;
+      menu.addItem((item) => {
+        item.setTitle("Upload to Imgur").setIcon("wand").onClick(
+          () => this.uploadLocalImageFromEditor(
+            editor,
+            file,
+            localImageExpectedStart,
+            localImageExpectedEnd
+          ).then(
+            (imageUrl) => this.proposeToReplaceOtherLocalLinksIfAny(file, imageUrl, {
+              path: view.file.path,
+              startPosition: localImageExpectedStart
+            })
+          )
+        );
+      });
+    };
   }
   getCurrentImagesUploader() {
     return this.imgUploaderField;
+  }
+  proposeToReplaceOtherLocalLinksIfAny(originalLocalFile, remoteImageUrl, originalReference) {
+    const otherReferencesByNote = this.getAllCachedReferencesForFile(originalLocalFile);
+    removeReferenceToOriginalNoteIfPresent(otherReferencesByNote, originalReference);
+    const notesWithSameLocalFile = Object.keys(otherReferencesByNote);
+    if (notesWithSameLocalFile.length === 0)
+      return;
+    this.showLinksUpdateDialog(originalLocalFile, remoteImageUrl, otherReferencesByNote);
+  }
+  getAllCachedReferencesForFile(file) {
+    const allLinks = this.app.metadataCache.resolvedLinks;
+    const notesWithLinks = [];
+    for (const [notePath, noteLinks] of Object.entries(allLinks)) {
+      for (const [linkName] of Object.entries(noteLinks)) {
+        if (linkName === file.name)
+          notesWithLinks.push(notePath);
+      }
+    }
+    const linksByNote = notesWithLinks.reduce(
+      (acc, note) => {
+        const noteMetadata = this.app.metadataCache.getCache(note);
+        const noteLinks = noteMetadata.embeds;
+        if (noteLinks) {
+          acc[note] = noteLinks.filter((l) => l.link === file.name);
+        }
+        return acc;
+      },
+      {}
+    );
+    return linksByNote;
+  }
+  showLinksUpdateDialog(localFile, remoteImageUrl, otherReferencesByNote) {
+    const stats = getFilesAndLinksStats(otherReferencesByNote);
+    const dialogBox = new UpdateLinksConfirmationModal(this.app, localFile.path, stats);
+    dialogBox.onDoNotUpdateClick(() => dialogBox.close());
+    dialogBox.onDoUpdateClick(() => {
+      dialogBox.disableButtons();
+      dialogBox.setContent("Working...");
+      this.replaceAllLocalReferencesWithRemoteOne(otherReferencesByNote, remoteImageUrl).catch((e) => {
+        new InfoModal(
+          this.app,
+          "Error",
+          "Unexpected error occurred, check Developer Tools console for details"
+        ).open();
+        console.error("Something bad happened during links update", e);
+      }).finally(() => dialogBox.close());
+      new import_obsidian12.Notice(`Updated ${stats.linksCount} links in ${stats.filesCount} files`);
+    });
+    dialogBox.open();
+  }
+  async replaceAllLocalReferencesWithRemoteOne(referencesByNotes, remoteImageUrl) {
+    for (const [notePath, refs] of Object.entries(referencesByNotes)) {
+      const noteFile = this.app.vault.getFileByPath(notePath);
+      const refsStartOffsetsSortedDescending = refs.map((ref) => ({
+        start: ref.position.start.offset,
+        end: ref.position.end.offset
+      })).sort((ref1, ref2) => ref2.start - ref1.start);
+      await this.app.vault.process(noteFile, (noteContent) => {
+        let updatedContent = noteContent;
+        refsStartOffsetsSortedDescending.forEach((refPos) => {
+          updatedContent = updatedContent.substring(0, refPos.start) + `![](${remoteImageUrl})` + updatedContent.substring(refPos.end);
+        });
+        return updatedContent;
+      });
+    }
+  }
+  async uploadLocalImageFromEditor(editor, file, start, end) {
+    const arrayBuffer = await this.app.vault.readBinary(file);
+    const fileToUpload = new File([arrayBuffer], file.name);
+    editor.replaceRange("\n", end, end);
+    const imageUrl = await this.uploadFileAndEmbedImgurImage(fileToUpload, {
+      ch: 0,
+      line: end.line + 1
+    });
+    editor.replaceRange(`<!--${editor.getRange(start, end)}-->`, start, end);
+    return imageUrl;
   }
   get imgUploader() {
     return this.imgUploaderField;
@@ -1076,6 +1238,7 @@ var ImgurPlugin = class _ImgurPlugin extends import_obsidian10.Plugin {
         }
       })
     );
+    this.registerEvent(this.app.workspace.on("editor-menu", this.imgurPluginRightClickHandler));
   }
   overridePasteHandlerForCanvasView(view) {
     const originalPasteFn = view.handlePaste;
@@ -1099,11 +1262,11 @@ var ImgurPlugin = class _ImgurPlugin extends import_obsidian10.Plugin {
   }
   static showUnconfiguredPluginNotice() {
     const fiveSecondsMillis = 5e3;
-    new import_obsidian10.Notice("\u26A0\uFE0F Please configure Imgur plugin or disable it", fiveSecondsMillis);
+    new import_obsidian12.Notice("\u26A0\uFE0F Please configure Client ID for Imgur plugin or disable it", fiveSecondsMillis);
   }
-  async uploadFileAndEmbedImgurImage(file) {
+  async uploadFileAndEmbedImgurImage(file, atPos) {
     const pasteId = (Math.random() + 1).toString(36).substring(2, 7);
-    this.insertTemporaryText(pasteId);
+    this.insertTemporaryText(pasteId, atPos);
     let imgUrl;
     try {
       imgUrl = await this.imgUploaderField.upload(file, this.settings.albumToUpload);
@@ -1120,11 +1283,18 @@ var ImgurPlugin = class _ImgurPlugin extends import_obsidian10.Plugin {
       throw e;
     }
     this.embedMarkDownImage(pasteId, imgUrl);
+    return imgUrl;
   }
-  insertTemporaryText(pasteId) {
+  insertTemporaryText(pasteId, atPos) {
     const progressText = _ImgurPlugin.progressTextFor(pasteId);
-    this.getEditor().replaceSelection(`${progressText}
-`);
+    const replacement = `${progressText}
+`;
+    const editor = this.getEditor();
+    if (atPos) {
+      editor.replaceRange(replacement, atPos, atPos);
+    } else {
+      this.getEditor().replaceSelection(replacement);
+    }
   }
   static progressTextFor(id) {
     return `![Uploading file...${id}]()`;
@@ -1139,7 +1309,7 @@ var ImgurPlugin = class _ImgurPlugin extends import_obsidian10.Plugin {
     _ImgurPlugin.replaceFirstOccurrence(this.getEditor(), progressText, `<!--${message}-->`);
   }
   getEditor() {
-    const mdView = this.app.workspace.getActiveViewOfType(import_obsidian10.MarkdownView);
+    const mdView = this.app.workspace.getActiveViewOfType(import_obsidian12.MarkdownView);
     return mdView.editor;
   }
   static replaceFirstOccurrence(editor, target, replacement) {
@@ -1155,3 +1325,27 @@ var ImgurPlugin = class _ImgurPlugin extends import_obsidian10.Plugin {
     }
   }
 };
+function removeReferenceToOriginalNoteIfPresent(otherReferencesByNote, originalNote) {
+  if (!Object.keys(otherReferencesByNote).includes(originalNote.path))
+    return;
+  const refsFromOriginalNote = otherReferencesByNote[originalNote.path];
+  const originalRefStart = originalNote.startPosition;
+  const refForExclusion = refsFromOriginalNote.find(
+    (r) => r.position.start.line === originalRefStart.line && r.position.start.col === originalRefStart.ch
+  );
+  if (refForExclusion) {
+    refsFromOriginalNote.remove(refForExclusion);
+    if (refsFromOriginalNote.length === 0) {
+      delete otherReferencesByNote[originalNote.path];
+    }
+  }
+}
+function getFilesAndLinksStats(otherReferencesByNote) {
+  return {
+    filesCount: Object.keys(otherReferencesByNote).length,
+    linksCount: Object.values(otherReferencesByNote).reduce(
+      (count, refs) => count + refs.length,
+      0
+    )
+  };
+}

@@ -4,34 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "ef89dc5e1918381a",
+        "id": "1814e99a27fdd31d",
         "type": "tabs",
         "children": [
           {
-            "id": "80e855f6ee4b1966",
-            "type": "leaf",
-            "state": {
-              "type": "diff-view",
-              "state": {
-                "file": "documents/docs/nest-documents/OVERVIEW/8. Interceptors.md",
-                "staged": false
-              }
-            }
-          },
-          {
-            "id": "ac114eb92f1a54c4",
+            "id": "d3d855b792fc6e53",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
+                "file": "snapshots/스냅샷.md",
                 "mode": "source",
+                "backlinks": false,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -60,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#개발",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -97,14 +86,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
+                "file": "snapshots/스냅샷.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -114,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
+                "file": "snapshots/스냅샷.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/nest-documents/FUNDAMENTALS/6. Module reference.md"
+                "file": "snapshots/스냅샷.md"
               }
             }
           },
@@ -156,13 +145,22 @@
               "type": "git-view",
               "state": {}
             }
+          },
+          {
+            "id": "e1a4df529ac20e2c",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -171,47 +169,50 @@
       "canvas:새 캔버스 만들기": false,
       "templates:템플릿 삽입": false,
       "command-palette:명령어 팔레트 열기": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-kanban:새 보드 만들기": false
     }
   },
-  "active": "ac114eb92f1a54c4",
+  "active": "d3d855b792fc6e53",
   "lastOpenFiles": [
-    "docs/nest-documents/FUNDAMENTALS/5. Circular dependency.md",
-    "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
-    "docs/nest-documents/OVERVIEW/9. Custom decorators.md",
-    "docs/nest-documents/OVERVIEW/8. Interceptors.md",
-    "docs/nest-documents/OVERVIEW/7. Guards.md",
-    "docs/nest-documents/OVERVIEW/6. Pipes.md",
-    "docs/nest-documents/OVERVIEW/5. Exception filters.md",
-    "docs/nest-documents/OVERVIEW/4. Middleware.md",
-    "docs/nest-documents/OVERVIEW/3. Modules.md",
-    "docs/nest-documents/OVERVIEW/2. Providers.md",
-    "docs/nest-documents/OVERVIEW/1. Controllers.md",
-    "docs/nest-documents/FUNDAMENTALS/4. Injection scopes.md",
-    "docs/nest-documents/FUNDAMENTALS/3. Dynamic modules.md",
-    "docs/nest-documents/FUNDAMENTALS/2. Asynchronous providers.md",
     "docs/nest-documents/FUNDAMENTALS/1. Custom providers.md",
+    "snapshots/스냅샷.md",
     "docs/jsts/Tagged Template Literal.md",
+    "이름 없는 보드.md",
     "_template/MDX 탬플릿.md",
-    "blog/블로그 포스트 조각 내, 성능 개선하기.md",
+    "무제 파일.canvas",
+    "_template/Link 탬플릿.md",
+    "_template/토글 목록.md",
+    "_template/콜아웃 - 주의.md",
+    "_template/콜아웃 - 정보.md",
+    "_template/콜아웃 - 위험.md",
+    "_template/콜아웃 - 댓글.md",
+    "_template/콜아웃 - 노트.md",
+    "_template/열 분할.md",
+    "무제 파일.md",
+    "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
+    "links/링크.md",
+    "docs/index.mdx",
+    "docs/nest-documents/OVERVIEW/1. Controllers.md",
+    "docs/nest-documents/FUNDAMENTALS/3. Dynamic modules.md",
+    "docs/book.mdx",
+    "조각모음/무제 파일.md",
     "docs/jsts.mdx",
+    "blog/nest/Prisma를 사용해 Repository 패턴을 구현하면서.md",
+    "fp- 클로저.md",
+    "blog/FP/2. fp- 클로저.md",
+    "blog/잡글/무제 파일.md",
+    "blog/잡글/추상화와 중복에 대한 질문.md",
+    "blog/nest/Prisma Transaction Interceptor.md",
+    "docs/book/cleanarchitecture/1~2.md",
+    "blog/frontend",
+    "blog/nest",
+    "z7SGQJYQLOxR535afk5PDgKK3tPHW6kxbeShINbTdb1ZnqWhJQ4UqPTmeKVizqlrDahWLeJ4J4iBvc505BBJRg.webp",
+    "blog/FP",
+    "blog/hello",
+    "조각모음",
     "docs/jsts",
-    "blog/블로그 ISR 도입기.md",
     "docs/nest-documents/_meta.json",
-    "docs/nest-documents/FUNDAMENTALS",
-    "docs/nest-documents/OVERVIEW",
-    "blog/Module Federation으로 런타임에 앱을 통합해보자.md",
-    "blog/매우 늦은 2023년 상반기 회고.md",
-    "blog/아직도 localStorage를 위해 useEffect를 사용하십니까.md",
-    "blog/React에서 도메인 로직을 추출 한다면.md",
-    "blog/2023을 마무리 하면서.md",
-    "blog/React 합성 컴포넌트 패턴으로 요구사항 유연하게 대처하기.md",
-    "blog/노마드 웹기초 4기를 마치면서.md",
-    "blog/clean.mdx",
-    "docs/book/TheEssenceofObjectOrientation.mdx",
-    "docs/book/cleanarchitecture.mdx",
-    "docs/java.mdx",
-    "java.mdx",
     "java/이미지/3. 연산자/Pasted image 20240520003729.png",
     "java/이미지/3. 연산자/Pasted image 20240520001653.png",
     "java/이미지/1.Hello world/Pasted image 20240519213334.png",
@@ -220,7 +221,6 @@
     "java/이미지/3. 연산자/Pasted image 20240520003753.png",
     "java/이미지/3. 연산자/Pasted image 20240520003742.png",
     "java/이미지/2. 변수/Pasted image 20240520001114.png",
-    "java/이미지/2. 변수/Pasted image 20240520001101.png",
-    "java/이미지/2. 변수/Pasted image 20240520000959.png"
+    "java/이미지/2. 변수/Pasted image 20240520001101.png"
   ]
 }

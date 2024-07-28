@@ -1,0 +1,11 @@
+{
+	"id": "link-with-alias",
+	"name": "Link with alias",
+	"version": "1.0.8",
+	"minAppVersion": "1.1.0",
+	"description": "Creates links and aliases in front matter of target document",
+	"author": "Pavel Vojtěchovský",
+	"authorUrl": "https://github.com/pvojtechovsky",
+	"fundingUrl": "https://www.buymeacoffee.com/pavel.knowledge",
+	"isDesktopOnly": false
+}

@@ -1,6 +1,11 @@
 {
   "accentColor": "#5876a1",
-  "theme": "system",
+  "theme": "moonstone",
   "translucency": false,
-  "cssTheme": "AnuPpuccin"
+  "cssTheme": "AnuPpuccin",
+  "baseFontSize": 16,
+  "nativeMenus": true,
+  "enabledCssSnippets": [
+    "extended-colorschemes"
+  ]
 }

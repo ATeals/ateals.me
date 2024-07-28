@@ -10,6 +10,14 @@
   "queryPattern": {},
   "bindings": [
     {
+      "id": "insert-template",
+      "icon": "lucide-copy",
+      "name": "템플릿: 템플릿 삽입",
+      "mode": "bacb0da73ebf100d",
+      "chosen": false,
+      "selected": false
+    },
+    {
       "name": "테이블(Table)",
       "id": "editor:insert-table",
       "icon": "table-2",
@@ -73,24 +81,6 @@
       "selected": false
     },
     {
-      "name": "Admonition",
-      "id": "obsidian-admonition:insert-admonition",
-      "icon": "indent",
-      "mode": "any",
-      "triggerMode": "anywhere",
-      "chosen": false,
-      "selected": false
-    },
-    {
-      "name": "Excalidraw",
-      "id": "obsidian-excalidraw-plugin:excalidraw-autocreate-and-embed-new-tab",
-      "icon": "image",
-      "mode": "any",
-      "triggerMode": "anywhere",
-      "chosen": false,
-      "selected": false
-    },
-    {
       "name": "할 일 목록(Task)",
       "id": "obsidian-tasks-plugin:edit-task",
       "icon": "check-circle",
@@ -98,30 +88,6 @@
       "triggerMode": "anywhere",
       "chosen": false,
       "selected": false
-    },
-    {
-      "name": "Template",
-      "id": "templater-obsidian:insert-templater",
-      "icon": "book-copy",
-      "mode": "any",
-      "triggerMode": "anywhere",
-      "chosen": false,
-      "selected": false
-    },
-    {
-      "name": "Citation",
-      "id": "zotlit:insert-markdown-citation",
-      "icon": "book-marked",
-      "mode": "desktop",
-      "triggerMode": "anywhere",
-      "chosen": false,
-      "selected": false
-    },
-    {
-      "id": "insert-template",
-      "icon": "lucide-copy",
-      "name": "템플릿: 템플릿 삽입",
-      "mode": "any"
     }
   ]
 }
