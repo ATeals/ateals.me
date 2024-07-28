@@ -13,7 +13,11 @@ export const Backlinks = ({ className, children, ...props }: HTMLProps<HTMLParag
       </p>
     );
 
-  const backLinkLabel = children.replace("[[", "").replace("]]", "");
+  const [original, alias] = children.replace(/^\[\[|\]\]$/g, "").split(/\|\s*/);
+
+  const backLinkLabel = alias || original;
+
+  console.log(original, alias, backLinkLabel);
 
   return <Link href={`/posts/${backLinkLabel}`}>{backLinkLabel}</Link>;
 };
