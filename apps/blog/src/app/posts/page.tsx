@@ -39,11 +39,7 @@ export default function Page({
 
       <SideTagMenu tags={tags} className="py-[105px] whitespace-warp" />
 
-      {query.type === "snapshot" ? (
-        <PostThreadTypes posts={posts} />
-      ) : (
-        <TogglePostList posts={posts.filter((post) => post.type !== "snapshot")} />
-      )}
+      <TogglePostList posts={posts} />
     </div>
   );
 }

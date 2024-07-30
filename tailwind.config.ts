@@ -4,10 +4,7 @@ import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   darkMode: "class",
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "../../packages/shadcn/src/components/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "../../packages/shadcn/src/components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       typography: {
@@ -43,8 +40,18 @@ const config: Config = {
         fadeIn: "fadeIn 2s ease-in-out",
         darkening: "darkening 1s ease-in-out",
         fadeInDown: "fadeInDown 0.7s ease-in-out",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
         turn: {
           "0%": {
             transform: "rotate(0deg)",
@@ -83,10 +90,7 @@ const config: Config = {
   plugins: [
     typography,
     plugin(function ({ addVariant }) {
-      addVariant(
-        "prose-inline-code",
-        '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))'
-      );
+      addVariant("prose-inline-code", '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))');
     }),
     plugin(function ({ addVariant }) {
       addVariant("prose-blockquote-p", '&.prose blockquote > p:not([class~="not-prose"])');

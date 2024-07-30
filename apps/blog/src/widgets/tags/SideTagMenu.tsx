@@ -2,11 +2,11 @@
 
 import { TagLabel } from "@/components/Tag";
 import { SideMenu } from "../SideMenu";
-import { HTMLProps, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button, Separator, Toggle } from "@/components/ui";
 import { useQueryParams } from "@/hooks/useQueryParams";
 import Link from "next/link";
+import { Button } from "@/components/ui";
+import { HTMLProps, useState } from "react";
 
 interface SideTagMenuProps extends HTMLProps<HTMLElement> {
   tags: string[];
@@ -24,13 +24,13 @@ export const SideTagMenu = ({ tags, className, ...props }: SideTagMenuProps) => 
   return (
     <SideMenu className={tw} {...props}>
       {tag ? (
-        <Toggle size={"sm"} asChild>
+        <Button size={"sm"} variant={"link"} asChild>
           <Link href={`posts?${generateQuery(["tags", ""])}`}>CLEAR</Link>
-        </Toggle>
+        </Button>
       ) : (
-        <Toggle size={"sm"} onClick={() => setIsOpen((isOpen) => !isOpen)}>
+        <Button size={"sm"} variant={"link"} onClick={() => setIsOpen((isOpen) => !isOpen)}>
           TAGS
-        </Toggle>
+        </Button>
       )}
       {isOpen && (
         <div className="py-5">

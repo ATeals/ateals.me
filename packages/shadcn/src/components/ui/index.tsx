@@ -7,3 +7,4 @@ export * from "./dropdown-menu";
 export * from "./separator";
 export * from "./tooltip";
 export * from "./toggle";
+export * from "./accordion";
