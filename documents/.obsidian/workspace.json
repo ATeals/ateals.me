@@ -11,8 +11,11 @@
             "id": "fefabfe26421bfb4",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "diff-view",
+              "state": {
+                "file": "documents/.obsidian/workspace.json",
+                "staged": false
+              }
             }
           }
         ]
@@ -146,12 +149,11 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -166,10 +168,10 @@
   },
   "active": "fefabfe26421bfb4",
   "lastOpenFiles": [
+    "snapshots/블로그의 마크다운.md",
     "docs/java/2. 변수.md",
     "snapshots/스냅샷.md",
     "이름 없는 보드.md",
-    "snapshots/블로그의 마크다운.md",
     "docs/book/TheEssenceofObjectOrientation/4. 역할, 책임, 협력.md",
     "docs/book/TheEssenceofObjectOrientation/2. 이상한 나라의 객체.md",
     "docs/book/TheEssenceofObjectOrientation/1. 협력하는 객체들의 공동체.md",
