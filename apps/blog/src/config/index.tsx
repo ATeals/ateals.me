@@ -15,6 +15,7 @@ export const SITE_CONFIG = {
     name: "ateals",
     email: "ateals@icloud.com",
     link: "https://blog.ateals.me",
+    github: "https://github.com/ATeals",
   },
 };
 
