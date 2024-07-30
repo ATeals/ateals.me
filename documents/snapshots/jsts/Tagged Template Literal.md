@@ -7,7 +7,7 @@ draft: false
 tags:
   - 개발
   - Javascript
-type: docs
+type: snapshot
 ---
 
 sytled-components를 사용해봤다면 다음과 같은 코드를 본적이 있을 것이다.

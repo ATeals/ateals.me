@@ -4,17 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "e40512cd4296129d",
+        "id": "c863efc341215821",
         "type": "tabs",
         "children": [
           {
-            "id": "fefabfe26421bfb4",
+            "id": "3a49c69656f9bd39",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": "documents/.obsidian/workspace.json",
-                "staged": false
+                "file": "blog/클린코드를 읽고 나서.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -84,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "blog/클린코드를 읽고 나서.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "blog/클린코드를 읽고 나서.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -129,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "blog/클린코드를 읽고 나서.md"
+              }
             }
           },
           {
@@ -166,20 +172,23 @@
       "obsidian-kanban:새 보드 만들기": false
     }
   },
-  "active": "fefabfe26421bfb4",
+  "active": "0c6b9a9682023bef",
   "lastOpenFiles": [
     "snapshots/블로그의 마크다운.md",
-    "docs/java/2. 변수.md",
+    "snapshots/jsts/Tagged Template Literal.md",
+    "아카이브/잡글/추상화와 중복에 대한 질문.md",
+    "아카이브",
+    "snapshots/nest/TypeSafe한 ConfigModule.md",
+    "docs/hello/hello.md",
+    "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
     "snapshots/스냅샷.md",
+    "blog/잡글/콜아웃 예시.md",
+    "docs/java/2. 변수.md",
     "이름 없는 보드.md",
     "docs/book/TheEssenceofObjectOrientation/4. 역할, 책임, 협력.md",
     "docs/book/TheEssenceofObjectOrientation/2. 이상한 나라의 객체.md",
     "docs/book/TheEssenceofObjectOrientation/1. 협력하는 객체들의 공동체.md",
     "docs/book/cleanarchitecture.mdx",
-    "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
-    "blog/잡글/콜아웃 예시.md",
-    "docs/hello/hello.md",
-    "blog/잡글/추상화와 중복에 대한 질문.md",
     "택배 시뮬레이터.md",
     "blog/클린코드를 읽고 나서.md",
     "blog/FrontEnd/컴포넌트에 의존성 주입 활용하기.md",
@@ -193,9 +202,6 @@
     "blog/FrontEnd/Module Federation으로 런타임에 앱을 통합해보자.md",
     "blog/FrontEnd/아직도 localStorage를 위해 useEffect를 사용하십니까.md",
     "blog/회고/2023을 마무리 하면서.md",
-    "blog/회고/힙스터 아웃.md",
-    "blog/회고/매우 늦은 2023년 상반기 회고.md",
-    "blog/회고/노마드 웹기초 4기를 마치면서.md",
     "blog/회고",
     "무제 파일.canvas",
     "docs/index.mdx",
@@ -205,7 +211,6 @@
     "blog/nest",
     "z7SGQJYQLOxR535afk5PDgKK3tPHW6kxbeShINbTdb1ZnqWhJQ4UqPTmeKVizqlrDahWLeJ4J4iBvc505BBJRg.webp",
     "blog/FP",
-    "blog/hello",
     "java/이미지/3. 연산자/Pasted image 20240520003729.png",
     "java/이미지/3. 연산자/Pasted image 20240520001653.png",
     "java/이미지/1.Hello world/Pasted image 20240519213334.png",
