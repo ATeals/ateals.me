@@ -2,14 +2,15 @@
   "settings": {
     "migrated": 6,
     "iconPacksPath": ".obsidian/icons",
-    "fontSize": 16,
+    "fontSize": 14,
     "emojiStyle": "native",
     "iconColor": null,
     "recentlyUsedIcons": [
+      "📋",
       "🖊",
       "📮"
     ],
-    "recentlyUsedIconsSize": 5,
+    "recentlyUsedIconsSize": 8,
     "rules": [],
     "extraMargin": {
       "top": 0,
@@ -31,5 +32,6 @@
     "lucideIconPackType": "native"
   },
   "Spaces/아카이브": "📮",
-  "blog/블로그 포스트": "🖊"
+  "blog/블로그 포스트": "🖊",
+  "이름 없는 보드.md": "📋"
 }
