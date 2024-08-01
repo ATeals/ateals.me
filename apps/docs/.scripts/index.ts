@@ -12,7 +12,11 @@ const manager = new DocsManager({
       fileExt: "md",
       handler: (destFile: string): string => {
         destFile = Utils.convertToMdx(destFile);
-        return Utils.hashFileName(destFile);
+
+        return destFile
+          .split("/")
+          .map((x) => encodeURIComponent(x))
+          .join("/");
       },
     },
   ],

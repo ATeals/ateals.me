@@ -1,4 +1,4 @@
 export default {
-  siteUrl: "https://ateals-docs.vercel.app",
+  siteUrl: "https://docs.ateals.me/",
   generateRobotsTxt: true,
 };

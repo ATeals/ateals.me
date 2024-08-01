@@ -4,8 +4,10 @@ import { createHash, Hash } from "crypto";
 export class Utils {
   static convertToMdx(destFile: string): string {
     const parsedPath: ParsedPath = parse(destFile);
+
     parsedPath.ext = ".mdx";
     parsedPath.base = `${parsedPath.name}${parsedPath.ext}`;
+
     return format(parsedPath);
   }
 

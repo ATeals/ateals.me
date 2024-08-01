@@ -12,5 +12,8 @@ export default {
     note: {
       svg: `<div>🖋️</div>`,
     },
+    quote: {
+      svg: `<div>💡</div>`,
+    },
   },
 };

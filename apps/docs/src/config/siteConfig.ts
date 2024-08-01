@@ -2,7 +2,7 @@ export default {
   URL: {
     BLOG: "https://blog.ateals.me/",
     DOCS: "https://docs.ateals.me/",
-    PROJECT_REPO: "https://github.com/ATeals/Ateals-Docs",
+    PROJECT_REPO: "https://github.com/ATeals/ateals.me/tree/main/apps/docs",
   },
   LOGO: "https://blog.ateals.me/images/logo.webp",
   meta: {
