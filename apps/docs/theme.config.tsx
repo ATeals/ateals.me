@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import Main from "@/components/main";
 import { LogoComponent } from "@/components/Logo";
+import { Backlink } from "@/components/MDX/BackLink";
 
 const config: DocsThemeConfig = {
   logo: LogoComponent,
@@ -29,6 +30,12 @@ const config: DocsThemeConfig = {
     content: "",
   },
   main: Main,
+  components: {
+    p: ({ ...props }) => (
+      <Backlink style={{ lineHeight: "1.75rem", marginBlockStart: "1em", marginBlockEnd: "1em" }} {...props} />
+    ),
+  },
+
   useNextSeoProps: () => {
     const config = useConfig();
     const { asPath } = useRouter();

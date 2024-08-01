@@ -22,4 +22,26 @@ const manager = new DocsManager({
   ],
 });
 
-manager.cleanOutput().makeDocs();
+manager
+  .cleanOutput()
+  .makeDocs()
+  .makeDocs({
+    options: {
+      input: "../../documents/snapshots",
+      output: "./pages",
+      excludes: EXCLUDES_DIR,
+    },
+    fileEvents: [
+      {
+        fileExt: "md",
+        handler: (destFile: string): string => {
+          destFile = Utils.convertToMdx(destFile);
+
+          return destFile
+            .split("/")
+            .map((x) => encodeURIComponent(x))
+            .join("/");
+        },
+      },
+    ],
+  });
