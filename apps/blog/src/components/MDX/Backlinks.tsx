@@ -17,7 +17,5 @@ export const Backlinks = ({ className, children, ...props }: HTMLProps<HTMLParag
 
   const backLinkLabel = alias || original;
 
-  console.log(original, alias, backLinkLabel);
-
   return <Link href={`/posts/${backLinkLabel}`}>{backLinkLabel}</Link>;
 };

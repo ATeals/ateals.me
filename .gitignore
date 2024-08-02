@@ -36,3 +36,12 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+
+## documents
+
+documents/_B_아카이브/
+
+documents/_A_원칙/
+
+documents/.obsidian/

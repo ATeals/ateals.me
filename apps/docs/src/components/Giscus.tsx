@@ -39,8 +39,6 @@ export const Giscus = () => {
 
   useEffect(() => {
     setTheme(theme);
-
-    console.log(theme);
   }, [theme]);
 
   return <section style={{ margin: "5px", padding: "5px" }} ref={ref} />;

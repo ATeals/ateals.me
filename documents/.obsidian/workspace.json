@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c863efc341215821",
+        "id": "2bd9232a87a405c1",
         "type": "tabs",
         "children": [
           {
-            "id": "3a49c69656f9bd39",
+            "id": "0e7b52af97ffe70a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/클린코드를 읽고 나서.md",
+                "file": "snapshots/마크다운.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -49,12 +49,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "식별자",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
-                "sortOrder": "alphabetical"
+                "sortOrder": "byCreatedTime"
               }
             }
           },
@@ -70,7 +70,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 306
+    "width": 200
   },
   "right": {
     "id": "40cd3edb20dd4e61",
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/클린코드를 읽고 나서.md",
+                "file": "snapshots/마크다운.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/클린코드를 읽고 나서.md",
+                "file": "snapshots/마크다운.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/클린코드를 읽고 나서.md"
+                "file": "snapshots/마크다운.md"
               }
             }
           },
@@ -159,7 +159,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -172,36 +173,38 @@
       "obsidian-kanban:새 보드 만들기": false
     }
   },
-  "active": "0c6b9a9682023bef",
+  "active": "0e7b52af97ffe70a",
   "lastOpenFiles": [
-    "snapshots/블로그의 마크다운.md",
-    "snapshots/jsts/Tagged Template Literal.md",
-    "아카이브/잡글/추상화와 중복에 대한 질문.md",
-    "아카이브",
-    "snapshots/nest/TypeSafe한 ConfigModule.md",
+    "_A_원칙/옵시디언을 사용하는 원칙.md",
+    "_B_아카이브/잡글/추상화와 중복에 대한 질문.md",
+    "_template/콜아웃 - 댓글.md",
+    "_template/콜아웃 - 정보.md",
+    "_template/콜아웃 - 주의.md",
+    "_template/토글 목록.md",
+    "_template/Link 탬플릿.md",
+    "_template/MDX 탬플릿.md",
+    "함께 자라기 3주차.md",
+    "무제 파일.md",
+    "_A_원칙/이름 없는 보드.md",
+    "_template/열 분할.md",
+    "_template/콜아웃 - 노트.md",
+    "_template/콜아웃 - 위험.md",
     "docs/hello/hello.md",
-    "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
-    "snapshots/스냅샷.md",
-    "blog/잡글/콜아웃 예시.md",
-    "docs/java/2. 변수.md",
-    "이름 없는 보드.md",
-    "docs/book/TheEssenceofObjectOrientation/4. 역할, 책임, 협력.md",
+    "snapshots/jsts/Tagged Template Literal.md",
+    "snapshots/nest/TypeSafe한 ConfigModule.md",
+    "_A_원칙",
+    "snapshots/마크다운.md",
+    "docs/nest-documents/FUNDAMENTALS/6. Module reference.md",
     "docs/book/TheEssenceofObjectOrientation/2. 이상한 나라의 객체.md",
+    "docs/book/TheEssenceofObjectOrientation/4. 역할, 책임, 협력.md",
+    "docs/book/TheEssenceofObjectOrientation/3. 타입과 추상화.md",
     "docs/book/TheEssenceofObjectOrientation/1. 협력하는 객체들의 공동체.md",
+    "docs/book/cleanarchitecture/7~11. 설계 원칙.md",
+    "docs/book/cleanarchitecture/3~6. 패러다임.md",
+    "docs/book/cleanarchitecture/1~2.md",
+    "_B_아카이브",
     "docs/book/cleanarchitecture.mdx",
-    "택배 시뮬레이터.md",
-    "blog/클린코드를 읽고 나서.md",
-    "blog/FrontEnd/컴포넌트에 의존성 주입 활용하기.md",
-    "blog/FrontEnd/블로그 ISR 도입기.md",
-    "blog/FrontEnd/블로그 포스트 조각 내, 성능 개선하기.md",
-    "blog/FrontEnd/다형성 컴포넌트를 활용한 디자인 시스템 만들기.md",
-    "blog/FrontEnd/Github Action을 이용한 모노레포 라이브러리 문서 자동화.md",
-    "blog/FrontEnd/React에서 도메인 로직을 추출 한다면.md",
     "blog/무제 폴더",
-    "blog/FrontEnd/React 합성 컴포넌트 패턴으로 요구사항 유연하게 대처하기.md",
-    "blog/FrontEnd/Module Federation으로 런타임에 앱을 통합해보자.md",
-    "blog/FrontEnd/아직도 localStorage를 위해 useEffect를 사용하십니까.md",
-    "blog/회고/2023을 마무리 하면서.md",
     "blog/회고",
     "무제 파일.canvas",
     "docs/index.mdx",
@@ -210,7 +213,6 @@
     "blog/FrontEnd",
     "blog/nest",
     "z7SGQJYQLOxR535afk5PDgKK3tPHW6kxbeShINbTdb1ZnqWhJQ4UqPTmeKVizqlrDahWLeJ4J4iBvc505BBJRg.webp",
-    "blog/FP",
     "java/이미지/3. 연산자/Pasted image 20240520003729.png",
     "java/이미지/3. 연산자/Pasted image 20240520001653.png",
     "java/이미지/1.Hello world/Pasted image 20240519213334.png",
