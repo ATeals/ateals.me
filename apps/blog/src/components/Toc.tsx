@@ -8,9 +8,9 @@ import { cn } from "@repo/shadcn/utils";
 import Link from "next/link";
 
 const HEADING_LEVELS_MAP = {
-  1: "mt-5 font-bold",
-  2: "mt-5 font-semibold",
-  3: "mt-2 font-thin",
+  1: "mb-8 font-bold",
+  2: "pt-2 font-semibold",
+  3: "pt-2 border-r border-r-zinc-200 font-thin",
 };
 
 export const Toc = ({ post }: { post: Document }) => {
@@ -19,14 +19,14 @@ export const Toc = ({ post }: { post: Document }) => {
   const tocHeadings = parseToc(post.body.raw);
 
   return (
-    <ul className="max-h-[400px] overflow-scroll my-10 scrollbar-hide">
+    <ul className="max-h-[700px] overflow-scroll my-10 scrollbar-hide ">
       {tocHeadings.map(({ text, level }, index) => (
         <li
           key={text + level + index}
-          style={{ paddingLeft: (level - 2) * 15 }}
+          style={{ marginRight: (level - 2) * 5, paddingRight: (level - 2) * 5 }}
           className={cn(
             HEADING_LEVELS_MAP[level],
-            " hover:underline hover:text-primary-lg",
+            " hover:underline hover:text-primary-lg mr-2",
             activeHeading.value === text && activeHeading.level === level && "text-secondary-md"
           )}
         >
