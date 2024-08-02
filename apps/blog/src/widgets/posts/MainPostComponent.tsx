@@ -21,9 +21,7 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
               <div className="flex px-2">
                 <div className="flex gap-5 items-center">
                   <img src="/images/logo.webp" alt="logo" className="w-10 h-auto" />
-                  <h1 className=" text-lg font-normal text-black dark:text-gray-100">
-                    {post.title}
-                  </h1>
+                  <h1 className=" text-lg font-normal text-black dark:text-gray-100">{post.title}</h1>
                 </div>
               </div>
             }

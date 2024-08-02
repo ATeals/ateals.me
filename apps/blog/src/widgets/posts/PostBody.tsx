@@ -1,14 +1,14 @@
 import { getMDXComponent } from "next-contentlayer/hooks";
 
-import { HeadingComponentsBuilder } from "@/components/MDX/HeadingComponents";
-import { IMGComponenets } from "@/components/MDX/IMGComponenets";
-import { Callout } from "@/components/MDX/CallOut";
+import { HeadingComponentsBuilder } from "@/widgets/MDX/HeadingComponents";
+import { IMGComponenets } from "@/widgets/MDX/IMGComponenets";
+import { Callout } from "@/widgets/MDX/CallOut";
 
 import { Document } from "@/service/mdx/post";
 
 import "@/styles/callout.css";
-import { MDXWapper } from "@/components/MDX/MDXWapper";
-import { Backlinks } from "@/components/MDX/Backlinks";
+import { MDXWapper } from "@/widgets/MDX/MDXWapper";
+import { Backlinks } from "../MDX/Backlinks";
 
 export const PostBody = ({ post, className }: { post: Document; className?: string }) => {
   const MDXComponent = getMDXComponent(post.body.code);
