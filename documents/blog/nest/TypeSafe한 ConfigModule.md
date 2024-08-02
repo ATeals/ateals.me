@@ -6,7 +6,6 @@ date: 2024-04-12T14:02:00
 draft: 
 tags:
   - Nestjs
-  - 개발
   - 백엔드
 type: post
 ---

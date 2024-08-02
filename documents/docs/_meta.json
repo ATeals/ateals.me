@@ -4,20 +4,22 @@
     "type": "separator",
     "title": "개발 아티클"
   },
-  "nest": "Nest.js",
-  "jsts": "",
   "Blog": {
     "title": "Blog ↗",
     "type": "page",
     "href": "https://blog.ateals.me/",
     "newWindow": true
   },
-  "--- 아카이브": {
+  "--- 저장소": {
     "type": "separator",
-    "title": "아카이브"
+    "title": "저장소"
   },
   "book": "독서",
   "nest-documents": "Nest 문서",
   "java": "",
-  "spring": ""
+  "spring": "",
+  "--- 아카이브": {
+    "type": "separator",
+    "title": "아카이브"
+  }
 }

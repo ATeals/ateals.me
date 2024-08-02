@@ -5,7 +5,6 @@ image:
 date: 2024-07-11T19:38
 draft: false
 tags:
-  - 개발
   - Nestjs
   - prisma
 type: post
