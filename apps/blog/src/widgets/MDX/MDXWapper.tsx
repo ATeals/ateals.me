@@ -7,7 +7,6 @@ export const MDXWapper = ({ children, className }: { children: React.ReactNode; 
     className={cn(
       "mdx",
       "px-2 md:px-0",
-      "prose-a:dark:text-primary-sm prose-a:text-primary-lg",
       "prose-p:break-words prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:font-[350]",
       "dark:prose-invert",
       "prose prose-stone",

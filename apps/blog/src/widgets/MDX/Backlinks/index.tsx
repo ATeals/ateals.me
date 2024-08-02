@@ -34,7 +34,9 @@ export const BacklinksPreview = ({ children }: HTMLProps<HTMLButtonElement>) => 
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>
-          <Link href={post?.url}>{children}</Link>
+          <Link href={post?.url} className="text-secondary-md">
+            {children}
+          </Link>
         </TooltipTrigger>
         <TooltipContent className="overflow-scroll h-[600px] w-1/2">
           <PreviewPostTooltip post={post}>
