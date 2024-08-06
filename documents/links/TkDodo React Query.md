@@ -1,5 +1,5 @@
 ---
-title: TkDodo's React Query
+title: TkDodo React Query
 date: 2024-08-02T22:20
 tags:
   - 프론트

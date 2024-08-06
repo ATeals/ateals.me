@@ -1,0 +1,217 @@
+{
+  "main": {
+    "id": "69ff817cacaa673b",
+    "type": "split",
+    "children": [
+      {
+        "id": "ac0fcd31198fe8a5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b2fa5c139f4a3d77",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "622905328c031d59",
+    "type": "split",
+    "children": [
+      {
+        "id": "dc8c5070317c702a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0c6b9a9682023bef",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "54bdcf4f203989f0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "byCreatedTime"
+              }
+            }
+          },
+          {
+            "id": "afdf67e095dbe5de",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 275
+  },
+  "right": {
+    "id": "40cd3edb20dd4e61",
+    "type": "split",
+    "children": [
+      {
+        "id": "1c2f35b4b06e7e32",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6ff47884c260ca49",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "878e2137e01c41d4",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "3d2f86a88ee9f3a3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a1573ed62c28227a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "321401d52ca3fc76",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "e1a4df529ac20e2c",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "4d8036635b38aaef",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "graph:그래프 뷰 열기": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "switcher:퀵 스위처 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "templates:템플릿 삽입": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-kanban:새 보드 만들기": false
+    }
+  },
+  "active": "b2fa5c139f4a3d77",
+  "lastOpenFiles": [
+    "links/TkDodo React Query.md",
+    "snapshots/JS,TS/RORO 패턴과 Class Constructor.md",
+    "snapshots/JS,TS/Tagged Template Literal.md",
+    "snapshots/JS,TS/forEach대신 for ... of.md",
+    "snapshots/마크다운.md",
+    "_template/🔧콜아웃 - 노트.md",
+    "_template/🔧열 분할.md",
+    "_A_원칙/이름 없는 보드.md",
+    "docs/hello/hello.md",
+    "links/TkDodo's React Query.md",
+    "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
+    "snapshots/Nest.js/TypeSafe한 ConfigModule.md",
+    "무제 파일.md",
+    "docs/nest-documents/OVERVIEW/Exception filters.md",
+    "docs/nest-documents/OVERVIEW/Custom decorators.md",
+    "docs/nest-documents/OVERVIEW/Controllers.md",
+    "docs/nest-documents/🗒️NestJS 공식문서.md",
+    "blog/FrontEnd/컴포넌트에 의존성 주입 활용하기.md",
+    "docs/book.mdx",
+    "docs/spring.mdx",
+    "_A_원칙/🔧옵시디언을 사용하는 원칙.md",
+    "_B_아카이브/잡글/추상화와 중복에 대한 질문.md",
+    "docs/nest-documents/OVERVIEW/Interceptors.md",
+    "_template/🔧MDX 탬플릿.md",
+    "_template/🔧Link 탬플릿.md",
+    "_template/🔧토글 목록.md",
+    "_template/🔧콜아웃 - 주의.md",
+    "_template/🔧콜아웃 - 정보.md",
+    "Pasted image 20240804222148.png",
+    "Pasted image 20240804222235.png",
+    "_B_아카이브/JSTS",
+    "docs/java.mdx",
+    "docs/index.mdx",
+    "snapshots/Nest.js",
+    "snapshots/JS,TS",
+    "_A_원칙",
+    "_B_아카이브",
+    "docs/book/cleanarchitecture.mdx",
+    "무제 파일.canvas",
+    "z7SGQJYQLOxR535afk5PDgKK3tPHW6kxbeShINbTdb1ZnqWhJQ4UqPTmeKVizqlrDahWLeJ4J4iBvc505BBJRg.webp",
+    "java/이미지/3. 연산자/Pasted image 20240520003729.png",
+    "java/이미지/3. 연산자/Pasted image 20240520001653.png",
+    "java/이미지/1.Hello world/Pasted image 20240519213334.png",
+    "java/이미지/3. 연산자/Pasted image 20240520003928.png",
+    "java/이미지/3. 연산자/Pasted image 20240520003837.png",
+    "java/이미지/3. 연산자/Pasted image 20240520003753.png",
+    "java/이미지/3. 연산자/Pasted image 20240520003742.png"
+  ]
+}

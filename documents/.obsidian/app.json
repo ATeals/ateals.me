@@ -1,0 +1,11 @@
+{
+  "showRibbon": true,
+  "promptDelete": false,
+  "showUnsupportedFiles": true,
+  "userIgnoreFilters": [
+    "_A_원칙/",
+    "_template/"
+  ],
+  "strictLineBreaks": false,
+  "rightToLeft": false
+}
