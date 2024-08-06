@@ -4,7 +4,7 @@ description: Config를 TypeSafe하게 가져오기
 cover: 
 image: 
 date: 2024-06-02T17:20
-draft: 
+draft: false
 tags:
   - NestJS
 type: docs

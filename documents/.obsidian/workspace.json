@@ -11,8 +11,11 @@
             "id": "b2fa5c139f4a3d77",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "diff-view",
+              "state": {
+                "file": "documents/.obsidian/workspace.json",
+                "staged": false
+              }
             }
           }
         ]
@@ -146,12 +149,11 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -166,19 +168,22 @@
   },
   "active": "b2fa5c139f4a3d77",
   "lastOpenFiles": [
-    "links/TkDodo React Query.md",
-    "snapshots/JS,TS/RORO 패턴과 Class Constructor.md",
-    "snapshots/JS,TS/Tagged Template Literal.md",
-    "snapshots/JS,TS/forEach대신 for ... of.md",
+    "snapshots/JS,TS/디스패치 테이블과 TS.md",
+    "_B_아카이브/잡글/추상화와 중복에 대한 질문.md",
+    "snapshots/Nest.js/TypeSafe한 ConfigModule.md",
     "snapshots/마크다운.md",
+    "snapshots/JS,TS/Tagged Template Literal.md",
+    "snapshots/JS,TS/RORO 패턴과 Class Constructor.md",
+    "snapshots/JS,TS/forEach대신 for ... of.md",
+    "asd.md",
+    "이름 없는 보드.md",
+    "links/TkDodo React Query.md",
     "_template/🔧콜아웃 - 노트.md",
     "_template/🔧열 분할.md",
     "_A_원칙/이름 없는 보드.md",
     "docs/hello/hello.md",
     "links/TkDodo's React Query.md",
     "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
-    "snapshots/Nest.js/TypeSafe한 ConfigModule.md",
-    "무제 파일.md",
     "docs/nest-documents/OVERVIEW/Exception filters.md",
     "docs/nest-documents/OVERVIEW/Custom decorators.md",
     "docs/nest-documents/OVERVIEW/Controllers.md",
@@ -187,13 +192,10 @@
     "docs/book.mdx",
     "docs/spring.mdx",
     "_A_원칙/🔧옵시디언을 사용하는 원칙.md",
-    "_B_아카이브/잡글/추상화와 중복에 대한 질문.md",
     "docs/nest-documents/OVERVIEW/Interceptors.md",
     "_template/🔧MDX 탬플릿.md",
     "_template/🔧Link 탬플릿.md",
     "_template/🔧토글 목록.md",
-    "_template/🔧콜아웃 - 주의.md",
-    "_template/🔧콜아웃 - 정보.md",
     "Pasted image 20240804222148.png",
     "Pasted image 20240804222235.png",
     "_B_아카이브/JSTS",
