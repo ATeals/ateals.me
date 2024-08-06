@@ -5,7 +5,7 @@ image:
 date: 2024-04-12T14:02:00
 draft: 
 tags:
-  - Nestjs
+  - NestJS
   - 백엔드
 type: post
 ---

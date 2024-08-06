@@ -4,7 +4,8 @@ description: Nest 공식문서 기반 정리
 image: https://i.imgur.com/Gp0VLDF.png
 date: 2024-05-28T17:21:00
 draft: 
-tags: 
+tags:
+  - NestJS
 type: docs
 ---
 > 이 글은 Nest 공식문서를 번역한 글입니다. [원문](https://docs.nestjs.com/providers)

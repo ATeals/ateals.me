@@ -5,8 +5,7 @@ image: https://i.imgur.com/Gp0VLDF.png
 date: 2024-06-05T17:40
 draft: 
 tags:
-  - 개발
-  - Nestjs
+  - NestJS
 type: docs
 ---
 

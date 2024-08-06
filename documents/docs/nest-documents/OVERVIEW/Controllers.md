@@ -5,7 +5,7 @@ image: https://i.imgur.com/Gp0VLDF.png
 date: 2024-05-28T17:21:00
 draft:
 tags:
-  - Nestjs
+  - NestJS
   - 백엔드
 type: docs
 ---

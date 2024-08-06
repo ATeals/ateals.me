@@ -5,7 +5,7 @@ image: https://i.imgur.com/G6fHudY.jpeg
 date: 2024-06-17T19:02
 draft: false
 tags:
-  - Nestjs
+  - NestJS
   - ORM
   - prisma
 type: post

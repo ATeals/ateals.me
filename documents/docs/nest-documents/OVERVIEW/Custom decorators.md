@@ -3,10 +3,9 @@ title: Custom decorators
 description: Nest 공식문서 기반 정리
 image: https://i.imgur.com/Gp0VLDF.png
 date: 2024-06-05T16:17
-draft:
+draft: 
 tags:
-  - 개발
-  - Nestjs
+  - NestJS
 type: docs
 ---
 

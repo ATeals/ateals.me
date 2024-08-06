@@ -5,9 +5,9 @@ image: https://i.imgur.com/qnpxs1b.jpeg
 date: 2024-05-18T23:37:00
 draft: 
 tags:
-  - 개발
   - 컨퍼런스
   - aws
+  - 회고
 type: post
 ---
 

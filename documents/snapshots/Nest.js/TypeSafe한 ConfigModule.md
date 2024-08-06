@@ -6,7 +6,7 @@ image:
 date: 2024-06-02T17:20
 draft: 
 tags:
-  - Nestjs
+  - NestJS
 type: docs
 ---
 

@@ -5,8 +5,7 @@ image:
 date: 2024-06-07T17:56
 draft: false
 tags:
-  - 개발
-  - Javascript
+  - JavaScript
 type: snapshot
 ---
 

@@ -5,8 +5,7 @@ image: https://i.imgur.com/Gp0VLDF.png
 date: 2024-06-15T18:31
 draft: false
 tags:
-  - 개발
-  - Nestjs
+  - NestJS
 type: docs
 ---
 > 이 글은 Nest 공식문서를 번역한 글입니다. [원문](https://docs.nestjs.com/fundamentals/module-ref)
