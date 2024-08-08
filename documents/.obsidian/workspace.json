@@ -11,10 +11,12 @@
             "id": "b2fa5c139f4a3d77",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": "documents/.obsidian/workspace.json",
-                "staged": false
+                "file": "snapshots/JS,TS/디스패치 테이블과 TS.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -84,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "snapshots/JS,TS/디스패치 테이블과 TS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "snapshots/JS,TS/디스패치 테이블과 TS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -121,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "snapshots/JS,TS/디스패치 테이블과 TS.md"
+              }
             }
           },
           {
@@ -153,7 +159,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -168,8 +175,10 @@
   },
   "active": "b2fa5c139f4a3d77",
   "lastOpenFiles": [
+    "_B_아카이브/좋은 문답들/추상화와 중복에 대한 질문.md",
+    "_B_아카이브/좋은 문답들",
+    "_B_아카이브/좋은 문답들/Error 핸들링에 대해서.md",
     "snapshots/JS,TS/디스패치 테이블과 TS.md",
-    "_B_아카이브/잡글/추상화와 중복에 대한 질문.md",
     "snapshots/Nest.js/TypeSafe한 ConfigModule.md",
     "snapshots/마크다운.md",
     "snapshots/JS,TS/Tagged Template Literal.md",
@@ -194,8 +203,6 @@
     "_A_원칙/🔧옵시디언을 사용하는 원칙.md",
     "docs/nest-documents/OVERVIEW/Interceptors.md",
     "_template/🔧MDX 탬플릿.md",
-    "_template/🔧Link 탬플릿.md",
-    "_template/🔧토글 목록.md",
     "Pasted image 20240804222148.png",
     "Pasted image 20240804222235.png",
     "_B_아카이브/JSTS",
@@ -205,7 +212,6 @@
     "snapshots/JS,TS",
     "_A_원칙",
     "_B_아카이브",
-    "docs/book/cleanarchitecture.mdx",
     "무제 파일.canvas",
     "z7SGQJYQLOxR535afk5PDgKK3tPHW6kxbeShINbTdb1ZnqWhJQ4UqPTmeKVizqlrDahWLeJ4J4iBvc505BBJRg.webp",
     "java/이미지/3. 연산자/Pasted image 20240520003729.png",
