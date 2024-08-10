@@ -10,9 +10,9 @@ import { Fragment, HTMLProps } from "react";
 interface PostsToggleProps extends HTMLProps<HTMLDivElement> {}
 
 export const PostsTypeToggle = ({}: PostsToggleProps) => {
-  const [getQuery, generateQuery] = useQueryParams();
+  const query = useQueryParams();
 
-  const currentType = getQuery("type") || "";
+  const currentType = query.get("type") || "";
 
   return (
     <div className="flex h-6 items-center">
@@ -21,7 +21,7 @@ export const PostsTypeToggle = ({}: PostsToggleProps) => {
           {i !== 0 && <Separator className="mx-2" orientation="vertical" />}
           <Link
             replace
-            href={`posts?${generateQuery(["type", type])}`}
+            href={`posts?${query.stringify(["type", type])}`}
             className={cn(currentType === type && "text-secondary-md")}
           >
             {title}

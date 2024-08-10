@@ -1,26 +1,27 @@
 "use client";
 
-import {
-  Separator,
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui";
+import { Separator, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui";
 import { useQueryParams } from "@/hooks/useQueryParams";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { Fragment, HTMLProps } from "react";
 import { VIEW_TYPES, VIEW_TYPES_LIST } from "./const";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 interface PostsToggleProps extends HTMLProps<HTMLDivElement> {
   type?: keyof typeof VIEW_TYPES;
 }
 
 export const PostViewTypeToggle = ({}: PostsToggleProps) => {
-  const [getQueryParam, generateQueryParams] = useQueryParams();
+  const [storage, setStorage] = useLocalStorage("viewType", { initialValue: "LIST" });
 
-  const currentType = getQueryParam("view") || "LIST";
+  const query = useQueryParams();
+
+  const currentType = query.get("view") || storage;
+
+  const handleClick = (type: string) => {
+    setStorage(type);
+    query.set("replace", query.stringify(["view", type]));
+  };
 
   return (
     <div className="flex h-6 items-center">
@@ -29,16 +30,10 @@ export const PostViewTypeToggle = ({}: PostsToggleProps) => {
           <Tooltip key={type}>
             {index !== 0 && <Separator className="mx-2" orientation="vertical" />}
 
-            <TooltipTrigger>
+            <TooltipTrigger onClick={() => handleClick(type)}>
               <Fragment>
                 {index !== 0 && <Separator className="mx-2" orientation="vertical" />}
-                <Link
-                  replace
-                  href={`posts?${generateQueryParams(["view", type])}`}
-                  className={cn(type === currentType && "text-secondary-md")}
-                >
-                  {icon}
-                </Link>
+                <span className={cn(type === currentType && "text-secondary-md")}>{icon}</span>
               </Fragment>
             </TooltipTrigger>
             <TooltipContent>

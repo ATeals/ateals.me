@@ -6,9 +6,9 @@ export const useQueryParams = () => {
   const router = useRouter();
   const path = usePathname();
 
-  const getQueryParam = (key: string) => searchParams.get(key) || undefined;
+  const get = (key: string) => searchParams.get(key) || undefined;
 
-  const generateQueryToString = useCallback(
+  const stringify = useCallback(
     (...params: [string, string][]) => {
       const query = new URLSearchParams(searchParams.toString());
 
@@ -23,15 +23,18 @@ export const useQueryParams = () => {
     [searchParams]
   );
 
-  const pushQueryParams = (...params: [string, string][]) => {
-    const query = generateQueryToString(...params);
-
-    router.push(`${path}?${query}`);
+  const set = (modifier: keyof typeof router, query: string) => {
+    router[modifier](`${path}?${query}`);
   };
 
-  const clearQueryParams = () => {
+  const clear = () => {
     router.replace(path);
   };
 
-  return [getQueryParam, generateQueryToString, pushQueryParams, clearQueryParams] as const;
+  return {
+    get,
+    stringify,
+    set,
+    clear,
+  } as const;
 };

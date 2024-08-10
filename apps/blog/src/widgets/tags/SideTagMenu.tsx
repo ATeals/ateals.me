@@ -13,9 +13,9 @@ interface SideTagMenuProps extends HTMLProps<HTMLElement> {
 }
 
 export const SideTagMenu = ({ tags, className, ...props }: SideTagMenuProps) => {
-  const [getQuery, generateQuery] = useQueryParams();
+  const query = useQueryParams();
 
-  const tag = getQuery("tags");
+  const tag = query.get("tags");
 
   const [isOpen, setIsOpen] = useState(tag ? true : false);
 
@@ -25,7 +25,7 @@ export const SideTagMenu = ({ tags, className, ...props }: SideTagMenuProps) => 
     <SideMenu className={tw} {...props}>
       {tag ? (
         <Button size={"sm"} variant={"link"} asChild>
-          <Link href={`posts?${generateQuery(["tags", ""])}`}>CLEAR</Link>
+          <Link href={`posts?${query.stringify(["tags", ""])}`}>CLEAR</Link>
         </Button>
       ) : (
         <Button size={"sm"} variant={"link"} onClick={() => setIsOpen((isOpen) => !isOpen)}>

@@ -9,9 +9,9 @@ import { YearGroupPostList } from "./PostList";
 import { VIEW_TYPES } from "./const";
 
 export const TogglePostList = ({ posts, className, ...props }: { posts: Document[] } & HTMLProps<HTMLDivElement>) => {
-  const [getQuery, gen] = useQueryParams();
+  const query = useQueryParams();
 
-  const viewType = getQuery("view");
+  const viewType = query.get("view");
 
   const tw = cn("mt-10", className);
 
@@ -20,9 +20,9 @@ export const TogglePostList = ({ posts, className, ...props }: { posts: Document
       <Switch
         value={viewType as keyof typeof VIEW_TYPES}
         caseBy={{
-          LIST: <VIEW_TYPES.LIST.component $key={gen()} posts={posts} />,
-          CARD: <VIEW_TYPES.CARD.component $key={gen()} posts={posts} />,
-          LOG: <VIEW_TYPES.LOG.component $key={gen()} posts={posts} />,
+          LIST: <VIEW_TYPES.LIST.component $key={query.stringify()} posts={posts} />,
+          CARD: <VIEW_TYPES.CARD.component $key={query.stringify()} posts={posts} />,
+          LOG: <VIEW_TYPES.LOG.component $key={query.stringify()} posts={posts} />,
         }}
         defaultComponent={<YearGroupPostList posts={posts} />}
       />

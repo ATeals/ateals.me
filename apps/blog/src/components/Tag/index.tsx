@@ -10,9 +10,9 @@ interface TagLabelProps extends HTMLProps<HTMLAnchorElement> {
 }
 
 export const TagLabel = ({ tag, className, ...props }: TagLabelProps) => {
-  const [getQuery, generateQuery] = useQueryParams();
+  const query = useQueryParams();
 
-  const current = getQuery("tags");
+  const current = query.get("tags");
 
   const tw = cn(
     "text-md px-2 hover:cursor-pointer hover:underline hover:drop-shadow-lg whitespace-nowrap",
@@ -21,7 +21,7 @@ export const TagLabel = ({ tag, className, ...props }: TagLabelProps) => {
   );
 
   return (
-    <Link href={`posts?${generateQuery(["tags", tag])}`} className={tw} {...props}>
+    <Link href={`posts?${query.stringify(["tags", tag])}`} className={tw} {...props}>
       {tag}
     </Link>
   );
