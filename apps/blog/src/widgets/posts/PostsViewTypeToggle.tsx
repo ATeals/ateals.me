@@ -20,7 +20,7 @@ export const PostViewTypeToggle = ({}: PostsToggleProps) => {
 
   const handleClick = (type: string) => {
     setStorage(type);
-    query.set("replace", query.stringify(["view", type]));
+    query.route("replace", query.stringify(["view", type]));
   };
 
   return (
@@ -33,7 +33,7 @@ export const PostViewTypeToggle = ({}: PostsToggleProps) => {
             <TooltipTrigger onClick={() => handleClick(type)}>
               <Fragment>
                 {index !== 0 && <Separator className="mx-2" orientation="vertical" />}
-                <span className={cn(type === currentType && "text-secondary-md")}>{icon}</span>
+                <span className={cn(currentType.includes(type) && "text-secondary-md")}>{icon}</span>
               </Fragment>
             </TooltipTrigger>
             <TooltipContent>

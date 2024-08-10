@@ -15,7 +15,7 @@ interface SideTagMenuProps extends HTMLProps<HTMLElement> {
 export const SideTagMenu = ({ tags, className, ...props }: SideTagMenuProps) => {
   const query = useQueryParams();
 
-  const tag = query.get("tags");
+  const tag = query.get<string>("tags") || "";
 
   const [isOpen, setIsOpen] = useState(tag ? true : false);
 

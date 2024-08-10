@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 
 const getStoredValue = (key: string) => {
+  if (typeof window === "undefined") return undefined;
+
   const storedValue = localStorage.getItem(key);
   return storedValue ? JSON.parse(storedValue) : undefined;
 };
