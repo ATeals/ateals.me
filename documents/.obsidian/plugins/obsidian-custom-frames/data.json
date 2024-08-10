@@ -1,0 +1,17 @@
+{
+  "frames": [
+    {
+      "url": "https://blog.ateals.me/",
+      "displayName": "BLOG",
+      "icon": "rss",
+      "hideOnMobile": true,
+      "addRibbonIcon": true,
+      "openInCenter": true,
+      "zoomLevel": 1,
+      "forceIframe": true,
+      "customCss": "",
+      "customJs": ""
+    }
+  ],
+  "padding": 5
+}
