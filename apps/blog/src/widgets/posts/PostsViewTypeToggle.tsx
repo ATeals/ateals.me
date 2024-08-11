@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Fragment, HTMLProps } from "react";
 import { VIEW_TYPES, VIEW_TYPES_LIST } from "./const";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 interface PostsToggleProps extends HTMLProps<HTMLDivElement> {
   type?: keyof typeof VIEW_TYPES;
@@ -13,6 +14,7 @@ interface PostsToggleProps extends HTMLProps<HTMLDivElement> {
 
 export const PostViewTypeToggle = ({}: PostsToggleProps) => {
   const [storage, setStorage] = useLocalStorage("viewType", { initialValue: "LIST" });
+  const isMounted = useIsMounted();
 
   const query = useQueryParams();
 
@@ -22,6 +24,8 @@ export const PostViewTypeToggle = ({}: PostsToggleProps) => {
     setStorage(type);
     query.route("replace", query.stringify(["view", type]));
   };
+
+  if (!isMounted) return <></>;
 
   return (
     <div className="flex h-6 items-center">
@@ -33,7 +37,7 @@ export const PostViewTypeToggle = ({}: PostsToggleProps) => {
             <TooltipTrigger onClick={() => handleClick(type)}>
               <Fragment>
                 {index !== 0 && <Separator className="mx-2" orientation="vertical" />}
-                <span className={cn(currentType.includes(type) && "text-secondary-md")}>{icon}</span>
+                <span className={cn(currentType === type && "text-secondary-md")}>{icon}</span>
               </Fragment>
             </TooltipTrigger>
             <TooltipContent>

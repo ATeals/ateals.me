@@ -7,13 +7,20 @@ import { HTMLProps } from "react";
 import { cn } from "@/lib/utils";
 import { YearGroupPostList } from "./PostList";
 import { VIEW_TYPES } from "./const";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 export const TogglePostList = ({ posts, className, ...props }: { posts: Document[] } & HTMLProps<HTMLDivElement>) => {
+  const [storage] = useLocalStorage("viewType", { initialValue: "LIST" });
+  const isMounted = useIsMounted();
+
   const query = useQueryParams();
 
-  const viewType = query.get("view");
+  const viewType = query.get("view") || storage;
 
   const tw = cn("mt-10", className);
+
+  if (!isMounted) return <></>;
 
   return (
     <div className={tw} {...props}>
