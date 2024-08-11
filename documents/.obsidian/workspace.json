@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "e8efd784064b1726",
+        "id": "c39972ba3b6e4462",
         "type": "tabs",
         "children": [
           {
-            "id": "4c1ccb9222711be0",
+            "id": "e36369ff5c1843b2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
+                "file": "blog/회고/부스트캠프 웹・모바일 9기 챌린지 회고.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#독서",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275
+    "width": 270
   },
   "right": {
     "id": "40cd3edb20dd4e61",
@@ -86,7 +86,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
+                "file": "blog/회고/부스트캠프 웹・모바일 9기 챌린지 회고.md",
                 "options": {
                   "collapse-filter": false,
                   "search": "",
@@ -109,7 +109,7 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 0.7264683601694666,
+                  "scale": 0.581254745728547,
                   "close": true
                 }
               }
@@ -121,7 +121,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
+                "file": "blog/회고/부스트캠프 웹・모바일 9기 챌린지 회고.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,14 +138,26 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
+                "file": "blog/회고/부스트캠프 웹・모바일 9기 챌린지 회고.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
+          },
+          {
+            "id": "262e435f51754245",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       },
       {
         "id": "1c2f35b4b06e7e32",
@@ -177,7 +189,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md"
+                "file": "blog/회고/부스트캠프 웹・모바일 9기 챌린지 회고.md"
               }
             }
           },
@@ -199,25 +211,32 @@
   "left-ribbon": {
     "hiddenItems": {
       "daily-notes:오늘의 데일리 노트 열기": true,
-      "graph:그래프 뷰 열기": false,
       "command-palette:명령어 팔레트 열기": false,
       "switcher:퀵 스위처 열기": false,
-      "obsidian-custom-frames:Open BLOG": false,
       "canvas:새 캔버스 만들기": true,
       "templates:템플릿 삽입": true,
-      "table-editor-obsidian:Advanced Tables Toolbar": true
+      "table-editor-obsidian:Advanced Tables Toolbar": true,
+      "graph:그래프 뷰 열기": false,
+      "obsidian-custom-frames:Open BLOG": false,
+      "obsidian-kanban:새 보드 만들기": true
     }
   },
-  "active": "321401d52ca3fc76",
+  "active": "e36369ff5c1843b2",
   "lastOpenFiles": [
-    "links/TkDodo React Query.md",
+    "blog/회고/2024 aws summit Seoul 후기.md",
+    "blog/회고/2023을 마무리 하면서.md",
+    "blog/회고/부스트캠프 웹・모바일 9기 챌린지 회고.md",
+    "무제 파일.md",
+    "이름 없는 보드.md",
+    "_A_원칙/할일 목록.md",
+    "blog/클린코드를 읽고 나서.md",
     "snapshots/마크다운.md",
-    "_B_아카이브/잡글/네이버 부스트캠프 챌린지 회고.md",
+    "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
+    "links/TkDodo React Query.md",
     "_A_원칙/🔧옵시디언을 사용하는 원칙.md",
     "_B_아카이브/좋은 문답들/Error 핸들링에 대해서.md",
     "_B_아카이브/좋은 문답들/추상화와 중복에 대한 질문.md",
     "_A_원칙/이름 없는 보드.md",
-    "links/React 테스트 라이브러리의 일반적인 실수 - Kent C. Dodds.md",
     "_template/🔧Link 탬플릿.md",
     "_template/🔧토글 목록.md",
     "_template/🔧콜아웃 - 정보.md",
@@ -230,13 +249,7 @@
     "snapshots/JS,TS/RORO 패턴과 Class Constructor.md",
     "snapshots/JS,TS/forEach대신 for ... of.md",
     "asd.md",
-    "이름 없는 보드.md",
     "_template/🔧열 분할.md",
-    "docs/hello/hello.md",
-    "links/TkDodo's React Query.md",
-    "docs/nest-documents/OVERVIEW/Exception filters.md",
-    "docs/nest-documents/OVERVIEW/Custom decorators.md",
-    "docs/nest-documents/OVERVIEW/Controllers.md",
     "docs/book.mdx",
     "docs/spring.mdx",
     "Pasted image 20240804222148.png",

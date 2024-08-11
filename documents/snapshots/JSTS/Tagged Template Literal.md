@@ -1,12 +1,12 @@
 ---
 title: Tagged Template Literal
 description: js
-image: 
+image:
 date: 2024-06-07T17:56
 draft: false
 tags:
   - JavaScript
-type: snapshot
+type: Snapshot
 ---
 
 sytled-components를 사용해봤다면 다음과 같은 코드를 본적이 있을 것이다.
@@ -15,7 +15,7 @@ sytled-components를 사용해봤다면 다음과 같은 코드를 본적이 있
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;
-  color: #BF4F74;
+  color: #bf4f74;
 `;
 ```
 
@@ -36,21 +36,18 @@ not ${2 * a + b}.`);
 // not 20."
 ```
 
-
 ### Tagged templates
 
 > [!NOTE] [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates)
-> 보다 고급 형태의 템플릿 리터럴은 태그가 지정된 템플릿입니다.  
-> 
-> 태그를 사용하면 함수를 사용하여 템플릿 리터럴을 구문 분석할 수 있습니다. 태그 함수의 첫 번째 인수는 문자열 값의 배열을 포함합니다. 나머지 인수는 표현식과 관련이 있습니다.  
-> 
-> 그러면 태그 함수는 이러한 인수에 대해 원하는 연산을 수행하고 조작된 문자열을 반환할 수 있습니다. (또는 다음 예제 중 하나에 설명된 것처럼 완전히 다른 것을 반환할 수도 있습니다.)  
-> 
+> 보다 고급 형태의 템플릿 리터럴은 태그가 지정된 템플릿입니다.
+>
+> 태그를 사용하면 함수를 사용하여 템플릿 리터럴을 구문 분석할 수 있습니다. 태그 함수의 첫 번째 인수는 문자열 값의 배열을 포함합니다. 나머지 인수는 표현식과 관련이 있습니다.
+>
+> 그러면 태그 함수는 이러한 인수에 대해 원하는 연산을 수행하고 조작된 문자열을 반환할 수 있습니다. (또는 다음 예제 중 하나에 설명된 것처럼 완전히 다른 것을 반환할 수도 있습니다.)
+>
 > 태그에 사용되는 함수의 이름은 원하는 대로 지정할 수 있습니다.
-> 
 
-
-  ```js
+```js
 const person = "Mike";
 const age = 28;
 
@@ -71,10 +68,8 @@ console.log(output);
 // That Mike is a youngster.
 ```
 
-  
 ### 활용 사례
 
 [styled-component](https://styled-components.com/)
 
 https://marpple.github.io/rune/
-

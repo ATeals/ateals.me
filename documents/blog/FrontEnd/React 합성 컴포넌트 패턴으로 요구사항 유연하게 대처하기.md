@@ -1,33 +1,34 @@
 ---
 title: React 합성 컴포넌트 패턴으로 요구사항 유연하게 대처하기
 description: Compound Component Pattern으로 재사용성이 높고 효율적인 컴포넌트를 만들어보자
-image: 
+image:
 date: 2024-01-01T14:28:00
-draft: 
+draft:
 tags:
   - 프론트
   - React
-type: post
+type: Blog
 ---
+
 노마드 코더에서는 리액트 10주 스터디의 마지막 졸업작품으로 간단한 SNS를 만들어보는 과제가 진행됩니다. 학교 시험 기간과 졸업 과제 기간이 겹쳐 제가 이상적으로 생각하는 코드 품질이 나오지 않았고, 학교를 종강하고 리팩토링 목표들 중에서 가장 개선하고 싶었던 부분은 게시물을 관리하는 Post 컴포넌트였습니다.
 
 ## 기본 요구사항
-![](https://i.imgur.com/RpDqBHz.png)
 
+![](https://i.imgur.com/RpDqBHz.png)
 
 Post 컴포넌트 디자인
 
 저의 SNS 프로젝트(이하 SNS라고 하겠습니다.)에서는 Post를 크게 header, body, footer로 나누었습니다.
 
 ### PostHeader
-![](https://i.imgur.com/MXEmm4T.png)
 
+![](https://i.imgur.com/MXEmm4T.png)
 
 포스트 작성자의 아바타, 이름, 게시물을 작성한 시간을 나타냅니다. Header를 클릭하면 User의 프로필을 확인할 수 있습니다.
 
 ### PostBody
-![](https://i.imgur.com/2dGlfKr.png)
 
+![](https://i.imgur.com/2dGlfKr.png)
 
 포스트의 본문과 포스트를 제어하는 버튼들을 나타냅니다. 포스트의 Body는 다음과 같은 요구사항이 있습니다.
 
@@ -38,7 +39,6 @@ Post 컴포넌트 디자인
 ### PostFooter
 
 ![](https://i.imgur.com/RbUpWSf.png)
-
 
 포스트의 댓글 개수, 좋아요 개수를 나타냅니다.
 
@@ -168,11 +168,7 @@ export const Header = ({ user }: { user?: User }) => {
   return (
     <div className="flex items-center justify-between group">
       <div className="flex">
-        <Avatar
-          src={post?.user.avatar || user?.avatar || DEFAULT_AVATAR}
-          rounded={true}
-          size="md"
-        />
+        <Avatar src={post?.user.avatar || user?.avatar || DEFAULT_AVATAR} rounded={true} size="md" />
         <Title className="ml-5 group-hover:underline">{owner?.name || user?.name}</Title>
       </div>
 
@@ -187,8 +183,6 @@ export const Header = ({ user }: { user?: User }) => {
 PostHeader에서는 useContext를 이용해 메인 컴포넌트에서 전달한 Post 데이터를 사용하여 Post의 Header를 그립니다. 또한 Prop으로 user를 전달하여 다음과 같은 상황에서 사용할 수 있습니다.
 
 ![게시물 작성](https://i.imgur.com/TzDAkki.png)
-
-
 
 위에 보이는 화면은 게시글을 작성하는 컴포넌트입니다. 게시글 작성 컴포넌트에서는 아직 Post 데이터가 존재하지 않기 때문에 PostHeader에 Prop으로 세션에 존재하는 User를 전달해 사용할 수 있습니다.
 
@@ -214,7 +208,6 @@ Body도 앞서 살펴본 Header 컴포넌트와 같이 구현할 수 있습니�
 children은 왜 필요할까요? 아까 본 게시글 생성 화면으로 돌아가 보겠습니다. 게시글 생성 컴포넌트에서는 마크다운으로 작성한 포스트를 미리 확인할 수 있는 기능을 지원합니다.
 
 ![게시물 미리보기](https://i.imgur.com/S7svnJB.png)
-
 
 Body에 input에서 변경된 markdown을 children으로 받아 구현할 수 있게 되었습니다.
 
@@ -265,11 +258,7 @@ export const PostInfinityList = ({ user }: { user: User }) => {
         </Post>
       ))}
       <div className="flex justify-center">
-        {isFetchingNextPage ? (
-          <LoadingIndicator />
-        ) : (
-          pageCursor !== 0 && <div ref={bottomItemRef} />
-        )}
+        {isFetchingNextPage ? <LoadingIndicator /> : pageCursor !== 0 && <div ref={bottomItemRef} />}
       </div>
     </div>
   );
@@ -280,11 +269,9 @@ PostInfinityList는 useInfinityPosts훅을 사용해 전체 포스트를 받아�
 
 ![그렇게 완성된 컴포넌트의 모습](https://i.imgur.com/Ar8Xshv.png)
 
-
 물론 요구사항이 다른 post는 각각의 페이지에서 서브컴포넌트를 수정하여 사용하면 됩니다.
 
 ![디테일 페이지에서는 Post body가 요약되지 않고 본문을 전부 포함한 상태로 보여집니다. 또한 세션의 유저와 포스트의 소유자를 비교하여 수정과 삭제를 위한 버튼을 제어합니다.](https://i.imgur.com/Rzyt7Rp.png)
-
 
 ```tsx
 export default ({ post, user }: { post: PostType; user: User }) => {
@@ -343,7 +330,7 @@ _음… 미리 보기 타입의 포스트에서도 로그인 된 유저와 소�
 물론 리팩토링은 끝이 없습니다. 저의 post editor는 아직도 불완전한 상태이고, 예기치 않은 문제들이 동작할 가능성 있습니다. 고민중인 내용은 다음과 같습니다.
 
 - Post를 메인 컴포넌트에 전달받지 못했을 경우 처리를 어디서 진행할 것인가.
-- Post의 서브 컴포넌트의 영역을 어디까지 정의할 것인가. _현재 Like와 같은 동작은 별도의 컴포넌트로 관리하고 있습니다. 이를 Post의 서브컴포넌트로 넘겨줄지, 지금처럼 관리할지는 좀 더 고민해 봐야 하는 부분인 것 같습니다._
+- Post의 서브 컴포넌트의 영역을 어디까지 정의할 것인가. *현재 Like와 같은 동작은 별도의 컴포넌트로 관리하고 있습니다. 이를 Post의 서브컴포넌트로 넘겨줄지, 지금처럼 관리할지는 좀 더 고민해 봐야 하는 부분인 것 같습니다.*
 
 위와 같은 고민은 뒤로하고, 작성된 컴포넌트는 매우 만족스럽습니다. 합성을 통해 재사용성이 높고, 독자적인 컴포넌트를 관리하기 위해 고민하는 경험은 매우 유익한 것 같습니다. 앞으로 추가적인 리팩토링이 끝나면 계속 포스팅할 계획입니다.
 

@@ -1,12 +1,12 @@
 ---
 title: 아직도 localStorage를 위해 useEffect를 사용하십니까?
 description: useSyncExternalStore 나왔는데 안 써볼 거야?
-image: 
+image:
 date: 2023-09-10T14:35:00
-draft: 
+draft:
 tags:
   - React
-type: post
+type: Blog
 ---
 
 이번에 미뤄두었던 React의 기본을 위해서 공식 문서를 읽기 시작했다.
@@ -34,13 +34,12 @@ type: post
 예를 들어 윈도우의 localStorage값을 React에서 이용한다고 하면, 나는 이렇게 코드를 작성할 것이다.
 
 ```tsx
-const [storage, setStorage] = useState("")
+const [storage, setStorage] = useState("");
 
-useEffect (()=>{
-    const item = window.localStorage.getItem("storage")
-    if(item) setStorage(item)
-}, [storage])
-
+useEffect(() => {
+  const item = window.localStorage.getItem("storage");
+  if (item) setStorage(item);
+}, [storage]);
 ```
 
 하지만 React v18부터는 외부 스토어 구독을 위해서 새로운 훅이 도입되었다.
@@ -153,6 +152,5 @@ useSyncExternalStore를 사용하는 이유는 리액트 18의 동시성에서 �
 [useSyncExternalStore 어후 이름이 너무 길어.](https://velog.io/@jay/useSyncExternalStore)
 
 ![만든 커스텀 훅으로 다크모드를 구현해보았다!!!](https://i.imgur.com/z3fdTSg.gif)
-
 
 아직은 사용해 봤다 수준이기 때문에 리액트 공식 문서를 찬찬히 읽으면서 더 이해해서 이론적인 부분도 포스트로 작성해 보겠다.

@@ -1,20 +1,19 @@
 ---
 title: 디스패치 테이블과 TS
 description: 최애의 JS 테이블을 통한 분기와 TS에서 활용하는 방법
-image: 
+image:
 date: 2024-08-06T21:37
 draft: false
 tags:
   - JavaScript
   - TypeScript
   - 스니펫
-type: snapshot
-aliases: 
+type: Snapshot
+aliases:
 link:
 ---
 
 > [디스패치 테이블](https://ko.wikipedia.org/wiki/%EB%94%94%EC%8A%A4%ED%8C%A8%EC%B9%98_%ED%85%8C%EC%9D%B4%EB%B8%94)
-
 
 기본적으로 다중 `if ... elseif ... else`와 `switch`는 지양하는 편이다. 가독성도 좋지 않고 분기를 위한 코드가 많다고 느껴지기 때문이다.
 
@@ -76,7 +75,6 @@ const calculate = (operator: Operater, a: number, b: number) => CALCULATE_DISPAT
 
 이를 위해 `createDispatch`라는 함수를 만들었다.
 
-
 ```ts
 type AnyFunction = (...args: any[]) => any;
 
@@ -96,18 +94,14 @@ function createDispatch<T extends FunctionMap>(obj: T) {
 
   return [execute, isKey] as const;
 }
-
 ```
 
-
 `createDispath` 함수는 두 가지 함수를 담은 튜플을 반환한다.
+
 - `execute` : 디스패치 테이블 실행 함수이다. 첫번째 인자로 디스패치 테이블의 키값과 키에 해당하는 함수의 인자를 인자로 받는다.
 - `isKey` : 해당 값이 디스패치 테이블의 값인지 체크하고 이후 타입가드를 수행한다.
 
-
 `createDispath` 함수를 사용하면 타입스크립트를 통해 타입 힌트도 받을 수 있고 `isKey`를 통해 타입 가드도 받을 수 있다.
-
-
 
 ```ts
 const CALCULATE_DISPATH_TABLE = {
@@ -124,8 +118,6 @@ const cal = (key: string, arg: { a: number; b: number }) => {
     return calculate(key, arg.a, arg.b);
   }
 };
-
 ```
-
 
 ![dispatch.gif](https://i.imgur.com/2Eqy9mu.gif)

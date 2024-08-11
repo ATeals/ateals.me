@@ -1,20 +1,20 @@
 ---
 title: 블로그 ISR 도입기
-description: 
-image: 
+description:
+image:
 date: 2023-08-19T14:40:00
-draft: 
+draft:
 tags:
   - Nextjs
   - 블로그
-type: post
+type: Blog
 ---
 
-이번에 블로그를 다시 만들었다… 
+이번에 블로그를 다시 만들었다…
 
 [_다시 만들었던 블로그도 레거시가 되었다.._](https://ateals.vercel.app/)
 
-이번 블로그의 가장 큰 핵심은 글을 발행할 때 재배포 하지 않도록 DB나 CMS를 이용해 실시간으로 블로그에 글을 업로드 하는 것과 마음에 들지 않는 블로그 디자인을 수정하는 것이다. _(디자인이 젤 어려워…)_
+이번 블로그의 가장 큰 핵심은 글을 발행할 때 재배포 하지 않도록 DB나 CMS를 이용해 실시간으로 블로그에 글을 업로드 하는 것과 마음에 들지 않는 블로그 디자인을 수정하는 것이다. *(디자인이 젤 어려워…)*
 
 DB를 이용하기에는 DB 클라우드 서비스를 이용해서 사용해야 하기 때문에 작업량이 많아질 것 같아서 전부터 봐왔던 Notion Api를 이용했다.
 
@@ -46,14 +46,12 @@ Next.js 공식 문서에서는 ISR을 다음과 같이 설명하고 있다.
 
 즉 정적으로 만들어 놓은 페이지 들도 필요시 업데이트할 수 있다는 것이다.
 
-
 > [!info] Next 공식 문서에서 말하는 장점은 다음과 같다.
 > **더 나은 성능:** ISR을 통해 Vercel이 [글로벌 에지 네트워크의](https://vercel.com/docs/edge-network/overview) 모든 지역에서 생성된 페이지를 캐시 하고 파일을 내구성 있는 스토리지에 유지할 수 있으므로 정적 페이지는 일관되게 빠를 수 있습니다.
-> 
-**백엔드 로드 감소:** ISR은 캐시 된 콘텐츠를 사용하여 데이터 소스에 대한 요청을 줄임으로써 백엔드 로드를 줄이는 데 도움이 됩니다. 
 >
->**더 빠른 빌드:** 페이지는 방문자가 요청할 때 또는 빌드 중이 아니라 API를 통해 생성될 수 있으므로 애플리케이션이 커짐에 따라 빌드 시간을 단축할 수 있습니다.
-
+> **백엔드 로드 감소:** ISR은 캐시 된 콘텐츠를 사용하여 데이터 소스에 대한 요청을 줄임으로써 백엔드 로드를 줄이는 데 도움이 됩니다.
+>
+> **더 빠른 빌드:** 페이지는 방문자가 요청할 때 또는 빌드 중이 아니라 API를 통해 생성될 수 있으므로 애플리케이션이 커짐에 따라 빌드 시간을 단축할 수 있습니다.
 
 Next의 ISR 구현 방식은 현재 2가지가 있다.
 
@@ -81,7 +79,7 @@ Next의 ISR 구현 방식은 현재 2가지가 있다.
 
 **On-Demand Revalidation(온디맨드 재검증)** 은 **revalidatePath()** 혹은 **revalidateTag()** 를 이용하여 요청을 재검증 한다.
 
-**revalidatePath()** 는 페이지의 경로 기반으로 재검증하는 방식이고, **revalidateTag()** 는 ****fetch요청시 option으로 보내준 tag를 기반으로 재검증하는 방식이다.
+**revalidatePath()** 는 페이지의 경로 기반으로 재검증하는 방식이고, **revalidateTag()** 는 \*\*\*\*fetch요청시 option으로 보내준 tag를 기반으로 재검증하는 방식이다.
 
 ![](https://i.imgur.com/Av5RjIW.png)
 
@@ -113,30 +111,34 @@ _(이번 포스트는 ISR에 대한 내용이기 때문에 다른 코드는 참�
 // app/post/[postId]/_components/PostBody.tsx
 
 export default async ({ postId }: { postId: string }) => {
-    const post = await notionPostData(postId);
+  const post = await notionPostData(postId);
 
-    return (
-        <section className="flex justify-center">
-            <section className="w-full dark:prose-invert prose prose-md prose-hr:mt-5 p-5 prose-headings:mt-10 prose-blockquote:border-l-deepblue prose-a:no-underline">
-                <MDXComponent source={post} />
-            </section>
-        </section>
-    );
+  return (
+    <section className="flex justify-center">
+      <section className="w-full dark:prose-invert prose prose-md prose-hr:mt-5 p-5 prose-headings:mt-10 prose-blockquote:border-l-deepblue prose-a:no-underline">
+        <MDXComponent source={post} />
+      </section>
+    </section>
+  );
 };
 ```
 
-**notionPostData()** 에 글의 id인 postId 파라미터를 보내주면 postId와 같은 notion의 글 내용을 불러와 MarkDown String으로 변환해 준다. _(이후 MDXComponent에서 source로 받은 문자열을 HTML로 렌더링 해준다.)_
+**notionPostData()** 에 글의 id인 postId 파라미터를 보내주면 postId와 같은 notion의 글 내용을 불러와 MarkDown String으로 변환해 준다. *(이후 MDXComponent에서 source로 받은 문자열을 HTML로 렌더링 해준다.)*
 
 **notionPostData()** 에서 Data fetching 해주는 코드는 다음과 같다.
 
 ```tsx
-const res = await (
-        await fetch(url, {
-            method: "GET",
-            headers: { accept: "application/json", "Notion-Version": "2022-06-28", Authorization: `Bearer ${process.env.NOTION_KEY}` },
-            next: { revalidate: false, tags: [id] },
-        })
-    ).json();
+const res = await(
+  await fetch(url, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      "Notion-Version": "2022-06-28",
+      Authorization: `Bearer ${process.env.NOTION_KEY}`,
+    },
+    next: { revalidate: false, tags: [id] },
+  })
+).json();
 ```
 
 Next.js의 확장된 fetch 옵션에 next에서 제공하는 옵션을 지정해 줬다.
@@ -170,15 +172,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
-    const tag = request.nextUrl.searchParams.get("tag");
-    const secret = request.nextUrl.searchParams.get("secret");
+  const tag = request.nextUrl.searchParams.get("tag");
+  const secret = request.nextUrl.searchParams.get("secret");
 
-    if (secret !== process.env.REVALIDATE_SECRET) return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
-    if (!tag) return NextResponse.json({ message: "no Tag" }, { status: 401 });
+  if (secret !== process.env.REVALIDATE_SECRET)
+    return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
+  if (!tag) return NextResponse.json({ message: "no Tag" }, { status: 401 });
 
-    revalidateTag(tag);
+  revalidateTag(tag);
 
-    return NextResponse.json({ revalidated: true, now: Date.now(), message: "새로고침 성공" });
+  return NextResponse.json({ revalidated: true, now: Date.now(), message: "새로고침 성공" });
 }
 ```
 
@@ -204,10 +207,7 @@ tag가 없거나 secret이 다를 경우에는 early return을 이용해서 트�
 
 당연한 이야기지만 SSR을 이용했을 때와 ISR을 이용했을 때의 속도 차이는 분명했다.
 
-
 ![_(와우 ISR 만세!)_](https://i.imgur.com/gmit60g.gif)
-
-
 
 이번에 블로그에 ISR을 도입하면서, Next의 ISR을 좀 더 잘 알게 되었고, 조금이나마 블로그 성능 개선도 할 수 있던 좋은 경험이었다.
 
@@ -224,9 +224,9 @@ _(블로그 포스트는 걱정 안 해도 될 것 같다… 블로그도 만들
 
 ---
 
-[***](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation)[https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation***](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation***)
+[\*\*\*](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation)[https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation\*\*\*](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation***)
 
-[***](https://nextjs.org/docs/app/building-your-application/caching#on-demand-revalidation)[https://nextjs.org/docs/app/building-your-application/caching#on-demand-revalidation](https://nextjs.org/docs/app/building-your-application/caching#on-demand-revalidation)***
+[\*\*\*](https://nextjs.org/docs/app/building-your-application/caching#on-demand-revalidation)[https://nextjs.org/docs/app/building-your-application/caching#on-demand-revalidation](https://nextjs.org/docs/app/building-your-application/caching#on-demand-revalidation)\*\*\*
 
 # +
 

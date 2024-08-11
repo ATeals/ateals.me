@@ -6,8 +6,9 @@ date: 2024-06-15T18:31
 draft: false
 tags:
   - NestJS
-type: docs
+type: Docs
 ---
+
 > 이 글은 Nest 공식문서를 번역한 글입니다. [원문](https://docs.nestjs.com/fundamentals/module-ref)
 
 Nest는 내부 providers 목록을 탐색하고 해당 주입 토큰을 조회 키로 사용하여 모든 provider에 대한 참조를 얻을 수 있는 `ModuleRef` 클래스를 제공합니다. `ModuleRef` 클래스는 정적 및 범위 지정 providers를 모두 동적으로 인스턴스화하는 방법도 제공합니다. `ModuleRef`는 일반적인 방법으로 클래스에 주입할 수 있습니다.
@@ -20,6 +21,7 @@ export class CatsService {
 ```
 
 ## Retrieving instances
+
 `ModuleRef` 인스턴스(이하  **module reference**)에는 `get()` 메서드가 있습니다. 이 메서드는 인젝션 토큰/클래스 이름을 사용하여 현재 모듈에 존재하는(인스턴스화된) provider, controller 또는 인젝터블(예: guard, interceptor 등)을 검색합니다.
 
 ```typescript title="cats.service.ts"
@@ -34,7 +36,6 @@ export class CatsService implements OnModuleInit {
 }
 ```
 
-
 > [!WARNING] WARNING
 > `get()` 메서드에서는 범위가 지정된 providers(일시적 또는 요청 범위)를 검색할 수 없습니다. 대신 [아래](https://docs.nestjs.com/fundamentals/module-ref#resolving-scoped-providers)에 설명된 기술을 사용하세요. [여기](https://docs.nestjs.com/fundamentals/injection-scopes)에서 범위를 제어하는 방법을 알아보세요.
 
@@ -45,6 +46,7 @@ this.moduleRef.get(Service, { strict: false });
 ```
 
 ## Resolving scoped providers
+
 범위가 지정된 provider(일시적 또는 요청 범위)를 동적으로 확인하려면 provider의 인젝션 토큰을 인수로 전달하여 `resolve()` 메서드를 사용합니다.
 
 ```typescript title="cats.service.ts"
@@ -94,18 +96,16 @@ export class CatsService implements OnModuleInit {
 }
 ```
 
-
 ## Registering `REQUEST` provider
-  
-수동으로 생성된 컨텍스트 식별자(`ContextIdFactory.create()`를 사용)는 Nest 종속성 주입 시스템에 의해 인스턴스화 및 관리되지 않으므로 `REQUEST` 공급자가 `undefined`인 DI 하위 트리를 나타냅니다.  
-  
+
+수동으로 생성된 컨텍스트 식별자(`ContextIdFactory.create()`를 사용)는 Nest 종속성 주입 시스템에 의해 인스턴스화 및 관리되지 않으므로 `REQUEST` 공급자가 `undefined`인 DI 하위 트리를 나타냅니다.
+
 수동으로 생성된 DI 하위 트리에 대한 사용자 정의 `REQUEST` 객체를 등록하려면 다음과 같이 `ModuleRef#registerRequestByContextId()` 메서드를 사용합니다.
 
 ```typescript
 const contextId = ContextIdFactory.create();
 this.moduleRef.registerRequestByContextId(/* YOUR_REQUEST_OBJECT */, contextId);
 ```
-
 
 ## Getting current sub-tree
 
@@ -114,13 +114,9 @@ this.moduleRef.registerRequestByContextId(/* YOUR_REQUEST_OBJECT */, contextId);
 ```typescript title="cats.service.ts"
 @Injectable()
 export class CatsService {
-  constructor(
-    @Inject(REQUEST) private request: Record<string, unknown>,
-  ) {}
+  constructor(@Inject(REQUEST) private request: Record<string, unknown>) {}
 }
 ```
-
-
 
 > [!NOTE] HINT
 > [여기](https://docs.nestjs.com/fundamentals/injection-scopes#request-provider)에서 request provider에 대해 자세히 알아보세요.
@@ -133,6 +129,7 @@ const catsRepository = await this.moduleRef.resolve(CatsRepository, contextId);
 ```
 
 ## Instantiating custom classes dynamically
+
 이전에 **provider로 등록되지 않은** 클래스를 동적으로 인스턴스화하려면 모듈 참조의 `create()` 메서드를 사용합니다.
 
 ```typescript title="cats.service.ts"
@@ -146,6 +143,5 @@ export class CatsService implements OnModuleInit {
   }
 }
 ```
-
 
 이 기술을 사용하면 프레임워크 컨테이너 외부에서 다양한 클래스를 조건부로 인스턴스화할 수 있습니다.

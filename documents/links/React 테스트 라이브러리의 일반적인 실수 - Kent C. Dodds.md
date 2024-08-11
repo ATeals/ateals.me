@@ -4,8 +4,8 @@ date: 2024-07-28T12:51
 tags:
   - 프론트
   - 테스트
-type: link
+type: Link
 url: https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
 ---
 
-테스트 라이브러리 
+테스트 라이브러리

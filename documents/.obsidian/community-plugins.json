@@ -1,9 +1,10 @@
 [
   "obsidian-imgur-plugin",
   "tag-wrangler",
-  "slash-commander",
   "obsidian-style-settings",
   "obsidian-git",
   "table-editor-obsidian",
-  "obsidian-custom-frames"
+  "obsidian-custom-frames",
+  "slash-commander",
+  "obsidian-kanban"
 ]

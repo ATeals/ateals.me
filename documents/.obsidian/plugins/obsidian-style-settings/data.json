@@ -29,5 +29,6 @@
   "anuppuccin-theme-settings@@anp-speech-bubble": true,
   "anuppuccin-theme-settings@@anp-codeblock-numbers": true,
   "anuppuccin-theme-settings@@anp-callout-select": "anp-callout-sleek",
-  "anuppuccin-theme-settings@@anp-callout-color-toggle": true
+  "anuppuccin-theme-settings@@anp-callout-color-toggle": true,
+  "anuppuccin-theme-settings@@anp-card-layout-padding": 5
 }

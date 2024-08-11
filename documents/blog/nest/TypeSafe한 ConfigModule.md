@@ -1,21 +1,21 @@
 ---
 title: TypeSafe한 ConfigModule
 description: nest에서 Typescript를 이용한 Config 관리
-image: 
+image:
 date: 2024-04-12T14:02:00
-draft: 
+draft:
 tags:
   - NestJS
   - 백엔드
-type: post
+type: Blog
 ---
+
 이번에 nest를 사용하면서 환경변수를 관리하기 위해 @nestjs/config에서 제공하는 configModule을 사용했다.
 
 ## 간단한 사용법
 
 ```tsx
- 
- export const configuration = () => {
+export const configuration = () => {
   const config = {
     port: Number(process.env.PORT) || 3000,
     db: {
@@ -35,17 +35,14 @@ type: post
 
   return config;
 };
- 
- 
- ConfigModule.forRoot({
-	  isGlobal: true,
-	  load: [configuration],
+
+ConfigModule.forRoot({
+  isGlobal: true,
+  load: [configuration],
 }),
+  //예시
 
-//예시
-
-this.configService.get("db.user");
-
+  this.configService.get("db.user");
 ```
 
 ## 문제점
@@ -95,9 +92,7 @@ AppModule에서 하던 것과 같이 TypeSafeConfigModule에서 ConfigModule을 
 export class TypeSafeConfigService {
   constructor(private readonly configService: ConfigService) {}
 
-  get<T extends Leaves<ENVConfiguration>>(
-    propertyPath: T,
-  ): LeafTypes<ENVConfiguration, T> {
+  get<T extends Leaves<ENVConfiguration>>(propertyPath: T): LeafTypes<ENVConfiguration, T> {
     return this.configService.get(propertyPath);
   }
 }
@@ -108,12 +103,9 @@ TypeSafeConfigService에서는 configService를 inject해 제네릭을 통해 ge
 중첩 객체에 키에 대한 값을 타입으로 사용하기 위해 다음 타입이 필요하다.
 
 ```tsx
-
 export type Leaves<T> = T extends object
   ? {
-      [K in keyof T]: `${Exclude<K, symbol>}${Leaves<T[K]> extends never
-        ? ''
-        : `.${Leaves<T[K]>}`}`;
+      [K in keyof T]: `${Exclude<K, symbol>}${Leaves<T[K]> extends never ? "" : `.${Leaves<T[K]>}`}`;
     }[keyof T]
   : never;
 
@@ -122,15 +114,13 @@ export type LeafTypes<T, S extends string> = S extends `${infer T1}.${infer T2}`
     ? LeafTypes<T[T1], T2>
     : never
   : S extends keyof T
-  ? T[S]
-  : never;
-
+    ? T[S]
+    : never;
 ```
 
 이제 TypeSafeService를 사용하면 인자로 받는 키값도 자동완성이 가능하고 타입도 알아서 추론한다.
 
 ![](https://i.imgur.com/TjrWpKc.gif)
-
 
 ## 참고자료
 

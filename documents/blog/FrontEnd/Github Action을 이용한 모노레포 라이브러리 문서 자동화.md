@@ -1,17 +1,19 @@
 ---
 title: Github Action을 이용한 모노레포 라이브러리 문서 자동화
 description: 모노레포에서 개발하는 모듈의 문서를 자동화 해보자
-image: 
+image:
 date: 2024-03-13T14:07:00
-draft: 
-tags: 
-type: post
+draft:
+tags:
+type: Blog
 ---
+
 최근에 [**Slash 라이브러리**](https://slash.page/ko/)를 가득 참고해서 모노레포를 통해 공부도 할 겸 나만의 라이브러리 만들기에 도전하고 있습니다.
 
 토스의 Slash 라이브러리를 보면 라이브러리를 사용하기 편하게 문서 페이지를 제공하고 있습니다. 저도 이번에 저의 모노 레포의 문서를 제공해 보자라는 취지로 toss 라이브러리를 톺아보고 유사하게 만들어 봤습니다.
 
 ![완성된 페이지의 모습](https://i.imgur.com/SFZQgOP.png)
+
 ## 시작
 
 저의 모노레포의 workspace는 다음과 같이 구성되어 있습니다.
@@ -20,7 +22,7 @@ type: post
 ├── app // 아직 사용안함
 ├── packages
 │   ├── react-design-system // 개인 프로젝트로 사용할 디자인 시스템
-│   ├── react-shared // 리액트에 의존한 유틸 
+│   ├── react-shared // 리액트에 의존한 유틸
 │   │   ...
 │   └── typescript-utils // 타입스크립트로 만들어진 유틸 함수
 └── docs // 문서 배포를 위한 workspace
@@ -34,7 +36,7 @@ Slash 라이브러리와 마찬가지로 Markdown 파일을 통해 문서 페이
 
 Markdown 파일도 결국 유지 보수해야 하는 리소스에 포함되기 때문에 최대한 관련 코드와 붙어있어야 리팩터링에 용이합니다. 코드와 문서의 거리가 멀어지면 현재 버전의 코드와 문서가 불 일치하는 치명적인 문제가 발생할 수 있습니다.
 
-또한, 처음부터 구현하는 방법은 투여해야 하는 리소스가 매우 높아집니다. 이는 배보다 배꼽이 더 커지는 느낌을 받았고, 관리해야 하는 부분이 늘어난다고 생각했습니다. _시간은 금이니까요!_
+또한, 처음부터 구현하는 방법은 투여해야 하는 리소스가 매우 높아집니다. 이는 배보다 배꼽이 더 커지는 느낌을 받았고, 관리해야 하는 부분이 늘어난다고 생각했습니다. *시간은 금이니까요!*
 
 따라서 저는 탬플릿을 이용해 문서를 생성해 주는 도구를 사용하고, 각 문서는 최대한 코드와 인접하게 관리하며 배포 시 한곳에 모아서 배포한다는 기준을 생각했습니다. 또한 테스트 코드도 작성하고 있었고, 이미 디자인 시스템도 Github Action을 통해 자동으로 배포하고 있었기 때문에 문서 또한 해당 workspace의 test 이후 자동으로 배포되도록 구현하고자 했습니다.
 
@@ -217,7 +219,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
 ```
 
 main에 push가 트리거 되면 문서를 만들어 Github Pages에 배포 되도록 설정했습니다.
@@ -272,16 +273,12 @@ jobs:
 
       - name: Test
         run: pnpm test --filter=@repo/typescript-utils # --filter 옵션을 사용하면 해당 workspace에서만 명령어를 수행할 수 있습니다.
-
 ```
 
 ## 완성!
 
 결과적으로 제가 생각한 flow로 작업을 할 수 있게 되었습니다. 더 이상 문서를 위해 따로 리액트 프로젝트를 만들거나 코드 작성 이후 문서를 추가적으로 작업할 필요 없이 코드를 작업한 위치에 markdown 파일을 만들어 문서를 작성하면 모듈을 Github main brunch에 pr이나 push 할때 자동으로 병합해 문서 페이지로 배포됩니다.
 
-
 ![](https://i.imgur.com/DPCXSD7.png)
 
-
 [React Design System | My Site](https://ateals.github.io/frontend-monorepo/docs/react-design-system)
-

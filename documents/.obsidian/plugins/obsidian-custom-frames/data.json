@@ -11,7 +11,19 @@
       "forceIframe": true,
       "customCss": "",
       "customJs": ""
+    },
+    {
+      "url": "https://chatgpt.com/",
+      "displayName": "GPT",
+      "icon": "bot",
+      "hideOnMobile": true,
+      "addRibbonIcon": false,
+      "openInCenter": true,
+      "zoomLevel": 1,
+      "forceIframe": false,
+      "customCss": "",
+      "customJs": ""
     }
   ],
-  "padding": 5
+  "padding": 2
 }

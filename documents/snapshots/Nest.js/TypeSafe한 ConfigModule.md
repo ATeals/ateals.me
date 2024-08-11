@@ -1,13 +1,13 @@
 ---
 title: TypeSafe한 ConfigModule
 description: Config를 TypeSafe하게 가져오기
-cover: 
-image: 
+cover:
+image:
 date: 2024-06-02T17:20
 draft: false
 tags:
   - NestJS
-type: docs
+type: Docs
 ---
 
 nest에서는 환경변수를 관리하기 위해 @nestjs/config에서 제공하는 configModule을 사용할 수 있다.
@@ -105,9 +105,7 @@ TypeSafeConfigService에서는 configService를 inject해 제네릭을 통해 ge
 ```tsx
 export type Leaves<T> = T extends object
   ? {
-      [K in keyof T]: `${Exclude<K, symbol>}${Leaves<T[K]> extends never
-        ? ""
-        : `.${Leaves<T[K]>}`}`;
+      [K in keyof T]: `${Exclude<K, symbol>}${Leaves<T[K]> extends never ? "" : `.${Leaves<T[K]>}`}`;
     }[keyof T]
   : never;
 
@@ -116,8 +114,8 @@ export type LeafTypes<T, S extends string> = S extends `${infer T1}.${infer T2}`
     ? LeafTypes<T[T1], T2>
     : never
   : S extends keyof T
-  ? T[S]
-  : never;
+    ? T[S]
+    : never;
 ```
 
 이제 TypeSafeService를 사용하면 인자로 받는 키값도 자동완성이 가능하고 타입도 알아서 추론한다.

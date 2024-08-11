@@ -7,8 +7,9 @@ draft:
 tags:
   - NestJS
   - 백엔드
-type: docs
+type: Docs
 ---
+
 > 이 글은 Nest 공식문서를 번역한 글입니다. [원문](https://docs.nestjs.com/controllers)
 
 컨트롤러는 클라이언트의 수신 요청을 처리하고 응답을 반환할 책임이 있습니다.
