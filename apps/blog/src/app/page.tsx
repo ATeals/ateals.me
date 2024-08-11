@@ -1,4 +1,5 @@
 import { DocumentBuilder } from "@/service/mdx";
+import { DOCUMENT_TYPES } from "@/service/mdx/post";
 import { Header } from "@/widgets/Header";
 import { PostTypeList } from "@/widgets/PostTypeList";
 import { SocialLinkSection } from "@/widgets/SocialLinkSection";
@@ -7,7 +8,7 @@ import { PostList } from "@/widgets/posts/PostList";
 import { Separator } from "@repo/shadcn/components";
 
 export default function Home() {
-  const posts = new DocumentBuilder().getDocuments({ filter: ["post", "docs"] }).slice(0, 5);
+  const posts = new DocumentBuilder().getDocuments({ filter: [DOCUMENT_TYPES.BLOG, DOCUMENT_TYPES.DOCS] }).slice(0, 5);
 
   return (
     <div className=" mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">

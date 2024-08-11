@@ -1,3 +1,4 @@
+import { DOCUMENT_TYPES } from "@/service/mdx/post";
 import { title } from "process";
 import { IconType } from "react-icons";
 
@@ -26,28 +27,28 @@ export const POST_TYPES_ENTITY = {
     url: "/posts",
     icon: "📚",
   },
-  post: {
+  Blog: {
     title: "블로그",
     description: "개발하면서 경험하거나 고민한 것을 작성합니다.",
-    url: "/posts?type=post",
+    url: `/posts?type=${DOCUMENT_TYPES.BLOG}`,
     icon: "🖋️",
   },
-  docs: {
+  Docs: {
     title: "저장소",
     description: "공부하거나 읽은 내용을 정리합니다.",
-    url: "/posts?type=docs",
+    url: `/posts?type=${DOCUMENT_TYPES.DOCS}`,
     icon: "🗃️",
   },
-  snapshot: {
+  Snapshot: {
     title: "스냅샷",
     description: "짧은 인사이트를 공유합니다.",
-    url: "/posts?type=snapshot",
+    url: `/posts?type=${DOCUMENT_TYPES.SNAPSHOT}`,
     icon: "📸",
   },
-  link: {
+  Link: {
     title: "링크",
     description: "좋은 링크를 공유합니다.",
-    url: "/posts?type=link",
+    url: `/posts?type=${DOCUMENT_TYPES.LINK}`,
     icon: "🔗",
   },
 };

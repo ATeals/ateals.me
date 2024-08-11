@@ -1,15 +1,14 @@
 import { Separator } from "@/components/ui";
 import { POST_TYPES, POST_TYPES_ENTITY } from "@/config";
 import { DocumentBuilder } from "@/service/mdx";
-import { PostType } from "@/service/mdx/post";
+import { DOCUMENT_TYPES, DocumentType } from "@/service/mdx/post";
 import { Header } from "@/widgets/Header";
 import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
 import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
-import { PostThreadTypes } from "@/widgets/posts/PostThreadTypes";
 import { TogglePostList } from "@/widgets/posts/TogglePostList";
 import { SideTagMenu } from "@/widgets/tags/SideTagMenu";
 
-const getPostsDescription = (type?: PostType) => {
+const getPostsDescription = (type?: DocumentType) => {
   if (!type) return POST_TYPES_ENTITY[""].description;
 
   return POST_TYPES.find((postType) => postType.type === type)?.description;
@@ -18,11 +17,11 @@ const getPostsDescription = (type?: PostType) => {
 export default function Page({
   searchParams,
 }: {
-  searchParams: { type?: PostType; src?: string; tags?: string; view?: string };
+  searchParams: { type?: DocumentType; src?: string; tags?: string; view?: string };
 }) {
   const query = { ...searchParams, tags: searchParams.tags?.split(",") || [] };
 
-  const posts = new DocumentBuilder().query(query).getDocuments({ filter: ["link", "post", "docs", "snapshot"] });
+  const posts = new DocumentBuilder().query(query).getDocuments({ filter: [...Object.values(DOCUMENT_TYPES)] });
 
   const tags = new DocumentBuilder().getAllTags();
 

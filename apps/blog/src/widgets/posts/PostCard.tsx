@@ -35,10 +35,10 @@ export const PostCard = ({ post, className, ...props }: PostCardProps) => {
           </div>
           <div className="px-2 py-1">
             <div className="flex justify-between">
-              <Post.Title className="group-hover/post:text-primary-lg" />
+              <Post.Title className="group-hover/post:text-primary-lg text-sm" />
               <Post.TypeLable />
             </div>
-            <Post.DATELABLE dateType={"DOT"} className="text-gray-400 text-sm" />
+            <Post.DATELABLE dateType={"DOT"} className="text-gray-400 text-xs" />
           </div>
         </Post.Link>
       </Post.Provider>

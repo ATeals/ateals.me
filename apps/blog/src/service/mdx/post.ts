@@ -1,8 +1,15 @@
-import { docs, post, allDocuments as defaultAllPosts, link, snapshot } from "contentlayer/generated";
+import { allDocuments as defaultAllPosts, Blog, Docs, Link, Snapshot } from "contentlayer/generated";
 
-export type Document = post | docs | link | snapshot;
+export type Document = Blog | Docs | Link | Snapshot;
 
-export type PostType = "post" | "docs" | "snapshot" | "link";
+export type DocumentType = "Blog" | "Docs" | "Snapshot" | "Link";
+
+export const DOCUMENT_TYPES = {
+  BLOG: "Blog",
+  DOCS: "Docs",
+  SNAPSHOT: "Snapshot",
+  LINK: "Link",
+} as const;
 
 export const allPosts = defaultAllPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -23,19 +30,19 @@ export const getPostNavigation = (post: Document) => {
 export class DocumentBuilder {
   private documents = allPosts.filter((post) => post.draft !== true);
 
-  getDocuments({ filter }: { filter?: PostType[] } = {}) {
+  getDocuments({ filter }: { filter?: DocumentType[] } = {}) {
     if (filter) {
       return this.documents.filter((post) => filter.includes(post.type));
     }
 
-    return this.documents.filter((post) => post.type !== "link");
+    return this.documents.filter((post) => post.type !== "Link");
   }
 
   getPostByParams(params: string) {
     return this.documents.find((post) => post.url === params);
   }
 
-  private getPostsFromType(type: PostType) {
+  private getPostsFromType(type: DocumentType) {
     this.documents = this.documents.filter((post) => post.type === type);
 
     return this;
@@ -60,7 +67,7 @@ export class DocumentBuilder {
     return this;
   }
 
-  query({ tags, src, type }: { tags?: string[]; src?: string; type?: PostType }) {
+  query({ tags, src, type }: { tags?: string[]; src?: string; type?: DocumentType }) {
     if (tags) this.getPostsFromTag(tags);
     if (src) this.getPostsFromSourceFileDir(src);
     if (type) this.getPostsFromType(type);

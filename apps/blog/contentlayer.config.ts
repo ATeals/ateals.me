@@ -17,7 +17,7 @@ const fields: FieldDefs = {
 };
 
 export const Blog = defineDocumentType(() => ({
-  name: "post",
+  name: "Blog",
   filePathPattern: `blog/**/*.mdx`,
   contentType: "mdx",
   fields,
@@ -28,7 +28,7 @@ export const Blog = defineDocumentType(() => ({
 }));
 
 export const Docs = defineDocumentType(() => ({
-  name: "docs",
+  name: "Docs",
   filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields,
@@ -39,7 +39,7 @@ export const Docs = defineDocumentType(() => ({
 }));
 
 export const Link = defineDocumentType(() => ({
-  name: "link",
+  name: "Link",
   filePathPattern: `links/**/*.mdx`,
   contentType: "mdx",
   fields: {
@@ -50,7 +50,7 @@ export const Link = defineDocumentType(() => ({
 }));
 
 export const Snapshot = defineDocumentType(() => ({
-  name: "snapshot",
+  name: "Snapshot",
   filePathPattern: `snapshots/**/*.mdx`,
   contentType: "mdx",
   fields,
