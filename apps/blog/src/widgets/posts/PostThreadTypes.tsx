@@ -2,7 +2,7 @@
 
 import { Post } from "@/components/Post";
 import { cn } from "@/lib/utils";
-import { Document } from "@/service/mdx/post";
+import { Document, DOCUMENT_TYPES } from "@/service/mdx/post";
 import { ButtonHTMLAttributes, HTMLProps, useState } from "react";
 import { PostBody } from "./PostBody";
 
@@ -22,7 +22,7 @@ export const PostThreadTypes = ({ posts, className, ...props }: PostThreadTypesP
       <Accordion type="multiple">
         {posts.map((post) => (
           <Post.Provider post={post} key={post._id}>
-            {post.type === "link" ? (
+            {post.type === DOCUMENT_TYPES.LINK ? (
               <>
                 <Post.Link target="_black" className="py-5 flex gap-2">
                   <Post.TypeLable />
