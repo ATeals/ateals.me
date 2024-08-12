@@ -1,5 +1,5 @@
-import { Backlink } from "./Backlink";
 import React from "react";
+import { Backlink } from "./BackLink";
 
 export const splitByBrackets = (input: string) => {
   const regex = /\[\[.*?\]\]/g;
