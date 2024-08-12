@@ -9,9 +9,9 @@ export const Backlink = ({ className, children, ...props }: HTMLProps<HTMLParagr
 
   if (!isBackLink)
     return (
-      <p className={className} {...props}>
+      <span className={className} {...props}>
         {children}
-      </p>
+      </span>
     );
 
   const [original, alias] = children.replace(/^\[\[|\]\]$/g, "").split(/\|\s*/);
