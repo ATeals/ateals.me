@@ -6,7 +6,7 @@ date: 2024-08-12T14:49
 draft: false
 tags:
   - 네트워크
-type: Snapshot
+type: Docs
 aliases:
 link:
 ---
