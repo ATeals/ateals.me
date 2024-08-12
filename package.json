@@ -12,11 +12,12 @@
     "@repo/shadcn": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^22.2.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
-    "turbo": "latest",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8"
+    "turbo": "latest"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {
