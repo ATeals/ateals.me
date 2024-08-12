@@ -8,10 +8,6 @@
 [data-rehype-pretty-code-figure] [data-line] {
 }
 
-.prose code span {
-  @aplly text-sm border-l-2;
-}
-
 .prose code span[data-highlighted-line] {
   @apply border-primary-lg bg-opacity-20 dark:bg-opacity-30  bg-primary-sm   dark:bg-primary-sm;
 }

@@ -8,25 +8,25 @@ import { Document } from "@/service/mdx/post";
 
 import "@/styles/callout.css";
 import { MDXWapper } from "@/widgets/MDX/MDXWapper";
-import { Backlinks } from "../MDX/Backlinks";
 import { OutLink } from "../MDX/OutLink";
+import { Paragraph } from "../MDX/Paragraph";
+
+const CostomComponents = {
+  h1: HeadingComponentsBuilder("h1"),
+  h2: HeadingComponentsBuilder("h2"),
+  h3: HeadingComponentsBuilder("h3"),
+  img: IMGComponenets,
+  blockquote: Callout,
+  p: Paragraph,
+  a: OutLink,
+};
 
 export const PostBody = ({ post, className }: { post: Document; className?: string }) => {
   const MDXComponent = getMDXComponent(post.body.code);
 
   return (
     <MDXWapper className={className}>
-      <MDXComponent
-        components={{
-          h1: HeadingComponentsBuilder("h1"),
-          h2: HeadingComponentsBuilder("h2"),
-          h3: HeadingComponentsBuilder("h3"),
-          img: IMGComponenets,
-          blockquote: Callout,
-          p: Backlinks,
-          a: OutLink,
-        }}
-      />
+      <MDXComponent components={CostomComponents} />
     </MDXWapper>
   );
 };

@@ -13,9 +13,9 @@ export const Backlinks = ({ className, children, ...props }: HTMLProps<HTMLParag
 
   if (!isBackLink)
     return (
-      <p className={className} {...props}>
+      <span className={className} {...props}>
         {children}
-      </p>
+      </span>
     );
 
   const [original, alias] = children.replace(/^\[\[|\]\]$/g, "").split(/\|\s*/);
@@ -33,7 +33,7 @@ export const BacklinksPreview = ({ children }: HTMLProps<HTMLButtonElement>) => 
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <Link href={post?.url} className="text-secondary-md">
             {children}
           </Link>
