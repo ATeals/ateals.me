@@ -1,4 +1,4 @@
-import { existsSync, rmSync, mkdirSync, readdirSync, lstatSync, copyFileSync } from "fs";
+import { existsSync, rmSync, mkdirSync, readdirSync, lstatSync, copyFileSync, writeFileSync } from "fs";
 import { join, extname } from "path";
 
 interface DocsManagerOptions {
@@ -8,11 +8,10 @@ interface DocsManagerOptions {
   fileEvents?: FileEvent[];
 }
 
-interface FileEvent {
+export interface FileEvent {
   fileExt: string;
   handler: (destFile: string, manager: DocsManager) => string;
 }
-
 export class DocsManager {
   input: string;
   output: string;
@@ -31,6 +30,7 @@ export class DocsManager {
     if (existsSync(this.output)) {
       rmSync(this.output, { recursive: true, force: true });
     }
+
     mkdirSync(this.output);
     return this;
   }
@@ -45,10 +45,7 @@ export class DocsManager {
     return this;
   }
 
-  makeDocs({
-    fileEvents,
-    options,
-  }: { fileEvents?: FileEvent[]; options?: DocsManagerOptions } = {}) {
+  makeDocs({ fileEvents, options }: { fileEvents?: FileEvent[]; options?: DocsManagerOptions } = {}) {
     if (fileEvents) this.setFileEvent(fileEvents);
 
     const { input, output } = options || this;
@@ -74,7 +71,20 @@ export class DocsManager {
   }
 
   private copyFolder(src: string, dest: string) {
-    mkdirSync(dest, { recursive: true });
+    const encoded = encodeURI(dest);
+
+    mkdirSync(encoded, { recursive: true });
+
+    const folderName = dest.split("/").at(-1)!;
+
+    const parent = encoded.split("/").slice(0, -1).join("/");
+
+    const md = `${encoded.split("/").at(-1)}.mdx`;
+
+    const meta = `---\ntitle: ${folderName}\n---`;
+
+    if (!existsSync(`${parent}/${md}`)) writeFileSync(`${parent}/${md}`, meta);
+
     this.copyDirectory(src, dest);
   }
 
