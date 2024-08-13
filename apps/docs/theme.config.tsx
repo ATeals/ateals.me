@@ -31,7 +31,11 @@ const config: DocsThemeConfig = {
   },
   main: Main,
   components: {
-    p: (props) => <Paragraph {...props} />,
+    p: (props) => (
+      <p className="nx-mt-6 nx-leading-7 first:nx-mt-0">
+        <Paragraph {...props} />
+      </p>
+    ),
   },
 
   useNextSeoProps: () => {

@@ -15,16 +15,10 @@ export const splitByBrackets = (input: string) => {
   }, []);
 };
 
-export const Paragraph = ({ children }: React.HTMLProps<HTMLParagraphElement>) => {
+export const Paragraph = ({ children, ...props }: React.HTMLProps<HTMLParagraphElement>) => {
   if (typeof children !== "string") return <>{children}</>;
 
   const parts = splitByBrackets(children);
 
-  return (
-    <p>
-      {parts.map((p) => (
-        <Backlink>{p}</Backlink>
-      ))}
-    </p>
-  );
+  return parts.map((p) => <Backlink key={p}>{p}</Backlink>);
 };
