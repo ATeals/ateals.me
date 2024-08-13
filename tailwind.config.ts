@@ -32,7 +32,7 @@ const config: Config = {
           sm: "#FFC671",
         },
         dark: {
-          bg: "#232326",
+          bg: "#1F1F22",
         },
       },
       animation: {
