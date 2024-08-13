@@ -6,6 +6,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 import { rehypePrettyCodeOptions } from "./src/config/rehypePrettyCodeOptions";
 import { remarkCalloutOptions } from "./src/config/remarkCalloutOptions";
+import { Document } from "contentlayer/core";
 
 const fields: FieldDefs = {
   title: { type: "string", required: true },
@@ -14,17 +15,23 @@ const fields: FieldDefs = {
   image: { type: "string", default: "https://blog.ateals.me/images/main.webp" },
   draft: { type: "boolean" },
   tags: { type: "list", of: { type: "string" } },
-};
+} as const;
+
+const computedFields = {
+  pageID: { type: "string", resolve: <T extends Document>(post: T) => encodeURIComponent(post.title) },
+  url: { type: "string", resolve: <T extends Document>(post: T) => `/snapshots/${encodeURIComponent(post.title)}` },
+  src: {
+    type: "string",
+    resolve: <T extends Document>(post: T) => post._raw.sourceFileDir.match(/\/(.+)/)?.[1] ?? "",
+  },
+} as const;
 
 export const Blog = defineDocumentType(() => ({
   name: "Blog",
   filePathPattern: `blog/**/*.mdx`,
   contentType: "mdx",
   fields,
-  computedFields: {
-    pageID: { type: "string", resolve: (post) => encodeURIComponent(post.title) },
-    url: { type: "string", resolve: (post) => `/posts/${encodeURIComponent(post.title)}` },
-  },
+  computedFields,
 }));
 
 export const Docs = defineDocumentType(() => ({
@@ -32,10 +39,7 @@ export const Docs = defineDocumentType(() => ({
   filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields,
-  computedFields: {
-    pageID: { type: "string", resolve: (post) => encodeURIComponent(post.title) },
-    url: { type: "string", resolve: (post) => `/posts/${encodeURIComponent(post.title)}` },
-  },
+  computedFields,
 }));
 
 export const Link = defineDocumentType(() => ({
@@ -54,10 +58,7 @@ export const Snapshot = defineDocumentType(() => ({
   filePathPattern: `snapshots/**/*.mdx`,
   contentType: "mdx",
   fields,
-  computedFields: {
-    pageID: { type: "string", resolve: (post) => encodeURIComponent(post.title) },
-    url: { type: "string", resolve: (post) => `/snapshots/${encodeURIComponent(post.title)}` },
-  },
+  computedFields,
 }));
 
 export default makeSource({

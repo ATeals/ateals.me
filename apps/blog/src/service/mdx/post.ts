@@ -14,7 +14,9 @@ export const DOCUMENT_TYPES = {
 export const allPosts = defaultAllPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export const getPostNavigation = (post: Document) => {
-  const posts = new DocumentBuilder().getDocuments();
+  if (post.type === DOCUMENT_TYPES.LINK) return { next: undefined, prev: undefined };
+
+  const posts = new DocumentBuilder().query({ src: post.src }).getDocuments();
 
   const currentIndex = posts.findIndex((p) => p.title === post.title);
 
