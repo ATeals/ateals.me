@@ -9,7 +9,7 @@ import { POST_TYPES } from "@/config";
 import { Fragment } from "react";
 
 export const Footer = () => (
-  <footer className="relative h-40 bg-zinc-200 p-2 px-5 text-end text-sm text-light text-gray-700 space-y-2.5 dark:bg-[#030712] dark:text-gray-400">
+  <footer className="relative h-40 bg-zinc-200 p-2 px-5 text-end text-sm text-light text-gray-700 space-y-2.5 dark:bg-dark-highlight dark:text-gray-400">
     <nav className="">
       {POST_TYPES.map(({ title, type }, i) => (
         <Fragment key={type}>

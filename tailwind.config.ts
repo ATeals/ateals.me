@@ -33,6 +33,7 @@ const config: Config = {
         },
         dark: {
           bg: "#1F1F22",
+          highlight: "#18181A",
         },
       },
       animation: {
