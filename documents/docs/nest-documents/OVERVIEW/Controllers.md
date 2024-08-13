@@ -20,7 +20,7 @@ type: Docs
 
 Nest에서는 컨트롤러를 클래스와 데코레이터를 이용해 생성합니다. 데코레이터는 클래스를 필수 메타데이터와 연결하고 Nest가 라우팅 맵을 생성할 수 있도록 합니다. (요청을 해당 컨틀롤러에 연결)
 
-## Routing
+## Routing[#](https://docs.nestjs.com/controllers#routing)
 
 ```typescript
 import { Controller, Get } from "@nestjs/common";
@@ -51,7 +51,7 @@ HTTP요청 메서드 데코레이터를 사용하면 Nest가 HTTP 요청에 대�
 - Library-specific
   라이브러리별(예: Express) 응답 객체를 사용할 수 있으며, 메서드 핸들러 시그니처에 @Res() 데코레이터를 사용하여 삽입할 수 있습니다(예: findAll(@Res() 응답)). 이 접근 방식을 사용하면 해당 객체에 의해 노출된 기본 응답 처리 메서드를 사용할 수 있습니다. 예를 들어 Express에서는 response.status(200).send()와 같은 코드를 사용하여 응답을 구성할 수 있습니다.
 
-## Request object
+## Request object[#](https://docs.nestjs.com/controllers#request-object)
 
 핸들러는 종종 클라이언트 요청 세부 정보에 액세스해야 합니다. Nest는 기본 플랫폼(기본적으로 Express)의 요청 객체에 대한 액세스를 제공합니다. 핸들러의 서명에 @Req() 데코레이터를 추가하여 Nest에 요청 객체를 삽입하도록 지시하면 요청 객체에 액세스할 수 있습니다.
 
@@ -70,11 +70,11 @@ HTTP요청 메서드 데코레이터를 사용하면 Nest가 HTTP 요청에 대�
 | `@Ip()`                   | `req.ip`                            |
 | `@HostParam()`            | `req.hosts`                         |
 
-## Resources
+## Resources[#](https://docs.nestjs.com/controllers#resources)
 
 Nest는 모든 표준 HTTP 메서드에 대한 데코레이터를 제공합니다. `@Get()`, `@Post()`, `@Put()`, `@Delete()`, `@Patch()`, `@Options()`, @Head() 또한 `@All()`은 이 모든 메서드를 처리하는 엔드포인트를 정의합니다.
 
-## Route wildcards
+## Route wildcards[#](https://docs.nestjs.com/controllers#route-wildcards)
 
 패턴 기반 경로도 지원됩니다. 예를 들어 별표는 와일드카드로 사용되며 어떤 문자 조합과도 일치합니다.
 
@@ -88,7 +88,7 @@ findAll() {
 > [!Warning] 주의
 > 와일드 카드는 Express에서만 지원됩니다.
 
-## Status code
+## Status code[#](https://docs.nestjs.com/controllers#status-code)
 
 앞서 언급했듯이 응답 상태 코드는 201인 POST 요청을 제외하고 기본적으로 항상 200입니다. 핸들러 레벨에서 `@HttpCode(...)`를 사용하면 쉽게 변경할 수 있습니다.
 
@@ -102,7 +102,7 @@ create() {
 
 상태코드는 동적으로 변경되는 경우가 많습니다. 이 경우 라이브러리별 응답 객체를 사용하거나 오류가 발생하면 예외를 던질 수 있습니다.
 
-## Headers
+## Headers[#](https://docs.nestjs.com/controllers#headers)
 
 사용자가 응답 헤더를 지정하려면 `@Header()` 또는 라이브러리별 응답 객체를 사용하거나 `res.header()`를 직접 호출하면 됩니다.
 
@@ -114,7 +114,7 @@ create() {
 }
 ```
 
-## Redirection
+## Redirection[#](https://docs.nestjs.com/controllers#redirection)
 
 응답을 리다이렉션하려면 `@Redirect()` 또는 라이브러리별 응답 객체를 사용하거나 `res.redirect()`를 직접 호출하면 됩니다.
 
@@ -140,7 +140,7 @@ getDocs(@Query('version') version) {
 }
 ```
 
-## Route parameters
+## Route parameters[#](https://docs.nestjs.com/controllers#route-parameters)
 
 매개변수가 있는 경로를 정의하려면 경로 경로에 경로 매개변수 토큰을 추가하여 요청 URL의 해당 위치에서 동적 값을 캡처할 수 있습니다.  이러한 방식으로 선언된 경로 매개변수는 메서드 서명에 추가해야 하는 `@Param()`를 사용하여 액세스할 수 있습니다.
 
@@ -160,7 +160,7 @@ findOne(@Param('id') id: string): string {
 
 ```
 
-## Sub-Domain Routing
+## Sub-Domain Routing[#](https://docs.nestjs.com/controllers#sub-domain-routing)
 
 `@Controller`는 `host` 옵션을 사용하여 들어오는 요청의 HTTP 호스트가 특정값과 일치하도록 요구할 수 있습니다.
 
@@ -189,13 +189,13 @@ export class AccountController {
 }
 ```
 
-## Scopes
+## Scopes[#](https://docs.nestjs.com/controllers#scopes)
 
 다른 프로그래밍 언어 경험이 있는 사람에게는 Nest에서 거의 모든 것이 들어오는 요청에서 공유된다는 사실이 의외로 느껴질 수 있습니다. DB에 대한 연결 풀, 전역 상태를 가진 싱글톤 서비스 등이 있습니다. Node는 모든 요청이 별도 스레드에서 처리되는 요청/응답 다중 스레드 무상태 모델을 따르지 않는다는 점을 기억하세요. 따라서 싱글톤 인스턴스를 사용하는 것은 애플리케이션에 완전히 안전합니다.
 
 그러나 GraphQL 애플리케이션의 요청별 캐싱, 요청 추적 또는 멀티테넌시 등 컨트롤러의 요청 기반 수명이 바람직한 동작일 수 있는 엣지 케이스가 있습니다. 여기에서 범위를 제어하는 방법을 알아보세요.
 
-## Asynchronicity
+## Asynchronicity[#](https://docs.nestjs.com/controllers#asynchronicity)
 
 Nest는 모던 JS를 좋아하며 데이터 추출이 대부분 비동기라는 것을 알고 있습니다. 그렇기 때문에 Nest는 `async` 함수를 지원하고 잘 작동합니다.
 
@@ -217,7 +217,7 @@ findAll(): Observable<any[]> {
 }
 ```
 
-## Request payloads
+## Request payloads[#](https://docs.nestjs.com/controllers#request-payloads)
 
 이전 POST 라우트 핸들러 예제에서는 클라이언트 매개변수를 허용하지 않았습니다. 여기에 `@Body()`를 추가하여 이 문제를 해결해 보겠습니다.
 
@@ -243,11 +243,11 @@ async create(@Body() createCatDto: CreateCatDto) {
 > [!NOTE] HINT
 > `ValidationPipe`를 사용하면 프로퍼티 필터링이 가능합니다. 이 경우 허용 가능한 속성을 화이트리스트에 추가할 수 있으며, 화이트리스트에 포함되지 않은 속성은 결과 객체에서 자동으로 제거됩니다.
 
-## Handling errors
+## Handling errors[#](https://docs.nestjs.com/controllers#handling-errors)
 
 오류처리는 별도로 다루도록 하겠습니다. [여기](https://docs.nestjs.com/exception-filters)
 
-## Library-specific approach
+## Library-specific approach[#](https://docs.nestjs.com/controllers#library-specific-approach)
 
 응답을 조작하는 두 번째 방법은 라이브러리별 응답 객체를 사용하는 것입니다. 특정 응답 객체를 삽입하려면 `@Res()` 데코레이터를 사용해야 합니다.
 

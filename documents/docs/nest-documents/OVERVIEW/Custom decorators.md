@@ -15,7 +15,7 @@ Nest는 **decorators**라는 언어 기능을 중심으로 구축되었습니다
 
 > ES2016 데코레이터는 함수를 반환하고 대상, 이름 및 속성 설명자를 인수로 받을 수 있는 표현식입니다. 데코레이터 앞에 `@` 문자를 붙이고 데코레이터를 적용하려는 대상의 맨 위에 배치하면 됩니다. 데코레이터는 클래스, 메서드 또는 프로퍼티에 대해 정의할 수 있습니다.
 
-## Param decorators
+## Param decorators[#](https://docs.nestjs.com/custom-decorators#param-decorators)
 
 Nest는 HTTP 경로 핸들러와 함께 사용할 수 있는 유용한**param decorators** 세트를 제공합니다. 다음은 제공되는 데코레이터와 이들이 나타내는 일반 Express(또는 Fastify) 객체 목록입니다.
 
@@ -60,7 +60,7 @@ async findOne(@User() user: UserEntity) {
 }
 ```
 
-## Passing data
+## Passing data[#](https://docs.nestjs.com/custom-decorators#passing-data)
 
 데코레이터의 동작이 특정 조건에 따라 달라지는 경우 데이터 매개변수를 사용하여 데코레이터의 팩토리 함수에 인수를 전달할 수 있습니다. 이에 대한 한 가지 사용 사례는 키별로 요청 개체에서 속성을 추출하는 사용자 정의 데코레이터입니다. 예를 들어  [authentication layer](https://docs.nestjs.com/techniques/authentication#implementing-passport-strategies)가 요청의 유효성을 검사하고 사용자 엔티티를 요청 개체에 첨부한다고 가정해 보겠습니다. 인증된 요청의 사용자 엔티티는 다음과 같을 수 있습니다.
 
@@ -101,7 +101,7 @@ async findOne(@User('firstName') firstName: string) {
 > [!NOTE] HINT
 > TypeScript 사용자의 경우 `createParamDecorator<T>()`는 제네릭이라는 점에 유의하세요. 즉, `createParamDecorator<string>((data, ctx) => ...)`와 같이 명시적으로 유형 안전을 적용할 수 있습니다. 또는 팩토리 함수에서 매개변수 유형을 지정할 수도 있습니다(예: `createParamDecorator((data: string, ctx) => ...)`. 둘 다 생략하면 데이터 유형은 `any`가 됩니다.
 
-## Working with pipes
+## Working with pipes[#](https://docs.nestjs.com/custom-decorators#working-with-pipes)
 
 Nest는 사용자 정의 매개변수 데코레이터를 기본 제공 매개변수(`@Body()`, `@Param()` 및 `@Query()`)와 동일한 방식으로 처리합니다. 즉, 사용자 정의 주석이 달린 매개변수(예제에서는 `user` 인수)에 대해서도 파이프가 실행됩니다. 또한 사용자 정의 데코레이터에 직접 파이프를 적용할 수도 있습니다.
 
@@ -118,7 +118,7 @@ async findOne(
 > [!NOTE] HINT
 > `validateCustomDecorators` 옵션은 `true`으로 설정해야 합니다. `ValidationPipe`는 기본적으로 사용자 정의 데코레이터로 주석이 달린 인수의 유효성을 검사하지 않습니다.
 
-## Decorator composition
+## Decorator composition[#](https://docs.nestjs.com/custom-decorators#decorator-composition)
 
 Nest는 여러 데코레이터를 구성하는 헬퍼 메서드를 제공합니다. 예를 들어 인증과 관련된 모든 데코레이터를 하나의 데코레이터로 결합하고 싶다고 가정해 보겠습니다. 다음과 같은 구성으로 이를 수행할 수 있습니다.
 

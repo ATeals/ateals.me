@@ -23,15 +23,15 @@ type: Docs
 - 기본 함수 동작 확장
 - 특정 조건에 따라 함수를 완전히 재정의(예: 캐싱 목적)
 
-## Basics
+## Basics[#](https://docs.nestjs.com/interceptors#basics)
 
 각 인터셉터는 `intercept()` 메서드를 구현하는데, 이 메서드는 두 개의 인수를 받습니다. 첫 번째는 가드와 정확히 동일한 객체인 `ExecutionContext` 인스턴스입니다. `ExecutionContext`는 `ArgumentsHost`에서 상속합니다. 앞서 예외 필터 챕터에서 `ArgumentsHost`를 살펴봤습니다. 거기서 원래 핸들러에 전달된 인수를 감싸는 래퍼이며 애플리케이션 유형에 따라 다른 인수 배열을 포함한다는 것을 보았습니다. 이 주제에 대한 자세한 내용은 [exception filters](https://docs.nestjs.com/exception-filters#arguments-host)를 다시 참조하세요.
 
-## Execution context
+## Execution context[#](https://docs.nestjs.com/interceptors#execution-context)
 
 `ExecutionContext`는 `ArgumentsHost`를 확장함으로써 현재 실행 프로세스에 대한 추가 세부 정보를 제공하는 몇 가지 새로운 헬퍼 메서드도 추가합니다. 이러한 세부 정보는 광범위한 컨트롤러, 메서드 및 실행 컨텍스트에서 작동할 수 있는 보다 일반적인 인터셉터를 구축하는 데 유용할 수 있습니다. [여기](https://docs.nestjs.com/fundamentals/execution-context)에서 실행 컨텍스트에 대해 자세히 알아보세요.
 
-## Call handler
+## Call handler[#](https://docs.nestjs.com/interceptors#call-handler)
 
 두 번째 인자는 `CallHandler`입니다. `CallHandler` 인터페이스는 인터셉터의 어느 지점에서 경로 핸들러 메서드를 호출하는 데 사용할 수 있는 `handle()` 메서드를 구현합니다. `intercept()` 메서드의 구현에서 `handle()` 메서드를 호출하지 않으면 라우트 핸들러 메서드는 전혀 실행되지 않습니다.
 
@@ -39,7 +39,7 @@ type: Docs
 
 예를 들어 들어 들어오는 `POST /cats` 요청을 생각해 봅시다. 이 요청은 `CatsController` 내부에 정의된 `create()` 핸들러로 향합니다. 도중에 `handle()` 메서드를 호출하지 않는 인터셉터가 호출되면 `create()` 메서드는 실행되지 않습니다. `handle()`가 호출되면(그리고 해당 `Observable`이 반환되면) `create()` 핸들러가 트리거됩니다. 그리고 `Observable`을 통해 응답 스트림이 수신되면 스트림에서 추가 작업을 수행하고 최종 결과를 호출자에게 반환할 수 있습니다.
 
-## Aspect interception
+## Aspect interception[#](https://docs.nestjs.com/interceptors#aspect-interception)
 
 첫 번째 사용 사례는 인터셉터를 사용하여 사용자 상호 작용(예: 사용자 호출 저장, 비동기적으로 dispatching events 또는 타임스탬프 계산)을 기록하는 것입니다. 아래는 간단한 `LoggingInterceptor`를 보여줍니다.
 
@@ -67,7 +67,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
 `handle()`는 `RxJS` `Observable`을 반환하므로 스트림을 조작하는 데 사용할 수 있는 연산자 선택의 폭이 넓습니다. 위의 예에서는 관찰 가능한 스트림이 정상적으로 또는 예외적으로 종료될 때 익명 로깅 함수를 호출하지만 그 외에는 응답 주기를 방해하지 않는 `tap()` 연산자를 사용했습니다.
 
-## Binding interceptors
+## Binding interceptors[#](https://docs.nestjs.com/interceptors#binding-interceptors)
 
 인터셉터를 설정하기 위해 `@nestjs/common` 패키지에서 가져온 `@UseInterceptors()` 데코레이터를 사용합니다. **파이프** 및 **가드**와 마찬가지로 인터셉터도 컨트롤러 범위, 메서드 범위 또는 전역 범위로 설정할 수 있습니다.
 
@@ -119,7 +119,7 @@ export class AppModule {}
 > [!NOTE] HINT
 > 이 접근 방식을 사용하여 인터셉터에 대한 종속성 주입을 수행할 때 이 구조가 사용되는 모듈에 관계없이 인터셉터는 실제로 전역이라는 점에 유의하세요. 이 작업을 어디에서 수행해야 하나요? 인터셉터가 정의된 모듈(위 예시에서는 `LoggingInterceptor`)을 선택합니다. 또한 `useClass`만이 사용자 지정 공급자 등록을 처리하는 유일한 방법은 아닙니다. [여기](https://docs.nestjs.com/fundamentals/custom-providers)에서 자세히 알아보세요.
 
-## Response mapping
+## Response mapping[#](https://docs.nestjs.com/interceptors#response-mapping)
 
 우리는 이미 `handle()`가 `Observable`을 반환한다는 것을 알고 있습니다. 스트림에는 라우트 핸들러에서 반환된 값이 포함되어 있으므로 `RxJS`의 `map()` 연산자를 사용하여 쉽게 변경할 수 있습니다.
 
@@ -171,7 +171,7 @@ export class ExcludeNullInterceptor implements NestInterceptor {
 }
 ```
 
-## Exception mapping
+## Exception mapping[#](https://docs.nestjs.com/interceptors#exception-mapping)
 
 또 다른 흥미로운 사용 사례는 `RxJS`의 `catchError()` 연산자를 활용하여 던져진 예외를 재정의하는 것입니다.
 
@@ -188,7 +188,7 @@ export class ErrorsInterceptor implements NestInterceptor {
 }
 ```
 
-## Stream overriding
+## Stream overriding[#](https://docs.nestjs.com/interceptors#stream-overriding)
 
 처리기 호출을 완전히 방지하고 대신 다른 값을 반환하는 데에는 몇 가지 이유가 있습니다. 대표적인 예가 응답 시간을 개선하기 위해 캐시를 구현하는 것입니다. 캐시에서 응답을 반환하는 간단한 **cache interceptor**를 살펴보겠습니다. 현실적인 예제에서는 TTL, 캐시 무효화, 캐시 크기 등과 같은 다른 요소도 고려해야 하지만 여기서는 이 논의의 범위를 벗어납니다. 여기서는 주요 개념을 설명하는 기본 예제를 제공하겠습니다.
 
@@ -210,7 +210,7 @@ export class CacheInterceptor implements NestInterceptor {
 
 `CacheInterceptor`에는 하드코딩된 `isCached` 변수와 하드코딩된 응답 `[]`도 있습니다. 여기서 주목해야 할 핵심 사항은 `RxJS of()` 연산자에 의해 생성된 새 스트림을 반환하므로 라우트 핸들러가 **전혀 호출되지 않는다는 것**입니다. 누군가 `CacheInterceptor`를 사용하는 엔드포인트를 호출하면 response(하드코딩된 빈 배열)가 즉시 반환됩니다. 일반적인 솔루션을 만들려면 `Reflector`를 활용하고 사용자 정의 데코레이터를 만들 수 있습니다. `Reflector`는  [guards](https://docs.nestjs.com/guards) 챕터에 잘 설명되어 있습니다.
 
-## More operators
+## More operators[#](https://docs.nestjs.com/interceptors#more-operators)
 
 `RxJS` 연산자를 사용하여 스트림을 조작할 수 있기 때문에 많은 기능을 사용할 수 있습니다. 또 다른 일반적인 사용 사례를 고려해 보겠습니다. 경로 요청에 대한 **timeouts**을 처리하고 싶다고 가정해 보겠습니다. 일정 시간이 지나도 엔드포인트에서 아무 것도 반환하지 않으면 오류 응답으로 종료하고 싶을 것입니다. 다음 구조가 이를 가능하게 합니다.
 

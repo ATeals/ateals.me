@@ -15,7 +15,7 @@ type: Docs
 
 그러나 GraphQL 애플리케이션의 요청별 캐싱, 요청 추적, 멀티테넌시 등 요청 기반 수명이 바람직한 동작일 수 있는 에지 사례가 있습니다. 인젝션 범위는 원하는 공급자 수명 동작을 얻을 수 있는 메커니즘을 제공합니다.
 
-## Provider scope
+## Provider scope[#](https://docs.nestjs.com/fundamentals/injection-scopes#provider-scope)
 
 provider는 다음 범위 중 하나를 가질 수 있습니다.
 
@@ -28,7 +28,7 @@ provider는 다음 범위 중 하나를 가질 수 있습니다.
 > [!NOTE] HINT
 > 대부분의 사용 사례에서는 싱글톤 범위를 사용하는 것이 **좋습니다**. 소비자 및 요청 간에 공급자를 공유하면 인스턴스가 캐시될 수 있고 애플리케이션 시작 시 한 번만 초기화가 이루어집니다.
 
-## Usage
+## Usage[#](https://docs.nestjs.com/fundamentals/injection-scopes#usage)
 
 범위 속성을 `@Injectable()` 데코레이터 옵션 객체에 전달하여 주입 범위를 지정합니다.
 
@@ -54,7 +54,7 @@ export class CatsService {}
 > [!WARNING] NOTICE
 > 웹소켓 게이트웨이는 싱글톤으로 작동해야 하므로 요청 범위가 지정된 공급자를 사용해서는 안 됩니다. 각 게이트웨이는 실제 소켓을 캡슐화하며 여러 번 인스턴스화할 수 없습니다. 이 제한은 `Passport` 전략이나 `Cron` 컨트롤러와 같은 일부 다른 provders에게도 적용됩니다.
 
-## Controller scope
+## Controller scope[#](https://docs.nestjs.com/fundamentals/injection-scopes#controller-scope)
 
 컨트롤러에는 해당 컨트롤러에 선언된 모든 요청 메서드 핸들러에 적용되는 범위가 있을 수도 있습니다. provider 범위와 마찬가지로 controller의 범위는 수명을 선언합니다. 요청 범위 컨트롤러의 경우 각 인바운드 요청에 대해 새 인스턴스가 생성되고 요청 처리가 완료되면 가비지 수집됩니다.
 
@@ -68,7 +68,7 @@ export class CatsService {}
 export class CatsController {}
 ```
 
-## Scope hierarchy
+## Scope hierarchy[#](https://docs.nestjs.com/fundamentals/injection-scopes#scope-hierarchy)
 
 `REQUEST` 범위는 인젝션 체인에 버블을 일으킵니다. `REQUEST` 범위가 지정된 공급자에 의존하는 컨트롤러는 그 자체로 요청 범위가 지정됩니다.
 
@@ -76,7 +76,7 @@ export class CatsController {}
 
 일시적 범위의 종속성은 이러한 패턴을 따르지 않습니다. 싱글톤 범위의 `DogsService`가 일시적인 `LoggerService` provider를 주입하면 새로운 인스턴스를 받게 됩니다. 그러나 `DogsService`는 싱글톤 범위로 유지되므로 아무 곳에나 주입해도 `DogsService`의 새 인스턴스로 해결되지 않습니다. 이러한 동작을 원할 경우, `DogsService`를 명시적으로 `TRANSIENT`로 표시해야 합니다.
 
-## Request provider
+## Request provider[#](https://docs.nestjs.com/fundamentals/injection-scopes#request-provider)
 
 HTTP 서버 기반 애플리케이션(예: `@nestjs/platform-express` 또는 `@nestjs/platform-fastify` 사용)에서는 요청 범위 공급자를 사용할 때 원본 요청 객체에 대한 참조에 액세스하고 싶을 수 있습니다. `REQUEST` 객체를 삽입하면 이 작업을 수행할 수 있습니다.
 
@@ -107,7 +107,7 @@ export class CatsService {
 
 그런 다음 `request`을 속성으로 포함하도록 `context` 값(`GraphQLModule`에서)을 구성합니다.
 
-## Inquirer provider
+## Inquirer provider[#](https://docs.nestjs.com/fundamentals/injection-scopes#inquirer-provider)
 
 로깅 또는 메트릭 제공자와 같이 제공자가 생성된 클래스를 가져오려면 `INQUIRER` 토큰을 삽입하면 됩니다.
 
@@ -145,14 +145,14 @@ export class AppService {
 
 위의 예제에서 `AppService#getRoot`가 호출되면 `"AppService: 내 이름은 getRoot입니다"`가 콘솔에 기록됩니다.
 
-## Performance
+## Performance[#](https://docs.nestjs.com/fundamentals/injection-scopes#performance)
 
 요청 범위가 지정된 providers를 사용하면 애플리케이션 성능에 영향을 미칩니다. Nest는 가능한 한 많은 메타데이터를 캐시하려고 하지만 각 요청에 대해 클래스의 인스턴스를 생성해야 합니다. 따라서 평균 응답 시간과 전반적인 벤치마킹 결과가 느려집니다. provider가 요청 범위를 지정해야 하는 경우가 아니라면 기본 싱글톤 범위를 사용하는 것이 좋습니다.
 
 > [!NOTE] HINT
 > 이 모든 것이 상당히 위협적으로 들리지만, 요청 범위가 지정된 providers를 활용하는 적절하게 설계된 애플리케이션은 지연 시간 측면에서 최대 5% 이상 느려지지 않아야 합니다.
 
-## Durable providers
+## Durable providers[#](https://docs.nestjs.com/fundamentals/injection-scopes#durable-providers)
 
 위 섹션에서 언급했듯이 요청 범위가 지정된 공급자는 컨트롤러 인스턴스에 1개 이상(또는 더 깊게는 provider 중 하나에 주입)이 있으면 controller도 요청 범위가 지정되므로 지연 시간이 늘어날 수 있습니다. 즉, 각 개별 요청마다 controller를 다시 생성(인스턴스화)하고 나중에 가비지를 수집해야 합니다. 즉, 3만 개의 요청이 병렬로 발생한다고 가정하면 컨트롤러(및 요청 범위가 지정된 공급자)의 임시 인스턴스가 3만 개가 된다는 뜻이기도 합니다.
 

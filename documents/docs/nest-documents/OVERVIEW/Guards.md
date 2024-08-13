@@ -22,7 +22,7 @@ type: Docs
 > [!NOTE] HINT
 > 가드는 모든 미들웨어 이후에 실행되지만 인터셉터나 파이프보다 먼저 실행 됩니다.
 
-## Authorization guard
+## Authorization guard[#](https://docs.nestjs.com/guards#authorization-guard)
 
 앞서 언급했듯이 **authorization**은 호출자(일반적으로 인증된 특정 사용자)에게 충분한 권한이 있는 경우에만 특정 경로를 사용할 수 있어야 하므로 가드에 매우 유용한 사용 사례입니다. 지금 빌드할 `AuthGuard는` 인증된 사용자(따라서 토큰이 요청 헤더에 첨부되어 있음)를 가정합니다. 토큰을 추출하여 유효성을 검사하고 추출된 정보를 사용하여 요청을 진행할 수 있는지 여부를 결정합니다.
 
@@ -49,13 +49,13 @@ export class AuthGuard implements CanActivate {
 - 반환값이 `참`이면 요청이 처리됩니다.
 - 반환값이 `거짓`이면 Nest는 요청을 거부합니다.
 
-## Execution context
+## Execution context[#](https://docs.nestjs.com/guards#execution-context)
 
 `canActivate()` 함수는 단일 인수인 `ExecutionContext` 인스턴스를 받습니다. `ExecutionContext`는 `ArgumentsHost`에서 상속됩니다. 앞서 예외 필터 챕터에서 `ArgumentsHost`를 살펴봤습니다. 위의 샘플에서는 이전에 사용한 것과 동일한 헬퍼 메서드를 `ArgumentsHost`에 정의하여 요청 객체에 대한 참조를 가져오고 있습니다. 이 주제에 대한 자세한 내용은[exception filters](https://docs.nestjs.com/exception-filters#arguments-host)의 `Arguments host` 섹션을 다시 참조하세요.
 
 `ArgumentsHost`를 확장함으로써 `ExecutionContext`는 현재 실행 프로세스에 대한 추가 세부 정보를 제공하는 몇 가지 새로운 헬퍼 메서드도 추가합니다. 이러한 세부 정보는 광범위한 컨트롤러, 메서드 및 실행 컨텍스트에서 작동할 수 있는 보다 일반적인 가드를 구축하는 데 유용할 수 있습니다. [여기](https://docs.nestjs.com/fundamentals/execution-context)에서 실행 컨텍스트에 대해 자세히 알아보세요.
 
-## Role-based authentication
+## Role-based authentication[#](https://docs.nestjs.com/guards#role-based-authentication)
 
 특정 역할을 가진 사용자에게만 액세스를 허용하는 보다 기능적인 가드를 구축해 보겠습니다. 기본 가드 템플릿으로 시작하여 다음 섹션에서 이를 기반으로 구축해 보겠습니다. 지금은 모든 요청이 진행되도록 허용합니다.
 
@@ -71,7 +71,7 @@ export class RolesGuard implements CanActivate {
 }
 ```
 
-## Binding guards
+## Binding guards[#](https://docs.nestjs.com/guards#binding-guards)
 
 가드는 파이프 및 예외 필터와 마찬가지로 컨트롤러 범위, 메서드 범위 또는 전역 범위로 지정할 수 있습니다. 아래에서는 `@UseGuards()` 데코레이터를 사용하여 컨트롤러 범위 가드를 설정했습니다. 이 데코레이터는 단일 인수를 받거나 쉼표로 구분된 인수의 목록을 받을 수 있습니다. 이를 통해 하나의 선언으로 적절한 가드 집합을 쉽게 적용할 수 있습니다.
 
@@ -121,7 +121,7 @@ export class AppModule {}
 > [!NOTE] HINT
 > 이 접근 방식을 사용하여 가드에 대한 종속성 주입을 수행할 때 이 구조가 사용되는 모듈에 관계없이 가드는 실제로 전역이라는 점에 유의하세요. 이 작업은 어디에서 수행해야 할까요? 가드가 정의된 모듈(위 예제에서는 `RolesGuard`)을 선택합니다. 또한 `useClass`가 사용자 지정 공급자 등록을 처리하는 유일한 방법은 아닙니다. [여기](https://docs.nestjs.com/fundamentals/custom-providers)에서 자세히 알아보세요.
 
-## Setting roles per handler
+## Setting roles per handler[#](https://docs.nestjs.com/guards#setting-roles-per-handler)
 
 `RolesGuard`가 작동하고 있지만 아직은 그다지 똑똑하지는 않습니다. 가장 중요한 가드 기능인 `실행 컨텍스트`를 아직 활용하지 못하고 있습니다. 아직 역할이나 각 핸들러에 허용되는 역할에 대해 알지 못합니다. 예를 들어, `CatsController`는 경로마다 다른 권한 체계를 가질 수 있습니다. 일부는 관리자 사용자만 사용할 수 있고 다른 일부는 모든 사용자에게 개방되어 있을 수 있습니다. 어떻게 하면 유연하고 재사용 가능한 방식으로 역할을 경로에 일치시킬 수 있을까요?
 
@@ -147,7 +147,7 @@ async create(@Body() createCatDto: CreateCatDto) {
 
 또는 `Reflector#createDecorator` 메서드를 사용하는 대신 내장된 `@SetMetadata()` 데코레이터를 사용할 수 있습니다. [여기](https://docs.nestjs.com/fundamentals/execution-context#low-level-approach)에서 자세히 알아보세요.
 
-## Putting it all together
+## Putting it all together[#](https://docs.nestjs.com/guards#putting-it-all-together)
 
 이제 돌아가서 이를 `RolesGuard`와 연결해 보겠습니다. 현재는 단순히 모든 경우에 `참`을 반환하여 모든 요청이 진행되도록 허용합니다. 현재 사용자에게 할당된 역할과 현재 처리 중인 경로에 필요한 실제 역할을 비교하여 반환 값을 조건부로 만들고 싶습니다. 경로의 역할(사용자 정의 메타데이터)에 액세스하기 위해 다음과 같이 `Reflector` 헬퍼 클래스를 다시 사용하겠습니다.
 

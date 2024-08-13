@@ -13,7 +13,7 @@ type: Docs
 
 이전 장에서는 의존성 주입(DI)의 다양한 측면과 Nest에서 어떻게 사용되는지에 대해 살펴봤습니다. 그 중 한 가지 예로 인스턴스(주로 서비스 공급자)를 클래스에 주입하는 데 사용되는 [constructor based](https://docs.nestjs.com/providers#dependency-injection) 의존성 주입을 들 수 있습니다. 의존성 주입이 Nest 코어에 기본적으로 내장되어 있다는 사실에 놀라지 않으실 것입니다. 지금까지는 한 가지 주요 패턴만 살펴보았습니다. 애플리케이션이 더 복잡해지면 DI 시스템의 모든 기능을 활용해야 할 수도 있으므로 좀 더 자세히 살펴보겠습니다.
 
-## DI fundamentals
+## DI fundamentals[#](https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals)
 
 종속성 주입은 [inversion of control (IoC)](https://en.wikipedia.org/wiki/Inversion_of_control)를 자체 코드에서 필수적으로 수행하는 대신 IoC 컨테이너(이 경우 NestJS 런타임 시스템)에 위임하는 제어의 역전(IoC) 기법입니다. [Providers chapter](https://docs.nestjs.com/providers)의 이 예제에서 어떤 일이 일어나고 있는지 살펴봅시다.
 
@@ -77,7 +77,7 @@ Nest IoC 컨테이너가 `CatsController`를 인스턴스화할 때, 먼저 `종
 
 이 설명은 요점을 설명하기 위해 약간 단순화했습니다. 우리가 간과한 한 가지 중요한 부분은 종속성에 대한 코드 분석 프로세스가 매우 정교하며 애플리케이션 부트스트랩 중에 발생한다는 것입니다. 한 가지 중요한 특징은 종속성 분석(또는 "종속성 그래프 생성")이 **전이적**이라는 점입니다. 위의 예에서 `CatsService` 자체에 종속성이 있다면 종속성 역시 해결될 것입니다. 종속성 그래프는 종속성이 올바른 순서로, 즉 본질적으로 "상향식"으로 해결되도록 보장합니다. 이 메커니즘은 개발자가 복잡한 종속성 그래프를 관리할 필요를 덜어줍니다.
 
-## Standard providers
+## Standard providers[#](https://docs.nestjs.com/fundamentals/custom-providers#standard-providers)
 
 `@Module()` 데코레이터를 자세히 살펴봅시다. `app.module`에서 선언합니다.
 
@@ -101,7 +101,7 @@ providers: [
 
 이제 이 명시적인 구조를 보았으니 등록 프로세스를 이해할 수 있습니다. 여기서는 토큰 `CatsService`를 `CatsService` 클래스와 명확하게 연결하고 있습니다. 약식 표기는 토큰이 같은 이름의 클래스 인스턴스를 요청하는 데 사용되는 가장 일반적인 사용 사례를 단순화하기 위한 편의상 표기일 뿐입니다.
 
-## Custom providers
+## Custom providers[#](https://docs.nestjs.com/fundamentals/custom-providers#custom-providers-1)
 
 _Standard providers_ 가 제공하는 요구 사항을 초과하는 경우 어떻게 되나요? 다음은 몇 가지 예입니다:.
 
@@ -114,7 +114,7 @@ Nest를 사용하면 이러한 경우를 처리하기 위해 사용자 정의 �
 > [!NOTE] HINT
 > 종속성 해결에 문제가 있는 경우 `NEST_DEBUG` 환경 변수를 설정하여 시작 중에 추가 종속성 해결 로그를 가져올 수 있습니다.
 
-## Value providers : `useValue`
+## Value providers: `useValue`[#](https://docs.nestjs.com/fundamentals/custom-providers#value-providers-usevalue)
 
 `useValue` 구문은 상수 값을 주입하거나 외부 라이브러리를 Nest 컨테이너에 넣거나 실제 구현을 모의 객체로 대체할 때 유용합니다. Nest가 테스트 목적으로 모의 `CatsService`를 사용하도록 강제하고 싶다고 가정해 보겠습니다.
 
@@ -141,7 +141,7 @@ export class AppModule {}
 
 이 예제에서 `CatsService` 토큰은 `mockCatsService` 모의 객체로 해석됩니다. `useValue`에는 값(이 경우 대체하는 `CatsService` 클래스와 동일한 인터페이스를 가진 리터럴 객체)이 필요합니다. TypeScript의 [구조적 타이핑](https://www.typescriptlang.org/docs/handbook/type-compatibility.html)으로 인해 리터럴 객체나 `new`로 인스턴스화된 클래스 인스턴스를 포함하여 호환되는 인터페이스를 가진 모든 객체를 사용할 수 있습니다.
 
-## Non-class-based provider tokens
+## Non-class-based provider tokens[#](https://docs.nestjs.com/fundamentals/custom-providers#non-class-based-provider-tokens)
 
 지금까지는 클래스 이름을 provider 토큰(`provide` 배열에 나열된 공급자의 `provider` 프로퍼티 값)으로 사용했습니다. 이는 [constructor based injection](https://docs.nestjs.com/providers#dependency-injection)에 사용되는 표준 패턴과 일치하며, 토큰도 클래스 이름입니다. (토큰에 대한 개념이 명확하지 않은 경우 [DI Fundamentals](https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals)를 다시 참조하여 토큰에 대해 다시 한 번 정리하세요.) 때로는 문자열이나 기호를 DI 토큰으로 사용하는 유연성을 원할 수도 있습니다. 예를 들어
 
@@ -175,7 +175,7 @@ export class CatsRepository {
 
 위의 예시에서는 예시용으로 `'CONNECTION'` 문자열을 직접 사용했지만, 깔끔한 코드 구성을 위해 토큰을 `constants.ts`와 같은 별도의 파일에 정의하는 것이 가장 좋습니다. 자체 파일에 정의하고 필요한 곳에서 가져오는 심볼이나 열거형과 마찬가지로 취급하세요.
 
-## Class providers : `useClass`
+## Class providers: `useClass`[#](https://docs.nestjs.com/fundamentals/custom-providers#class-providers-useclass)
 
 `useClass` 구문을 사용하면 토큰이 확인해야 하는 클래스를 동적으로 결정할 수 있습니다. 예를 들어 추상(또는 기본) `ConfigService` 클래스가 있다고 가정해 보겠습니다. 현재 환경에 따라 Nest에서 다른 구성 서비스 구현을 제공하고자 합니다. 다음 코드는 이러한 전략을 구현합니다.
 
@@ -195,7 +195,7 @@ export class AppModule {}
 
 또한 `ConfigService` 클래스 이름을 토큰으로 사용했습니다. `ConfigService`에 종속된 모든 클래스의 경우 Nest는 제공된 클래스(`DevelopmentConfigService` 또는 `ProductionConfigService`)의 인스턴스를 다른 곳에서 선언되었을 수 있는 기본 구현(예: `@Injectable()` 데코레이터로 선언된 `ConfigService`)을 재정의하여 주입합니다.
 
-## Factory providers : `useFactory`
+## Factory providers: `useFactory`[#](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory)
 
 `useFactory` 구문을 사용하면 공급자를 **동적으로** 생성할 수 있습니다. 실제 공급자는 팩토리 함수에서 반환된 값으로 제공됩니다. 팩토리 함수는 필요에 따라 단순하거나 복잡할 수 있습니다. 단순한 팩토리는 다른 프로바이더에 의존하지 않을 수 있습니다. 보다 복잡한 팩토리는 결과를 계산하는 데 필요한 다른 공급자를 자체적으로 주입할 수 있습니다. 후자의 경우 팩토리 공급자 구문에는 한 쌍의 관련 메커니즘이 있습니다.
 
@@ -225,7 +225,7 @@ const connectionProvider = {
 export class AppModule {}
 ```
 
-## Alias providers : `useExisting`
+## Alias providers: `useExisting`[#](https://docs.nestjs.com/fundamentals/custom-providers#alias-providers-useexisting)
 
 `useExisting` 구문을 사용하면 기존 providers 대한 별칭을 만들 수 있습니다. 이렇게 하면 동일한 provider에 액세스할 수 있는 두 가지 방법이 생성됩니다. 아래 예에서 (문자열 기반) 토큰인 `'AliasedLoggerService'`는 (클래스 기반) 토큰인 `LoggerService`의 별칭입니다. 두 개의 서로 다른 종속성이 있다고 가정합니다. 하나는 `'AliasedLoggerService'`에 대한 종속성이고 다른 하나는 `LoggerService`에 대한 종속성입니다. 두 종속성이 모두 `SINGLETON` 범위로 지정되면 둘 다 동일한 인스턴스로 resolve됩니다.
 
@@ -246,7 +246,7 @@ const loggerAliasProvider = {
 export class AppModule {}
 ```
 
-## Non-service based provider
+## Non-service based providers[#](https://docs.nestjs.com/fundamentals/custom-providers#non-service-based-providers)
 
 providers는 서비스를 제공하는 경우가 많지만, 그 용도에 국한되지 않습니다. providers는 모든(any) 값을 제공할 수 있습니다. 예를 들어 공급자는 아래 그림과 같이 현재 환경에 따라 구성 개체 배열을 제공할 수 있습니다.
 
@@ -264,7 +264,7 @@ const configFactory = {
 export class AppModule {}
 ```
 
-## Export custom provider
+## Export custom provider[#](https://docs.nestjs.com/fundamentals/custom-providers#export-custom-provider)
 
 다른 provider와 마찬가지로 custom provider는 선언하는 모듈로 범위가 지정됩니다. 다른 모듈에서 보이게 하려면 export해야 합니다. custom provider를 export하려면 토큰 또는 전체 공급자 개체를 사용할 수 있습니다.
 

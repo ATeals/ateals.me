@@ -30,7 +30,7 @@ type: Docs
 
 모듈은 기본적으로 `provider`를 `캡슐화`합니다. 즉, 현재 모듈에 직접 포함되지 않거나 가져온 모듈에서 내보낸 공급자를 import 할 수 없습니다. 따라서 모듈에서 내보낸 `provider`를 모듈의 공용 인터페이스 또는 API로 간주할 수 있습니다.
 
-## Feature modules
+## Feature modules[#](https://docs.nestjs.com/modules#feature-modules)
 
 동일한 애플리케이션 도메인에 속한 밀접한 기능은 모듈로 이동하는 것이 좋습니다. 기능 모듈은 특정 기능과 관련된 코드를 간단히 정리하여 코드를 체계적으로 유지하고 명확한 경계를 설정합니다. 이는 특히 애플리케이션, 팀의 규모가 커짐에 따라 복잡성을 관리하고 SOLID 원칙에 따라 개발하는 데 도움이 됩니다.
 
@@ -62,7 +62,7 @@ export class AppModule {}
 
 ![](https://i.imgur.com/sOoXzhn.png)
 
-## Shared modules
+## Shared modules[#](https://docs.nestjs.com/modules#shared-modules)
 
 Nest에서 모듈은 기본적으로 싱글톤이므로 여러 모듈 간에 동일한 공급자의 인스턴스를 손쉽게 공유할 수 있습니다.
 
@@ -85,7 +85,7 @@ export class CatsModule {}
 
 이제 `CatsModule`을 `import` 하는 모든 모듈은 `CatsService`에 엑세스 할 수 있으며 이를 `import`하는 다른 모든 모듈과도 동일한 인스턴스를 공유하게 됩니다.
 
-## Module re-exporting
+## Module re-exporting[#](https://docs.nestjs.com/modules#module-re-exporting)
 
 모듈은 내부 `provider`를 내보낼 수 있습니다. 또한 `import`한 모듈을 다시 `export`할 수 있습니다.
 
@@ -97,7 +97,7 @@ export class CatsModule {}
 export class CoreModule {}
 ```
 
-## Dependency injection
+## Dependency injection[#](https://docs.nestjs.com/modules#dependency-injection)
 
 모듈 클래스는 구성목적으로 provider를 주입할 수 있습니다.
 
@@ -117,7 +117,7 @@ export class CatsModule {
 
 그러나 모듈 클래스 자체는 [순환 종속성](https://docs.nestjs.com/fundamentals/circular-dependency)으로 인해 provider로 주입할 수 없습니다.
 
-## Global modules
+## Global modules[#](https://docs.nestjs.com/modules#global-modules)
 
 모든 곳에서 동일한 모듈을 가져와야 한다면 지루할 수 있습니다. `Nest`와 달리 `Anguler provider`는 전역에 등록됩니다. 한번 정의하면 어디서나 사용할 수 있습니다. 그러나 `Nest`는 모듈 범위 내에서 `provider`를 캡슐화 합니다. 캡슐화 모듈을 먼저 가져오지 않으면 다른곳에서 모듈의 `provider`를 사용할 수 없습니다.
 
@@ -142,7 +142,7 @@ export class CatsModule {}
 > [!NOTE] HINT
 > 모든 것을 글로벌하게 만드는 것은 좋은 디자인 결정이 아닙니다. 글로벌 모듈을 사용하면 필요한 상용구의 양을 줄일 수 있습니다. 일반적으로 가져오기 배열은 소비자가 모듈의 API를 사용할 수 있도록 하는 데 선호되는 방법입니다.
 
-## Dynamic modules
+## Dynamic modules[#](https://docs.nestjs.com/modules#dynamic-modules)
 
 Nest 모듈 시스템에는 동적 모듈이라는 강력한 기능이 포함되어 있습니다. 이 기능을 사용하면 providers를 동적으로 등록하고 구성할 수 있는 커스텀 모듈을 쉽게 만들 수 있습니다. 자세한 내용은 [여기](https://docs.nestjs.com/fundamentals/dynamic-modules)를 참고하세요.
 

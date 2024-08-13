@@ -28,10 +28,10 @@ type: Docs
 > [!NOTE] HINT
 > [여기](https://docs.nestjs.com/fundamentals/custom-providers)에서  custom provider 구문에 대해 자세히 알아보세요.
 
-## Injection
+## Injection[#](https://docs.nestjs.com/fundamentals/async-providers#injection)
 
 Asynchronous providers는 다른 공급자와 마찬가지로 토큰에 의해 다른 컴포넌트에 주입됩니다. 위의 예시에서는 `@Inject('ASYNC_CONNECTION')` 구문을 사용합니다.
 
-## Example
+## Example[#](https://docs.nestjs.com/fundamentals/async-providers#example)
 
 [TypeORM 레시피](https://docs.nestjs.com/recipes/sql-typeorm)에는 비동기식 공급자의 보다 실질적인 예시가 있습니다.

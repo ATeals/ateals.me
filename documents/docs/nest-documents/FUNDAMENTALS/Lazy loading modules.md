@@ -23,7 +23,7 @@ link:
 > [!WARNING] WARNING
 > 라이프사이클 훅 메서드는 지연 로드된 모듈과 서비스에서는 호출되지 않는다는 점에 유의하세요.
 
-## 시작하기
+## Getting started[#](https://docs.nestjs.com/fundamentals/lazy-loading-modules#getting-started)
 
 필요에 따라 모듈을 로드하기 위해 Nest는 일반적인 방법으로 클래스에 주입할 수 있는 `LazyModuleLoader` 클래스를 제공합니다:
 
@@ -104,7 +104,7 @@ const lazyService = moduleRef.get(LazyService);
 >
 > 이러한 옵션을 설정하면 **코드 분할** 기능을 활용할 수 있습니다.
 
-## 지연 로딩 컨트롤러, 게이트웨이 및 리졸버
+## Lazy loading controllers, gateways, and resolvers[#](https://docs.nestjs.com/fundamentals/lazy-loading-modules#lazy-loading-controllers-gateways-and-resolvers)
 
 Nest의 컨트롤러(또는 GraphQL 애플리케이션의 리졸버)는 routes/paths/topics (queries/mutations)의 집합을 나타내므로 `LazyModuleLoader` 클래스를 사용하여 **지연 로드할 수 없습니다**.
 
@@ -117,6 +117,6 @@ Nest의 컨트롤러(또는 GraphQL 애플리케이션의 리졸버)는 routes/p
 
 마지막으로, 코드 우선 접근 방식이 활성화된 `@nestjs/graphql` 패키지는 메타데이터를 기반으로 GraphQL 스키마를 즉석에서 자동으로 생성합니다. 즉, 모든 클래스를 미리 로드해야 합니다. 그렇지 않으면 적절하고 유효한 스키마를 생성할 수 없습니다.
 
-### 일반적인 사용 사례
+## Common use-cases[#](https://docs.nestjs.com/fundamentals/lazy-loading-modules#common-use-cases)
 
 가장 일반적으로, 작업자/크론 작업/람다 및 서버리스 함수/웹훅이 입력 인수(경로 경로/날짜/쿼리 매개변수 등)에 따라 다른 서비스(다른 로직)를 트리거해야 하는 상황에서 지연 로드된 모듈을 볼 수 있습니다. 반면에 지연 로딩 모듈은 시작 시간이 다소 무관한 모놀리식 애플리케이션에는 그다지 의미가 없을 수 있습니다.Í

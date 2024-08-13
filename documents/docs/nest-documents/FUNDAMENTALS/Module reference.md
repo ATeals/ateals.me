@@ -20,7 +20,7 @@ export class CatsService {
 }
 ```
 
-## Retrieving instances
+## Retrieving instances[#](https://docs.nestjs.com/fundamentals/module-ref#retrieving-instances)
 
 `ModuleRef` 인스턴스(이하  **module reference**)에는 `get()` 메서드가 있습니다. 이 메서드는 인젝션 토큰/클래스 이름을 사용하여 현재 모듈에 존재하는(인스턴스화된) provider, controller 또는 인젝터블(예: guard, interceptor 등)을 검색합니다.
 
@@ -45,7 +45,7 @@ export class CatsService implements OnModuleInit {
 this.moduleRef.get(Service, { strict: false });
 ```
 
-## Resolving scoped providers
+## Resolving scoped providers[#](https://docs.nestjs.com/fundamentals/module-ref#resolving-scoped-providers)
 
 범위가 지정된 provider(일시적 또는 요청 범위)를 동적으로 확인하려면 provider의 인젝션 토큰을 인수로 전달하여 `resolve()` 메서드를 사용합니다.
 
@@ -96,7 +96,7 @@ export class CatsService implements OnModuleInit {
 }
 ```
 
-## Registering `REQUEST` provider
+## Registering `REQUEST` provider[#](https://docs.nestjs.com/fundamentals/module-ref#registering-request-provider)
 
 수동으로 생성된 컨텍스트 식별자(`ContextIdFactory.create()`를 사용)는 Nest 종속성 주입 시스템에 의해 인스턴스화 및 관리되지 않으므로 `REQUEST` 공급자가 `undefined`인 DI 하위 트리를 나타냅니다.
 
@@ -107,7 +107,7 @@ const contextId = ContextIdFactory.create();
 this.moduleRef.registerRequestByContextId(/* YOUR_REQUEST_OBJECT */, contextId);
 ```
 
-## Getting current sub-tree
+## Getting current sub-tree[#](https://docs.nestjs.com/fundamentals/module-ref#getting-current-sub-tree)
 
 요청 컨텍스트 내에서 요청 범위가 지정된 provider의 인스턴스를 확인해야 하는 경우가 있습니다. `CatsService`가 요청 범위가 지정되어 있고 요청 범위가 지정된 provider로 표시된 `CatsRepository` 인스턴스를 확인하고자 한다고 가정해 보겠습니다. 동일한 DI 컨테이너 하위 트리를 공유하려면 새 컨텍스트 식별자를 생성하는 대신 현재 컨텍스트 식별자를 가져와야 합니다(예: 위 그림과 같이 `ContextIdFactory.create()` 함수를 사용). 현재 컨텍스트 식별자를 가져오려면 `@Inject()` 데코레이터를 사용하여 요청 객체를 주입하는 것으로 시작하세요.
 
@@ -128,7 +128,7 @@ const contextId = ContextIdFactory.getByRequest(this.request);
 const catsRepository = await this.moduleRef.resolve(CatsRepository, contextId);
 ```
 
-## Instantiating custom classes dynamically
+## Instantiating custom classes dynamically[#](https://docs.nestjs.com/fundamentals/module-ref#instantiating-custom-classes-dynamically)
 
 이전에 **provider로 등록되지 않은** 클래스를 동적으로 인스턴스화하려면 모듈 참조의 `create()` 메서드를 사용합니다.
 

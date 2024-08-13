@@ -27,7 +27,7 @@ Nest에는 애플리케이션 전체에서 처리되지 않은 모든 예외를 
 > [!NOTE] HINT
 > 전역 예외 필터는 부분적으로 http-errors 라이브러리를 지원합니다. 기본적으로 statusCode 및 메시지 속성을 포함하는 모든 예외가 올바르게 채워지고 응답으로 다시 전송됩니다. (인식할 수 없는 예외의 경우 기본값인 InternalServerErrorException 대신).
 
-## Throwing standard exceptions
+## Throwing standard exceptions[#](https://docs.nestjs.com/exception-filters#throwing-standard-exceptions)
 
 `Nest`는 `@nestjs/common` 패키지에서 기본적인 `HttpException` 클래스를 제공합니다. 일반적인 `HTTP REST/GraphQL API` 기반 애플리케이션의 경우 특정 오류 조건이 발생할 때 표준 `HTTP` 응답 객체를 전송하는 것이 가장 좋습니다.
 
@@ -73,7 +73,7 @@ async findAll() {
 }
 ```
 
-## Custom exceptions
+## Custom exceptions[#](https://docs.nestjs.com/exception-filters#custom-exceptions)
 
 대부분의 경우 사용자 정의 예외를 작성할 필요가 없으며, 다음 섹션에 설명된 대로 기본 제공 Nest HTTP 예외를 사용할 수 있습니다. 사용자 정의 예외를 작성해야 하는 경우에는 사용자 정의 예외가 기본 `HttpException` 클래스에서 상속되는 자체 예외 계층 구조를 만드는 것이 좋습니다. 이 접근 방식을 사용하면 Nest가 예외를 인식하고 오류 응답을 자동으로 처리합니다.
 
@@ -85,7 +85,7 @@ export class ForbiddenException extends HttpException {
 }
 ```
 
-## Built-in HTTP exceptions
+## Built-in HTTP exceptions[#](https://docs.nestjs.com/exception-filters#built-in-http-exceptions)
 
 `Nest`는 기본 `HttpException`에서 상속되는 일련의 표준 예외를 제공합니다. 이러한 예외는 `@nestjs/common` 패키지에서 노출되며, 가장 일반적인 HTTP 예외 중 다수를 나타냅니다.
 
@@ -116,7 +116,7 @@ export class ForbiddenException extends HttpException {
 throw new BadRequestException("Something bad happened", { cause: new Error(), description: "Some error description" });
 ```
 
-## Exceptions filters
+## Exception filters[#](https://docs.nestjs.com/exception-filters#exception-filters-1)
 
 기본 예외 필터가 많은 경우를 자동으로 처리할 수 있지만 예외 계층을 완전히 제어하고 싶을 수도 있습니다. 예를 들어 로깅을 추가하거나 일부 동적 요인에 따라 다른 JSON 스키마를 사용하고 싶을 수 있습니다. 예외 필터는 바로 이러한 목적을 위해 설계되었습니다. 예외 필터를 사용하면 정확한 제어 흐름과 클라이언트에 다시 전송되는 응답의 내용을 제어할 수 있습니다.
 
@@ -151,13 +151,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
 `@Catch(HttpException)` 데코레이터는 필요한 메타데이터를 예외 필터에 바인딩하여 이 특정 필터가 `HttpException` 유형의 예외만 찾고 있음을 Nest에 알려줍니다. `@Catch()` 데코레이터는 단일 매개변수 또는 쉼표로 구분된 목록을 사용할 수 있습니다. 이를 통해 한 번에 여러 유형의 예외에 대한 필터를 설정할 수 있습니다.
 
-## Arguments host
+## Arguments host[#](https://docs.nestjs.com/exception-filters#arguments-host)
 
 `catch()` 메서드의 매개변수를 살펴봅시다. `exception` 매개변수는 현재 처리 중인 예외 객체입니다. `host` 매개변수는 `ArgumentsHost` 객체입니다. `ArgumentsHost는` [실행 컨텍스트 챕터](https://docs.nestjs.com/fundamentals/execution-context)에서 자세히 살펴볼 강력한 유틸리티 객체입니다. 이 코드 샘플에서는 이 객체를 사용하여 원래 요청 처리기(예외가 발생한 컨트롤러)로 전달되는 요청 및 응답 객체에 대한 참조를 가져옵니다. 이 코드 샘플에서는 원하는 요청 및 응답 객체를 얻기 위해 `ArgumentsHost`의 몇 가지 헬퍼 메서드를 사용했습니다. `ArgumentsHost`에 대해 자세히 알아보세요.
 
 이 수준의 추상화가 필요한 이유는 `ArgumentsHost`가 모든 컨텍스트(예: 지금 작업 중인 HTTP 서버 컨텍스트뿐만 아니라 마이크로서비스 및 웹소켓 등)에서 작동하기 때문입니다. 실행 컨텍스트 장에서는 ArgumentsHost와 그 헬퍼 함수를 사용하여 모든 실행 컨텍스트에 적합한 기본 인자에 액세스하는 방법을 살펴볼 것입니다. 이를 통해 모든 컨텍스트에서 작동하는 일반 예외 필터를 작성할 수 있습니다.
 
-## Binding filters
+## Binding filters[#](https://docs.nestjs.com/exception-filters#binding-filters)
 
 ```typescript
 @Post()
@@ -223,7 +223,7 @@ export class AppModule {}
 
 이 기술을 사용하여 필요한 만큼 필터를 추가할 수 있으며, 공급자 배열에 각각을 추가하기만 하면 됩니다.
 
-## Catch everthing
+## Catch everything[#](https://docs.nestjs.com/exception-filters#catch-everything)
 
 처리되지 않은 모든 예외를 잡으려면(예외 유형에 관계없이) `@Catch()` 데코레이터의 매개 변수 목록을 비워 두세요(예: `@Catch()`).
 
@@ -260,7 +260,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
 > [!WARNING] WARNING
 > 모든 것을 캐치하는 예외 필터와 특정 유형에 바인딩된 필터를 결합하는 경우, 특정 필터가 바인딩된 유형을 올바르게 처리할 수 있도록 `'Catch anything'` 필터를 먼저 선언해야 합니다.
 
-## Inheritance
+## Inheritance[#](https://docs.nestjs.com/exception-filters#inheritance)
 
 일반적으로 애플리케이션 요구 사항을 충족하기 위해 완전히 사용자 정의된 예외 필터를 만들게 됩니다. 그러나 기본 제공되는 기본 전역 예외 필터를 단순히 확장하고 특정 요인에 따라 동작을 재정의하려는 사용 사례가 있을 수 있습니다.
 

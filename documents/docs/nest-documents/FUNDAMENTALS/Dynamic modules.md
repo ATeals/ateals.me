@@ -13,7 +13,7 @@ type: Docs
 
 [Modules chapter](https://docs.nestjs.com/modules)에서는 Nest 모듈의 기본 사항을 다루며 [dynamic modules](https://docs.nestjs.com/modules#dynamic-modules)에 대한 간략한 소개가 포함되어 있습니다. 이 장에서는 동적 모듈에 대한 주제를 확장합니다. 이 장이 끝나면 동적 모듈이 무엇이고 언제 어떻게 사용하는지 잘 이해하게 될 것입니다.
 
-## Introduction
+## Introduction[#](https://docs.nestjs.com/fundamentals/dynamic-modules#introduction)
 
 이 문서의 개요 섹션에 있는 대부분의 애플리케이션 **코드 예제**는 일반 모듈 또는 정적 모듈을 사용합니다. 모듈은 전체 애플리케이션의 모듈식 부분으로 함께 들어맞는 **provider** 및 **controllers**와 같은 구성 요소 그룹을 정의합니다. 모듈은 이러한 컴포넌트에 대한 실행 컨텍스트 또는 범위를 제공합니다. 예를 들어 모듈에 정의된 프로바이더는 내보낼 필요 없이 모듈의 다른 멤버가 볼 수 있습니다. 공급자가 모듈 외부에 표시되어야 하는 경우 먼저 호스트 모듈에서 내보낸 다음 소비 모듈로 가져옵니다.
 
@@ -68,7 +68,7 @@ export class AuthService {
 - `AuthModule` 인스턴스화 및 `AuthModule`의 내보낸 providers를 `AuthModule`의 컴포넌트에서 사용할 수 있게 만들기(마치 `AuthModule`에서 선언된 것처럼).
 - `AuthService`에 `UsersService` 인스턴스 주입.
 
-## Dynamic module use case
+## Dynamic module use case[#](https://docs.nestjs.com/fundamentals/dynamic-modules#dynamic-module-use-case)
 
 정적 모듈 바인딩을 사용하면 소비 모듈이 호스트 모듈의 공급자 구성 방식에 영향을 미칠 기회가 없습니다. 이것이 왜 중요할까요? 사용 사례에 따라 다르게 동작해야 하는 범용 모듈이 있는 경우를 생각해 보세요. 이는 많은 시스템에서 '플러그인'이라는 개념과 유사하며, 일반 기능을 소비자가 사용하기 전에 약간의 구성이 필요합니다.
 
@@ -78,7 +78,7 @@ Nest의 좋은 예로 **configuration module**을 들 수 있습니다. 많은 �
 
 즉, 동적 모듈은 지금까지 살펴본 정적 바인딩을 사용하는 것과 달리 한 모듈을 다른 모듈로 가져오고 가져온 모듈의 속성 및 동작을 사용자 정의할 수 있는 API를 제공합니다.
 
-## Config module example
+## Config module example[#](https://docs.nestjs.com/fundamentals/dynamic-modules#config-module-example)
 
 이 섹션에서는 [configuration chapter](https://docs.nestjs.com/techniques/configuration#service)에 있는 예제 코드의 기본 버전을 사용하겠습니다. 이 장의 마지막에 완성된 버전은 [여기](https://github.com/nestjs/nest/tree/master/sample/25-dynamic-modules)에서 작업 예제로 사용할 수 있습니다.
 
@@ -167,7 +167,7 @@ export class ConfigModule {
 
 그러나 동적 모듈은 아직 우리가 원하는 대로 **configure** 할 수 있는 기능을 도입하지 않았기 때문에 그다지 흥미롭지는 않습니다. 이 부분은 다음에 다루겠습니다.
 
-## Module configuration
+## Module configuration[#](https://docs.nestjs.com/fundamentals/dynamic-modules#module-configuration)
 
 위에서 추측한 것처럼 정적 `register()` 메서드에서 옵션 객체를 전달하는 것이 `ConfigModule`의 동작을 사용자 정의하는 가장 확실한 해결책입니다. 소비 모듈의 `import` 프로퍼티를 다시 한 번 살펴봅시다.
 
@@ -269,11 +269,11 @@ export class ConfigService {
 export const CONFIG_OPTIONS = "CONFIG_OPTIONS";
 ```
 
-## Example
+## Example[#](https://docs.nestjs.com/fundamentals/dynamic-modules#example)
 
 이 장의 전체 코드 예제는 [여기](https://github.com/nestjs/nest/tree/master/sample/25-dynamic-modules)에서 확인할 수 있습니다.
 
-## Community guidelines
+## Community guidelines[#](https://docs.nestjs.com/fundamentals/dynamic-modules#community-guidelines)
 
 일부 `@nestjs/` 패키지에서 `forRoot`, `register`, `forFeature`와 같은 메서드가 사용되는 것을 보셨을 것이고, 이 모든 메서드의 차이점이 무엇인지 궁금하실 것입니다. 이에 대한 엄격한 규칙은 없지만 `@nestjs/` 패키지는 다음 가이드라인을 따르려고 노력합니다.
 
@@ -283,7 +283,7 @@ export const CONFIG_OPTIONS = "CONFIG_OPTIONS";
 
 이 모든 것에는 일반적으로 비동기 대응 함수인 `registerAsync`, `forRootAsync`, `forFeatureAsync`가 있으며, 이는 같은 의미이지만 구성에도 Nest의 의존성 주입을 사용합니다.
 
-## Configurable module builder
+## Configurable module builder[#](https://docs.nestjs.com/fundamentals/dynamic-modules#configurable-module-builder)
 
 비동기 메서드(`registerAsync`, `forRootAsync` 등)를 노출하는 고도로 구성 가능한 동적 모듈을 수동으로 생성하는 것은 특히 초보자에게 매우 복잡하므로 Nest는 이 과정을 용이하게 하고 단 몇 줄의 코드만으로 모듈 "청사진"을 구성할 수 있는 `ConfigurableModuleBuilder` 클래스를 노출하고 있습니다.
 
@@ -348,7 +348,7 @@ export class ConfigService {
 }
 ```
 
-## Custom method key
+## Custom method key[#](https://docs.nestjs.com/fundamentals/dynamic-modules#custom-method-key)
 
 `ConfigurableModuleClass`는 기본적으로 `register`와 그에 대응하는 `registerAsync` 메서드를 제공합니다. 다른 메서드 이름을 사용하려면 다음과 같이 `ConfigurableModuleBuilder#setClassMethodName` 메서드를 사용하세요.
 
@@ -378,7 +378,7 @@ export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new Configurabl
 export class AppModule {}
 ```
 
-## Custom options factory class
+## Custom options factory class[#](https://docs.nestjs.com/fundamentals/dynamic-modules#custom-options-factory-class)
 
 `registerAsync` 메서드(또는 구성에 따라 `forRootAsync` 또는 다른 이름)는 소비자가 모듈 구성을 확인하는 provider 정의를 전달할 수 있으므로 라이브러리 소비자는 잠재적으로  configuration object를 구성하는 데 사용할 클래스를 제공할 수 있습니다.
 
@@ -414,7 +414,7 @@ export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new Configurabl
 export class AppModule {}
 ```
 
-## Extra options
+## Extra options[#](https://docs.nestjs.com/fundamentals/dynamic-modules#extra-options)
 
 모듈의 동작 방식을 결정하는 추가 옵션(이러한 옵션의 좋은 예는 `isGlobal` 플래그 또는 그냥 글로벌)이 필요하지만 동시에 `MODULE_OPTIONS_TOKEN` provider에 포함되어서는 안 되는 에지 케이스가 있습니다(예: 해당 모듈 내에 등록된 services/providers와 관련이 없으므로 `ConfigService`는 호스트 모듈이 글로벌 모듈로 등록되어 있는지 여부를 알 필요가 없음).
 
@@ -462,7 +462,7 @@ export class ConfigService {
 }
 ```
 
-## Extending auto-generated methods
+## Extending auto-generated methods[#](https://docs.nestjs.com/fundamentals/dynamic-modules#extending-auto-generated-methods)
 
 자동 생성된 정적 메서드(`register`, `registerAsync` 등)는 필요한 경우 다음과 같이 확장할 수 있습니다.
 

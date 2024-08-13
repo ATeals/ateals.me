@@ -27,7 +27,7 @@ Nest에는 바로 사용할 수 있는 여러 가지 기본 제공 파이프가 
 > [!NOTE] HINT
 > 파이프는 예외 영역 내에서 실행됩니다. 즉, 파이프가 예외를 던지면 예외 계층(전역 예외 필터 및 현재 컨텍스트에 적용되는 모든 [exceptions filters](https://docs.nestjs.com/exception-filters))에서 처리됩니다. 위의 내용을 고려할 때, 파이프에서 예외가 발생하면 컨트롤러 메서드가 이후에 실행되지 않는다는 것을 분명히 알 수 있습니다. 이는 시스템 경계에서 외부 소스에서 애플리케이션으로 들어오는 데이터의 유효성을 검사하는 모범 사례 기법을 제공합니다.
 
-## Built-in pipes
+## Built-in pipes[#](https://docs.nestjs.com/pipes#built-in-pipes)
 
 Nest에는 9개의 파이프가 기본으로 제공됩니다.
 
@@ -41,7 +41,7 @@ Nest에는 9개의 파이프가 기본으로 제공됩니다.
 - `DefaultValuePipe`
 - `ParseFilePipe`
 
-## Binding pipes
+## Binding pipes[#](https://docs.nestjs.com/pipes#binding-pipes)
 
 파이프를 사용하려면 파이프 클래스의 인스턴스를 적절한 컨텍스트에 바인딩해야 합니다. `ParseIntPipe` 예제에서는 파이프를 특정 라우트 핸들러 메서드와 연결하고 메서드가 호출되기 전에 파이프가 실행되도록 하려고 합니다. 이를 위해 다음 구성을 사용하며, 이를 메서드 매개변수 수준에서 파이프를 바인딩하는 것으로 지칭합니다.
 
@@ -111,7 +111,7 @@ async findOne(@Param('uuid', new ParseUUIDPipe()) uuid: string) {
 > [!NOTE] HINT
 > 또한 유효성 검사 파이프의 광범위한 예는  [Validation techniques](https://docs.nestjs.com/techniques/validation)을 참조하세요.
 
-## Custom pipes
+## Custom pipes[#](https://docs.nestjs.com/pipes#custom-pipes)
 
 앞서 언급했듯이 사용자 정의 파이프를 직접 만들 수 있습니다. Nest는 강력한 기본 제공 `ParseIntPipe` 및 `ValidationPipe`를 제공하지만, 사용자 정의 파이프가 어떻게 구성되는지 알아보기 위해 각각의 간단한 사용자 정의 버전을 처음부터 구축해 보겠습니다.
 
@@ -157,7 +157,7 @@ export interface ArgumentMetadata {
 
 ``
 
-## schema based validation
+## Schema based validation[#](https://docs.nestjs.com/pipes#schema-based-validation)
 
 유효성 검사 파이프를 좀 더 유용하게 만들어 봅시다. 서비스 메서드를 실행하기 전에 포스트 본문 객체가 유효한지 확인해야 하는 `CatsController`의 `create()` 메서드를 자세히 살펴봅시다.
 
@@ -186,7 +186,7 @@ create 메서드로 들어오는 모든 요청에 유효한 본문이 포함되�
 
 물론 이것이 바로 파이프가 설계된 사용 사례입니다. 이제 유효성 검사 파이프를 구체화해 보겠습니다.
 
-## Object schema validation
+## Object schema validation[#](https://docs.nestjs.com/pipes#object-schema-validation)
 
 깔끔하고 **DRY**한 방식으로 객체 유효성 검사를 수행하는 데 사용할 수 있는 몇 가지 접근 방식이 있습니다. 한 가지 일반적인 접근 방식은 스키마 기반 유효성 검사를 사용하는 것입니다. 이 접근 방식을 사용해 보겠습니다.
 
@@ -216,7 +216,7 @@ export class ZodValidationPipe implements PipeTransform {
 }
 ```
 
-## Binding validation pipes
+## Binding validation pipes[#](https://docs.nestjs.com/pipes#binding-validation-pipes)
 
 앞서 변환 파이프를 바인딩하는 방법(예: `ParseIntPipe` 및 나머지 `Parse*` 파이프)을 살펴봤습니다.
 
@@ -253,7 +253,8 @@ async create(@Body() createCatDto: CreateCatDto) {
 > [!WARNING] WARNING
 > `zod` 라이브러리를 사용하려면 `tsconfig.json` 파일에서 `strictNullChecks` 구성을 사용하도록 설정해야 합니다.
 
-## Class validator
+## Class validator[#](https://docs.nestjs.com/pipes#class-validator)
+
 
 > [!WARNING] WARNING
 > 이 섹션의 기술은 타입스크립트가 필요하며 바닐라 자바스크립트를 사용하여 앱을 작성하는 경우 사용할 수 없습니다.
@@ -340,7 +341,7 @@ async create(
 
 매개변수 범위 지정 파이프는 유효성 검사 로직이 지정된 매개변수 하나에만 관련될 때 유용합니다.
 
-## Global scoped pipes
+## Global scoped pipes[#](https://docs.nestjs.com/pipes#global-scoped-pipes)
 
 `ValidationPipe`는 최대한 범용적으로 만들어졌기 때문에 전체 애플리케이션의 모든 경로 핸들러에 적용되도록 **전역 범위** 파이프로 설정하면 그 유용성을 최대한 발휘할 수 있습니다.
 
@@ -378,11 +379,11 @@ export class AppModule {}
 > [!NOTE] HINT
 > 이 접근 방식을 사용하여 파이프에 대한 종속성 주입을 수행할 때 이 구조가 사용되는 모듈에 관계없이 파이프는 실제로 전역이라는 점에 유의하세요. 이 작업을 어디에서 수행해야 할까요? 파이프가 정의된 모듈(위 예제에서는 `ValidationPipe`)을 선택합니다. 또한 사용 클래스만이 custom provider 등록을 처리하는 유일한 방법은 아닙니다. [여기](https://docs.nestjs.com/fundamentals/custom-providers)에서 자세히 알아보세요.
 
-## The built-in Validation pipe
+## The built-in ValidationPipe[#](https://docs.nestjs.com/pipes#the-built-in-validationpipe)
 
 다시 한 번 말씀드리지만, `ValidationPipe`는 Nest에서 기본으로 제공되므로 일반적인 유효성 검사 파이프를 직접 구축할 필요가 없습니다. 기본 제공 `ValidationPipe`는 이 장에서 빌드한 샘플보다 더 많은 옵션을 제공하지만, 사용자 정의 파이프의 메커니즘을 설명하기 위해 기본으로 유지했습니다. [여기](https://docs.nestjs.com/techniques/validation)에서 많은 예제와 함께 자세한 내용을 확인할 수 있습니다.
 
-## Transformation use case
+## Transformation use case[#](https://docs.nestjs.com/pipes#transformation-use-case)
 
 유효성 검사만이 사용자 정의 파이프의 유일한 사용 사례는 아닙니다. 이 장의 서두에서 파이프로 입력 데이터를 원하는 형식으로 변환할 수도 있다고 언급했습니다. 이는 `transform` 함수에서 반환된 값이 인수의 이전 값을 완전히 재정의하기 때문에 가능합니다.
 
@@ -416,7 +417,7 @@ findOne(@Param('id', UserByIdPipe) userEntity: UserEntity) {
 
 이 파이프의 구현은 독자에게 맡기지만 다른 모든 변환 파이프와 마찬가지로 입력 값(`ID`)을 받고 출력 값(`UserEntity` 개체)을 반환한다는 점에 유의하세요. 이렇게 하면 보일러플레이트 코드를 핸들러에서 공통 파이프로 추상화하여 코드를 보다 선언적이고 `DRY`하게 만들 수 있습니다.
 
-## Providing defaults
+## Providing defaults[#](https://docs.nestjs.com/pipes#providing-defaults)
 
 `Parse*` 파이프는 매개변수 값이 정의되어 있을 것으로 기대합니다. `null` 또는 `undefined`를 수신하면 예외를 발생시킵니다. 엔드포인트에서 누락된 쿼리 문자열 매개변수 값을 처리할 수 있도록 하려면, `Parse*` 파이프가 이러한 값에 대해 작동하기 전에 주입할 기본값을 제공해야 합니다. `DefaultValuePipe`가 바로 그 역할을 합니다. 아래 그림과 같이 관련 `Parse*` 파이프 앞에 `@Query()` 데코레이터에서 `DefaultValuePipe`를 인스턴스화하기만 하면 됩니다.
 
