@@ -20,5 +20,11 @@ export const Paragraph = ({ children, ...props }: React.HTMLProps<HTMLParagraphE
 
   const parts = splitByBrackets(children);
 
-  return parts.map((p) => <Backlink key={p}>{p}</Backlink>);
+  return (
+    <>
+      {parts.map((p) => (
+        <Backlink key={p}>{p}</Backlink>
+      ))}
+    </>
+  );
 };
