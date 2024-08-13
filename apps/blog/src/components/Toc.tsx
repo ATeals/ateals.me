@@ -20,7 +20,7 @@ export const Toc = ({ post }: { post: Document }) => {
 
   return (
     <ul className="max-h-[700px] overflow-scroll my-10 scrollbar-hide ">
-      {tocHeadings.map(({ text, level }, index) => (
+      {tocHeadings.map(({ text, level, link }, index) => (
         <li
           key={text + level + index}
           style={{ marginRight: (level - 2) * 5, paddingRight: (level - 2) * 5 }}
@@ -30,7 +30,7 @@ export const Toc = ({ post }: { post: Document }) => {
             activeHeading.value === text && activeHeading.level === level && "text-secondary-md"
           )}
         >
-          <Link href={`#${text}`} replace>
+          <Link href={`#${link}`} replace>
             {text}
           </Link>
         </li>

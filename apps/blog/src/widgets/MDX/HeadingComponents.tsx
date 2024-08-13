@@ -3,5 +3,7 @@ export const HeadingComponentsBuilder =
   ({ ...props }) => {
     const Element = type;
 
-    return <Element {...props} id={typeof props.children === "string" ? props.children : ""} />;
+    const id = Array.isArray(props.children) ? props.children[0] : props.children;
+
+    return <Element {...props} id={id} />;
   };
