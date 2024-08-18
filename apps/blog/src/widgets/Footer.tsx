@@ -7,6 +7,7 @@ import { SiObsidian } from "react-icons/si";
 
 import { POST_TYPES } from "@/config";
 import { Fragment } from "react";
+import { HitBadge } from "./HitBadge";
 
 export const Footer = () => (
   <footer className="relative h-40 bg-zinc-200 p-2 px-5 text-end text-sm text-light text-gray-700 space-y-2.5 dark:bg-dark-highlight dark:text-gray-400">
@@ -30,5 +31,7 @@ export const Footer = () => (
     <p className="flex gap-2 justify-end my-2">
       <SiNextdotjs /> <RiTailwindCssFill /> <SiMdx /> <SiObsidian />
     </p>
+
+    <HitBadge className="absolute right-0 p-2 px-5 bottom-0" />
   </footer>
 );
