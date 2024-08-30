@@ -249,10 +249,7 @@ FlexBox를 예시로 들겠습니다.
 
 이제 이런 식으로 `컴포넌트의 합성이 가능해야 한다.` 를 해결했습니다.
 
-
-
 ![](https://i.imgur.com/nvsfhtH.gif)
-
 
 예시를 보시면 변경되는 컴포넌트만 리렌더링 되는 모습을 확인할 수 있습니다.
 
@@ -305,3 +302,5 @@ console.log(
 결론적으로 Component class를 통해서 제가 원초적으로 해결하고자 했던 모든 리소스를 타입스크립트 내부에서 관리하고자하는 목적을 달성했습니다.
 
 직접 바닐라로 SPA 컴포넌트를 구현해보면서 DOM API에 대해서 더 자세히 알게 된 것 같습니다.
+
+> 코드는 [여기](https://github.com/ATeals/mini-Web-Framework/tree/main/src/.core/fe)에서 확인할 수 있습니다.
