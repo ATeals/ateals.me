@@ -6,6 +6,7 @@
     "_A_원칙/",
     "_template/"
   ],
-  "strictLineBreaks": false,
-  "rightToLeft": false
+  "strictLineBreaks": true,
+  "rightToLeft": false,
+  "alwaysUpdateLinks": true
 }

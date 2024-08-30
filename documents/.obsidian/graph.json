@@ -8,13 +8,6 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:blog  ",
-      "color": {
-        "a": 1,
-        "rgb": 14048348
-      }
-    },
-    {
       "query": "path:snapshots  ",
       "color": {
         "a": 1,
@@ -34,9 +27,16 @@
         "a": 1,
         "rgb": 16635009
       }
+    },
+    {
+      "query": "path:blog  ",
+      "color": {
+        "a": 1,
+        "rgb": 15879729
+      }
     }
   ],
-  "collapse-display": false,
+  "collapse-display": true,
   "showArrow": false,
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1,
@@ -46,6 +46,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.3100452343197663,
+  "scale": 0.21670941581023803,
   "close": true
 }
