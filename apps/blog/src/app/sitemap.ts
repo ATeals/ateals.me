@@ -9,6 +9,8 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   return posts.map((post) => ({
     url: `${SITE_CONFIG.domain}${post.url}`,
     lastModified: post.date,
+    changeFrequency: "daily",
+    priority: 0.8,
   }));
 };
 

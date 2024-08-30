@@ -19,7 +19,7 @@ const fields: FieldDefs = {
 
 const computedFields = {
   pageID: { type: "string", resolve: <T extends Document>(post: T) => encodeURIComponent(post.title) },
-  url: { type: "string", resolve: <T extends Document>(post: T) => `/snapshots/${encodeURIComponent(post.title)}` },
+  url: { type: "string", resolve: <T extends Document>(post: T) => `/posts/${encodeURIComponent(post.title)}` },
   src: {
     type: "string",
     resolve: <T extends Document>(post: T) => post._raw.sourceFileDir.match(/\/(.+)/)?.[1] ?? "",
