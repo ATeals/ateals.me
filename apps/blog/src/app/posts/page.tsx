@@ -17,7 +17,7 @@ const getPostsDescription = (type?: DocumentType) => {
 export default function Page({
   searchParams,
 }: {
-  searchParams: { type?: DocumentType; src?: string; tags?: string; view?: string };
+  searchParams: { type?: DocumentType; src?: string; tags?: string; view?: string; order?: "desc" | "asc" };
 }) {
   const query = { ...searchParams, tags: searchParams.tags?.split(",") || [] };
 

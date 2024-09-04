@@ -69,10 +69,22 @@ export class DocumentBuilder {
     return this;
   }
 
-  query({ tags, src, type }: { tags?: string[]; src?: string; type?: DocumentType }) {
+  query({ tags, src, type, order }: { tags?: string[]; src?: string; type?: DocumentType; order?: "asc" | "desc" }) {
     if (tags) this.getPostsFromTag(tags);
     if (src) this.getPostsFromSourceFileDir(src);
     if (type) this.getPostsFromType(type);
+    if (order) this.sortPostsByDate(order);
+
+    return this;
+  }
+
+  sortPostsByDate(order: "asc" | "desc" = "desc") {
+    this.documents = this.documents.sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+
+      return order === "asc" ? dateA - dateB : dateB - dateA;
+    });
 
     return this;
   }
