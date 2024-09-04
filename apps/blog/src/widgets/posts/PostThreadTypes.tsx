@@ -9,6 +9,9 @@ import { PostBody } from "./PostBody";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SITE_CONFIG } from "@/config";
 import { Separator } from "@/components/ui";
+import { SideMenu, SideMenuPortal } from "../SideMenu";
+import { Toc } from "@/components/Toc";
+import { createPortal } from "react-dom";
 
 interface PostThreadTypesProps extends HTMLProps<HTMLDivElement> {
   posts: Document[];
@@ -39,6 +42,10 @@ export const PostThreadTypes = ({ posts, className, ...props }: PostThreadTypesP
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
+                  <SideMenuPortal>
+                    <Toc post={post} />
+                  </SideMenuPortal>
+
                   <div className="flex justify-between mb-5 px-1 py-2">
                     <Post.TagList className="px-2 md:p-0" />
                     <Post.ReadingTime />

@@ -1,5 +1,6 @@
 import { cn } from "@repo/shadcn/utils";
 import { HTMLProps } from "react";
+import { createPortal } from "react-dom";
 
 interface SideMenuProps extends HTMLProps<HTMLElement> {
   position?: keyof typeof POSITIONS_MAP;
@@ -10,6 +11,8 @@ const POSITIONS_MAP = {
   right: "text-start translate-x-[200%] pl-10",
 };
 
+const SideMenuLabel = "SIDE_MENU";
+
 export const SideMenu = ({ position = "left", className, ...props }: SideMenuProps) => {
   const tailwind = cn(
     "text-sm lg:block hidden fixed w-[300px] h-full top-20",
@@ -18,5 +21,15 @@ export const SideMenu = ({ position = "left", className, ...props }: SideMenuPro
     className
   );
 
-  return <aside className={tailwind}>{props.children}</aside>;
+  return (
+    <aside className={tailwind}>
+      {props.children}
+
+      <div id={SideMenuLabel}></div>
+    </aside>
+  );
+};
+
+export const SideMenuPortal = ({ children }: { children: React.ReactNode }) => {
+  return createPortal(children, document.getElementById(SideMenuLabel)!);
 };

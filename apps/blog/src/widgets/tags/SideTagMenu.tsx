@@ -19,7 +19,7 @@ export const SideTagMenu = ({ tags, className, ...props }: SideTagMenuProps) => 
 
   const [isOpen, setIsOpen] = useState(tag ? true : false);
 
-  const tw = cn("", className);
+  const tw = cn("overflow-scroll", className);
 
   return (
     <SideMenu className={tw} {...props}>

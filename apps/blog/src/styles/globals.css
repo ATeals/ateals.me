@@ -9,3 +9,10 @@ html {
 ::selection {
   @apply bg-primary-md text-secondary-sm;
 }
+
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
