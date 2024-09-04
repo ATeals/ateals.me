@@ -15,7 +15,7 @@ const SideMenuLabel = "SIDE_MENU";
 
 export const SideMenu = ({ position = "left", className, ...props }: SideMenuProps) => {
   const tailwind = cn(
-    "text-sm lg:block hidden fixed w-[300px] h-full top-20",
+    "text-sm lg:block hidden fixed w-[300px] top-20 h-[80%] overflow-y-auto",
     "text-gray-700 dark:text-gray-400 font-[350] ",
     POSITIONS_MAP[position],
     className
@@ -25,11 +25,11 @@ export const SideMenu = ({ position = "left", className, ...props }: SideMenuPro
     <aside className={tailwind}>
       {props.children}
 
-      <div id={SideMenuLabel}></div>
+      <div id={SideMenuLabel} className="mt-10 pb-[10rem]"></div>
     </aside>
   );
 };
 
-export const SideMenuPortal = ({ children }: { children: React.ReactNode }) => {
-  return createPortal(children, document.getElementById(SideMenuLabel)!);
+export const SideMenuPortal = ({ children, portalKey }: { children: React.ReactNode; portalKey?: string }) => {
+  return createPortal(children, document.getElementById(SideMenuLabel)!, portalKey);
 };

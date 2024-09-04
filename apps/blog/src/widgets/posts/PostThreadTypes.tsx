@@ -9,9 +9,8 @@ import { PostBody } from "./PostBody";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SITE_CONFIG } from "@/config";
 import { Separator } from "@/components/ui";
-import { SideMenu, SideMenuPortal } from "../SideMenu";
+import { SideMenuPortal } from "../SideMenu";
 import { Toc } from "@/components/Toc";
-import { createPortal } from "react-dom";
 
 interface PostThreadTypesProps extends HTMLProps<HTMLDivElement> {
   posts: Document[];
@@ -42,7 +41,12 @@ export const PostThreadTypes = ({ posts, className, ...props }: PostThreadTypesP
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <SideMenuPortal>
+                  <SideMenuPortal portalKey={post._id}>
+                    <div className="inline-block">
+                      <Post.Title className="text-[1.125rem] font-extralight mb-2" />
+                      <Separator />
+                    </div>
+
                     <Toc post={post} />
                   </SideMenuPortal>
 

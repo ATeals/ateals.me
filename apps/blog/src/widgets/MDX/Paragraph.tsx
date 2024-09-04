@@ -22,7 +22,7 @@ export const Paragraph = ({ children }: React.HTMLProps<HTMLParagraphElement>) =
   return (
     <p>
       {parts.map((p) => (
-        <Backlinks>{p}</Backlinks>
+        <Backlinks key={p}>{p}</Backlinks>
       ))}
     </p>
   );
