@@ -37,7 +37,7 @@ export const PostThreadTypes = ({ posts, className, ...props }: PostThreadTypesP
                 <AccordionTrigger className="">
                   <div className="flex gap-2">
                     <Post.TypeLable />
-                    <Post.Title className=" group-hover/post:text-primary-lg font-extralight" />
+                    <Post.Title className=" group-hover/post:text-primary-lg font-extralight text-start" />
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
