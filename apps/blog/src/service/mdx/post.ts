@@ -32,6 +32,10 @@ export const getPostNavigation = (post: Document) => {
 export class DocumentBuilder {
   private documents = allPosts.filter((post) => post.draft !== true);
 
+  getAll() {
+    return this.documents;
+  }
+
   getDocuments({ filter }: { filter?: DocumentType[] } = {}) {
     if (filter) {
       return this.documents.filter((post) => filter.includes(post.type));

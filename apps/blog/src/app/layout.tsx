@@ -6,6 +6,8 @@ import { BlurSection } from "@/widgets/BlurSection";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/widgets/providers/ThemeProvider";
 import { Footer } from "@/widgets/Footer";
+import { CMDK } from "@/widgets/CMDK";
+import { CMDProvider } from "@/hooks/useCmdK";
 
 export { generateMetadata } from "./metadata";
 
@@ -30,9 +32,12 @@ export default function RootLayout({
         <BlurSection />
 
         <ThemeProvider>
-          <main className="min-h-dvh bg-white dark:bg-dark-bg transition-colors ease-in-out duration-500">
-            {children}
-          </main>
+          <CMDProvider>
+            <main className="min-h-dvh bg-white dark:bg-dark-bg transition-colors ease-in-out duration-500">
+              {children}
+            </main>
+            <CMDK />
+          </CMDProvider>
         </ThemeProvider>
 
         <Footer />
