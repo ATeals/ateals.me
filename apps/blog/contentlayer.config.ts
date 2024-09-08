@@ -15,11 +15,19 @@ const fields: FieldDefs = {
   image: { type: "string", default: "https://blog.ateals.me/images/main.webp" },
   draft: { type: "boolean" },
   tags: { type: "list", of: { type: "string" } },
+  enTitle: { type: "string" },
 } as const;
 
 const computedFields = {
-  pageID: { type: "string", resolve: <T extends Document>(post: T) => encodeURIComponent(post.title) },
-  url: { type: "string", resolve: <T extends Document>(post: T) => `/posts/${encodeURIComponent(post.title)}` },
+  pageID: {
+    type: "string",
+    resolve: <T extends Document>(post: T) => createSlugFromTitle(post),
+  },
+  url: {
+    type: "string",
+    resolve: <T extends Document>(post: T) => `/posts/${createSlugFromTitle(post)}`,
+  },
+
   src: {
     type: "string",
     resolve: <T extends Document>(post: T) => post._raw.sourceFileDir.match(/\/(.+)/)?.[1] ?? "",
@@ -69,3 +77,9 @@ export default makeSource({
     rehypePlugins: [[rehypePrettyCode as any, rehypePrettyCodeOptions]],
   },
 });
+
+const createSlugFromTitle = <T extends Document>(post: T) => {
+  const title = post.enTitle ? post.enTitle : post.title;
+
+  return encodeURIComponent(title.toLowerCase().replace(/ /g, "-"));
+};

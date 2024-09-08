@@ -2,13 +2,14 @@
 title: 나의 Raycast 사용 방법
 description: Mac을 효율적으로 다루어 보자.
 image: https://i.imgur.com/NhuTBJX.png
-date: 2024-09-08T21:50
+date: 2024-09-08T22:40
 draft: false
 tags:
   - tool
 type: Snapshot
 aliases: 
-link:
+link: 
+enTitle: using-raycast
 ---
 
 저는 Mac으로 작업하면서 Spotlight를 정말 많이 애용했습니다. Spotlight의 검색창을 통해 맥에서 접근할 수 있는 모든 것들을 직접 찾지 않고 바로 접근할 수 있습니다.
