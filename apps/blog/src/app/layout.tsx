@@ -22,12 +22,14 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
 
+        <meta name="naver-site-verification" content="2d9e9c7acfe720cca4cbb93b0bfa30213ed8d9c1" />
         <meta name="google-site-verification" content="U3213RTjnL2MBwyxUP3W66hcIIqcwV24irUIYoSkKzQ" />
+
+        <link rel="alternate" type="application/rss+xml" href="/feed/rss" title="RSS" />
+        <link rel="alternate" type="application/atom+xml" href="/feed/atom" title="RSS Atom" />
+        <link rel="alternate" type="application/json" href="/feed/json" title="JSON Feed" />
       </head>
 
-      <link rel="alternate" type="application/rss+xml" href="/feed/rss" title="RSS" />
-      <link rel="alternate" type="application/atom+xml" href="/feed/atom" title="RSS Atom" />
-      <link rel="alternate" type="application/json" href="/feed/json" title="JSON Feed" />
       <body className="" style={GeistSans.style}>
         <BlurSection />
 
