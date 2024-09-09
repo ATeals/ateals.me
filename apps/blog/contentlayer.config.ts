@@ -79,7 +79,7 @@ export default makeSource({
 });
 
 const createSlugFromTitle = <T extends Document>(post: T) => {
-  const title = post.enTitle ? post.enTitle : post.title;
+  const title = post.enTitle ? post.enTitle.replace(/ /g, "-") : post.title;
 
-  return encodeURIComponent(title.toLowerCase().replace(/ /g, "-"));
+  return encodeURIComponent(title.toLowerCase());
 };
