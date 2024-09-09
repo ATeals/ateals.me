@@ -25,7 +25,7 @@ code > [data-line]:not([data-highlighted-line-id])::before {
   @apply border-primary-lg bg-opacity-20 dark:bg-opacity-30  bg-primary-sm   dark:bg-primary-sm;
 }
 
-[data-highlighted-line-id="plus"]::before {
+[data-highlighted-line-id="add"]::before {
   content: "+";
 
   /* Other styling */
@@ -37,11 +37,11 @@ code > [data-line]:not([data-highlighted-line-id])::before {
 }
 
 /* 코드블럭 강조 - */
-.prose code span[data-highlighted-line-id="minus"] {
+.prose code span[data-highlighted-line-id="rm"] {
   @apply border-secondary-md bg-opacity-20 dark:bg-opacity-30 bg-red-300 dark:bg-red-400;
 }
 
-[data-highlighted-line-id="minus"]::before {
+[data-highlighted-line-id="rm"]::before {
   content: "-";
 
   /* Other styling */
