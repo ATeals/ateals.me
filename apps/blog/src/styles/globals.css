@@ -7,7 +7,7 @@ html {
 }
 
 ::selection {
-  @apply bg-primary-md text-secondary-sm;
+  @apply bg-secondary-md bg-opacity-20;
 }
 
 body {
