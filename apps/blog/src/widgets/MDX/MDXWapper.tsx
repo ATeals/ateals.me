@@ -16,13 +16,13 @@ export const MDXWapper = ({ children, className }: { children: React.ReactNode; 
       "prose-h1:text-2xl",
       "prose-h2:text-xl prose-h2:font-medium",
       "prose-h3:text-lg",
-      "prose-headings:mt-20 mb-4",
+      "prose-headings:mt-24 prose-headings:mb-8",
       "prose-inline-code:p-1 prose-inline-code:font-normal prose-inline-code:bg-zinc-200 prose-inline-code:text-secondary-lg prose-inline-code:rounded-md prose-inline-code:shadow-md dark:prose-inline-code:bg-dark-highlight dark:prose-inline-code:text-secondary-md",
       "prose-code:before:hidden prose-code:after:hidden",
       "prose-img:shadow-lg",
-      "prose-pre:shadow-lg prose-pre:p-2 prose-pre:bg-transparent",
+      "prose-pre:shadow-lg prose-pre:p-2 prose-pre:bg-transparent prose-blockquote:my-8",
       "prose-li:text-gray-700 dark:prose-li:text-gray-400 prose-li:font-[350]",
-      "prose-code:text-[0.8rem]",
+      "prose-code:text-[0.8rem] prose-p:mb-8",
       className
     )}
   >

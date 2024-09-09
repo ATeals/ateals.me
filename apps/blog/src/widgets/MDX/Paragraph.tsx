@@ -15,7 +15,7 @@ export const splitByBrackets = (input: string) => {
 };
 
 export const Paragraph = ({ children }: React.HTMLProps<HTMLParagraphElement>) => {
-  if (typeof children !== "string") return children;
+  if (typeof children !== "string") return <p>{children}</p>;
 
   const parts = splitByBrackets(children);
 
