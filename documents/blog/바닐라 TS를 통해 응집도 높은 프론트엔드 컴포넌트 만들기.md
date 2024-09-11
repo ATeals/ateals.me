@@ -208,8 +208,8 @@ export const defineComponent = <T extends CustomElementConstructor>(
 
 이후 Component class를 HTMLElement를 상속하고 `connectedCallback` 메서드를 선언해 수정합니다.
 
-```ts {12-16}
-export abstract class Component<T extends object = {}> {
+```ts {1 ,12-16}#add
+export abstract class Component<T extends object = {}> extends HTMLElement {
   public state: Observable<T> = {} as Observable<T>;
 
   constructor(data: T = {} as T) {
