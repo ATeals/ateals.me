@@ -6,7 +6,6 @@ import { Header } from "@/widgets/Header";
 import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
 import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
 import { TogglePostList } from "@/widgets/posts/TogglePostList";
-import { SideTagMenu } from "@/widgets/tags/SideTagMenu";
 
 const getPostsDescription = (type?: DocumentType) => {
   if (!type) return POST_TYPES_ENTITY[""].description;
@@ -23,8 +22,6 @@ export default function Page({
 
   const posts = new DocumentBuilder().query(query).getDocuments({ filter: [...Object.values(DOCUMENT_TYPES)] });
 
-  const tags = new DocumentBuilder().getAllTags();
-
   return (
     <div className="mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
       <Header>
@@ -35,8 +32,6 @@ export default function Page({
         </div>
       </Header>
       <Separator />
-
-      <SideTagMenu tags={tags} className="py-[105px] whitespace-warp" />
 
       <TogglePostList posts={posts} />
     </div>
