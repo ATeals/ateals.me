@@ -12,7 +12,7 @@ export const MDXWapper = ({ children, className }: { children: React.ReactNode; 
       "prose prose-stone",
       "prose-strong:dark:text-zinc-300",
       "prose-quoteless dark:prose-blockquote:text-zinc-400 dark:prose-blockquote:bg-zinc-800",
-      "prose-blockquote:not-italic",
+      "prose-blockquote:not-italic prose-blockquote:bg-inherit dark:prose-blockquote:bg-inherit prose-blockquote:border-primary-lg dark:prose-blockquote:border-primary-md",
       "prose-h1:text-2xl",
       "prose-h2:text-xl prose-h2:font-medium",
       "prose-h3:text-lg",
@@ -21,7 +21,7 @@ export const MDXWapper = ({ children, className }: { children: React.ReactNode; 
       "prose-code:before:hidden prose-code:after:hidden",
       "prose-img:shadow-lg",
       "prose-pre:shadow-lg prose-pre:p-2 prose-pre:bg-transparent prose-blockquote:my-8",
-      "prose-li:text-gray-700 dark:prose-li:text-gray-400 prose-li:font-[350]",
+      "prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:font-[350]",
       "prose-code:text-[0.8rem] prose-p:mb-8",
       "prose-code:text-[0.725rem]",
       className
