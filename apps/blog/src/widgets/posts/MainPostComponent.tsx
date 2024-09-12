@@ -51,7 +51,7 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
 
           {props.children}
 
-          <Post.Navigation className="flex justify-between mt-8 px-2 max-w-dvw" />
+          <Post.Navigation className="w-full" />
         </div>
       </Post.Provider>
     </div>

@@ -21,9 +21,9 @@ export const PostNavigation = ({
   ) : (
     <>
       <Separator className="my-10" />
-      <div className={cn(className, "flex, justify-between items-center gap-2")} {...props}>
-        <div className="w-1/2">{prev && <NavigationButton post={prev} direction="prev" />}</div>
-        <div className="w-1/2">{next && <NavigationButton post={next} direction="next" />}</div>
+      <div className={cn(className)} {...props}>
+        <div>{prev && <NavigationButton post={prev} direction="prev" />}</div>
+        <div>{next && <NavigationButton post={next} direction="next" />}</div>
       </div>
     </>
   );
@@ -31,11 +31,15 @@ export const PostNavigation = ({
 
 const NavigationButton = ({ post, direction }: { post: Document; direction: "prev" | "next" }) => {
   return (
-    <Button variant={"outline"} className="w-full whitespace-pre-wrap space-x-2 font-extralight" asChild>
-      <Link className="" href={post.url}>
-        {direction === "prev" && <span>{"<"}</span>}
-        <span>{post.title}</span>
-        {direction === "next" && <span>{">"}</span>}
+    <Button
+      variant={"ghost"}
+      className={cn("w-full font-extralight gap-1", direction === "prev" ? "justify-normal" : "justify-end")}
+      asChild
+    >
+      <Link className={cn(direction === "prev" ? "text-left items-start " : "text-right")} href={post.url}>
+        {direction === "prev" && <span>{"이전 글"}</span>}
+        <span className="font-medium w-4/5 truncate">{post.title}</span>
+        {direction === "next" && <span>{"다음 글"}</span>}
       </Link>
     </Button>
   );

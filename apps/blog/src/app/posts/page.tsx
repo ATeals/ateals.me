@@ -6,6 +6,7 @@ import { Header } from "@/widgets/Header";
 import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
 import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
 import { TogglePostList } from "@/widgets/posts/TogglePostList";
+import { SideMenu } from "@/widgets/SideMenu";
 
 const getPostsDescription = (type?: DocumentType) => {
   if (!type) return POST_TYPES_ENTITY[""].description;
@@ -32,6 +33,8 @@ export default function Page({
         </div>
       </Header>
       <Separator />
+
+      <SideMenu className="hidden lg:block pt-40" />
 
       <TogglePostList posts={posts} />
     </div>

@@ -57,7 +57,7 @@ const Masonry = ({ children, columnCount = 2, ...props }: MasonryProps) => {
     childrenArray.filter((_, childIndex) => childIndex % columnCount === index)
   );
 
-  const tw = cn("flex flex-wrap -mx-2", props.className);
+  const tw = cn("flex flex-wrap ", props.className);
 
   return (
     <div className={tw}>
