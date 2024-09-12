@@ -12,6 +12,8 @@ type: Blog
 aliases: 
 link:
 ---
+> 전체 코드는 [여기](https://github.com/ATeals/mini-Web-Framework/tree/main/src/.core/fe)에서 확인할 수 있습니다.
+
 
 제가 진행하고 있는 과정에서 요구사항으로 HTML, CSS, JS를 사용해 프론트를 개발할 일이 생겼습니다.
 
@@ -304,4 +306,4 @@ console.log(
 
 직접 바닐라로 SPA 컴포넌트를 구현해보면서 DOM API에 대해서 더 자세히 알게 된 것 같습니다.
 
-> 코드는 [여기](https://github.com/ATeals/mini-Web-Framework/tree/main/src/.core/fe)에서 확인할 수 있습니다.
+
