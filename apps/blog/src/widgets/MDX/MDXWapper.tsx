@@ -13,7 +13,7 @@ export const MDXWapper = ({ children, className }: { children: React.ReactNode; 
       "prose-strong:dark:text-zinc-300",
       "prose-quoteless dark:prose-blockquote:text-zinc-400 dark:prose-blockquote:bg-zinc-800",
       "prose-blockquote:not-italic prose-blockquote:border-primary-lg dark:prose-blockquote:border-primary-md  prose-blockquote-p:py-[0.5rem] prose-blockquote:pr-4 ",
-      "prose-blockquote:bg-zinc-100 prose-blockquote:shadow-inner prose-blockquote:shadow-zinc-300 prose-blockquote:rounded-r-lg dark:prose-blockquote:bg-zinc-900 dark:prose-blockquote:shadow-inner dark:prose-blockquote:shadow-black",
+      "prose-blockquote:bg-slate-50 prose-blockquote:shadow-inner prose-blockquote:shadow-zinc-300 prose-blockquote:rounded-r-lg dark:prose-blockquote:bg-zinc-900 dark:prose-blockquote:shadow-inner dark:prose-blockquote:shadow-black",
       "prose-h1:text-2xl",
       "prose-h2:text-xl prose-h2:font-medium",
       "prose-h3:text-lg",

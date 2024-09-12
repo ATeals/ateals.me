@@ -22,11 +22,11 @@ export const Backlinks = ({ className, children, ...props }: HTMLProps<HTMLParag
 
   const backLinkLabel = alias || original;
 
-  return <BacklinksPreview>{backLinkLabel}</BacklinksPreview>;
+  return <BacklinksPreview matcher={original.trim()}>{backLinkLabel}</BacklinksPreview>;
 };
 
-export const BacklinksPreview = ({ children }: HTMLProps<HTMLButtonElement>) => {
-  const post = new DocumentBuilder().getDocuments().find((post) => post.title === children);
+export const BacklinksPreview = ({ children, matcher }: { matcher: string } & HTMLProps<HTMLButtonElement>) => {
+  const post = new DocumentBuilder().getDocuments().find((post) => post.title === matcher);
 
   if (!post) return <>{children}</>;
 
