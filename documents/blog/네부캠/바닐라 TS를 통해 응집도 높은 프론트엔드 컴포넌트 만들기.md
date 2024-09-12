@@ -1,14 +1,15 @@
 ---
 title: 바닐라 TS를 통해 응집도 높은 프론트엔드 컴포넌트 만들기
 description: 직접 SPA를 만들면서...
-image:
+image: 
 date: 2024-08-30T20:02
 draft: false
 tags:
   - 프론트
   - TypeScript
+  - 네부캠
 type: Blog
-aliases:
+aliases: 
 link:
 ---
 
