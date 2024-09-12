@@ -27,11 +27,11 @@ export const Toc = ({ post }: { post: Document }) => {
           className={cn(
             HEADING_LEVELS_MAP[level],
             " hover:underline hover:text-primary-lg mr-2",
-            activeHeading.value === parseRawTag(text) && activeHeading.level === level && "text-secondary-md"
+            activeHeading.value === text && activeHeading.level === level && "text-secondary-md"
           )}
         >
           <Link href={`#${link}`} replace>
-            {parseRawTag(text)}
+            {text}
           </Link>
         </li>
       ))}
@@ -40,5 +40,5 @@ export const Toc = ({ post }: { post: Document }) => {
 };
 
 const parseRawTag = (tag: string) => {
-  return tag.replaceAll("`", "");
+  return;
 };

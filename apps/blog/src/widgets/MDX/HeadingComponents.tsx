@@ -3,7 +3,14 @@ export const HeadingComponentsBuilder =
   ({ ...props }) => {
     const Element = type;
 
-    const id = Array.isArray(props.children) ? props.children[0] : props.children;
+    const id = parseIdToHeading(props.children);
 
     return <Element {...props} id={id} />;
   };
+
+export const parseIdToHeading = (children: any) => {
+  if (Array.isArray(children)) return children[0];
+  if (children.type === "code") return children.props.children;
+
+  return children;
+};

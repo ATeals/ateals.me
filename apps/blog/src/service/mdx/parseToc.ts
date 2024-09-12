@@ -10,7 +10,7 @@ export const parseToc = (source: string) => {
     .split("\n")
     .filter((line) => line.match(/(^#{1,3})\s/))
     .reduce<TOCSection[]>((ac, rawHeading) => {
-      const removeMdx = rawHeading.replace(/^##*\s/, "");
+      const removeMdx = rawHeading.replace(/^##*\s/, "").replaceAll("`", "");
 
       const level = rawHeading.match(/^#+/)?.[0].length ?? 0;
 
