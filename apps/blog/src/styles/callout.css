@@ -19,21 +19,21 @@
 }
 
 .callout.note {
-  @apply border-l-[#0070f3] bg-[#e7f5ff] dark:bg-dark-highlight;
+  @apply border-l-[#0070f3] bg-[#e7f5ff] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.warning {
-  @apply border-l-[#ffa500] bg-[#fff3cd] dark:bg-dark-highlight;
+  @apply border-l-[#ffa500] bg-[#fff3cd] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.danger {
-  @apply border-l-[#dc3545] bg-[#f8d7da] dark:bg-dark-highlight;
+  @apply border-l-[#dc3545] bg-[#f8d7da] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.info {
-  @apply border-l-black dark:border-l-white dark:bg-dark-highlight;
+  @apply border-l-black dark:border-l-white dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.quote {
-  @apply border-l-primary-xl dark:border-l-primary-xl dark:bg-dark-highlight;
+  @apply border-l-primary-xl dark:border-l-primary-xl dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
