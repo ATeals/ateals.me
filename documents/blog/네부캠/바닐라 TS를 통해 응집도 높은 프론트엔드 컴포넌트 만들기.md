@@ -2,15 +2,16 @@
 title: 바닐라 TS를 통해 응집도 높은 프론트엔드 컴포넌트 만들기
 description: 직접 SPA를 만들면서...
 image: 
-date: 2024-08-30T20:02
+date: 2024-09-11T15:56:00
 draft: false
 tags:
   - 프론트
   - TypeScript
   - 네부캠
-type: Blog
+type: Snapshot
 aliases: 
-link:
+link: 
+enTitle: mini component
 ---
 > 전체 코드는 [여기](https://github.com/ATeals/mini-Web-Framework/tree/main/src/.core/fe)에서 확인할 수 있습니다.
 
@@ -307,3 +308,108 @@ console.log(
 직접 바닐라로 SPA 컴포넌트를 구현해보면서 DOM API에 대해서 더 자세히 알게 된 것 같습니다.
 
 
+## 데코레이터로 개선하기
+
+
+[[데코레이터와 메타 프로그래밍 | 데코레이터]]를 학습한 뒤에 데코레이터로 기존 컴포넌트를 개선해보고자 했습니다. 
+
+
+### `@DefineComponent`
+
+기존에 `defineComponent`으로 래핑해 컴포넌트를 선언하는 방식에서 데코레이터를 붙여주는 방식으로 변경했습니다.
+
+```ts caption="이젠 조금 더 직관적으로 선언할 수 있는 것 같습니다!" {1}#add
+@DefineComponent()
+class Color extends Component<{ color: string }> {
+  template() {
+    return html`<button>${this.state.color}</button>`;
+  }
+
+  protected onRender(): void {
+    this.target()!.addEventListener('click', () => this.changeColor());
+  }
+
+  changeColor() {
+    this.state.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  }
+}
+
+```
+
+이제 @DefineComponent 데코레이터를 사용하여 컴포넌트를 선언할 수 있으며, 보다 직관적이고 간결하게 표현됩니다.
+
+
+### `@On()`
+
+이벤트 리스너를 메서드에 직접 등록할 수 있도록 @On() 데코레이터도 도입했습니다.
+
+```ts {11}#add {7-9}#rm
+@DefineComponent()
+class Color extends Component<{ color: string }> {
+  template() {
+    return html`<button>${this.state.color}</button>`;
+  }
+
+ protected onRender(): void {
+    this.target()!.addEventListener('click', () => this.changeColor());
+  }
+
+  @On('click')
+  changeColor() {
+    this.state.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  }
+}
+
+```
+
+이제 `onRender()` 내부에서 이벤트 리스너를 선언하지 않고, `@On()` 데코레이터를 통해 이벤트를 간단하게 등록할 수 있습니다. 이로 인해 이벤트 핸들러를 더 직관적이고 명시적으로 관리할 수 있습니다.
+
+`@On()` 데코레이터는 첫번째 인자로 이벤트 타입, 두번째 인자로 선택자를 받을 수 있습니다. 선택자를 지정하면 컴포넌트 내부에서 해당 선택자를 타겟으로 이벤트 핸들러를 등록합니다.
+
+```ts caption="각각 선택자를 통해서 이벤트를 달아줄 수 있습니다."
+@DefineComponent()
+class ColorList extends Component {
+  template() {
+    return html`<div>
+      <button class="red">red</button>
+      <button class="orange">orange</button>
+      <button class="green">green</button>
+    </div>`;
+  }
+
+  @On('click', '.red')
+  clickRed() {
+    console.log('red');
+  }
+
+  @On('click', '.orange')
+  clickOrange() {
+    console.log('orange');
+  }
+
+  @On('click', '.green')
+  clickGreen() {
+    console.log('green');
+  }
+}
+
+```
+
+
+![](https://i.imgur.com/C3GBDJ7.gif)
+
+
+### Root로 이벤트 위임하기
+
+`@On()` 데코레이터로 선언한 이벤트들은 각 컴포넌트에 이벤트 리스너를 연결하지 않고, `Root.create()`로 만든 진입점에서 관리합니다.
+
+이를 통해 리액트와 비슷한 방식으로, 앱 전역에서 이벤트를 하나의 리스너로 처리합니다. 이는 성능 최적화에 유리할 수 있습니다.
+
+![](https://i.imgur.com/I07oPOt.png)
+
+
+물론! 모든 이벤트를 Root에서 관리하는 것이 성능 측면에서 이점이 있을지, 아니면 각 컴포넌트에서 개별적으로 이벤트 리스너를 달아주는 방식이 더 나을지는 실제 성능을 추적해보면서 결정해야할 문제인 것 같습니다.
+
+데코레이터를 통해서 기본 컴포넌트를 추가적으로 개선해보면서 (만들다보니 mini rune가 되어버렸네요...) 코드의 직관성과 효율성이 크게 향상된 것 같습니다. 아직 구현하지 못한 기능들, (예를 들어 컴포넌트가 언마운트될 때 이벤트를 해제하는 등의 부분이 남아있지만), 이러한 환경을 직접 만들어가는 과정이 매우 의미 있는 경험이었습니다.
+
+개발하는 동안 더 편리하고 유연한 설계의 중요성을 확실히 체감했습니다. 이를 바탕으로 앞으로는 프레임워크와 라이브러리 위에서도 확장 가능하고 관리하기 쉬운 코드를 작성하기 위해 더욱 노력할 것 같습니다.
