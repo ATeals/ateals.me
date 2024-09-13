@@ -3,10 +3,10 @@ title: Controllers
 description: Nest 공식문서 기반 정리
 image: https://i.imgur.com/Gp0VLDF.png
 date: 2024-05-28T17:21:00
-draft:
+draft: 
 tags:
   - NestJS
-  - 백엔드
+  - 공식문서
 type: Docs
 ---
 

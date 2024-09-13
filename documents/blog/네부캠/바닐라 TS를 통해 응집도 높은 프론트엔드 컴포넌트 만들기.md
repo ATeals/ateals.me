@@ -8,7 +8,7 @@ tags:
   - 프론트
   - TypeScript
   - 네부캠
-type: Snapshot
+type: Blog
 aliases: 
 link: 
 enTitle: mini component

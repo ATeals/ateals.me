@@ -2,13 +2,15 @@
 title: Lifecycle Events
 description: Nest 공식문서 기반 정리
 image: https://i.imgur.com/Gp0VLDF.png
-date: 2024-08-14T13:15
+date: 2024-08-13T16:40:00
 draft: false
 tags:
   - NestJS
-type: "\bDocs"
-aliases:
-link:
+  - 공식문서
+type: Docs
+aliases: 
+link: 
+enTitle:
 ---
 
 > 이 글은 Nest 공식문서를 번역한 글입니다. [원문](https://docs.nestjs.com/fundamentals/lifecycle-events)
@@ -27,15 +29,15 @@ Nest 애플리케이션과 모든 애플리케이션 요소에는 Nest에서 관
 
 다음 표에서 `onModuleDestroy`, `beforeApplicationShutdown` 및 `onApplicationShutdown`은 명시적으로 `app.close()`를 호출하거나 프로세스가 특수 시스템 신호(예: SIGTERM)를 수신하고 애플리케이션 부트스트랩에서 `enableShutdownHook`을 올바르게 호출한 경우에만 트리거됩니다(아래  **Application shutdown** 부분 참조).
 
-| Lifecycle hook method           | Lifecycle event triggering the hook method call                                                                                                                                     |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onModuleInit()`                | 호스트 모듈의 종속성이 해결되면 호출됩니다.                                                                                                                                         |
-| `onApplicationBootstrap()`      | 모든 모듈이 초기화되면 호출되지만 연결을 수신 대기하기 전에 호출됩니다.                                                                                                             |
-| `onModuleDestroy()`\*           | 종료 신호(예: `SIGTERM`)가 수신된 후 호출됩니다.                                                                                                                                    |
-| `beforeApplicationShutdown()`\* | 모든 `onModuleDestroy()` 핸들러가 완료된 후 호출되며(Promises resolved or rejected), 완료되면(Promises resolved or rejected) 기존의 모든 연결이 닫힙니다(`app.close()` 호출됨).<br> |
-| `onApplicationShutdown()`\*     | 연결이 닫힌 후 호출됩니다(`app.close()`가 해결됨).                                                                                                                                  |
+| Lifecycle hook method           | Lifecycle event triggering the hook method call                                                                                                                                 |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onModuleInit()`                | 호스트 모듈의 종속성이 해결되면 호출됩니다.                                                                                                                                     |
+| `onApplicationBootstrap()`      | 모든 모듈이 초기화되면 호출되지만 연결을 수신 대기하기 전에 호출됩니다.                                                                                                         |
+| `onModuleDestroy()`\*           | 종료 신호(예: `SIGTERM`)가 수신된 후 호출됩니다.                                                                                                                                |
+| `beforeApplicationShutdown()`\* | 모든 `onModuleDestroy()` 핸들러가 완료된 후 호출되며(Promises resolved or rejected), 완료되면(Promises resolved or rejected) 기존의 모든 연결이 닫힙니다(`app.close()` 호출됨). |
+| `onApplicationShutdown()`\*     | 연결이 닫힌 후 호출됩니다(`app.close()`가 해결됨).                                                                                                                              |
 
-\* 이러한 이벤트의 경우 `app.close()`를 명시적으로 호출하지 않는 경우 `SIGTERM`과 같은 시스템 신호와 함께 작동하도록 옵트인해야 합니다. 아래 [Application shutdown](https://docs.nestjs.com/fundamentals/lifecycle-events#application-shutdown)를 참조하세요.
+이러한 이벤트의 경우 `app.close()`를 명시적으로 호출하지 않는 경우 `SIGTERM`과 같은 시스템 신호와 함께 작동하도록 옵트인해야 합니다. 아래 [Application shutdown](https://docs.nestjs.com/fundamentals/lifecycle-events#application-shutdown)를 참조하세요.
 
 > [!WARNING] WARNING
 > 위에 나열된 라이프사이클 훅은  **request-scoped** 클래스에 대해서는 트리거되지 않습니다. 요청 범위 클래스는 애플리케이션 라이프사이클에 묶여 있지 않으며 수명을 예측할 수 없습니다. 각 요청에 대해 독점적으로 생성되며 응답이 전송된 후 자동으로 가비지 수집됩니다.

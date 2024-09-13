@@ -2,10 +2,11 @@
 title: Modules
 description: Nest 공식문서 기반 정리
 image: https://i.imgur.com/Gp0VLDF.png
-date: 2024-05-28T17:21:00
-draft:
+date: 2024-05-28T18:21:00
+draft: 
 tags:
   - NestJS
+  - 공식문서
 type: Docs
 ---
 
