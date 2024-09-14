@@ -29,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated",
-    "src/components/Giscus"
+    "src/components/Giscus",
+    ".scripts/**.{ts, tsx}"
   ],
   "exclude": ["node_modules"]
 }
