@@ -18,13 +18,16 @@ const recentPosts = [
 const getBlowser = async () => {
   const isDev = process.env.VERCEL_ENV === "production" ? false : true;
 
-  console.log("isDev", process.env.VERCEL_ENV);
+  const executablePath = await chromium.executablePath;
+
+  console.log(process.env.VERCEL_ENV, executablePath);
 
   if (isDev) return await puppeteerLocal.launch();
 
   const browser = await puppeteer.launch({
     args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chromium.defaultViewport,
+    executablePath,
     headless: true,
   });
 
