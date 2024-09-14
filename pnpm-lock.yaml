@@ -54,6 +54,9 @@ importers:
       '@vercel/analytics':
         specifier: ^1.3.1
         version: 1.3.1(next@14.2.3)(react@18.2.0)
+      chrome-aws-lambda:
+        specifier: ^10.1.0
+        version: 10.1.0(puppeteer-core@23.3.0)
       cmdk:
         specifier: ^1.0.0
         version: 1.0.0(@types/react-dom@18.2.19)(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)
@@ -87,6 +90,9 @@ importers:
       puppeteer:
         specifier: ^23.3.0
         version: 23.3.0(typescript@5.3.3)
+      puppeteer-core:
+        specifier: ^23.3.0
+        version: 23.3.0
       react:
         specifier: ^18
         version: 18.2.0
@@ -3161,7 +3167,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
-      debug: 4.3.4
+      debug: 4.3.7
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.5.4
@@ -3835,6 +3841,16 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
+
+  /chrome-aws-lambda@10.1.0(puppeteer-core@23.3.0):
+    resolution: {integrity: sha512-NZQVf+J4kqG4sVhRm3WNmOfzY0OtTSm+S8rg77pwePa9RCYHzhnzRs8YvNI6L9tALIW6RpmefWiPURt3vURXcw==}
+    engines: {node: '>= 10.16'}
+    peerDependencies:
+      puppeteer-core: ^10.1.0
+    dependencies:
+      lambdafs: 2.1.1
+      puppeteer-core: 23.3.0
+    dev: false
 
   /chromium-bidi@0.6.5(devtools-protocol@0.0.1330662):
     resolution: {integrity: sha512-RuLrmzYrxSb0s9SgpB+QN5jJucPduZQ/9SIe76MDxYJuecPW5mxMdacJ1f4EtgiV+R0p3sCkznTMvH0MPGFqjA==}
@@ -6515,6 +6531,14 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /lambdafs@2.1.1:
+    resolution: {integrity: sha512-x5k8JcoJWkWLvCVBzrl4pzvkEHSgSBqFjg3Dpsc4AcTMq7oUMym4cL/gRTZ6VM4mUMY+M0dIbQ+V1c1tsqqanQ==}
+    engines: {node: '>= 10.16'}
+    hasBin: true
+    dev: false
+    bundledDependencies:
+      - tar-fs
+
   /language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
     dev: true
@@ -7620,7 +7644,7 @@ packages:
     resolution: {integrity: sha512-uD66tJj54JLYq0De10AhWycZWGQNUvDI55xPgk2sQM5kn1JYlhbCMTtEeT27+vAhW2FBQxLlOmS3pmA7/2z4aA==}
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.4
+      debug: 4.3.7
       decode-named-character-reference: 1.0.2
       micromark-core-commonmark: 1.1.0
       micromark-factory-space: 1.1.0
@@ -7644,7 +7668,7 @@ packages:
     resolution: {integrity: sha512-o/sd0nMof8kYff+TqcDx3VSrgBTcZpSvYcAHIfHhv5VAuNmisCxjhx6YmxS8PFEpb9z5WKWKPdzf0jM23ro3RQ==}
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.4
+      debug: 4.3.7
       decode-named-character-reference: 1.0.2
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.1

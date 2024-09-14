@@ -1,4 +1,7 @@
-import puppeteer from "puppeteer";
+import chromium from "chrome-aws-lambda";
+import puppeteer from "puppeteer-core";
+import * as puppeteerLocal from "puppeteer";
+
 import { allDocuments } from "../.contentlayer/generated/index.mjs";
 import ReactDOMServer from "react-dom/server";
 
@@ -12,8 +15,26 @@ const recentPosts = [
   posts.filter((post) => post.type === "Snapshot")[0],
 ];
 
+const getBlowser = async () => {
+  const isDev = process.env.NODE_ENV === "production" ? false : true;
+
+  if (isDev) return await puppeteerLocal.launch();
+
+  const executablePath = await chromium.executablePath;
+
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath,
+    headless: true,
+  });
+
+  return browser as any as puppeteerLocal.Browser;
+};
+
 const makeImage = async ({ post }: { index: number; post: any }) => {
-  const browser = await puppeteer.launch();
+  const browser = await getBlowser();
+
   const page = await browser.newPage();
 
   const componentHtml = ReactDOMServer.renderToString(<PostThumbnail post={post} />);
