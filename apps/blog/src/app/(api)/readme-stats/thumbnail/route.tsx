@@ -1,16 +1,25 @@
-import React from "react";
+import { DocumentBuilder } from "@/service/mdx";
+import { NextRequest } from "next/server";
 
-import { allDocuments } from "../.contentlayer/generated/index.mjs";
 import { ImageResponse } from "@vercel/og";
-import { writeFileSync } from "fs";
 
-const posts = allDocuments.sort((a, b) => (a.date > b.date ? -1 : 1));
+export const GET = async (req: NextRequest) => {
+  const searchParams = req.nextUrl.searchParams;
 
-const recentPosts = [
-  posts.filter((post) => post.type === "Blog")[0],
-  posts.filter((post) => post.type === "Docs")[0],
-  posts.filter((post) => post.type === "Snapshot")[0],
-];
+  const type = searchParams.get("type") || "Blog";
+  const index = parseInt(searchParams.get("index") || "0", 10);
+  const title = searchParams.get("title");
+
+  const post = title
+    ? new DocumentBuilder().getDocuments().find((post) => post.title === title)
+    : new DocumentBuilder().query({ type: type as any }).getDocuments()[index];
+
+  if (!post) return new Response("Not Found", { status: 404 });
+
+  const area = { width: 300, height: 400 };
+
+  return new ImageResponse(<PostThumbnail post={post} area={area} />, area);
+};
 
 export const PostThumbnail = ({ post, area }: { post: any; area: { width: number; height: number } }) => {
   const imageWidth = area.width;
@@ -121,20 +130,3 @@ export const PostThumbnail = ({ post, area }: { post: any; area: { width: number
     </div>
   );
 };
-
-const makeThumbnail = async (post: any) => {
-  const area = { width: 300, height: 400 };
-
-  const imageResponse = new ImageResponse(<PostThumbnail post={post} area={area} />, area);
-
-  writeFileSync(
-    `./public/readme-stats/${post.type.toLowerCase()}.webp`,
-    Buffer.from(await imageResponse.arrayBuffer())
-  );
-
-  console.log("✅ Thumbnail generated", post.title);
-};
-
-Promise.all(recentPosts.map(makeThumbnail)).then(() => {
-  console.log("✅ All thumbnails generated");
-});
