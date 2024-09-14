@@ -22,8 +22,8 @@ const getBlowser = async () => {
 
   const executablePath = await chromium.executablePath;
 
-  const browser = await puppeteer.launch({
-    args: chromium.args,
+  const browser = await chromium.puppeteer.launch({
+    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chromium.defaultViewport,
     executablePath,
     headless: true,
