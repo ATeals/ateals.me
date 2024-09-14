@@ -15,7 +15,7 @@ export const PostThumbnail = ({ post, area }: { post: any; area: { width: number
       style={{
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#fff",
+        backgroundColor: "#f4f4f5",
         overflow: "hidden",
         ...area,
       }}
