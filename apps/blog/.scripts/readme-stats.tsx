@@ -16,7 +16,7 @@ const recentPosts = [
 ];
 
 const getBlowser = async () => {
-  const isDev = process.env.NODE_ENV === "production" ? false : true;
+  const isDev = process.env.VERCEL_ENV === "production" ? false : true;
 
   if (isDev) return await puppeteerLocal.launch();
 
