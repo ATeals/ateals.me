@@ -25,6 +25,9 @@ export default function RootLayout({
         <meta name="naver-site-verification" content="2d9e9c7acfe720cca4cbb93b0bfa30213ed8d9c1" />
         <meta name="google-site-verification" content="U3213RTjnL2MBwyxUP3W66hcIIqcwV24irUIYoSkKzQ" />
 
+        {/* vercel 도메인용 구글 웹마스터 도구 tag */}
+        <meta name="google-site-verification" content="SWzdnKcr1a_u4qCWr_61fw6PxQf4NZkXWHl1aDrwaeg" />
+
         <link rel="alternate" type="application/rss+xml" href="/feed/rss" title="RSS" />
         <link rel="alternate" type="application/atom+xml" href="/feed/atom" title="RSS Atom" />
         <link rel="alternate" type="application/json" href="/feed/json" title="JSON Feed" />
