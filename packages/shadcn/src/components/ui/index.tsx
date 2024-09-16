@@ -8,3 +8,4 @@ export * from "./separator";
 export * from "./tooltip";
 export * from "./toggle";
 export * from "./accordion";
+export * from "./progress";
