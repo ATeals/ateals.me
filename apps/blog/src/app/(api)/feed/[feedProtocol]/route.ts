@@ -4,28 +4,30 @@ import { Feed } from "feed";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest, { params: { feedProtocol } }: { params: { feedProtocol: string } }) => {
+  const domain = req.nextUrl.searchParams.get("domain") === "sub" ? SITE_CONFIG.subDomain : SITE_CONFIG.domain;
+
   const posts = new DocumentBuilder().getDocuments();
 
   const feed = new Feed({
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
-    id: SITE_CONFIG.domain,
+    id: domain,
     language: "ko",
-    image: `${SITE_CONFIG.domain}images/main.jpg`,
-    favicon: `${SITE_CONFIG.domain}favicon.ico`,
+    image: `${domain}/images/main.jpg`,
+    favicon: `${domain}favicon.ico`,
     copyright: `All rights reserved since ${SITE_CONFIG.since}, ${SITE_CONFIG.owner.name}`,
     author: SITE_CONFIG.owner,
     generator: "generate-rss",
-    link: SITE_CONFIG.domain,
+    link: domain,
   });
 
   posts.forEach((post) => {
     feed.addItem({
       title: post.title,
       id: post._id,
-      link: `${SITE_CONFIG.domain}${post.url}`,
+      link: `${domain}${post.url}`,
       author: [SITE_CONFIG.owner],
-      image: `${SITE_CONFIG.domain}/${SITE_CONFIG.MAIN_JPG}`,
+      image: `${domain}/${SITE_CONFIG.MAIN_JPG}`,
       date: new Date(post.date),
       category: post.tags?.map((tag) => ({ name: tag })),
     });

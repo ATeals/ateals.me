@@ -1,11 +1,11 @@
 import { DOCUMENT_TYPES } from "@/service/mdx/post";
-import { title } from "process";
 import { IconType } from "react-icons";
 
 import { IoLogoGithub } from "react-icons/io5";
 
 export const SITE_CONFIG = {
   domain: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://blog.ateals.me",
+  subDomain: "https://blog-ateals.vercel.app",
   title: "Blog | Ateals",
   description: "Ateals의 블로그입니다.",
   icons: "/favicon.ico",
