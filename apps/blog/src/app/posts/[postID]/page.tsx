@@ -4,11 +4,12 @@ import { Giscus } from "@/components/Giscus";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { Toc } from "@/components/Toc";
 import { MainPostComponent } from "@/widgets/posts/MainPostComponent";
-import { DocumentBuilder, allPosts } from "@/service/mdx/post";
+import { DocumentBuilder } from "@/service/mdx/post";
 
 import { PostBody } from "@/widgets/posts/PostBody";
 import { SideMenu } from "@/widgets/SideMenu";
 import { BackspaceButton } from "@/components/BackspaceButton";
+import { ScrollProgress } from "@/widgets/ScrollProgress";
 
 export { generateMetadata } from "./metadata";
 
@@ -22,6 +23,8 @@ const PostLayout = ({ params: { postID } }: { params: { postID: string } }) => {
 
   return (
     <section className="mx-auto max-w-xl py-8 pt-20">
+      <ScrollProgress />
+
       <SideMenu>
         <BackspaceButton variant={"ghost"} />
         <Toc post={post} />
