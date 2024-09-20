@@ -11,5 +11,18 @@ export const generateMetadata = (): Metadata => {
       description: "Ateals의 블로그입니다.",
       images: `${SITE_CONFIG.domain}/images/main.jpg`,
     },
+    keywords: [
+      "ateals",
+      "blog",
+      "개발",
+      "react",
+      "nextjs",
+      "typescript",
+      "javascript",
+      "nestjs",
+      "nodejs",
+      "frontend",
+      "backend",
+    ],
   };
 };

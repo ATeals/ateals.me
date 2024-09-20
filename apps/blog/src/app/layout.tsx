@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/widgets/providers/ThemeProvider";
 import { Footer } from "@/widgets/Footer";
 import { CMDK } from "@/widgets/CMDK";
 import { CMDProvider } from "@/hooks/useCmdK";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export { generateMetadata } from "./metadata";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
         <Footer />
 
         <Analytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} />
       </body>
     </html>
   );

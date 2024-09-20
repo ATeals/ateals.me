@@ -14,5 +14,6 @@ export const generateMetadata = ({ params: { postID } }: { params: { postID: str
       description: post.description,
       images: [{ url: `${post.image}` }],
     },
+    keywords: [...(post.tags || []), "ateals"],
   };
 };
