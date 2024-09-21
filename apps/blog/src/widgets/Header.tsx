@@ -13,7 +13,7 @@ export const Header = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("mb-8", className)}>
+    <header className={cn("mb-8", className)}>
       <div className="flex align-center justify-between mb-8">
         {title ? (
           title
@@ -33,6 +33,6 @@ export const Header = ({
         )}
       </div>
       {children}
-    </div>
+    </header>
   );
 };
