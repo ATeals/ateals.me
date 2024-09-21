@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from "@/config";
 import { DocumentBuilder } from "@/service/mdx";
 import { Metadata } from "next";
 
@@ -15,5 +16,9 @@ export const generateMetadata = ({ params: { postID } }: { params: { postID: str
       images: [{ url: `${post.image}` }],
     },
     keywords: [...(post.tags || []), "ateals"],
+    robots: "index, follow",
+    other: {
+      canonical: `${SITE_CONFIG.domain}${post.url}`,
+    },
   };
 };
