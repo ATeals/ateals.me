@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/private/", "/readme-stats/"],
     },
-    sitemap: `${SITE_CONFIG.domain}/sitemap.xml`,
+    sitemap: [`${SITE_CONFIG.domain}/sitemap.xml`, `${SITE_CONFIG.domain}/posts/sitemap.xml`],
   };
 }
