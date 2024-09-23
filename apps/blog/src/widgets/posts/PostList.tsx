@@ -50,7 +50,7 @@ export const YearGroupPostList = ({ posts, ...props }: YearGroupPostListProps) =
       {groups.map((group, index) => (
         <Fragment key={group.year}>
           <div className={`flex gap-5 items-baseline group/year `}>
-            <h1 className="group-hover/year:bg-primary-lg group-hover/year:shadow-lg rounded-lg px-1 group-hover/year:text-gray-100">
+            <h1 className="group-hover/year:cursor-pointer group-hover/year:bg-primary-sm group-hover/year:bg-opacity-25 group-hover/year:shadow-sm group-hover/year:shadow-primary-md px-1 rounded-lg ">
               {group.year}
             </h1>
             <div className="w-full">
