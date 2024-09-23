@@ -16,7 +16,17 @@ export const generateMetadata = ({ params: { postID } }: { params: { postID: str
       images: [{ url: `${post.image}` }],
     },
     keywords: [...(post.tags || []), "ateals"],
-    robots: "index, follow",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     other: {
       canonical: `${SITE_CONFIG.domain}${post.url}`,
     },
