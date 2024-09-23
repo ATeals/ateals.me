@@ -3,8 +3,8 @@ title: 1. Hello world
 description: 안녕 자바 세계
 date: 2024-06-02T17:19
 type: Docs
-image:
-draft:
+image: 
+draft: true
 tags:
 ---
 
