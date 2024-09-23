@@ -7,11 +7,13 @@ import { PostsTypeToggle } from "@/widgets/posts/PostsTypeToggle";
 import { PostViewTypeToggle } from "@/widgets/posts/PostsViewTypeToggle";
 import { TogglePostList } from "@/widgets/posts/TogglePostList";
 import { SideMenu } from "@/widgets/SideMenu";
+import { Metadata } from "next";
 
-const getPostsDescription = (type?: DocumentType) => {
-  if (!type) return POST_TYPES_ENTITY[""].description;
-
-  return POST_TYPES.find((postType) => postType.type === type)?.description;
+export const generateMetadata = (): Metadata => {
+  return {
+    title: "Posts | Ateals",
+    description: "블로그 포스트 목록",
+  };
 };
 
 export default function Page({
@@ -40,3 +42,9 @@ export default function Page({
     </div>
   );
 }
+
+const getPostsDescription = (type?: DocumentType) => {
+  if (!type) return POST_TYPES_ENTITY[""].description;
+
+  return POST_TYPES.find((postType) => postType.type === type)?.description;
+};
