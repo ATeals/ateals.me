@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const domain = "https://blog.ateals.site";
+export const domain = "https://blog.ateals.site";
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const sitemaps: MetadataRoute.Sitemap = [
