@@ -28,7 +28,7 @@ const MARKDOWN_STYLES = {
     "prose-blockquote:not-italic",
     "prose-blockquote:border-primary-lg",
     "dark:prose-blockquote:border-primary-md",
-    "prose-blockquote-p:py-[0.5rem]",
+    "prose-blockquote-p:mb-[0.5rem]",
     "prose-blockquote:pr-4",
     "prose-blockquote:bg-slate-50",
     "prose-blockquote:shadow-inner",
