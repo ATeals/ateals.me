@@ -22,7 +22,7 @@ const PostLayout = ({ params: { postID } }: { params: { postID: string } }) => {
   if (!post) notFound();
 
   return (
-    <section className="mx-auto max-w-xl py-8 pt-20">
+    <section className="mx-auto max-w-2xl py-8 pt-20">
       <ScrollProgress />
 
       <SideMenu>

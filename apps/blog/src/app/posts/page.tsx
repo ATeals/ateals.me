@@ -26,7 +26,7 @@ export default function Page({
   const posts = new DocumentBuilder().query(query).getDocuments({ filter: [...Object.values(DOCUMENT_TYPES)] });
 
   return (
-    <div className="mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
+    <div className="mx-auto max-w-2xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
       <Header>
         <p>{getPostsDescription(query.type)}</p>
         <div className="flex justify-between items-center w-full my-4">

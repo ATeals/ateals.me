@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const NotFound = () => {
   return (
-    <div className=" mx-auto max-w-xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
+    <div className=" mx-auto max-w-2xl py-8 pt-20 text-gray-700 dark:text-gray-300 px-2">
       <Header className=""></Header>
 
       <section className="animate-[fadeInDown_0.5s_200ms_forwards] opacity-0">
