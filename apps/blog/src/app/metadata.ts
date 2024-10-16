@@ -35,5 +35,8 @@ export const generateMetadata = (): Metadata => {
         "max-snippet": -1,
       },
     },
+    verification: {
+      google: "mlTcRHcN0Ek1reeiKlnCuRvRSE-pXkiDkYqVkyvl0cE",
+    },
   };
 };

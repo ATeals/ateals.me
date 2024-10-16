@@ -10,6 +10,7 @@ import { PostBody } from "@/widgets/posts/PostBody";
 import { SideMenu } from "@/widgets/SideMenu";
 import { BackspaceButton } from "@/components/BackspaceButton";
 import { ScrollProgress } from "@/widgets/ScrollProgress";
+import { PostJsonLd } from "@/widgets/posts/PostJsonLd";
 
 export { generateMetadata } from "./metadata";
 
@@ -22,22 +23,25 @@ const PostLayout = ({ params: { postID } }: { params: { postID: string } }) => {
   if (!post) notFound();
 
   return (
-    <section className="mx-auto max-w-2xl py-8 pt-20">
-      <ScrollProgress />
+    <>
+      <section className="mx-auto max-w-2xl py-8 pt-20">
+        <ScrollProgress />
 
-      <SideMenu>
-        <BackspaceButton variant={"ghost"} />
-        <Toc post={post} />
+        <SideMenu>
+          <BackspaceButton variant={"ghost"} />
+          <Toc post={post} />
 
-        <ThemeSwitch />
-      </SideMenu>
+          <ThemeSwitch />
+        </SideMenu>
 
-      <MainPostComponent post={post}>
-        <PostBody post={post} className="animate-fadeInDown" />
-      </MainPostComponent>
+        <MainPostComponent post={post}>
+          <PostBody post={post} className="animate-fadeInDown" />
+        </MainPostComponent>
 
-      <Giscus classname="my-10 px-2" />
-    </section>
+        <Giscus classname="my-10 px-2" />
+      </section>
+      <PostJsonLd post={post} />
+    </>
   );
 };
 
