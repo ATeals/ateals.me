@@ -7,7 +7,13 @@ export const MDXWapper = ({ children, className }: { children: React.ReactNode; 
 );
 
 const MARKDOWN_STYLES = {
-  base: ["mdx", "px-2 md:px-0", "prose prose-stone", "dark:prose-invert", "prose-strong:dark:text-zinc-300"],
+  base: [
+    "mdx",
+    "px-2 md:px-0 ",
+    "prose prose-stone !max-w-none",
+    "dark:prose-invert",
+    "prose-strong:dark:text-zinc-300",
+  ],
   paragraph: [
     "prose-p:break-words",
     "prose-p:text-gray-700 dark:prose-p:text-gray-300",
