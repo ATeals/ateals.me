@@ -5,7 +5,7 @@ export const BlurSection = () => {
 
   return (
     <div
-      className=" group/blurSection py-10 w-full fixed left-0 opacity-75 z-50 hover:cursor-pointer"
+      className="group/blurSection py-10 w-full h-20 fixed left-0 opacity-75 z-50 hover:cursor-pointer"
       style={{
         backdropFilter: "blur(5px)",
         WebkitBackdropFilter: "blur(5px)",
