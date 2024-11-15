@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 export const ScrollProgress = ({ className, ...props }: Parameters<typeof Progress>[0]) => {
-  const [hegith, setHeight] = useState(0);
+  const [height, setHeight] = useState(0);
 
   const listener = () => {
     const scroll = window.scrollY;
@@ -24,5 +24,5 @@ export const ScrollProgress = ({ className, ...props }: Parameters<typeof Progre
     className
   );
 
-  return <Progress value={hegith} className={tw} {...props} />;
+  return <Progress value={height} className={tw} {...props} />;
 };

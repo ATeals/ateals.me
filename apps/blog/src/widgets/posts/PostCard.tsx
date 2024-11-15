@@ -19,7 +19,7 @@ export const PostCard = ({ post, className, ...props }: PostCardProps) => {
   return (
     <div className={tw} {...props}>
       <Post.Provider post={post}>
-        <Post.Link className="block ">
+        <Post.Link className="block">
           <div className="rounded-lg overflow-hidden hover:border-2 hover:border-primary-sm">
             <Post.Image className="group-hover/post:scale-110 duration-300" />
           </div>

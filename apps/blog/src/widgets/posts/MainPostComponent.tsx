@@ -28,8 +28,8 @@ export const MainPostComponent = ({ post, ...props }: MainPostComponentProps) =>
               </div>
             }
           >
-            <div className="w-auto h-full mt-5 mb-2">
-              <Post.Image className="object-contain object-center" />
+            <div className="w-auto h-full mb-2">
+              <Post.Image className="object-contain object-center shadow-lg rounded-lg mb-10" />
             </div>
             <div className="flex justify-between mb-5">
               <Post.TagList className="px-2 md:p-0" />
