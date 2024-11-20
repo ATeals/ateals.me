@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 import { IoLogoGithub } from "react-icons/io5";
 
 export const SITE_CONFIG = {
-  domain: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://blog.ateals.me",
+  domain: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://blog-ateals.vercel.app",
   subDomain: "https://blog-ateals.vercel.app",
   title: "Blog | Ateals",
   description: "Ateals의 블로그입니다.",
@@ -15,7 +15,7 @@ export const SITE_CONFIG = {
   owner: {
     name: "ateals",
     email: "ateals@icloud.com",
-    link: "https://blog.ateals.me",
+    link: "https://blog-ateals.vercel.app",
     github: "https://github.com/ATeals",
   },
 };
