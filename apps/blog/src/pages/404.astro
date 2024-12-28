@@ -1,0 +1,16 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import IconHeader from '@/layouts/IconHeader.astro';
+---
+
+<DefaultLayout>
+  <IconHeader>
+    <div class="m-5 text-5xl" slot="icon">⚠️</div>
+  </IconHeader>
+
+  <div class="flex flex-col items-center">
+    <span class="text-8xl font-bold">404</span>
+
+    <a class="my-10 underline" href="/">Go Home</a>
+  </div>
+</DefaultLayout>

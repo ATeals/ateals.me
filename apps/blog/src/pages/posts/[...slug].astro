@@ -1,0 +1,64 @@
+---
+import { BackButton } from '@/components/BackButton';
+import PostJsonLd from '@/components/JsonLD/PostJsonLd.astro';
+import { components } from '@/components/MDX';
+import { MDXWrapper } from '@/components/MDXWrapper';
+import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
+import { Toc } from '@/components/Toc';
+import BlogPost from '@/layouts/BlogPost.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { cn } from '@/lib/utils';
+import type { CollectionData } from '@/service/mdx';
+import { PostBuilder } from '@/service/mdx';
+
+export async function getStaticPaths() {
+  const document = await PostBuilder.getAll();
+
+  const post = [...document];
+
+  return post.map((post) => ({
+    params: { slug: post.slug },
+    props: post
+  }));
+}
+
+type Props = CollectionData;
+
+const post = Astro.props;
+
+const { prev, next } = await PostBuilder.getAdjacentType(post);
+
+const { Content } = await post.render();
+---
+
+<DefaultLayout
+  seo={{
+    title: `${post.data.title}`,
+    description: post.data.description,
+    image: post.data.image
+  }}
+>
+  <BlogPost next={next} post={post} prev={prev}>
+    <MDXWrapper>
+      <Content components={components} />
+    </MDXWrapper>
+  </BlogPost>
+
+  <aside
+    class:list={cn(
+      'fixed text-end text-sm',
+      'top-24 max-h-[600px] max-w-[200px]',
+      'hidden xl:block',
+      'left-16 2xl:left-60'
+    )}
+    slot="side"
+  >
+    <div class="my-5">
+      <BackButton client:only="react" />
+      <ThemeDropdown client:only="react" />
+    </div>
+
+    <Toc client:load post={post} />
+  </aside>
+</DefaultLayout>
+<PostJsonLd post={post} />

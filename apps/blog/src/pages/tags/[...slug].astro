@@ -1,0 +1,50 @@
+---
+import { BackButton } from '@/components/BackButton';
+import DefaultPostListJsonLd from '@/components/JsonLD/DefaultPostListJsonLd.astro';
+import PostTypeSmallNav from '@/components/postType/PostTypeSmallNav.astro';
+import { SideMenu } from '@/components/SideMenu';
+import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
+import { Separator } from '@/components/ui/separator';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import IconHeader from '@/layouts/IconHeader.astro';
+import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
+import { PostBuilder } from '@/service/mdx';
+
+export async function getStaticPaths() {
+  const tags = await PostBuilder.getAllTags();
+
+  return tags.map((tag) => ({
+    params: { slug: tag },
+    props: { tag }
+  }));
+}
+
+type Props = { tag: string };
+
+const { tag } = Astro.props;
+
+const document = await PostBuilder.getByTag(tag);
+
+const posts = [...document];
+---
+
+<DefaultLayout seo={{ title: `${tag} 관련 글 | Ateals`, description: `#${tag} 관련 글 모음` }}>
+  <IconHeader>
+    <div class="m-4 text-xl font-semibold">#{tag}</div>
+  </IconHeader>
+
+  <SideMenu className="top-60 py-2" client:load>
+    <BackButton client:only="react" />
+    <ThemeDropdown client:only="react" />
+  </SideMenu>
+
+  <div class="flex w-full items-end justify-between">
+    <p><strong class="font-medium">{`#${tag}`}</strong> 관련 글</p>
+
+    <PostTypeSmallNav />
+  </div>
+  <Separator />
+
+  {posts && <GridPostsLayout posts={posts} />}
+</DefaultLayout>
+<DefaultPostListJsonLd posts={posts} />

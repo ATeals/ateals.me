@@ -1,0 +1,41 @@
+---
+import '@/styles/global.css';
+import '@/styles/animation.css';
+
+import PagefindScript from '@/components/CMD/pagefindScript.astro';
+import Footer from '@/components/Footer.astro';
+import { LocationNav } from '@/components/LocationNav';
+import PretendardFont from '@/components/PretendardFont.astro';
+import ThemeScript from '@/components/Theme/ThemeScript.astro';
+import BaseHead from '@/layouts/BaseHead.astro';
+import type { SEOProps } from '@/type';
+
+interface Props {
+  seo?: Partial<SEOProps>;
+}
+
+const { seo } = Astro.props;
+---
+
+<html lang="ko">
+  <head>
+    <BaseHead {...seo} />
+    <PretendardFont />
+
+    <ThemeScript />
+  </head>
+
+  <body class="font-sans font-light transition-colors duration-200 dark:bg-dark-bg dark:text-gray-300">
+    <main class="mx-auto min-h-dvh max-w-2xl" data-animate data-animate-speed="fast">
+      <slot />
+    </main>
+
+    <slot name="side" />
+
+    <LocationNav client:only="react" path={Astro.url.pathname} />
+
+    <Footer />
+
+    <PagefindScript />
+  </body>
+</html>

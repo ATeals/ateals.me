@@ -1,0 +1,69 @@
+---
+import readingTime from 'reading-time';
+
+import { AdjacentPostNav } from '@/components/AdjacentPostNav';
+import { Giscus } from '@/components/Giscus';
+import { PostIcon } from '@/components/PostIcon';
+import { ReadingTime } from '@/components/ReadingTime';
+import { TagList } from '@/components/TagList';
+import { Time } from '@/components/Time';
+import type { CollectionData } from '@/service/mdx';
+
+interface Props {
+  post: CollectionData;
+  next?: CollectionData;
+  prev?: CollectionData;
+}
+
+const {
+  post: {
+    data: { title, image, date }
+  },
+  prev,
+  next
+} = Astro.props;
+
+const { post } = Astro.props;
+
+const time = Math.ceil(readingTime(post.body, { wordsPerMinute: 300 }).minutes);
+---
+
+<section class="relative transform-none">
+  <article class="relative mb-20 min-h-screen shadow-md">
+    {/* Sticky background section */}
+    <div class="sticky top-0 h-[66vh] w-full overflow-hidden">
+      <div
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${image})`
+        }}
+      >
+      </div>
+    </div>
+
+    {/* Scrolling content */}
+    <div class="relative mx-auto max-w-2xl">
+      {/* Post header */}
+      <div class="w-full rounded-lg bg-white p-2 pt-16 shadow-md transition-colors duration-200 dark:bg-dark-bg">
+        <PostIcon post={post} />
+
+        <div class="flex flex-col items-center text-center">
+          <h1 class="mb-4 text-2xl font-bold">{title}</h1>
+          <ReadingTime client:load time={time} />
+          <Time date={date} />
+
+          <TagList className="pt-5" client:load tags={post.data.tags} />
+
+          <hr class="my-10 w-full border-b-[0.01rem] border-gray-500" />
+        </div>
+        <slot />
+
+        <div class="my-10">
+          <AdjacentPostNav next={next} prev={prev} />
+        </div>
+
+        <Giscus client:load />
+      </div>
+    </div>
+  </article>
+</section>

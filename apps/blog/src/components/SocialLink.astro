@@ -1,0 +1,15 @@
+---
+import { SOCIAL_LINKS } from '@/consts';
+---
+
+<ul class="flex gap-2">
+  {
+    SOCIAL_LINKS.map(({ href, Icon }) => (
+      <li>
+        <a href={href}>
+          <Icon className="h-4 w-4" />
+        </a>
+      </li>
+    ))
+  }
+</ul>

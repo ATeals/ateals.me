@@ -1,0 +1,68 @@
+---
+import { TagList } from '@/components/TagList';
+import { Time } from '@/components/Time';
+import type { CollectionData } from '@/service/mdx';
+
+interface Props {
+  posts: CollectionData[];
+}
+
+const { posts } = Astro.props;
+
+const mostRecent = posts.length > 2 ? posts[0] : null;
+
+const rest = posts.length > 2 ? posts.slice(1) : posts;
+---
+
+<section class="px-2 md:px-0" data-animate data-animate-speed="slow">
+  {
+    mostRecent && (
+      <a href={mostRecent.href}>
+        <div class="group/posts my-5 rounded-lg shadow-md transition-shadow duration-200 hover:shadow-lg md:flex">
+          <div class="h-full w-full overflow-hidden rounded-lg md:w-2/3">
+            <img
+              alt={mostRecent.data.title}
+              class="h-full w-full object-cover transition-all duration-200 group-hover/posts:scale-110"
+              src={mostRecent.data.image}
+            />
+          </div>
+          <div class="w-full p-2 md:w-1/3 md:p-5">
+            <h4 class="text-xl font-normal group-hover/posts:text-primary-xl">{mostRecent.data.title}</h4>
+
+            <TagList className="pb-2" client:load tags={mostRecent.data.tags} />
+            <p class="bottom-0 w-full text-sm md:absolute">
+              <Time date={mostRecent.data.date} />
+            </p>
+          </div>
+        </div>
+      </a>
+    )
+  }
+  <ul class="grid gap-2 md:grid-cols-2">
+    {
+      rest.map((post) => (
+        <li class="group/posts rounded-lg shadow-md transition-shadow duration-200 hover:shadow-lg">
+          <a href={post?.href}>
+            <div class="h-auto overflow-hidden rounded-lg md:h-36">
+              <img
+                alt={post.data.title}
+                class="h-full w-full object-cover transition-all duration-200 group-hover/posts:scale-110"
+                src={post.data.image}
+              />
+            </div>
+
+            <div class="p-2">
+              <h4 class="text-lg font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
+
+              <TagList className="pb-2" client:load tags={post.data.tags} />
+
+              <p class="text-sm">
+                <Time date={post.data.date} />
+              </p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

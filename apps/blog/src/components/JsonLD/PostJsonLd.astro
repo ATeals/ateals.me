@@ -1,0 +1,29 @@
+---
+import { SITE } from '@/consts';
+import type { CollectionData } from '@/service/mdx';
+
+export interface Props {
+  post: CollectionData;
+}
+
+const { post } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  datePublished: post.data.date,
+  dateModified: post.data.date,
+  description: post.data.description,
+  image: post.data.image,
+  url: `${SITE.domain}${post.href}`,
+  author: {
+    '@type': 'Person',
+    name: 'Ateals'
+  }
+};
+
+const rowJsonLd = JSON.stringify(jsonLd);
+---
+
+<script set:html={rowJsonLd} type="application/ld+json" />

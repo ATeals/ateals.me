@@ -1,0 +1,15 @@
+---
+import PostTypeList from '@/layouts/posts/PostTypeList.astro';
+import { POST_TYPES, type PostTypeKey } from '@/service/mdx';
+
+export async function getStaticPaths() {
+  return POST_TYPES.filter(({ type }) => type !== 'ALL').map(({ type, href }) => ({
+    params: { slug: href },
+    props: { type }
+  }));
+}
+
+const { type } = Astro.props;
+---
+
+<PostTypeList type={type as PostTypeKey} />

@@ -1,0 +1,39 @@
+---
+import { SITE } from '@/consts';
+import { type CollectionData } from '@/service/mdx';
+
+type Props = { posts: CollectionData[] };
+
+const { posts } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: SITE.title,
+  url: SITE.domain,
+  description: SITE.description,
+  mainEntity: {
+    '@type': 'Blog',
+    headline: '최신 포스팅',
+    blogPosts: posts.slice(0, 5).map((post) => {
+      return {
+        '@type': 'BlogPosting',
+        headline: post.data.title,
+        datePublished: post.data.date,
+        dateModified: post.data.date,
+        description: post.data.description,
+        image: post.data.image,
+        url: `${SITE.domain}${post.href}`,
+        author: {
+          '@type': 'Person',
+          name: 'Ateals'
+        }
+      };
+    })
+  }
+};
+
+const rowJsonLd = JSON.stringify(jsonLd);
+---
+
+<script set:html={rowJsonLd} type="application/ld+json" />

@@ -1,0 +1,18 @@
+---
+import { POST_TYPES } from '@/service/mdx';
+---
+
+<ul class="flex min-h-32 w-full justify-center gap-8" data-animate>
+  {
+    POST_TYPES.map(({ href, title, icon }) => (
+      <li class="group">
+        <a class="flex flex-col items-center gap-2 text-start" href={`/${href}`}>
+          <span class="rounded-full p-5 text-xl shadow-md transition-all duration-200 hover:scale-110 hover:text-2xl dark:shadow-zinc-900">
+            {icon}
+          </span>
+          <span class="">{title}</span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

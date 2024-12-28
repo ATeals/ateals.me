@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props {
+  title?: string;
+  props?: HTMLAttributes<'div'>;
+}
+
+const { title, props } = Astro.props;
+---
+
+<div class="flex min-h-64 w-full flex-col items-center" {...props}>
+  <div
+    class="mt-20 flex items-center justify-center overflow-hidden rounded-full shadow-md shadow-zinc-500 dark:shadow-black"
+  >
+    <slot name="icon" />
+  </div>
+  <h1 class="mt-2 font-medium">{title}</h1>
+  <slot />
+</div>

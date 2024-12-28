@@ -1,0 +1,49 @@
+---
+import { BackButton } from '@/components/BackButton';
+import PostTypeSmallNav from '@/components/postType/PostTypeSmallNav.astro';
+import { SideMenu } from '@/components/SideMenu';
+import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
+import { Separator } from '@/components/ui/separator';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import IconHeader from '@/layouts/IconHeader.astro';
+import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
+import { POSTS_TYPES_MAP, type PostTypeKey } from '@/service/mdx';
+import { PostBuilder } from '@/service/mdx';
+
+interface Props {
+  type: PostTypeKey;
+}
+
+const { type } = Astro.props;
+
+const document = await PostBuilder.getByCollection(type);
+
+const posts = [...document];
+
+const { icon, title, description } = POSTS_TYPES_MAP[type];
+---
+
+<DefaultLayout
+  seo={{
+    title: `${title} | ATeals`,
+    description,
+    image: '/logo.png'
+  }}
+>
+  <IconHeader title={title}>
+    <div class="m-5 text-5xl" slot="icon">{icon}</div>
+  </IconHeader>
+
+  <SideMenu className="top-60 py-2" client:load>
+    <BackButton client:only="react" />
+    <ThemeDropdown client:only="react" />
+  </SideMenu>
+
+  <div class="flex w-full items-end justify-between">
+    <p>{description}</p>
+    <PostTypeSmallNav />
+  </div>
+  <Separator />
+
+  {posts && <GridPostsLayout posts={posts} />}
+</DefaultLayout>

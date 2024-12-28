@@ -1,7 +1,7 @@
 [data-rehype-pretty-code-figure] pre {
   overflow-x: auto;
 
-  @apply scrollbar-hide bg-zinc-100 dark:bg-zinc-900;
+  @apply bg-zinc-100 scrollbar-hide dark:bg-zinc-900;
 }
 
 [data-rehype-pretty-code-figure] [data-line] {
@@ -22,11 +22,11 @@ code > [data-line]:not([data-highlighted-line-id])::before {
 
 /* 코드블럭 강조 + */
 .prose code span[data-highlighted-line] {
-  @apply border-primary-lg bg-opacity-20 dark:bg-opacity-30  bg-primary-sm   dark:bg-primary-sm;
+  @apply border-primary-lg bg-primary-sm bg-opacity-20 dark:bg-primary-sm dark:bg-opacity-30;
 }
 
-[data-highlighted-line-id="add"]::before {
-  content: "+";
+[data-highlighted-line-id='add']::before {
+  content: '+';
 
   /* Other styling */
   display: inline-block;
@@ -37,12 +37,12 @@ code > [data-line]:not([data-highlighted-line-id])::before {
 }
 
 /* 코드블럭 강조 - */
-.prose code span[data-highlighted-line-id="rm"] {
-  @apply border-secondary-md bg-opacity-20 dark:bg-opacity-30 bg-red-300 dark:bg-red-400;
+.prose code span[data-highlighted-line-id='rm'] {
+  @apply border-secondary-md bg-red-300 bg-opacity-20 dark:bg-red-400 dark:bg-opacity-30;
 }
 
-[data-highlighted-line-id="rm"]::before {
-  content: "-";
+[data-highlighted-line-id='rm']::before {
+  content: '-';
 
   /* Other styling */
   display: inline-block;
@@ -53,20 +53,20 @@ code > [data-line]:not([data-highlighted-line-id])::before {
 }
 
 /* 코드블럭 테마 */
-code[data-theme*=" "],
-code[data-theme*=" "] span {
-  @apply text-[--shiki-light]  dark:text-[--shiki-dark];
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+  @apply text-[--shiki-light] dark:text-[--shiki-dark];
 }
 
 code {
   counter-reset: line;
 }
 
-code[data-line-numbers-max-digits="2"] > [data-line]::before {
+code[data-line-numbers-max-digits='2'] > [data-line]::before {
   width: 2rem;
 }
 
-code[data-line-numbers-max-digits="3"] > [data-line]::before {
+code[data-line-numbers-max-digits='3'] > [data-line]::before {
   width: 3rem;
 }
 
@@ -81,7 +81,7 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   border-top-right-radius: 0.4rem;
   border-bottom-style: none;
 
-  @apply font-light bg-zinc-100 dark:bg-zinc-900;
+  @apply bg-zinc-100 dark:bg-zinc-900;
 }
 
 [data-rehype-pretty-code-title] + pre {
@@ -91,5 +91,9 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 
 /* 코드블럭 강조 문자 */
 [data-highlighted-chars] {
-  @apply bg-opacity-40 dark:bg-opacity-30 bg-secondary-md px-1 shadow-md rounded-md;
+  @apply rounded-md bg-secondary-md bg-opacity-40 px-1 shadow-md dark:bg-opacity-30;
+}
+
+[data-rehype-pretty-code-caption] {
+  @apply text-sm font-normal;
 }

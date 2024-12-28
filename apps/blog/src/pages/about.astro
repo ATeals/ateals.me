@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import Logo from 'public/logo.png';
+
+import SocialLink from '@/components/SocialLink.astro';
+import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import IconHeader from '@/layouts/IconHeader.astro';
+---
+
+<DefaultLayout>
+  <div class="flex w-full flex-col items-start justify-center" data-animate data-animate-speed="slow">
+    <IconHeader title="ATeals">
+      <Image alt="Logo" class="h-24 w-24" slot={'icon'} src={Logo} />
+      <SocialLink />
+      <div class="mt-5">
+        <ThemeDropdown client:only="react" />
+      </div>
+    </IconHeader>
+  </div>
+</DefaultLayout>

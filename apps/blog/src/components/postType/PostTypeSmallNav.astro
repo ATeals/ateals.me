@@ -1,0 +1,15 @@
+---
+import { POST_TYPES } from '@/service/mdx';
+---
+
+<ul class="flex gap-2" data-animate>
+  {
+    POST_TYPES.map(({ href, icon }) => (
+      <li class="group">
+        <a class="" href={`/${href}`}>
+          <span class="rounded-full text-sm">{icon}</span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

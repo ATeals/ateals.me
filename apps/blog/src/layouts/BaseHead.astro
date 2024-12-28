@@ -1,0 +1,58 @@
+---
+// Import the global.css file here so that it is included on
+// all pages through the use of the <BaseHead /> component.
+
+import '@/styles/global.css';
+
+import { SITE } from '@/consts';
+import type { SEOProps } from '@/type';
+
+type Props = Partial<SEOProps>;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title = SITE.title, description = SITE.description, image = SITE.img } = Astro.props;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<link href="/favicon.ico" rel="icon" type="image/svg+xml" />
+<meta content={Astro.generator} name="generator" />
+
+<!-- Favicon -->
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+<link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+
+<!-- Canonical URL -->
+<link href={canonicalURL} rel="canonical" />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta content={title} name="title" />
+<meta content={description} name="description" />
+<meta content={SITE.author.name} http-equiv="Author" />
+<meta content={SITE.author.name} name="author" />
+
+<!-- Open Graph / Facebook -->
+<meta content="website" property="og:type" />
+<meta content={Astro.url} property="og:url" />
+<meta content={title} property="og:title" />
+<meta content={description} property="og:description" />
+<meta content={new URL(image, Astro.url)} property="og:image" />
+
+<!-- Twitter -->
+<meta content={image} property="twitter:card" />
+<meta content={Astro.url} property="twitter:url" />
+<meta content={title} property="twitter:title" />
+<meta content={description} property="twitter:description" />
+<meta content={new URL(image, Astro.url)} property="twitter:image" />
+
+<!-- SEO -->
+<link href="/sitemap.xml" rel="sitemap" />
+<link href="/rss.xml" rel="alternate" title="RSS" type="application/rss+xml" />
+<link href="/robots.txt" rel="robots" />
+
+<!-- Google Search Console -->
+<meta content="mlTcRHcN0Ek1reeiKlnCuRvRSE-pXkiDkYqVkyvl0cE" name="google-site-verification" />

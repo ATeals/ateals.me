@@ -13,7 +13,8 @@
   align-items: center;
   gap: 0.5em;
   margin-bottom: 0.5em;
-  font-size: 1rem;
+
+  @apply text-sm font-semibold;
 }
 
 .callout-title > p {
@@ -25,15 +26,15 @@
 }
 
 .callout.note {
-  @apply border-l-[#0070f3] bg-[#e7f5ff] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
+  @apply border-l-green-700 dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.warning {
-  @apply border-l-[#ffa500] bg-[#fff3cd] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
+  @apply border-l-[#ffa500] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.danger {
-  @apply border-l-[#dc3545] bg-[#f8d7da] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
+  @apply border-l-[#dc3545] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.info {

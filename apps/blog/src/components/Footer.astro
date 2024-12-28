@@ -1,0 +1,21 @@
+---
+import { SiVercel } from 'react-icons/si';
+import { SiAstro } from 'react-icons/si';
+import { SiMdx } from 'react-icons/si';
+
+import SocialLink from './SocialLink.astro';
+
+const today = new Date();
+---
+
+<footer class="mx-auto max-w-2xl py-5">
+  <div class="flex items-end justify-between">
+    <p>&copy; {today.getFullYear()} ATeals All rights reserved.</p>
+    <SocialLink />
+  </div>
+  <section class="my-2 flex items-center justify-end gap-2">
+    <SiVercel />
+    <SiAstro />
+    <SiMdx />
+  </section>
+</footer>
