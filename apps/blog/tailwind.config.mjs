@@ -6,7 +6,10 @@ import animation from 'tailwindcss-animate';
 export default {
   mode: 'jit',
   darkMode: ['class'],
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  content: [
+    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    '../../packages/shadcn/src/components/**/*.{js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {
       borderRadius: {

@@ -1,9 +1,8 @@
+import { Button } from '@repo/shadcn/components';
 import type { HTMLAttributes } from 'react';
 
 import { cn } from '@/lib/utils';
 import type { CollectionData } from '@/service/mdx';
-
-import { Button } from './ui/button';
 
 interface AdjacentPostNavProps extends HTMLAttributes<HTMLDivElement> {
   prev?: CollectionData;

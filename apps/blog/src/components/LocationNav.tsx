@@ -1,12 +1,11 @@
-import { Fragment } from 'react';
-
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
+} from '@repo/shadcn/components';
+import { Fragment } from 'react';
 
 type LocationNavProps = {
   children?: React.ReactNode;

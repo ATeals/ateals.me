@@ -7,7 +7,7 @@ export const SITE = {
   description: '개발자 Ateals의 블로그입니다.',
   img: '/main.jpg',
   logo: '/logo.png',
-  domain: import.meta.env.DEV ? 'http://localhost:4321/' : 'https://blog.ateals.site/',
+  domain: import.meta.env.DEV ? 'http://localhost:4321/' : 'https://blog.ateals.me/',
   author: {
     name: 'Ateals',
     logo: '/logo.png',

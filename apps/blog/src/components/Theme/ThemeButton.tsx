@@ -1,8 +1,7 @@
 import { useStore } from '@nanostores/react';
+import { Button } from '@repo/shadcn/components';
 import { FaRegLightbulb } from 'react-icons/fa';
 import { FaLightbulb } from 'react-icons/fa';
-
-import { Button } from '@/components/ui/button';
 
 import { themeStore } from './store';
 

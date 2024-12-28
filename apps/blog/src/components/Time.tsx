@@ -1,7 +1,6 @@
 import { Slot } from '@radix-ui/react-slot';
+import { cn } from '@repo/shadcn/utils';
 import type { HTMLProps } from 'react';
-
-import { cn } from '@/lib/utils';
 
 export type SlotComponentProps<T> = HTMLProps<T> & { asChild?: true };
 

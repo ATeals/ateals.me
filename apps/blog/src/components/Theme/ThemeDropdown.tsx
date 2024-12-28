@@ -1,13 +1,12 @@
 import { useStore } from '@nanostores/react';
-import { DotIcon, MoonIcon, SunIcon } from 'lucide-react';
-
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
+} from '@repo/shadcn/components';
+import { DotIcon, MoonIcon, SunIcon } from 'lucide-react';
 
 import { THEME_MAP, type ThemeKey, themeStore } from './store';
 

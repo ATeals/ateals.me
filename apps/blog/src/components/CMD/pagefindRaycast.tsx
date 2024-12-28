@@ -1,4 +1,13 @@
 import { useStore } from '@nanostores/react';
+import {
+  Badge,
+  CommandDialog,
+  CommandEmpty,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator
+} from '@repo/shadcn/components';
 import { useEffect, useRef, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { MdOutlineSettings } from 'react-icons/md';
@@ -6,15 +15,6 @@ import { MdLightMode } from 'react-icons/md';
 import { MdDarkMode } from 'react-icons/md';
 
 import { applyNextTheme, themeStore } from '@/components/Theme/store';
-import { Badge } from '@/components/ui/badge';
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator
-} from '@/components/ui/command';
 import { SITE } from '@/consts';
 import { pagefindSearch, type PagefindSearchData } from '@/lib/pagefind';
 

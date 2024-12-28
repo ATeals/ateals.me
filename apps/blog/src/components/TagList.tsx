@@ -1,6 +1,6 @@
-import { cn } from '@/lib/utils';
+import { Badge } from '@repo/shadcn/components';
 
-import { Badge } from './ui/badge';
+import { cn } from '@/lib/utils';
 
 export const TagList = ({ tags, className }: { tags?: string[]; className?: string }) => {
   const goToTag = (tag: string) => {

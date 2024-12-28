@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/shadcn/components';
 
 export function PagefindButton() {
   const handleClick = () => {

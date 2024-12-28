@@ -1,7 +1,6 @@
+import { Button } from '@repo/shadcn/components';
 import { IoReturnDownBack } from 'react-icons/io5';
 import { IoHomeOutline } from 'react-icons/io5';
-
-import { Button } from './ui/button';
 
 export const BackButton = () => {
   const isPrevPageSameDomain = () => {

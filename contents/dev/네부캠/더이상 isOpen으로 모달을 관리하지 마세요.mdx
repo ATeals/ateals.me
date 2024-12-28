@@ -39,16 +39,16 @@ export const ModalOpenButton = () => {
 
   return (
     <>
-      <div className={'btn-wrapper'}>
-        <button className={'modal-trigger'} onClick={() => setIsOpen(true)}>
+      <div className={"btn-wrapper"}>
+        <button className={"modal-trigger"} onClick={() => setIsOpen(true)}>
           모달 열기
         </button>
       </div>
       {isOpen && (
-        <div className={'modal-container'}>
-          <div className={'modal-content'}>
+        <div className={"modal-container"}>
+          <div className={"modal-content"}>
             <p>리액트로 모달 구현하기</p>
-            <button className={'modal-close'} onClick={() => setIsOpen(false)}>
+            <button className={"modal-close"} onClick={() => setIsOpen(false)}>
               모달 닫기
             </button>
           </div>
@@ -88,14 +88,14 @@ export const ModalOpenButton = () => {
 이제 컴포넌트의 돔 요소의 스타일과 관계없이 모달은 포탈을 통해 별도의 공간에 렌더링 되므로 모달의 스타일을 독립적으로 관리할 수 있습니다.
 
 ```tsx
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import './Modal.css'; // 모달 스타일 시트
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import "./Modal.css"; // 모달 스타일 시트
 
 const Modal = ({ isOpen, children }) => {
   if (!isOpen) return null;
 
-  return ReactDOM.createPortal(<div className="modal">{children}</div>, document.getElementById('modal-root'));
+  return ReactDOM.createPortal(<div className="modal">{children}</div>, document.getElementById("modal-root"));
 };
 
 const App = () => {
@@ -160,8 +160,8 @@ export const ModalOpenButton = () => {
   return (
     <>
       {/* 여러가지 컴포넌트들 */}
-      <div className={'btn-wrapper'}>
-        <button className={'modal-trigger'} onClick={() => setIsOpen(true)}>
+      <div className={"btn-wrapper"}>
+        <button className={"modal-trigger"} onClick={() => setIsOpen(true)}>
           모달 열기
         </button>
       </div>
@@ -172,10 +172,10 @@ export const ModalOpenButton = () => {
       {/* 여러가지 컴포넌트들 */}
 
       {isOpen && (
-        <div className={'modal-container'}>
-          <div className={'modal-content'}>
+        <div className={"modal-container"}>
+          <div className={"modal-content"}>
             <p>리액트로 모달 구현하기</p>
-            <button className={'modal-close'} onClick={() => setIsOpen(false)}>
+            <button className={"modal-close"} onClick={() => setIsOpen(false)}>
               모달 닫기
             </button>
           </div>
@@ -199,13 +199,13 @@ export const ModalOpenButton = () => {
 - [react-toastify](https://github.com/fkhadra/react-toastify)
 
   ```tsx
-  import React from 'react';
+  import React from "react";
 
-  import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+  import { ToastContainer, toast } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
 
   function App() {
-    const notify = () => toast('Wow so easy!');
+    const notify = () => toast("Wow so easy!");
 
     return (
       <div>
@@ -219,9 +219,9 @@ export const ModalOpenButton = () => {
 - [shadcn/ui Toast](https://ui.shadcn.com/docs/components/toast)
 
   ```tsx
-  import { useToast } from '@/components/hooks/use-toast';
-  import { Button } from '@/components/ui/button';
-  import { ToastAction } from '@/components/ui/toast';
+  import { useToast } from "@/components/hooks/use-toast";
+  import { Button } from "@/components/ui/button";
+  import { ToastAction } from "@/components/ui/toast";
 
   export function ToastDemo() {
     const { toast } = useToast();
@@ -231,9 +231,9 @@ export const ModalOpenButton = () => {
         variant="outline"
         onClick={() => {
           toast({
-            title: 'Scheduled: Catch up ',
-            description: 'Friday, February 10, 2023 at 5:57 PM',
-            action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+            title: "Scheduled: Catch up ",
+            description: "Friday, February 10, 2023 at 5:57 PM",
+            action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
           });
         }}
       >
@@ -286,7 +286,7 @@ export const ModalOpenButton = () => {
 저의 초기 오버레이는 복잡한 애니메이션이나 비동기 제어가 필요하지 않다고 판단해, 핵심적인 로직만 추출해 냈습니다.
 
 ```tsx
-import { createContext, useContext, useEffect, useMemo, useRef } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef } from "react";
 
 interface OverlayContextValue {
   id?: string;
@@ -303,7 +303,7 @@ const useOverlayContext = () => {
   const InvalidContext = !(mount && unmount);
 
   if (InvalidContext) {
-    throw new Error('useOverlay는 OverlayProvider 내에서만 사용할 수 있습니다.');
+    throw new Error("useOverlay는 OverlayProvider 내에서만 사용할 수 있습니다.");
   }
 
   return useMemo(() => ({ mount, unmount }), [mount, unmount]);
@@ -340,8 +340,8 @@ export const useOverlay = ({ isCloseOnUnmount = true }: { isCloseOnUnmount?: boo
 `open` 함수는 ReactNode를 인자로 받아 id와 함께 `mount` 합니다.
 
 ```tsx
-import { Fragment, useCallback, useMemo, useState } from 'react';
-import { OverlayContext } from './useOverlay';
+import { Fragment, useCallback, useMemo, useState } from "react";
+import { OverlayContext } from "./useOverlay";
 
 export const OverlayProvider = ({ children }: { children: React.ReactNode }) => {
   const [overlays, setOverlays] = useState<Map<string, React.ReactNode>>(new Map());
@@ -402,7 +402,7 @@ export function LotusUpdateButton({ lotusId }: { lotusId: string }) {
   };
 
   return (
-    <Button variant={'default'} onClick={handleOpenUpdateModal}>
+    <Button variant={"default"} onClick={handleOpenUpdateModal}>
       <IoSettingsSharp />
       <Text size="sm">수정하기</Text>
     </Button>
@@ -461,10 +461,10 @@ function Component() {
   const { toast } = useToast();
 
   toast({
-    title: '안녕하세요!',
-    description: 'Gist clone과정을 폴짝! 건너뛰고테스트 ⭐️',
+    title: "안녕하세요!",
+    description: "Gist clone과정을 폴짝! 건너뛰고테스트 ⭐️",
     duration: 2000,
-    action: <Button>닫기</Button>
+    action: <Button>닫기</Button>,
   });
 
   return <></>;

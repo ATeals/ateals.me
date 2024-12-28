@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui/button';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from '@repo/shadcn/components';
 
 const TimeIcon = ({ time }: { time: number }) => {
   const icons = ['🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕘'];
