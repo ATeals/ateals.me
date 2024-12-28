@@ -75,7 +75,7 @@ export class PostBuilder {
         ...collection.data,
         date: new Date(collection.data.date),
         description: collection.data.description || collection.body?.substring(0, 100),
-        image: collection.data.image || new URL(`/og/${collection.data.slug}.png`, SITE.domain).toString()
+        image: collection.data.image || SITE.img
       },
       iconType: isUrlString(collection.data.icon) ? 'url' : 'string',
       href: `/posts/${collection.data.slug}`
