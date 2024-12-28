@@ -38,7 +38,3 @@ export const Toc = ({ post }: { post: Document }) => {
     </ul>
   );
 };
-
-const parseRawTag = (tag: string) => {
-  return;
-};

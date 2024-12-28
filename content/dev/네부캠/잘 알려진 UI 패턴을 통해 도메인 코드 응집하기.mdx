@@ -1,0 +1,216 @@
+---
+title: 잘 알려진 UI 패턴을 통해 도메인 코드 응집하기
+description:
+image: https://i.imgur.com/wdrHXst.png
+icon: 🧱
+tags:
+  - React
+  - 네부캠
+date: 2024-12-13T14:29
+updated: 2024-12-13T18:09
+series:
+slug: doing-well-known-uI-patterns
+---
+
+> [\[번역\] 잘 알려진 UI 패턴을 사용하여 리액트 애플리케이션 모듈화하기](https://velog.io/@eunbinn/modularizing-react-apps)
+
+전에 위와 같은 글을 읽은 적이 있습니다. 초기에는 와닿지 않았습니다.
+
+제가 작성하던 코드들은 훅 경계에서 비즈니스로직을 작성하면, 부가적인 다른 훅들이 영향을 받을 일이 적은 아주작은 서비스들이었기 때문입니다.
+
+하지만, 이번에 각각의 도메인 데이터들을 서버에서 전달해주고 이를 분리하고 나눠 여러가지 UI를 구현해야하는 시나리오가 생겼습니다.
+
+기억을 더듬어 글을 참고해 도메인 비즈니스 로직과 UI를 효과적으로 분리할 수 있었습니다.
+
+## 어뎁터 패턴을 통해 서버의 데이터를 효과적으로 관리하기
+
+> 하지만 대부분의 경우 더 많은 비즈니스 로직이 프런트엔드로 이동함에 따라 이런 짜깁기된 컴포넌트는 문제를 드러냅니다. 더 자세히 말하자면 이러한 유형의 코드를 이해하기 위한 노력이 상대적으로 많이 들고 코드 수정에 대한 위험도 증가하게 됩니다.
+>
+> 여기서 중요한 점은 애플리케이션 내에서 코드의 각 부분이 어떤 역할을 하는지 분석해야 한다는 것입니다(같은 파일에 담겨 있을 수도 있습니다). 뷰와 뷰와 관련되지 않은 로직을 분리하고, 뷰와 관련되지 않은 로직을 책임에 따라 더욱 세분화하여 적재적소에 배치해야 있어야 합니다.
+
+컴포넌트에서 구현되는 여러가지 도메인 로직 때문에, UI로직과 도메인로직의 경계가 모호해지고, 각각의 컴포넌트에서 구현되는 과정을 통해 코드 리팩터링에 어려움을 겪었습니다.
+
+### 산탄총 수술 문제
+
+<img width="660" alt="1-1" src="https://github.com/user-attachments/assets/32849ff5-cf55-4584-aed4-2ca19a8320a8" />
+
+> 버그를 수정하거나 새로운 기능을 추가하기 위해 코드를 수정할 때마다 여러 모듈을 건드려야 한다면 산탄총 수술 문제가 있다고 할 수 있습니다. 특히 테스트가 불충분할 때 이렇게 많은 변경을 하면 실수를 저지르기 쉽습니다.
+
+진행하던 프로젝트도 마찬가지였습니다.
+
+지원되지 않는 형식의 파일을 UI에서 제어하거나, 마크다운 형식으로 변경하는 특정 비즈니스로직이 컴포넌트와 각각 섞여있었습니다.
+
+![caption:컴포넌트 내부에 선언된 많은 비즈니스 로직](https://github.com/user-attachments/assets/5fa80792-04dd-4eb1-997b-56dec2cc4c30)
+
+때문에, 리팩터링을 위해 각각의 컴포넌트나 훅을 돌아다니며 비즈니스로직을 수정하는 일이 발생했습니다.
+
+이를 해결하기 위해 글에서는 데이터와 동작을 한 곳에 집중시킨 도메인 모델에 비즈니스 로직을 모아 사용하고 훅이나 컴포넌트에서는 UI로직을 처리해 비즈니스 로직의 캡슐화와 테스트 용이성, 리팩터링 편의성을 제공하고자 합니다.
+
+### 도메인 모델
+
+저희가 만든 CodeFileModel은 코드의 여러가지 데이터와 비즈니스 로직을 가진 도메인 모델 객체입니다.
+
+<img alt="1-3" src="https://github.com/user-attachments/assets/f5f8d2b7-06a8-4c49-a88c-fd9a15cd6f8c" />
+
+CodeFileModel은 서버에서 받은 dto를 생성자에 받아 프론트엔드에서 사용할 데이터 타입으로 재정의합니다.
+
+또한 마크다운파일인지 식별하거나, 지원가능한 형식의 파일인지 확인하거나, 마크다운 형식의 문자열을 반환하는 여러가지 동작을 메서드를 통해 지원합니다.
+
+<img alt="1-4" src="https://github.com/user-attachments/assets/9193aaf1-56d2-45b1-986e-0a6a5c5df509" />
+
+덕분에 컴포넌트에서는 더 이상 비즈니스 로직을 작성하지 않고 UI에 집중한 로직을 작성할 수 있게 되었습니다.
+
+도메인 모델을 적용한 덕분에 얻은 이점은 다음과 같습니다.
+
+- class를 통해(사실 class와는 큰 연관이 없습니다. 도메인 로직을 응집할 수 있는 어떠한 수단이든 상관 없습니다.) 도메인과 관련된 모든 로직을 캡슐화 할 수 있습니다.
+- 도메인의 객체로 관리하며 View와 관련된 정보를 포함하지 않습니다. 따라서 여기서 로직을 테스트하고 수정하는 것이 View와 함께하는 것보다 쉽고, 필요한 비즈니스 로직을 빠르게 검증할 수 있습니다.
+- View 계층에서는 반대로 도메인 로직에 대해 신경쓸 필요가 없습니다. 컴포넌트는 자신이 UI를 그려내기 위해 필요한 도메인 객체를 전달받아 필요한 도메인 로직을 소비합니다.
+- 계층적으로 모델과 뷰가 분리되어 요구사항이 변경되거나 새로운 요구사항이 발생하면, 모든 코드를 산발적으로 수정할 필요없이 계층적으로 확인할 수 있습니다.
+- dto를 도메인 모델에서 한번 검증하기 때문에, UI 계층에 도메인 로직이나 데이터가 전파되기 전에 필요한 오류나 버그를 조기에 디버깅할 수 있습니다. 즉, 디버깅 경계를 손쉽게 나눌 수 있습니다.
+
+![1-5](https://github.com/user-attachments/assets/b50e4806-fa04-47c6-b8ae-ad12f82af564)
+
+덕분에 더이상 UI계층에 코드가 산발적으로 작성되지 않고 모든 비즈니스로직을 Domain 객체에서 관리할 수 있었습니다.
+
+## 도메인 모델에 대응되는 합성 컴포넌트
+
+이후에 만들어진 도메인 모델을 사용하는 과정에서 UI를 도메인마다 효율적으로 재사용하기 위해 도메인 모델의 데이터와 대응되는 합성 컴포넌트들을 구현하고자 했습니다.
+
+사용자의 데이터 정보를 다루는 UserModel에 대해서는 User 컴포넌트를 Gist에 대응되는 파일 관리인 LotusModel에 대해서는 Lotus 컴포넌트를 각각 합성 컴포넌트 패턴을 통해 구현했습니다.
+
+<table>
+  <tr>
+    <td align="center">
+      <img alt="1-6" src="https://github.com/user-attachments/assets/3c2c7435-9993-48c2-83fd-cb2f43c4bea2" />
+    </td>
+    <td align="center">
+      <img alt="1-7" src="https://github.com/user-attachments/assets/ac193f42-e1bc-4def-bd05-7b103e5b9c9e" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img alt="1-8" src="https://github.com/user-attachments/assets/1282eec0-e86a-44c4-90ab-11e6cae716be" />
+    </td>
+    <td align="center">
+      <img alt="1-9" src="https://github.com/user-attachments/assets/d75932ce-620d-4130-8005-07ea418784d8" />
+    </td>
+  </tr>
+</table>
+
+이제 각각 모델과 1대1 대응되는 합성 컴포넌트들을 조합하여 UI 요구사항에 필요한 다양한 컴포넌트를 선언적으로 작성할 수 있었습니다.
+
+예를들어 사용자가 포스팅한 Lotus의 카드형 UI가 필요하다면, LotusModel과 UserModel을 사용하면서 Lotus컴포넌트와 User컴포넌트를 선언해 사용하면 됩니다.
+
+<img alt="1-10" src="https://github.com/user-attachments/assets/1728b272-59a9-40e0-9ee1-3b8350805feb" />
+
+<img alt="1-11" src="https://github.com/user-attachments/assets/77c02579-8ca0-4f53-b79a-af8bb025ac57" />
+
+합성 컴포넌트 패턴을 사용하고 있기 때문에 카드형 리스트에서 추가된 요구사항으로 매우 작은 리스트 형식의 컴포넌트를 구현하게 되더라도 손쉽게 추가 요구사항을 해결할 수 있습니다.
+
+<table class="table-fixed">
+  <tr>
+    <td rowspan="2" class="align-middle">
+      <img
+        alt="1-12"
+        src="https://github.com/user-attachments/assets/2baaa374-986a-4486-b0fc-c8e638594cfe"
+        class="mx-auto h-auto max-w-full"
+      />
+    </td>
+    <td class="align-middle">
+      <img
+        alt="1-13"
+        src="https://github.com/user-attachments/assets/fd214929-a91c-44d2-ad6d-ca91b2cbcba8"
+        class="mx-auto h-auto max-w-full"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td class="align-middle">
+      <img
+        alt="1-14"
+        src="https://github.com/user-attachments/assets/9223a7fb-c3b8-407c-87f7-d77d630ad92a"
+        class="mx-auto h-auto max-w-full"
+      />
+    </td>
+  </tr>
+</table>
+
+## 계층화를 통해 효율적으로 도메인 객체 전달하기
+
+지금까지 Model을 선언하고 View를 재사용하는 방법을 알아봤습니다.
+
+하지만, 모든 UI가 1가지 Model에 1가지 View를 소비하는 것은 아닙니다.
+
+위와 같이 카드형 리스트에서도 User와 Lotus 두가지 모델을 합성해 사용합니다. 복잡한 비즈니스 요구사항에서는 더욱 많은 모델들의 조합이 필요할지 모릅니다.
+
+저희는 여러가지 도메인 모델들을 각각 소비되는 API계층에서 조합하고 이를 QueryOptions을 통해 UI에 효과적으로 전달하고자 했습니다.
+
+이를 통해 만들어진 프론트엔드의 계층구조는 다음과 같습니다.
+
+![](https://i.imgur.com/UKbDJjz.png)
+
+- API(Model): 각 API 요청에서 제공하는 데이터를 조합해 도메인 객체로 만들어냅니다. 이를 각각의 ViewModel에서 사용하기 좋은 방식으로 가공합니다. 이 계층에서 dto의 검증, 변환, 비즈니스 로직 응집을 진행합니다.
+- Query, Hooks(ViewModel): Query와 Hook에서는 API 계층에서 전달받은 여러가지 도메인 객체를 View에서 사용하기 적절하게 가공합니다. Query에서는 캐시를 관리하기 좋은 구조화된 QueryKey를 제공하고, Hooks에서는 Query를 사용하는 방식이나 UI에서 필요한 데이터, 로직을 선언해 View에 제공합니다.
+- UI(View) : 각각의 UI(컴포넌트)는 사용자에게 필요한 시각적 데이터를 제공하기 위해서 ViewModel 계층에서 가공된 데이터를 사용합니다. 이 계층에서는 UI를 그려내는 것 이외의 추가적인 로직을 작성하지 않습니다.
+
+이제 개발자는 변경사항이 생겼을때 각각의 계층을 격리해 리팩터링할 수 있습니다. 또한 추가 요구사항을 개발할 때는 개발에 필요한 계층만 별도로 구현하고 사용할 수 있는 다른 계층의 로직들을 재사용할 수 있습니다.
+
+### 계층을 통해 개발하는 시나리오
+
+간단한 예시를 들어 개발 시나리오 예시를 들어보겠습니다.
+
+포스팅 서비스를 개발하기 위해 개발자는 서버에서 포스트 정보를 받고 이를 UI로 그려내야하는 시나리오를 예시로 들겠습니다.
+
+먼저 개발자는 서버와 약속한 인터페이스를 dto로 선언합니다.
+
+<img width="695" alt="1-16" src="https://github.com/user-attachments/assets/0c6b2e17-1caa-4049-8289-96b5a2968214" />
+
+이를 프론트엔드에서 사용하기 편리한 도메인 객체로 변환할 수 있도록 대응되는 도메인 객체를 선언합니다.
+
+<img alt="1-17" src="https://github.com/user-attachments/assets/29e4af60-1dfc-48b3-9fe0-9e901fab7d8a" />
+
+개발자는 서비스에서 필요한 여러가지 API를 API계층에 구현합니다. 예시 시나리오에서는 Post의 전체 조회, 특정 id의 Post조회, keyword를 통한 Post 목록 조회를 구현했습니다.
+
+이를 효율적인 방식으로 query와 hook 계층에서 가공합니다.
+
+> 저희 서비스는 Tanstack Query를 사용해 효율적으로 서버상태를 관리하고자 했습니다. 서버상태를 구조화된 Query Key를 통해 관리하고자 했으므로 createQueryOptions과 같은 Query Key Factory 구현체를 만들었습니다.
+>
+> 이에대한 내용은 [여기](https://blog.ateals.site/posts/effective-query-key)를 확인해 주세요.
+
+이제 UI 계층에서는 만들어진 hook을 사용해 전달할 UI를 선언적으로 작성합니다.
+
+### 추가 요구사항 처리
+
+계층화를 이뤄낸 덕분에 저희는 기존에 만들어진 도메인 모델을 소비하는 여러가지 계층 로직들을 다른 요구사항에서 사용할 수 있었습니다.
+
+기존에 보여주던 Lotus의 실행 History를 페이지네이션으로 보여줄 수 있도록 하는 추가요구사항이 발생했습니다.
+
+이때 이전에 여러가지 페이지에서 Lotus 목록에 대한 페이지네이션을 이미 PageModel과 함께 사용하고 있었기 때문에 요구사항의 API계층과 Query계층만을 구현하고 기존에 구현된 Hooks, UI 계층을 재사용할 수 있었습니다.
+
+<img alt="1-18" src="https://github.com/user-attachments/assets/dccdb388-44c9-48d8-b0e5-e1508a972dde" />
+
+<img alt="1-19" src="https://github.com/user-attachments/assets/0058a0fd-b5dd-4dd2-85e6-408f3886f9b5" />
+
+> 기존에 사용하던 페이지네이션 컴포넌트에 Query만 변경해 주입
+
+History의 페이지네이션을 위해 각각 도메인을 받는 새로운 Dto와 API를 선언합니다.
+
+<img alt="1-20" src="https://github.com/user-attachments/assets/05f8ac4a-476c-4281-a799-96cf3ca60aab" />
+
+lotusHistoryList API에서는 전달된 Dto를 통해서 History 데이터를 관리하는 HistoryModel과 페이지네이션을 관리하는 PageModel로 캡슐화해 반환합니다.
+
+![1-21](https://github.com/user-attachments/assets/afc2b2a4-e705-423c-9971-3bd548852118)
+
+이후 Query Factory를 통해 list API에 대한 쿼리 옵션을 생성하고, 이를 기존에 만들어둔 Pagination 컴포넌트에 queryOptions Props에 주입합니다.
+
+<img alt="1-22" src="https://github.com/user-attachments/assets/cab017ab-b6dd-43e1-b149-d9b98dec2d8d" />
+
+## 결론
+
+어뎁터 패턴과 도메인 객체를 통해서 서버에서 내려주는 데이터를 UI에 표시하기 전에 검증이 가능하고, UI에서 사용하기 좋은 방식으로 변형하거나 비즈니스 로직을 캡슐화할 수 있었습니다.
+
+이후 도메인 모델에 1:1로 대응되는 합성 컴포넌트를 통해 해당 모델에 대해 UI를 선언적으로 재활용할 수 있었습니다.
+
+마지막으로 계층화 구조를 통해서 적절하게 도메인 모델을 API로부터 UI까지 전달하고 재사용가능한 경계를 만들어냈습니다.
+
+이제 Froxy팀에서는 추가적인 요구사항이 발생하거나, 새로운 시나리오가 발생하는 경우 4가지 계층 중에 구현해야하는 계층을 식별하고 나머지 계층은 재사용해 효율적으로 구현할 수 있습니다.

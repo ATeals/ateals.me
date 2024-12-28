@@ -1,0 +1,153 @@
+---
+title: 데코레이터와 메타 프로그래밍
+description: 데코레이터가 뭐야
+image: https://i.imgur.com/h95Evla.png
+date: 2024-09-12T20:59
+tags:
+  - TypeScript
+type: Snapshot
+slug: decorator-meta-programming
+---
+
+> 리팩터링 구루의 데코레이터 문서는 [여기](https://refactoring.guru/ko/design-patterns/decorator)에서 볼 수 있습니다.
+
+**데코레이터**는 객체들을 새로운 행동들을 포함한 특수 래퍼 객체들 내에 넣어서 위 행동들을 해당 객체들에 연결시키는 구조적 디자인 패턴입니다.
+
+```ts caption="고마워요 GPT 웨건"
+// 기본 인터페이스
+interface Component {
+  operation(): string;
+}
+
+// 기본 컴포넌트 클래스
+class ConcreteComponent implements Component {
+  operation(): string {
+    return 'ConcreteComponent';
+  }
+}
+
+// 데코레이터 기본 클래스
+class Decorator implements Component {
+  protected component: Component;
+
+  constructor(component: Component) {
+    this.component = component;
+  }
+
+  operation(): string {
+    return this.component.operation();
+  }
+}
+
+// 첫 번째 구체적 데코레이터
+class ConcreteDecoratorA extends Decorator {
+  operation(): string {
+    return `ConcreteDecoratorA(${super.operation()})`;
+  }
+}
+
+// 두 번째 구체적 데코레이터
+class ConcreteDecoratorB extends Decorator {
+  operation(): string {
+    return `ConcreteDecoratorB(${super.operation()})`;
+  }
+}
+
+// 사용 예시
+const simple = new ConcreteComponent();
+console.log('Client: 기본 컴포넌트만 사용:', simple.operation());
+
+const decoratorA = new ConcreteDecoratorA(simple);
+console.log('Client: 첫 번째 데코레이터를 적용:', decoratorA.operation());
+
+const decoratorB = new ConcreteDecoratorB(decoratorA);
+console.log('Client: 두 번째 데코레이터를 적용:', decoratorB.operation());
+
+// Client: 기본 컴포넌트만 사용: ConcreteComponent
+// Client: 첫 번째 데코레이터를 적용: ConcreteDecoratorA(ConcreteComponent)
+// Client: 두 번째 데코레이터를 적용: // ConcreteDecoratorB(ConcreteDecoratorA(ConcreteComponent))
+```
+
+## Typescript Decorator
+
+TypeScript 및 ES6에 클래스가 도입됨에 따라 이제 클래스 및 클래스 멤버에 주석을 달거나 수정을 지원하기 위해 추가 기능이 필요한 특정 시나리오가 존재합니다. 데코레이터는 클래스 선언 및 멤버에 대한 주석과 메타 프로그래밍 구문을 모두 추가하는 방법을 제공합니다.
+
+> 데코레이터에 대한 실험적 지원을 활성화하려면 명령줄이나 tsconfig.json에서 [experimentalDecorators](https://www.typescriptlang.org/tsconfig#experimentalDecorators) 컴파일러 옵션을 활성화해야 합니다.
+
+Decorator는 [클래스 선언](https://www.typescriptlang.org/docs/handbook/decorators.html#class-decorators), [메서드](https://www.typescriptlang.org/docs/handbook/decorators.html#method-decorators), [접근자](https://www.typescriptlang.org/docs/handbook/decorators.html#accessor-decorators), [속성](https://www.typescriptlang.org/docs/handbook/decorators.html#property-decorators) 또는 [매개 변수](https://www.typescriptlang.org/docs/handbook/decorators.html#parameter-decorators)에 연결할 수 있는 특별한 종류의 선언입니다. 데코레이터는 @expression 형식을 사용하며, 여기서 expression은 데코레이팅된 선언에 대한 정보와 함께 런타임에 호출될 함수로 평가되어야 합니다.
+
+```ts caption="여러 데코레이터가 단일 선언에 적용되는 경우 해당 평가는 [수학의 함수 구성](https://wikipedia.org/wiki/Function_composition)과 유사합니다. 이 모델에서 함수 f와 g를 구성할 때 결과로 생성되는 복합 (f ∘ g)(x)는 f(g(x))와 동일합니다."
+// 여러 줄
+@f
+@g
+x
+
+// 한줄
+@f @g x
+```
+
+따라서 TypeScript의 단일 선언에서 여러 데코레이터를 평가할 때 다음 단계가 수행됩니다.
+
+- 각 데코레이터에 대한 표현식은 위에서 아래로 평가됩니다.
+- 그런 다음 결과는 아래에서 위로 함수로 호출됩니다.
+
+## Decorators 종류
+
+### Class Decorators
+
+클래스 전체를 데코레이팅합니다. 클래스 데코레이터는 클래스 선언 바로 위에 사용되며, 해당 클래스의 생성자에 접근할 수 있습니다.
+
+• **매개변수:** 클래스 데코레이터는 하나의 매개변수로 constructor를 받습니다.
+
+### Method Decorator
+
+메서드 데코레이터는 클래스의 메서드에 적용됩니다. 메서드의 행동을 수정하거나 메타데이터를 추가하는 데 사용할 수 있습니다.
+
+- **매개변수:**
+  - `target`: 메서드가 속한 클래스의 인스턴스.
+  - `propertyKey`: 메서드의 이름.
+  - `descriptor`: 메서드의 PropertyDescriptor, 이를 통해 메서드의 동작을 수정할 수 있음.
+
+### Accessor Decorator
+
+getter 또는 setter 메서드에 적용됩니다. 접근자 데코레이터는 getter/setter의 동작을 수정하거나 메타데이터를 추가할 때 사용됩니다.
+
+- **매개변수:**
+  - `target`: getter/setter가 속한 클래스의 인스턴스.
+  - `propertyKey`: 접근자의 이름.
+  - `descriptor`: 접근자의 PropertyDescriptor.
+
+### Parameter Decorator
+
+매개변수 데코레이터는 클래스 메서드의 특정 매개변수에 적용됩니다. 매개변수에 대한 메타데이터를 저장하거나 특정 검증 로직을 추가할 수 있습니다.
+
+- **매개변수:**
+  - `target`: 메서드가 속한 클래스의 인스턴스.
+  - `propertyKey`: 메서드의 이름.
+  - `parameterIndex`: 데코레이터가 적용된 매개변수의 인덱스.
+
+## 메타 프로그래밍
+
+> 더 자세한 내용은 [김정환님 블로그](https://jeonghwan-kim.github.io/2023/06/20/reflect-metadata)를 참고해주세요.
+
+> 프로그래밍 대상이 되는 언어를 대상 언어, 프로그래밍 하는 언어를 메타 언어라고 한다. 이 중 스스로 메타 언어가 되는 것을 반영 혹은 리플렉션(Reflection)이라고 한다. 그리고 이러한 프로그래밍을 메타 프로그래밍이라고 부른다.
+
+Javascript또한 리플렉션을 지원합니다. 하지만 특정 도메인 데이터를 프로그램에 저장할 슬롯을 만들 수는 없습니다.
+
+이를 위해 [reflect-metadata](https://github.com/rbuckton/reflect-metadata) 폴리필을 사용합니다.
+
+```ts
+import 'reflect-metadata';
+
+class MyClass {}
+
+// 메타데이터 설정
+Reflect.defineMetadata('role', 'admin', MyClass);
+
+// 메타데이터 조회
+const role = Reflect.getMetadata('role', MyClass);
+
+console.log(role); // "admin"
+```
+
+이는 Reflect 내부에 Metadata Map에 저장합니다.
