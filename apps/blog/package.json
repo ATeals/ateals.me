@@ -14,8 +14,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "4.0.0-beta.5",
-    "@astrojs/react": "4.0.0-beta.2",
+    "@astrojs/image": "^0.18.0",
+    "@astrojs/mdx": "4.0.3",
+    "@astrojs/react": "4.1.2",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.4",
@@ -24,8 +25,9 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "astro": "5.0.0-beta.12",
+    "astro": "5.1.1",
     "astro-og-canvas": "^0.5.5",
+    "canvaskit-wasm": "^0.39.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
@@ -61,6 +63,7 @@
     "prettier": "^3.4.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.9",
+    "sharp": "^0.33.5",
     "typescript-eslint": "^8.16.0"
   }
 }

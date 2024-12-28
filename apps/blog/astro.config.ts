@@ -1,5 +1,4 @@
 // @ts-check
-// @ts-check
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
