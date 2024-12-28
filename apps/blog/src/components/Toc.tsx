@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { cn } from '@/lib/utils';
-import { type CollectionData, PostBuilder } from '@/service/mdx';
+import type { CollectionData, TOCSection } from '@/service/mdx';
 
 const HEADING_LEVELS_MAP = {
   1: 'mb-8 font-bold',
@@ -12,7 +12,7 @@ const HEADING_LEVELS_MAP = {
 export const Toc = ({ post }: { post: CollectionData }) => {
   const { activeHeading } = useSelectedHeading();
 
-  const tocHeadings = PostBuilder.parseToc(post.body);
+  const tocHeadings = parseToc(post?.body || '');
 
   const goHeading = ({ slug }: { slug: string }) => {
     window.location.replace(`#${slug}`);
@@ -73,4 +73,33 @@ export const useSelectedHeading = ({
   }, []);
 
   return { activeHeading };
+};
+
+export const parseToc = (source: string) => {
+  return source
+    .split('\n')
+    .filter((line) => line.match(/(^#{1,3})\s/))
+    .reduce<TOCSection[]>((ac, rawHeading) => {
+      const removeMdx = rawHeading
+        .replace(/^##*\s/, '')
+        .replace(/[*,~]{2,}/g, '')
+        .replace(/(?<=\])\((.*?)\)/g, '')
+        .replace(/(?<!\S)((http)(s?):\/\/|www\.).+?(?=\s)/g, '')
+        .replaceAll('`', '')
+        .replaceAll('[#]', '');
+
+      const level = rawHeading.match(/^#+/)?.[0].length ?? 0;
+
+      const section = {
+        slug: removeMdx
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣 -]/g, '')
+          .replace(/\s/g, '-'),
+        text: removeMdx.replace(/\[(.*?)\]\(.*?\)/g, '$1'),
+        level: level as 1 | 2 | 3
+      };
+
+      return [...ac, section];
+    }, []);
 };

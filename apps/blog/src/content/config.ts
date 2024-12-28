@@ -1,3 +1,4 @@
+import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
 interface PostCollectionOptions {
@@ -6,7 +7,11 @@ interface PostCollectionOptions {
 
 const definePostCollection = (options: PostCollectionOptions) =>
   defineCollection({
-    type: 'content',
+    loader: glob({
+      pattern: `./${options.type}/**/*.{mdx,md}`,
+      base: '../../contents',
+      generateId: ({ entry }) => entry
+    }),
     schema: z.object({
       title: z.string(),
       date: z.coerce.date(),
@@ -16,7 +21,8 @@ const definePostCollection = (options: PostCollectionOptions) =>
       updated: z.coerce.date().optional().nullable(),
       icon: z.string().optional().nullable(),
       series: z.string().optional().nullable(),
-      tags: z.array(z.string()).default([]).optional()
+      tags: z.array(z.string()).default([]).optional(),
+      slug: z.string()
     })
   });
 

@@ -8,7 +8,7 @@ const documents = await PostBuilder.getAll();
 const blogs = [...documents];
 
 // Transform the collection into an object
-const pages = Object.fromEntries(blogs.map(({ slug, data }) => [slug, { data, slug }]));
+const pages = Object.fromEntries(blogs.map(({ data }) => [data.slug, { data }]));
 
 export const { GET, getStaticPaths } = OGImageRoute({
   // The name of your dynamic route segment.

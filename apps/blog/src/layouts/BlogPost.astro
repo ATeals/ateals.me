@@ -25,7 +25,7 @@ const {
 
 const { post } = Astro.props;
 
-const time = Math.ceil(readingTime(post.body, { wordsPerMinute: 300 }).minutes);
+const time = Math.ceil(readingTime(post.body || '', { wordsPerMinute: 300 }).minutes);
 ---
 
 <section class="relative transform-none">

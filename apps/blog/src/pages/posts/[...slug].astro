@@ -1,4 +1,8 @@
 ---
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import { render } from 'astro:content';
+import { getEntry } from 'astro:content';
+
 import { BackButton } from '@/components/BackButton';
 import PostJsonLd from '@/components/JsonLD/PostJsonLd.astro';
 import { components } from '@/components/MDX';
@@ -14,21 +18,34 @@ import { PostBuilder } from '@/service/mdx';
 export async function getStaticPaths() {
   const document = await PostBuilder.getAll();
 
-  const post = [...document];
+  const posts = [...document];
 
-  return post.map((post) => ({
-    params: { slug: post.slug },
-    props: post
-  }));
+  return posts.map((post) => {
+    const index = posts.findIndex((collection) => collection.id === post.id);
+
+    return {
+      params: { slug: post.data.slug },
+      props: {
+        post,
+        prev: posts[index - 1],
+        next: posts[index + 1]
+      }
+    };
+  });
 }
 
-type Props = CollectionData;
+type Props = {
+  post: CollectionData;
+  prev: CollectionData;
+  next: CollectionData;
+  Content: AstroComponentFactory;
+};
 
-const post = Astro.props;
+const { post, prev, next } = Astro.props;
 
-const { prev, next } = await PostBuilder.getAdjacentType(post);
+const entry = await getEntry(post);
 
-const { Content } = await post.render();
+const { Content } = await render(entry);
 ---
 
 <DefaultLayout
